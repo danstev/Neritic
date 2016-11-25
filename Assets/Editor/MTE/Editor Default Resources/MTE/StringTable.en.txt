@@ -1,0 +1,168 @@
+using System.Collections.Generic;
+
+namespace MTE
+{
+	public class StringTable : IStringTable
+	{
+		private Dictionary<string, string> _stringTable = new Dictionary<string, string>
+		{
+			#region Converter
+			{"MTEConverter", "MTE-Converter"},
+			{"Terrain/MeshConverter", "MTE Terrain/Mesh Converter"},
+			{"UnityTerrainToMTEMesh", "Unity Terrain To MTE's Mesh-Terrain"},
+			{"MeshToMTEMesh", "Mesh to MTE's Mesh-Terrain"},
+			{"Name", "Name"},
+			{"UseObjNameWhenEmpty", "the object's name will be use when not specified"},
+			{"CreatePrefab", "Create prefab"},
+			{"SelectOutputDir", "Output dir"},
+			{"Textures", "Textures"},
+			{"Vertexes", "Vertexes"},
+			{"SplatTextureCount", "Splat texture count"},
+			{"ControlTextureSize", "Control texture size"},
+			{"BeginCovert", "Begin Convert"},
+			#endregion
+
+			#region Editor
+			{"MTEEditor", "MTE-Editor"},
+			{"TerrainEditor", "MTE Mesh-Terrain editor"},
+
+			{"RaiseLower.Header", "Raise/Lower Terrain"},
+			{"RaiseLower.Description", "Click to raise/lower. Use space to toggle up/down."},
+			{"Falloff", "Falloff"},
+
+			{"PaintHeight.Header", "Paint Height"},
+			{"PaintHeight.Description", "Hold shift to sample height, then click to paint."},
+
+			{"SmoothHeight.Header", "Smooth height"},
+			{"SmoothHeight.Description", "Click to smooth."},
+
+			{"PaintControl.Header", "Paint Texture"},
+			{"PaintControl.Description", "Select a texture below, then click to paint."},
+			{"BakeBasemap", "Bake basemap"},
+			{"ConvertToUnity3DTerrain", "Convert to Unity3D terrain"},
+			{"Info.ControlTextureWillBeSavedInstantly", "Modification of the control texture will be saved instantly."},
+
+			{"PaintVertexColor.Header", "Paint Vertex Color"},
+			{"PaintVertexColor.Description", "Select a color, then click to paint."},
+			{"ColorPresets", "Color presets"},
+			{"SingleChannel", "Single Channel"},
+			{"ClearToTheColor", "Clear to current color"},
+			{"ClickToAttachVertexColorComponent", "Click to attach vertex color component."},
+			{"Info.VertexColorWillBeSavedInstantly", "Modification of the vertex color will be saved instantly."},
+
+			{"MeshMisc.Header", "Mesh Toolbox"},
+			{"MeshMisc.Description", "Click the red light to enable a tool"},
+			{"MeshMisc.MoveSideways.Title", "Move Sideways"},
+			{"MeshMisc.MoveSideways.Instruction", "Click to select triangle, press Tab to select vertex. Then use handle to move the vertex. Press Esc to unselect."},
+			{"MeshMisc.CutHoles.Title", "Cut holes"},
+			{"MeshMisc.CutHoles.Instruction", "Click to remove triangle."},
+			{"Warning.CannotCutHolesOnAVertexColoredMesh", "You cannot cut holes on a vertex-colored mesh-terrain."},
+
+			{"Settings.Header", "Settings"},
+			{"Settings.Description", "Specifiy settings here."},
+			{"ShowAffectedVertex", "Show affected vertexes"},
+			{"AffectedVertexSize", "Affected vertexes size"},
+			{"FlashAffectedVertex", "Flash affected vertexes"},
+			{"ShowHitPoint", "Show hit point"},
+			#endregion
+
+			{"Settings", "Settings"},
+			{"Tools", "Tools"},
+			{"Brushes", "Brushes"},
+			{"Size", "Size"},
+			{"Speed", "Speed"},
+			{"Height", "Height"},
+			{"Strength", "Strength"},
+			{"Color", "Color"},
+			{"Flow", "Flow"},
+			{"Intensity", "Intensity"},
+
+			{"Yes", "Yes"},
+			{"No", "No"},
+			{"OK", "OK"},
+			{"Cancel", "Cancel"},
+			{"Save", "Save"},
+			{"SaveLater", "Save Later"},
+			{"Info", "Info"},
+			{"Warning", "Warning"},
+			{"Error", "Error"},
+
+			{"Info.NotEditable", "No GameObject selected or selected one cannot be edited."},
+			{"Info.NotSelectEditTool", "No tool selected. Please select a tool."},
+			{"Info.UseTheSaveButtonToSaveMesh", "You must save the mesh terrain by clicking the Save button below! Ctrl+S WON'T work!"},
+			{"Info.PleaseSelectAGameObjectWithVaildMesh", "Please select a GameObject with a valid mesh."},
+			{"Info.PleaseSelectAGameObjectWithTerrain", "Please select a GameObject with a valid Terrain."},
+			{"Info.LimitOfTexture5", "When using MTE/5 Textures/XXXX/Fog, the layer5 shares Tilling and Offset with the layer4."},
+			{"Info.CannotEditSelectedObject", "Cannot edit the selected object."},
+			{"Info.ConfirmBakeBasemap", "Do you want to bake the basemap?"},
+			{"Info.ConfirmConvertToUnity3DTerrain", "Do you want to convert the mesh-terrain to a Unity3D terrain?"},
+			{"Info.HotkeyTable", @"Hotkey Table
+
+F1		Height Tool: raise/lower
+F2		Height Tool: paint height
+F3		Height Tool: smooth height
+F4		Texture Painter
+F5		Vertex Color Painter
+F6		Mesh Toolbox
+F7		Settings
+
+- +		Adjust brush size.
+[ ]		Adjust brush speed/strength/flow.
+
+PageUp		Undo
+PageDown	Redo
+
+~		Toggle selection wireframe.
+
+
+* Hotkey is only available when
+  1. The IME is off.
+  2. The editor or scene view has the focus.
+"},
+
+			#region Pro version info
+			{"Info.FreeVersion.BakingBasemapIsAProFeature", "Baking basemap is a pro feature."},
+			{"Info.FreeVersion.ConvertToUnity3DTerrainIsAProFeature", "Converting to Unity3D terrain is a pro feature."},
+			{"Info.FreeVersion.MeshToolboxIsAProFeature", "Mesh toolbox is a pro feature."},
+			{"Info.FreeVersion.UsingSplatTexturesExcept4IsAProFeature", "Using splat textures except 4 is a pro feature.\nPlease remove or add the textures so the texture count is 4."},
+			#endregion
+
+			#region About
+			{"About", "About MTE"},
+			{"AuthorWebsite", "Author's website"},
+			{"Buy", "Buy"},
+			{"Forum", "Forum Thread"},
+			{"EmailAuthor", "Email the author"},
+			{"About.CopyInfo", "MTE was made by Zou Wei(zwcloud).\nYour current version is {0}"},
+			{"About.AuthorWebsiteLink", "https://zwcloud.net"},
+			{"BuyLink", "http://u3d.as/oWB"},
+			{"ForumLink", "http://forum.unity3d.com/threads/mte.396808/"},
+			{"EmailLink", "mailto:zwcloud@hotmail.com"},
+			#endregion
+
+			{"Warning.Confirm", "Are you sure?"},
+			{"Warning.ReplaceControlTextureIsNotAllowed", "You cannot replace the control texture"},
+			{"Warning.ConfirmReplaceControlTexture", "Are you sure you want to replace the control texture?"},
+			{"Warning.ConfirmAttachVertexColorComponent", "Are you sure you want to attach a vertex color component?"},
+			{"Warning.MeshIsNotSaved", "Do you want to save the changes you made on the mesh terrain?\n\nYou can save it later but your changes will be lost if you close Unity3D without saving it."},
+			{"Warning.PleaseSelectAPathInsideAssets", "Please select a path inside the \"Assets\" directory" },
+			{"Warning.TextureCountNotSupported", "The terrain object has a different number of splat textures other than 2/3/4/5. Please remove or add the textures so the texture count is 2/3/4/5."},
+			{"Error.ShaderNotSupported", "Current shader is not supported on target platform!" },
+
+		};
+
+		public string this[string index]
+		{
+			get
+			{
+				string text;
+				if(_stringTable.TryGetValue(index, out text))
+				{
+					return text;
+				}
+				return EnglishStringTable.Instance[index];
+			}
+		}
+
+	}
+}

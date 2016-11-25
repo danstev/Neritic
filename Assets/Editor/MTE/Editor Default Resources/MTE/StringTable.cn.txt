@@ -1,0 +1,168 @@
+using System.Collections.Generic;
+
+namespace MTE
+{
+	public class StringTable : IStringTable
+	{
+		private Dictionary<string, string> _stringTable = new Dictionary<string, string>
+		{
+			#region Converter
+			{"MTEConverter", "MTE转换器"},
+			{"Terrain/MeshConverter", "MTE地形/模型转换器"},
+			{"UnityTerrainToMTEMesh", "Unity地形 → MTE地形"},
+			{"MeshToMTEMesh", "模型 → MTE地形"},
+			{"Name", "名称"},
+			{"UseObjNameWhenEmpty", "不指定名称时，将使用选择对象的名称"},
+			{"CreatePrefab", "创建预置"},
+			{"SelectOutputDir", "选择输出文件夹"},
+			{"Textures", "贴图"},
+			{"Vertexes", "顶点"},
+			{"SplatTextureCount", "贴图数量"},
+			{"ControlTextureSize", "控制图大小"},
+			{"BeginCovert", "开始转换"},
+			#endregion
+
+			#region Editor
+			{"MTEEditor", "MTE编辑器"},
+			{"TerrainEditor", "MTE地形编辑器"},
+
+			{"RaiseLower.Header", "提升/降低高度"},
+			{"RaiseLower.Description", "拖动鼠标绘制，按空格键来切换上升和下降"},
+			{"Falloff", "衰减"},
+
+			{"PaintHeight.Header", "绘制高度"},
+			{"PaintHeight.Description", "拖动鼠标绘制，按住Shift键对高度取样"},
+
+			{"SmoothHeight.Header", "平滑高度"},
+			{"SmoothHeight.Description", "拖动鼠标来平滑高度"},
+
+			{"PaintControl.Header", "绘制地形贴图"},
+			{"PaintControl.Description", "拖动鼠标绘制"},
+			{"BakeBasemap", "生成Basemap"},
+			{"ConvertToUnity3DTerrain", "转换为Unity3D地形"},
+			{"Info.ControlTextureWillBeSavedInstantly", "对控制图的修改会马上被保存，无需手动进行保存。"},
+
+			{"PaintVertexColor.Header", "绘制顶点颜色"},
+			{"PaintVertexColor.Description", "拖动鼠标来绘制"},
+			{"ColorPresets", "颜色预置"},
+			{"SingleChannel", "单通道绘制"},
+			{"ClearToTheColor", "修改所有顶点颜色为当前的颜色"},
+			{"ClickToAttachVertexColorComponent", "点击附加顶点颜色相关组件"},
+			{"Info.VertexColorWillBeSavedInstantly", "对顶点颜色的修改会马上被保存，无需手动进行保存。"},
+
+			{"MeshMisc.Header", "模型工具"},
+			{"MeshMisc.Description", "点击下面的红灯来启用功能"},
+			{"MeshMisc.MoveSideways.Title", "自由移动顶点"},
+			{"MeshMisc.MoveSideways.Instruction", "点击选取三角形，按Tab来选择顶点，然后移动顶点；按Esc取消三角形选择"},
+			{"MeshMisc.CutHoles.Title", "挖洞"},
+			{"MeshMisc.CutHoles.Instruction", "点击三角形即可"},
+			{"Warning.CannotCutHolesOnAVertexColoredMesh", "不能在附加有顶点颜色组件的对象上挖洞"},
+
+			{"Settings.Header", "设置"},
+			{"Settings.Description", "指定各种设置"},
+			{"ShowAffectedVertex", "标识受影响的顶点"},
+			{"AffectedVertexSize", "标识大小"},
+			{"FlashAffectedVertex", "闪烁"},
+			{"ShowHitPoint", "显示碰撞点"},
+			#endregion
+
+			{"Settings", "设置"},
+			{"Tools", "工具"},
+			{"Brushes", "笔刷"},
+			{"Size", "大小"},
+			{"Speed", "速度"},
+			{"Height", "高度"},
+			{"Strength", "强度"},
+			{"Color", "颜色"},
+			{"Flow", "流量"},
+			{"Intensity", "硬度"},
+
+			{"Yes", "是"},
+			{"No", "否"},
+			{"OK", "知道了"},
+			{"Cancel", "取消"},
+			{"Save", "保存"},
+			{"SaveLater", "稍后保存"},
+			{"Info", "信息"},
+			{"Warning", "警告"},
+			{"Error", "错误"},
+
+			{"Info.NotEditable", "未选中GameObject或无法编辑选中的GameObject"},
+			{"Info.NotSelectEditTool", "未选择绘制工具，请选择后进行操作"},
+			{"Info.UseTheSaveButtonToSaveMesh", "必须使用下面的保存按钮来保存对模型的修改，Ctrl+S不会保存对模型的修改！"},
+			{"Info.PleaseSelectAGameObjectWithVaildMesh", "请选中带有有效Mesh的MeshFilter的GameObject再进行操作！"},
+			{"Info.PleaseSelectAGameObjectWithTerrain", "请选中带有Terrain的GameObject再进行操作！"},
+			{"Info.LimitOfTexture5", "当使用的shader是 MTE/5 Textures/XXXX/Fog 时，第5张贴图与第4张贴图共享Tilling和Offset属性。"},
+			{"Info.CannotEditSelectedObject", "无法编辑选中的对象。"},
+			{"Info.ConfirmBakeBasemap", "要生成Basemap吗？"},
+			{"Info.ConfirmConvertToUnity3DTerrain", "要以当前mesh-terrain为基础生成Unity3D地形吗？"},
+			{"Info.HotkeyTable", @"快捷键表
+
+F1		高度工具：提升降低地形
+F2		高度工具：压平高度
+F3		高度工具：平滑
+F4		绘制贴图
+F5		绘制顶点颜色
+F6		模型工具
+F7		设置
+
+- +		调整笔刷大小
+[ ]		调整笔刷速度/强度/流量
+
+PageUp		撤销
+PageDown	重做
+
+~		切换选择网格的显隐
+
+
+* 快捷键仅在以下条件满足时有效
+  1. 输入法处于关闭状态
+  2. 编辑器窗口或场景窗口具有焦点
+"},
+
+			#region Pro version info
+			{"Info.FreeVersion.BakingBasemapIsAProFeature", "生成basemap是高级版本的功能。"},
+			{"Info.FreeVersion.ConvertToUnity3DTerrainIsAProFeature", "转换为Unity3D地形是高级版本的功能。"},
+			{"Info.FreeVersion.MeshToolboxIsAProFeature", "模型工具是高级版本的功能。"},
+			{"Info.FreeVersion.UsingSplatTexturesExcept4IsAProFeature", "非高级版本只能使用4张贴图。\n请减少或增加贴图数量为4."},
+			#endregion
+
+			#region About
+			{"About", "关于MTE"},
+			{"AuthorWebsite", "作者的站点"},
+			{"Buy", "购买"},
+			{"Forum", "论坛主题贴"},
+			{"EmailAuthor", "Email联系作者"},
+			{"About.CopyInfo", "MTE由邹维(zwcloud)创建。\n当前的的版本是{0}"},
+			{"About.AuthorWebsiteLink", "https://zwcloud.net"},
+			{"BuyLink", "http://u3d.as/oWB"},
+			{"ForumLink", "http://forum.china.unity3d.com/thread-16521-1-1.html"},
+			{"EmailLink", "mailto:zwcloud@hotmail.com"},
+			#endregion
+			
+			{"Warning.Confirm", "确定执行此操作吗?"},
+			{"Warning.ReplaceControlTextureIsNotAllowed", "不能替换控制图！"},
+			{"Warning.ConfirmReplaceControlTexture", "确定要替换控制图吗？"},
+			{"Warning.ConfirmAttachVertexColorComponent", "确定要附加顶点颜色相关组件吗？"},
+			{"Warning.MeshIsNotSaved", "对地形模型的修改还没有保存，需要现在保存吗？\n\n也可以稍后再保存，但是如果关闭Unity3D而没有保存修改，修改内容就会丢失。"},
+			{"Warning.PleaseSelectAPathInsideAssets", "请选择一个在\"Assets\"目录下的路径" },
+			{"Warning.TextureCountNotSupported", "选择的地形的贴图数量不是2/3/4/5，请删除或添加贴图到2/3/4/5张后再试。"},
+			{"Error.ShaderNotSupported", "此shader不支持当前平台！" },
+
+		};
+
+		public string this[string index]
+		{
+			get
+			{
+				string text;
+				if(_stringTable.TryGetValue(index, out text))
+				{
+					return text;
+				}
+				return EnglishStringTable.Instance[index];
+			}
+		}
+
+	}
+}
