@@ -3,11 +3,8 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour {
 
-
     //3d stuff
     public Transform cam;
-    //public Transform everythingElse; //???
-
 
     //Mouse handling variavles
     private float yRotation;
@@ -23,27 +20,23 @@ public class PlayerControl : MonoBehaviour {
 
     //Movement
     public float speed = 6.0F;
-    private float tempSpeed;
     public float jumpSpeed = 8.0F;
-    private float tempJump;
     public float gravity = 20.0F;
-    private float tempGrav;
     private Vector3 moveDirection = Vector3.zero;
     private RaycastHit hit;
     public string floor;
 
-    //Lava Variables
-    public int lavaDamage;
-
-
     //animstuff
     public Animator anim;
-    //public float attackTime = 1f;
     private float attackTimeCD = 0f;
 
     //Stat stuff
     private Statistics stats;
     private Inventory inv;
+
+    //Audio stuff
+    public AudioSource audioPlayer;
+    public AudioClip weaponAttack;
 
     // Use this for initialization
     void Start () {
@@ -113,6 +106,7 @@ public class PlayerControl : MonoBehaviour {
             {
                 attackTimeCD = stats.attackTime;
                 anim.SetTrigger("swing");
+                audioPlayer.PlayOneShot(weaponAttack);
                 RaycastHit melee = new RaycastHit();
                 if (Physics.Raycast(transform.position, transform.forward, out melee, stats.meleeReach))
                 {

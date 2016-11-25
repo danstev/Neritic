@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Statistics : MonoBehaviour {
@@ -6,7 +7,8 @@ public class Statistics : MonoBehaviour {
     public bool damageable = false;
 
     public string nameOfMob;
-    public int health;
+    public int curHealth;
+    public int maxHealth;
     public int mana;
     public int armour;
     public int attack;
@@ -25,6 +27,11 @@ public class Statistics : MonoBehaviour {
 
     //Get component
     private Rigidbody r;
+    public Text healthUI;
+
+    //Audio
+    public AudioSource audioPlayer;
+    public AudioClip hurtSound;
 
     //Main hand
     //Offhand
@@ -45,17 +52,23 @@ public class Statistics : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if( health <= 0 )
+        if( curHealth <= 0 )
         {
             Destroy(gameObject);
+        }
+
+        if(gameObject.tag == "Player")
+        {
+            healthUI.text = ""+curHealth;
         }
 	
 	}
 
     public void takeDamage(float[] dam)
     {
-        if(damageable)
-        health -= (int)dam[1];
+        audioPlayer.PlayOneShot(hurtSound);
+        if (damageable)
+        curHealth -= (int)dam[1];
         Vector3 p = new Vector3(dam[2], dam[3], dam[4]);
         p = transform.position - p;
         p = p.normalized;
