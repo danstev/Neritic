@@ -27,7 +27,11 @@ public class Statistics : MonoBehaviour {
 
     //Get component
     private Rigidbody r;
+    private CharacterController c;
+    private Animator a;
     public Text healthUI;
+    private float playerKnockback;
+    private Vector3 playerKnockbackV;
 
     //Audio
     public AudioSource audioPlayer;
@@ -43,37 +47,60 @@ public class Statistics : MonoBehaviour {
 
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start() {
         r = GetComponent<Rigidbody>();
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        c = GetComponent<CharacterController>();
+        a = GetComponent<Animator>();
 
-        if( curHealth <= 0 )
+    }
+
+    void fixedUpdate()
+    {
+        if (playerKnockback <= 0)
+        {
+            c.Move(playerKnockbackV * Time.deltaTime);
+            playerKnockback -= Time.deltaTime;
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update() {
+
+        if (a != null)
+            a.speed = momvementSpeedMod;
+
+        if (curHealth <= 0)
         {
             Destroy(gameObject);
         }
 
-        if(gameObject.tag == "Player")
+        if (gameObject.tag == "Player")
         {
-            healthUI.text = ""+curHealth;
+            healthUI.text = "" + curHealth;
         }
-	
-	}
+
+    }
 
     public void takeDamage(float[] dam)
     {
         audioPlayer.PlayOneShot(hurtSound);
         if (damageable)
-        curHealth -= (int)dam[1];
+            curHealth -= (int)dam[1];
         Vector3 p = new Vector3(dam[2], dam[3], dam[4]);
         p = transform.position - p;
         p = p.normalized;
         p.y = p.y + 1;
-        r.AddForce (p * 250);
+        if (transform.tag != "Player")
+        {
+            r.AddForce(p * 250);
+        }
+        else
+        {
+            playerKnockback = 0.25f;
+            playerKnockbackV = p;
+        }
     }
 
 }

@@ -10,8 +10,6 @@ public class EnemyBaseAi : MonoBehaviour {
 
 
     //move stuff
-    public float moveSpeed;
-    public float attackDistance;
     public Statistics stats;
     public float randomMoveTimerSet;
     private Vector3 randomMoveSpace;
@@ -54,7 +52,6 @@ public class EnemyBaseAi : MonoBehaviour {
             if (detectColliders[i].tag == "NPC" || detectColliders[i].tag == "Player")
             {
                 target = detectColliders[i].gameObject;
-                print(target.name);
                 aggressiveMove();
             }
         }
@@ -63,7 +60,7 @@ public class EnemyBaseAi : MonoBehaviour {
 
     void aggressiveMove()
     {
-        if (stats.attackTime <= 0 && stats.meleeReach > Vector3.Distance(transform.position, target.transform.position))
+        if (attackTimer <= 0 && stats.meleeReach > Vector3.Distance(transform.position, target.transform.position))
         {
             //Do attack
             RaycastHit melee = new RaycastHit();
@@ -85,21 +82,23 @@ public class EnemyBaseAi : MonoBehaviour {
         else if (attackTimer > 0)
         {
             attackTimer -= Time.deltaTime;
-            float step = moveSpeed * Time.deltaTime;
+            float step = stats.momvementSpeedMod * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step / 2);
 
         }
         else
         {
-            float step = moveSpeed * Time.deltaTime;
+            float step = stats.momvementSpeedMod * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
         }
 
+        /*
         //If target moves away
         if (target != null && scanDist * 2 > Vector3.Distance(transform.position, target.transform.position))
         {
             target = null;
         }
+        */
 
     }
 
@@ -108,7 +107,7 @@ public class EnemyBaseAi : MonoBehaviour {
             if (randomMoveTimerSet <= 0)
             {
                 randomMoveTimerSet = 3 * Random.Range(1, 2);
-                randomMoveSpace = new Vector3(Random.Range(-1 * moveSpeed, 1 * moveSpeed), 0, Random.Range(-1 * moveSpeed, 1 * moveSpeed));
+                randomMoveSpace = new Vector3(Random.Range(-1 * stats.momvementSpeedMod, 1 * stats.momvementSpeedMod), 0, Random.Range(-1 * stats.momvementSpeedMod, 1 * stats.momvementSpeedMod));
                 transform.position += randomMoveSpace;
             }
 
