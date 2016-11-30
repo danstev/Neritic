@@ -94,7 +94,7 @@ public class EnemyBaseAi : MonoBehaviour {
 
         /*
         //If target moves away
-        if (target != null && scanDist * 2 > Vector3.Distance(transform.position, target.transform.position))
+        if (scanDist * 2 > Vector3.Distance(transform.position, target.transform.position))
         {
             target = null;
         }
