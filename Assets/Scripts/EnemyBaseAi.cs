@@ -62,22 +62,20 @@ public class EnemyBaseAi : MonoBehaviour {
     {
         if (attackTimer <= 0 && stats.meleeReach > Vector3.Distance(transform.position, target.transform.position))
         {
+            print(stats.attack);
             //Do attack
-            RaycastHit melee = new RaycastHit();
-            if (Physics.Raycast(transform.position, transform.forward, out melee, stats.meleeReach))
-            {
-                Debug.DrawLine(transform.position, melee.transform.position, Color.cyan, 10f);
-                float[] v = new float[6];
-                v[0] = transform.eulerAngles.y;
-                v[1] = stats.attack;
-                v[2] = transform.position.x;
-                v[3] = transform.position.y;
-                v[4] = transform.position.z;
-                melee.transform.SendMessage(("takeDamage"), v, SendMessageOptions.DontRequireReceiver);
-            }
+           float[] v = new float[6];
+                
+           v[0] = transform.eulerAngles.y;
+           v[1] = stats.attack;
+           v[2] = transform.position.x;
+           v[3] = transform.position.y;
+           v[4] = transform.position.z;
+           target.transform.SendMessage(("takeDamage"), v, SendMessageOptions.DontRequireReceiver);
+
 
             //Set timer to attackspeed
-            attackTimer = stats.attackTime;
+           attackTimer = stats.attackTime;
         }
         else if (attackTimer > 0)
         {

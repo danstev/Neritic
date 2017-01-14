@@ -88,6 +88,7 @@ public class Statistics : MonoBehaviour {
         audioPlayer.PlayOneShot(hurtSound);
         if (damageable)
             curHealth -= (int)dam[1];
+
         Vector3 p = new Vector3(dam[2], dam[3], dam[4]);
         p = transform.position - p;
         p = p.normalized;

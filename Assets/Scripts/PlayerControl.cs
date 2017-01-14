@@ -143,6 +143,19 @@ public class PlayerControl : MonoBehaviour {
                 use.transform.SendMessage(("worldUse"), inv, SendMessageOptions.DontRequireReceiver);
             }
        }
-       
+
+        //spell f 
+        if (Input.GetKeyDown("f"))
+        {
+            Vector3 fwd = transform.TransformDirection(transform.forward) * 10;
+            RaycastHit spell = new RaycastHit();
+
+            if (Physics.Raycast(transform.position, cam.transform.forward, out spell))
+            {
+                Debug.DrawLine(transform.position, fwd, Color.cyan, 10f);
+                //spell.transform.SendMessage(("worldUse"), inv, SendMessageOptions.DontRequireReceiver);
+            }
+        }
+
     }
 }
