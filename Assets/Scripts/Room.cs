@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Room {
+public class Room : MonoBehaviour {
 
-    //Room contains room information, mapgen will fill in this information, store these in an array and then generate the map from the information is used.
+    //Room contains room information, mapgen will fill in this information, store these in an array and then generate the map from the information is used. Generate each room, generate corridors, maybe no complex array, just 1d
 
     public int x1; //Only square rooms for now, have idea for curves later.
     public int x2;
@@ -15,6 +15,59 @@ public class Room {
     public int special; //Boss room? Spawn room? Treasure? etc
     public bool roofed; //Is there a roof on here? 
     public float lightlvl; //how light is the room? probably not neeeded atm.
+
+    public GameObject floor;
+    public GameObject wall;
+    public GameObject roof;
+    public GameObject monster;
+    public GameObject npc;
+    public GameObject items;
+
+    public void generateRoom()
+    {
+        generateFloor();
+        generateWalls();
+        generateRoof();
+        generateNPC();
+    }
+
+    private void generateFloor()
+    {
+        for(int i = x1; i < x2; i++)
+        {
+            for (int y = y1; y < y2; y++)
+            {
+                Instantiate(floor, new Vector3(i,1,y), Quaternion.identity);
+            }
+        }
+
+    }
+
+    private void generateWalls()
+    {
+        for (int i = x1; i < x2; i++)
+        {
+            Instantiate(wall, new Vector3(i, 1, y1 - 1), Quaternion.identity);
+            Instantiate(wall, new Vector3(i, 1, y2 + 1), Quaternion.identity);
+        }
+
+        for (int i = y1; i < y2; i++)
+        {
+            Instantiate(wall, new Vector3(x1 - 1, 1, i), Quaternion.identity);
+            Instantiate(wall, new Vector3(x2 + 1, 1, i), Quaternion.identity);
+        }
+
+    }
+
+    private void generateNPC()
+    {
+
+    }
+
+    private void generateRoof()
+    {
+
+    }
 
 
 }
