@@ -38,7 +38,7 @@ public class EnemyBaseAi : MonoBehaviour {
         }
         else
         {
-            randomMove();
+            //randomMove(); //until this is fixed
         }
 	
 	}
