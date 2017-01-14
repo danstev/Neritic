@@ -70,8 +70,14 @@ public class LevelGen : MonoBehaviour {
             {
                 for(int y = rooms[i, 2]; y < rooms[i, 3]; y++)
                 {
-                    map[x, y] = 1;
+                    if (x > height || y > width)
+                    {
 
+                    }
+                    else
+                    {
+                        map[x, y] = 1;
+                    }
                 }
             }
         }

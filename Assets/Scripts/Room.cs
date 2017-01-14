@@ -69,5 +69,44 @@ public class Room : MonoBehaviour {
 
     }
 
+    public bool checkIntersect(Room r)
+    {
+        //Check x1, x2, y1, y2
+        //2 checks??
+        bool testOne = false; //
+        bool testTwo = false;
+
+        if( r.x1 > x1 && r.x1 < x2 )
+        {
+            testOne = true;
+        }
+        else
+        {
+            testOne = false;
+        }
+
+        if (r.y1 > y1 && r.y1 < y2)
+        {
+            testTwo = true;
+        }
+        else
+        {
+            testTwo = false;
+        }
+
+        if( testOne && testTwo)
+        {
+            return true;
+        }
+        else
+        {
+            testOne = false;
+            testTwo = false;
+        }
+
+        return false;
+
+    }
+
 
 }
