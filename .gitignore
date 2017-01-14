@@ -301,3 +301,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.backup
+Temp/UnityTempFile-b1613384fe7fb024696f210cf1f6a219
+*.backup
+Temp/UnityLockfile
+*.backup
+Temp/__Backupscenes/0.backup
+Temp/UnityTempFile-c21b85a2bd26a9e48a6c3902345fb7e5

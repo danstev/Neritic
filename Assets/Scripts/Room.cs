@@ -69,9 +69,9 @@ public class Room : MonoBehaviour {
 
     }
 
-    public bool checkIntersect(Room r)
+    public bool checkIntersect(Room r) //SHOULD BE A BETTER WAY OF DOING THIS : P
     {
-        //Check x1, x2, y1, y2
+        //Check x1, x2, y1, y2 
         //2 checks??
         bool testOne = false; //
         bool testTwo = false;
