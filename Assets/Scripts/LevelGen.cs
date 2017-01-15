@@ -21,6 +21,7 @@ public class LevelGen : MonoBehaviour {
     // Use this for initialization
     void Start () {
         fillMapRandomBoxes();
+        //fillMapRandomHoles();
         drawMap();
 	
 	}
@@ -42,6 +43,8 @@ public class LevelGen : MonoBehaviour {
                 map[x,y] = (r.Next(0,100) < fillPercent) ? 1 : 0;
             }
         }
+
+        fillEdges();
     }
 
     void fillMapRandomBoxes()
@@ -116,6 +119,31 @@ public class LevelGen : MonoBehaviour {
                 {
                     Vector3 mapPos = new Vector3(x * spaceMod, 0, y * spaceMod);
                     Instantiate(tile, mapPos, Quaternion.identity);
+                }
+            }
+        }
+    }
+
+    void drawCorridor(Room roomA, Room roomB)
+    {
+        //draw corridor on 2d array, check for intersections, if none, draw, else redraw corridor, (maybe randomly? doesn't seeem to neat.)
+
+    }
+
+    void drawWalls()
+    {
+        //SHouldn't be needed if i do rooms right, but is useful for other room types?
+        for (int x = 0; x < height; x++)
+        {
+            for (int y = 0; y < width; y++)
+            {
+                if (map[x, y] == 1)
+                {
+                    if(map[x + 1, y] == 0 || map[x - 1, y] == 0 || map[x, y + 1] == 0 || map[x, y - 1] == 0) //Need check for null values here? Padding on the edges on generation of rooms?
+                    {
+                        //Vector3 mapPos = new Vector3(x * spaceMod, 0, y * spaceMod);
+                        //Instantiate(tile, mapPos, Quaternion.identity); //Change tile to a wall block instead
+                    }
                 }
             }
         }

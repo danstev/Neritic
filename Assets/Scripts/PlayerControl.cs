@@ -40,14 +40,7 @@ public class PlayerControl : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        Animator[] anims = gameObject.GetComponentsInChildren<Animator>();
-        foreach(Animator a in anims)
-        {
-            if(a.gameObject.name == "PlayerWeapon")
-            {
-                anim = a;
-            }
-        }
+        refreshWeapon();
         stats = GetComponent<Statistics>();
         inv = GetComponent<Inventory>();
     }
@@ -147,15 +140,25 @@ public class PlayerControl : MonoBehaviour {
         //spell f 
         if (Input.GetKeyDown("f"))
         {
-            Vector3 fwd = transform.TransformDirection(transform.forward) * 10;
-            RaycastHit spell = new RaycastHit();
-
-            if (Physics.Raycast(transform.position, cam.transform.forward, out spell))
-            {
-                Debug.DrawLine(transform.position, fwd, Color.cyan, 10f);
-                //spell.transform.SendMessage(("worldUse"), inv, SendMessageOptions.DontRequireReceiver);
-            }
+            GameObject spell;
+            spell = Instantiate(stats.magicSpell, transform.position, transform.rotation) as GameObject;
+            
+            Rigidbody spellR = spell.GetComponent<Rigidbody>();
+            print(spellR.name);
+            spellR.AddForce(spell.transform.forward * stats.magicSpeed);
         }
 
+    }
+
+    void refreshWeapon() //Refreshes what gameObject to use for the animator.
+    {
+        Animator[] anims = gameObject.GetComponentsInChildren<Animator>();
+        foreach (Animator a in anims)
+        {
+            if (a.gameObject.name == "PlayerWeapon")
+            {
+                anim = a;
+            }
+        }
     }
 }

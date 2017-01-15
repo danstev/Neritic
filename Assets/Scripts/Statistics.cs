@@ -5,16 +5,21 @@ using System.Collections;
 public class Statistics : MonoBehaviour {
 
     public bool damageable = false;
-
     public string nameOfMob;
     public int curHealth;
     public int maxHealth;
     public int mana;
+
+
     public int armour;
     public int attack;
     public float meleeReach;
     public float attackTime = 1f;
+
     public int magicAttack;
+    public float magicSpeed;
+    public GameObject magicSpell;
+
     public float momvementSpeedMod = 1f;
 
     public Inventory inv;
