@@ -20,7 +20,15 @@ public class Spell : MonoBehaviour {
     void OnCollisionEnter(Collision col)
     {
         print(col.gameObject.name);
-        Destroy(this);
+        if(col.gameObject.name == "Player") //check for friendly/seethrough etc? here
+        {
+
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        
     }
 
 }

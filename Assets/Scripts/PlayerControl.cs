@@ -141,7 +141,7 @@ public class PlayerControl : MonoBehaviour {
         if (Input.GetKeyDown("f"))
         {
             GameObject spell;
-            spell = Instantiate(stats.magicSpell, transform.position, cam.transform.rotation) as GameObject;
+            spell = Instantiate(stats.magicSpell, transform.position + transform.forward * 1, cam.transform.rotation) as GameObject;
             Rigidbody spellR = spell.GetComponent<Rigidbody>();
             spellR.AddForce(spell.transform.forward * stats.magicSpeed);
         }
