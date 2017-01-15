@@ -144,6 +144,8 @@ public class PlayerControl : MonoBehaviour {
             spell = Instantiate(stats.magicSpell, transform.position + transform.forward * 1, cam.transform.rotation) as GameObject;
             Rigidbody spellR = spell.GetComponent<Rigidbody>();
             spellR.AddForce(spell.transform.forward * stats.magicSpeed);
+            Spell spellA = spell.GetComponent<Spell>();
+            spellA.setMagicAttack(stats.magicAttack);
         }
 
     }

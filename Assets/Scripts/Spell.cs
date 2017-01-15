@@ -3,12 +3,14 @@ using System.Collections;
 
 public class Spell : MonoBehaviour {
 
-	// Use this for initialization
+    // Use this for initialization
 
     //on start get stats of what damage etc to dooo
     //On collision do damage plz
 
-	void Start () {
+    public int magicAttack;
+
+    void Start () {
 	
 	}
 	
@@ -26,9 +28,19 @@ public class Spell : MonoBehaviour {
         }
         else
         {
+            float[] v = new float[6];
+            v[1] = magicAttack;
+            v[2] = transform.position.x;
+            v[3] = transform.position.y;
+            v[4] = transform.position.z;
+            col.transform.SendMessage(("takeDamage"), v, SendMessageOptions.DontRequireReceiver);
             Destroy(gameObject);
         }
-        
+    }
+
+    public void setMagicAttack(int magicA)
+    {
+        magicAttack = magicA;
     }
 
 }
