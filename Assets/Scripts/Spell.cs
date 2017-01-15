@@ -4,6 +4,10 @@ using System.Collections;
 public class Spell : MonoBehaviour {
 
 	// Use this for initialization
+
+    //on start get stats of what damage etc to dooo
+    //On collision do damage plz
+
 	void Start () {
 	
 	}
@@ -12,4 +16,11 @@ public class Spell : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnCollisionEnter(Collision col)
+    {
+        print(col.gameObject.name);
+        Destroy(this);
+    }
+
 }
