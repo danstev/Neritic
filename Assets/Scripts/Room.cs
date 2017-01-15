@@ -15,6 +15,8 @@ public class Room : MonoBehaviour {
     public int special; //Boss room? Spawn room? Treasure? etc
     public bool roofed; //Is there a roof on here? 
     public float lightlvl; //how light is the room? probably not neeeded atm.
+    public int wallHeight;
+    
 
     public GameObject floor;
     public GameObject wall;
@@ -47,14 +49,20 @@ public class Room : MonoBehaviour {
     {
         for (int i = x1; i < x2; i++)
         {
-            Instantiate(wall, new Vector3(i, 1, y1 - 1), Quaternion.identity);
-            Instantiate(wall, new Vector3(i, 1, y2 + 1), Quaternion.identity);
+            for (int u = 0; u < wallHeight; u++)
+            {
+                Instantiate(wall, new Vector3(i, u, y1 - 1), Quaternion.identity);
+                Instantiate(wall, new Vector3(i, u, y2 + 1), Quaternion.identity);
+            }
         }
 
         for (int i = y1; i < y2; i++)
         {
-            Instantiate(wall, new Vector3(x1 - 1, 1, i), Quaternion.identity);
-            Instantiate(wall, new Vector3(x2 + 1, 1, i), Quaternion.identity);
+            for (int u = 0; u < wallHeight; u++)
+            {
+                Instantiate(wall, new Vector3(x1 - 1, 1, i), Quaternion.identity);
+                Instantiate(wall, new Vector3(x2 + 1, 1, i), Quaternion.identity);
+            }
         }
 
     }
