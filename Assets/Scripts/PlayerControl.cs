@@ -104,7 +104,7 @@ public class PlayerControl : MonoBehaviour {
                 if (Physics.Raycast(transform.position, transform.forward, out melee, stats.meleeReach))
                 {
                     Debug.DrawLine(transform.position, melee.transform.position, Color.cyan, 10f);
-                    float[] v = new float[6];
+                    float[] v = new float[6]; //Redo this so only sends attack, x,y,z
                     v[0] = transform.eulerAngles.y;
                     v[1] = stats.attack;
                     v[2] = transform.position.x;
@@ -127,24 +127,28 @@ public class PlayerControl : MonoBehaviour {
         //use 
         if (Input.GetKeyDown("e"))
         {
-            
             RaycastHit use = new RaycastHit();
-
             if(Physics.Raycast(transform.position, cam.transform.forward, out use, 2f))
             {
-                Debug.DrawLine(transform.position, use.transform.position, Color.cyan, 10f);
+                //Debug.DrawLine(transform.position, use.transform.position, Color.cyan, 10f); Not needed
                 use.transform.SendMessage(("worldUse"), inv, SendMessageOptions.DontRequireReceiver);
             }
        }
 
-        //spell f 
+        //spell f NEED to implement timer so no spamming
         if (Input.GetKeyDown("f"))
         {
+            //Get spell
             GameObject spell;
+            //instantiate spell
             spell = Instantiate(stats.magicSpell, transform.position + transform.forward * 1, cam.transform.rotation) as GameObject;
+            //get ridigbody for making it move
             Rigidbody spellR = spell.GetComponent<Rigidbody>();
+            //redo math here to take it from stats.magicSpeed and just times it by like 500 or something
             spellR.AddForce(spell.transform.forward * stats.magicSpeed);
+            //get spell stats
             Spell spellA = spell.GetComponent<Spell>();
+            //edit spell stats
             spellA.setMagicAttack(stats.magicAttack);
         }
 
