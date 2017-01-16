@@ -130,7 +130,7 @@ public class PlayerControl : MonoBehaviour {
             
             RaycastHit use = new RaycastHit();
 
-            if(Physics.Raycast(transform.position, transform.forward, out use, 2f))
+            if(Physics.Raycast(transform.position, cam.transform.forward, out use, 2f))
             {
                 Debug.DrawLine(transform.position, use.transform.position, Color.cyan, 10f);
                 use.transform.SendMessage(("worldUse"), inv, SendMessageOptions.DontRequireReceiver);
