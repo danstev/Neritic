@@ -78,6 +78,13 @@ public class Room : MonoBehaviour {
 
     private void generateRoof()
     {
+        for (int i = x1; i < x2; i++)
+        {
+            for (int y = y1; y < y2; y++)
+            {
+                Instantiate(roof, new Vector3(i + offsetX, wallHeight, y + offsetY), Quaternion.identity);
+            }
+        }
 
     }
 
