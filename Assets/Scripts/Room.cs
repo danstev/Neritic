@@ -34,7 +34,7 @@ public class Room : MonoBehaviour {
         generateFloor();
         generateWalls();
         generateRoof();
-        generateNPC();
+        //generateNPC(); Not in yet
     }
 
     private void generateFloor()
@@ -49,14 +49,14 @@ public class Room : MonoBehaviour {
 
     }
 
-    private void generateWalls()
+    private void generateWalls() //Needs more testing as well as maaking sure corridors work properly
     {
         for (int i = x1; i < x2; i++)
         {
             for (int u = 0; u < wallHeight; u++)
             {
-                Instantiate(wall, new Vector3(i i + offsetX, u, y1 - 1 + offsetY), Quaternion.identity);
-                Instantiate(wall, new Vector3(i i + offsetX, u, y2 + 1 + offsetY), Quaternion.identity);
+                Instantiate(wall, new Vector3(i + offsetX, u, y1 - 1 + offsetY), Quaternion.identity);
+                Instantiate(wall, new Vector3(i + offsetX, u, y2 + 1 + offsetY), Quaternion.identity);
             }
         }
 
@@ -64,8 +64,8 @@ public class Room : MonoBehaviour {
         {
             for (int u = 0; u < wallHeight; u++)
             {
-                Instantiate(wall, new Vector3(x1 - 1 i + offsetX, 1, i + offsetY), Quaternion.identity);
-                Instantiate(wall, new Vector3(x2 + 1 i + offsetX, 1, i + offsetY), Quaternion.identity);
+                Instantiate(wall, new Vector3(x1 - 1 + offsetX, 1, i + offsetY), Quaternion.identity);
+                Instantiate(wall, new Vector3(x2 + 1 + offsetX, 1, i + offsetY), Quaternion.identity);
             }
         }
 
@@ -73,7 +73,7 @@ public class Room : MonoBehaviour {
 
     private void generateNPC()
     {
-
+        //
     }
 
     private void generateRoof()
