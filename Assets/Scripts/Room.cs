@@ -10,6 +10,10 @@ public class Room : MonoBehaviour {
     public int y1;
     public int y2;
 
+    //Offset, for generation
+    public int offsetX;
+    public int offsetY;
+
     public int level; //What kind of level it is
     public int monsters; //How many monsters to put in
     public int special; //Boss room? Spawn room? Treasure? etc
@@ -39,7 +43,7 @@ public class Room : MonoBehaviour {
         {
             for (int y = y1; y < y2; y++)
             {
-                Instantiate(floor, new Vector3(i,1,y), Quaternion.identity);
+                Instantiate(floor, new Vector3(i + offsetX, 1,y + offsetY), Quaternion.identity);
             }
         }
 
@@ -51,8 +55,8 @@ public class Room : MonoBehaviour {
         {
             for (int u = 0; u < wallHeight; u++)
             {
-                Instantiate(wall, new Vector3(i, u, y1 - 1), Quaternion.identity);
-                Instantiate(wall, new Vector3(i, u, y2 + 1), Quaternion.identity);
+                Instantiate(wall, new Vector3(i i + offsetX, u, y1 - 1 + offsetY), Quaternion.identity);
+                Instantiate(wall, new Vector3(i i + offsetX, u, y2 + 1 + offsetY), Quaternion.identity);
             }
         }
 
@@ -60,8 +64,8 @@ public class Room : MonoBehaviour {
         {
             for (int u = 0; u < wallHeight; u++)
             {
-                Instantiate(wall, new Vector3(x1 - 1, 1, i), Quaternion.identity);
-                Instantiate(wall, new Vector3(x2 + 1, 1, i), Quaternion.identity);
+                Instantiate(wall, new Vector3(x1 - 1 i + offsetX, 1, i + offsetY), Quaternion.identity);
+                Instantiate(wall, new Vector3(x2 + 1 i + offsetX, 1, i + offsetY), Quaternion.identity);
             }
         }
 
@@ -78,40 +82,8 @@ public class Room : MonoBehaviour {
     }
 
     public bool checkIntersect(Room r) //SHOULD BE A BETTER WAY OF DOING THIS : P
-    {
-        //Check x1, x2, y1, y2 
-        //2 checks??
-        bool testOne = false; //
-        bool testTwo = false;
-
-        if( r.x1 > x1 && r.x1 < x2 )
-        {
-            testOne = true;
-        }
-        else
-        {
-            testOne = false;
-        }
-
-        if (r.y1 > y1 && r.y1 < y2)
-        {
-            testTwo = true;
-        }
-        else
-        {
-            testTwo = false;
-        }
-
-        if( testOne && testTwo)
-        {
-            return true;
-        }
-        else
-        {
-            testOne = false;
-            testTwo = false;
-        }
-
+    { 
+        //Going to research on how to best do this.
         return false;
 
     }
