@@ -101,7 +101,7 @@ public class PlayerControl : MonoBehaviour {
                 anim.SetTrigger("swing");
                 audioPlayer.PlayOneShot(weaponAttack);
                 RaycastHit melee = new RaycastHit();
-                if (Physics.Raycast(transform.position, transform.forward, out melee, stats.meleeReach))
+                if (Physics.Raycast(transform.position, cam.transform.forward, out melee, stats.meleeReach))
                 {
                     Debug.DrawLine(transform.position, melee.transform.position, Color.cyan, 10f);
                     float[] v = new float[6]; //Redo this so only sends attack, x,y,z
@@ -128,7 +128,7 @@ public class PlayerControl : MonoBehaviour {
         if (Input.GetKeyDown("e"))
         {
             RaycastHit use = new RaycastHit();
-            if(Physics.Raycast(transform.position, cam.transform.forward, out use, 2f))
+            if(Physics.Raycast(transform.position, cam.transform.forward, out use, 3f))
             {
                 //Debug.DrawLine(transform.position, use.transform.position, Color.cyan, 10f); Not needed
                 use.transform.SendMessage(("worldUse"), inv, SendMessageOptions.DontRequireReceiver);
