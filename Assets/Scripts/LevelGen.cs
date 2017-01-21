@@ -18,9 +18,6 @@ public class LevelGen : MonoBehaviour {
     public int width;
     public float spaceMod;
 
-    //Rooms
-    public int amountOfRooms;
-
     public Dungeon d;
 
 
