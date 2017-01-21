@@ -3,15 +3,20 @@ using System.Collections;
 
 public class LevelGen : MonoBehaviour {
 
+    //Level generator, gets a map, then turns that into terrain, monsters etc
+
+    //0     Empty
+    //1     Floor
+    //2     Wall
+    //
+
     public GameObject tile;
+    public GameObject wall;
+    public GameObject roof;
     private int[,] map;
     public int height;
     public int width;
     public float spaceMod;
-
-    //RandomHoles
-    public string seed;
-    public int fillPercent;
 
     //Rooms
     public int amountOfRooms;
@@ -47,9 +52,14 @@ public class LevelGen : MonoBehaviour {
                     Vector3 mapPos = new Vector3(x * spaceMod, 0, y * spaceMod);
                     Instantiate(tile, mapPos, Quaternion.identity);
                 }
+
+                if (map[x, y] == 2)
+                {
+                    Vector3 mapPos = new Vector3(x * spaceMod, 0, y * spaceMod);
+                    Instantiate(wall, mapPos, Quaternion.identity);
+                }
             }
         }
-
     }
 
 

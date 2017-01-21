@@ -87,6 +87,7 @@
     <None Include="Assets\Editor\MTE\Plugins\MTE\Resources\Vertex-colored\MTE-VertexColored-Bumped_Diffuse.shader" />
     <None Include="Assets\Editor\MTE\Plugins\MTE\Resources\Vertex-colored\MTE-VertexColored-ColorOnly.shader" />
     <None Include="Assets\Editor\MTE\Plugins\MTE\Resources\Vertex-colored\MTE-VertexColored-Diffuse.shader" />
+    <None Include="Assets\Scripts\Levels\OldLevelGenScripts.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
