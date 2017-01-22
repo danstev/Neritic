@@ -84,13 +84,12 @@
 -define:UNITY_TEAM_LICENSE
 -define:ENABLE_VSTU
 Assets/Scripts/Billboard.cs
-Assets/Scripts/Corridor.cs
 Assets/Scripts/EnemyBaseAi.cs
 Assets/Scripts/Inventory.cs
 Assets/Scripts/Item.cs
 Assets/Scripts/LevelGen.cs
+Assets/Scripts/Levels/Dungeon.cs
 Assets/Scripts/PlayerControl.cs
-Assets/Scripts/Room.cs
 Assets/Scripts/Spell.cs
 Assets/Scripts/Statistics.cs
 Assets/Scripts/ThirdPersonController.cs

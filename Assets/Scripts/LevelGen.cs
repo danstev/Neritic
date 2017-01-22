@@ -24,6 +24,9 @@ public class LevelGen : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+        Dungeon r = new Dungeon();
+        d = r;
         height = Random.Range(46, 64);
         width = Random.Range(46, 64);
         map = new int[height,width];
@@ -52,7 +55,7 @@ public class LevelGen : MonoBehaviour {
 
                 if (map[x, y] == 2)
                 {
-                    Vector3 mapPos = new Vector3(x * spaceMod, 0, y * spaceMod);
+                    Vector3 mapPos = new Vector3(x * spaceMod, 1, y * spaceMod);
                     Instantiate(wall, mapPos, Quaternion.identity);
                 }
             }

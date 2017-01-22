@@ -88,11 +88,11 @@ Assets/Scripts/EnemyBaseAi.cs
 Assets/Scripts/Inventory.cs
 Assets/Scripts/Item.cs
 Assets/Scripts/LevelGen.cs
+Assets/Scripts/Levels/Dungeon.cs
 Assets/Scripts/PlayerControl.cs
 Assets/Scripts/Spell.cs
 Assets/Scripts/Statistics.cs
 Assets/Scripts/ThirdPersonController.cs
 Assets/Scripts/behav/weaponAnimBehav.cs
-Assets/Scripts/mainGame.cs
 -r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll"
 -r:"C:\Program Files\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll"
