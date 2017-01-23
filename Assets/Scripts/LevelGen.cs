@@ -43,6 +43,7 @@ public class LevelGen : MonoBehaviour {
 
     void drawMap()
     {
+        
         for(int x = 0; x < map.GetLength(0); x++)
         {
             for (int y = 0; y < map.GetLength(1); y++)
@@ -50,13 +51,15 @@ public class LevelGen : MonoBehaviour {
                 if(map[x,y] == 1)
                 {
                     Vector3 mapPos = new Vector3(x * spaceMod, 0, y * spaceMod);
-                    Instantiate(tile, mapPos, Quaternion.identity);
+                    GameObject j = Instantiate(tile, mapPos, Quaternion.identity) as GameObject;
+                    j.transform.localScale = new Vector3(spaceMod, spaceMod, spaceMod);
                 }
 
                 if (map[x, y] == 2)
                 {
                     Vector3 mapPos = new Vector3(x * spaceMod, 1, y * spaceMod);
-                    Instantiate(wall, mapPos, Quaternion.identity);
+                    GameObject j = Instantiate(wall, mapPos, Quaternion.identity) as GameObject;
+                    j.transform.localScale = new Vector3(spaceMod, spaceMod * 2, spaceMod);
                 }
             }
         }
