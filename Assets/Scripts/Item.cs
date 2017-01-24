@@ -25,7 +25,7 @@ public class Item : MonoBehaviour {
 
     void worldUse(Inventory inv)
     {
-        print("asdsad");
+        //print("asdsad");
         inv.AddItem(gameObject);
     }
 

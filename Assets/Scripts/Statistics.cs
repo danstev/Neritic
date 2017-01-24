@@ -91,6 +91,7 @@ public class Statistics : MonoBehaviour {
     public void takeDamage(float[] dam)
     {
         audioPlayer.PlayOneShot(hurtSound);
+
         if (damageable)
             curHealth -= (int)dam[1];
 
@@ -101,6 +102,10 @@ public class Statistics : MonoBehaviour {
         if (transform.tag != "Player")
         {
             r.AddForce(p * 250);
+            //spawn x blood
+            Vector3 v = gameObject.transform.position;
+            Quaternion q = gameObject.transform.rotation;
+            Instantiate(Resources.Load("Prefabs/Blood"), v, q);
         }
         else
         {
