@@ -74,7 +74,7 @@ public class EnemyBaseAi : MonoBehaviour {
            target.transform.SendMessage(("takeDamage"), v, SendMessageOptions.DontRequireReceiver);
 
 
-            //Set timer to attackspeed
+           //Set timer to attackspeed
            attackTimer = stats.attackTime;
         }
         else if (attackTimer > 0)

@@ -78,6 +78,14 @@ public class Statistics : MonoBehaviour {
 
         if (curHealth <= 0)
         {
+            Collider[] detectColliders = Physics.OverlapSphere(transform.position, 100);
+            for (int i = 0; i < detectColliders.Length; i++)
+            {
+                if (detectColliders[i].tag == "Player")
+                {
+                    detectColliders[i].GetComponent<Statistics>().exp += expGranted;
+                }
+            }
             Destroy(gameObject);
         }
 
