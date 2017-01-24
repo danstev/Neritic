@@ -117,4 +117,15 @@ public class Inventory : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void recalcWeight() //Should not be needed if i did add properly, but is nice for when dropping maybe etc, maybe just remove any weight stuff for other actions, just plonk this after each?
+    {
+        int weight = 0;
+        foreach(GameObject i in slots)
+        {
+            Item w = GetComponent<Item>();
+            weight += w.weight * w.held;
+        }
+        totalWeight = weight;
+    }
 }
