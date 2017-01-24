@@ -76,17 +76,6 @@
     <Compile Include="Assets\Scripts\behav\weaponAnimBehav.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Editor\MTE\Editor Default Resources\MTE\PaintTexturePreview.shader" />
-    <None Include="Assets\Editor\MTE\Editor Default Resources\MTE\PaintTexturePreview_CG.shader" />
-    <None Include="Assets\Editor\MTE\Editor Default Resources\MTE\StringTable.cn.txt" />
-    <None Include="Assets\Editor\MTE\Editor Default Resources\MTE\StringTable.en.txt" />
-    <None Include="Assets\Editor\MTE\Plugins\MTE\Resources\4Textures\MTE-4Textures-Bumped_Diffuse.shader" />
-    <None Include="Assets\Editor\MTE\Plugins\MTE\Resources\4Textures\MTE-4Textures-Diffuse.shader" />
-    <None Include="Assets\Editor\MTE\Plugins\MTE\Resources\4Textures\MTE-4Textures-Diffuse_VertexColored.shader" />
-    <None Include="Assets\Editor\MTE\Plugins\MTE\Resources\MTE Common.cginc" />
-    <None Include="Assets\Editor\MTE\Plugins\MTE\Resources\Vertex-colored\MTE-VertexColored-Bumped_Diffuse.shader" />
-    <None Include="Assets\Editor\MTE\Plugins\MTE\Resources\Vertex-colored\MTE-VertexColored-ColorOnly.shader" />
-    <None Include="Assets\Editor\MTE\Plugins\MTE\Resources\Vertex-colored\MTE-VertexColored-Diffuse.shader" />
     <None Include="Assets\Scripts\Levels\OldLevelGenScripts.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
