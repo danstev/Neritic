@@ -45,7 +45,7 @@ public class EnemyBaseAi : MonoBehaviour {
 
     void targetScan()
     {
-        Collider[] detectColliders = Physics.OverlapSphere(transform.position, scanDist);
+        Collider[] detectColliders = Physics.OverlapSphere(transform.position, scanDist); //How efficient is this?
         for (int i = 0; i < detectColliders.Length; i++)
         {
             //print(detectColliders[i].tag);
