@@ -90,6 +90,7 @@ Assets/Scripts/Inventory.cs
 Assets/Scripts/Item.cs
 Assets/Scripts/LevelGen.cs
 Assets/Scripts/Levels/Dungeon.cs
+Assets/Scripts/Levels/Forest.cs
 Assets/Scripts/PlayerControl.cs
 Assets/Scripts/Spell.cs
 Assets/Scripts/Statistics.cs
