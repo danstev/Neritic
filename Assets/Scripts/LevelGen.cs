@@ -84,7 +84,7 @@ public class LevelGen : MonoBehaviour {
                 {
                     Vector3 mapPos = new Vector3(x * spaceMod, 1, y * spaceMod);
                     GameObject j = Instantiate(tree, mapPos, Quaternion.identity) as GameObject;
-                    j.transform.localScale = new Vector3(spaceMod, spaceMod, spaceMod);
+                    j.transform.localScale = new Vector3(spaceMod, spaceMod * 2, spaceMod);
                 }
             }
         }
