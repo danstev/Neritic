@@ -25,9 +25,9 @@ public class Statistics : MonoBehaviour {
     public Inventory inv;
     public GameObject[] equipment = new GameObject[10];
 
-    public int level;
+    public int level; //Exp for level = level * 100 * (level * 0.25)
     public int exp;
-    private int expLeft;
+    private int expForLevel;
     public int expGranted;
 
     //Get component
@@ -84,6 +84,10 @@ public class Statistics : MonoBehaviour {
                 if (detectColliders[i].tag == "Player")
                 {
                     detectColliders[i].GetComponent<Statistics>().exp += expGranted;
+                    if (exp > expForLevel)
+                    {
+                        levelUp();
+                    }
                 }
             }
             Destroy(gameObject);
@@ -93,6 +97,8 @@ public class Statistics : MonoBehaviour {
         {
             healthUI.text = "" + curHealth;
         }
+
+        
 
     }
 
@@ -109,11 +115,17 @@ public class Statistics : MonoBehaviour {
         p.y = p.y + 1;
         if (transform.tag != "Player")
         {
-            r.AddForce(p * 250);
+            r.AddForce(p * 125);
             //spawn x blood
-            Vector3 v = gameObject.transform.position;
-            Quaternion q = gameObject.transform.rotation;
-            Instantiate(Resources.Load("Prefabs/Blood"), v, q);
+            for (int x = 0; x < Random.Range(1, 8); x++)
+            {
+                GameObject g;
+                Vector3 v = gameObject.transform.position;
+                Quaternion q = gameObject.transform.rotation;
+                g = Instantiate(Resources.Load("Prefabs/Blood"), v, q) as GameObject;
+                Rigidbody b = g.GetComponent<Rigidbody>();
+                b.AddForce(p * 250);
+            }
         }
         else
         {
@@ -121,6 +133,16 @@ public class Statistics : MonoBehaviour {
             playerKnockback = 0.25f;
             playerKnockbackV = p;
         }
+    }
+
+    private void levelUp()
+    {
+        //More stat stuff to do here, gotta get it written down.
+        attack += 10;
+        maxHealth += 10;
+        curHealth = maxHealth;
+        level++;
+        expForLevel = level * 100 * (int)(level * 0.25);
     }
 
 }

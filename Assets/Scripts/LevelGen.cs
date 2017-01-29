@@ -83,8 +83,10 @@ public class LevelGen : MonoBehaviour {
                 if (map[x, y] == 10)
                 {
                     Vector3 mapPos = new Vector3(x * spaceMod, 1, y * spaceMod);
+                    Quaternion q = new Quaternion(Random.Range(0,360), Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
                     GameObject j = Instantiate(tree, mapPos, Quaternion.identity) as GameObject;
                     j.transform.localScale = new Vector3(spaceMod + Random.Range(0.0f, 0.5f), spaceMod * 2 + Random.Range(0.0f, 0.5f), spaceMod + Random.Range(0.0f, 0.5f));
+                    j.transform.rotation = q;
                 }
             }
         }
