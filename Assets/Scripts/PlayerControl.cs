@@ -165,4 +165,9 @@ public class PlayerControl : MonoBehaviour {
             }
         }
     }
+
+    public void refreshStats() //I think this is it for player controller;
+    {
+        speed = (stats.agility / 2) + 1;
+    }
 }

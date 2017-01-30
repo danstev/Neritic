@@ -10,7 +10,6 @@ public class Statistics : MonoBehaviour {
     public int maxHealth;
     public int mana;
 
-
     public int armour;
     public int attack;
     public float meleeReach;
@@ -21,6 +20,11 @@ public class Statistics : MonoBehaviour {
     public GameObject magicSpell;
 
     public float momvementSpeedMod = 1f;
+
+    //MOnster stats
+    public int strength; //Weapon damage
+    public int agility; //Speed, maybe bow damage?
+    public int intellect; //Magic spells etc;
 
     public Inventory inv;
     public GameObject[] equipment = new GameObject[10];
@@ -138,11 +142,29 @@ public class Statistics : MonoBehaviour {
     private void levelUp()
     {
         //More stat stuff to do here, gotta get it written down.
+        strength++;
+        agility++;
+        intellect++;
+
         attack += 10;
         maxHealth += 10;
         curHealth = maxHealth;
+        mana = intellect * 10;
         level++;
         expForLevel = level * 100 * (int)(level * 0.25);
+        refreshWeaponDamage();
+        PlayerControl p = GetComponent<PlayerControl>();
+        p.refreshStats();
+        
+    }
+
+    void refreshWeaponDamage()
+    {
+        //Weapon
+        //TODO weapon class here 
+        //Magic
+        int x = magicSpell.GetComponent<Spell>().magicAttack;
+        magicAttack = x + (int)(x * 0.5);
     }
 
 }
