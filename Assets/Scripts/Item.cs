@@ -11,7 +11,9 @@ public class Item : MonoBehaviour {
     public bool stackable;
     public bool unique;
     public int weight;
-    //public string equipable;
+    public bool equipable;
+    public string statNeeded;
+    public int statNeed;
 
     // Use this for initialization
     void Start () {

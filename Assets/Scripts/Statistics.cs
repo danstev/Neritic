@@ -31,7 +31,7 @@ public class Statistics : MonoBehaviour {
 
     public int level; //Exp for level = level * 100 * (level * 0.25)
     public int exp;
-    private int expForLevel;
+    public float expForLevel;
     public int expGranted;
 
     //Get component
@@ -53,7 +53,9 @@ public class Statistics : MonoBehaviour {
     //Leggings
     //Gloves
     //Feet
-
+    //Neck
+    //ring
+    //ring
 
 
     // Use this for initialization
@@ -61,7 +63,7 @@ public class Statistics : MonoBehaviour {
         r = GetComponent<Rigidbody>();
         c = GetComponent<CharacterController>();
         a = GetComponent<Animator>();
-
+        setExpForLevel();
     }
 
     void fixedUpdate()
@@ -87,10 +89,11 @@ public class Statistics : MonoBehaviour {
             {
                 if (detectColliders[i].tag == "Player")
                 {
-                    detectColliders[i].GetComponent<Statistics>().exp += expGranted;
-                    if (exp > expForLevel)
+                    Statistics s = detectColliders[i].GetComponent<Statistics>();
+                    s.exp += expGranted;
+                    if (s.exp > s.expForLevel)
                     {
-                        levelUp();
+                        s.levelUp();
                     }
                 }
             }
@@ -155,7 +158,7 @@ public class Statistics : MonoBehaviour {
         refreshWeaponDamage();
         PlayerControl p = GetComponent<PlayerControl>();
         p.refreshStats();
-        
+        setExpForLevel();
     }
 
     void refreshWeaponDamage()
@@ -167,4 +170,9 @@ public class Statistics : MonoBehaviour {
         magicAttack = x + (int)(x * 0.5);
     }
 
+    void setExpForLevel()
+    {
+        expForLevel = level * 100 * (level * 0.25f);
+        print(expForLevel);
+    }
 }

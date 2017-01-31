@@ -43,6 +43,7 @@ public class PlayerControl : MonoBehaviour {
         refreshWeapon();
         stats = GetComponent<Statistics>();
         inv = GetComponent<Inventory>();
+        refreshStats();
     }
 	
 	// Update is called once per frame

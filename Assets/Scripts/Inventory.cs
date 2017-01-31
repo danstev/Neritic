@@ -4,6 +4,8 @@ using System.Collections;
 public class Inventory : MonoBehaviour {
 
     public GameObject[] slots = new GameObject[20];
+    public GameObject[] equipped = new GameObject[10];
+    public GameObject[] spells = new GameObject[50];
 
     private int amountOfItems = 0;
     private int lastSlot = 0;
@@ -15,96 +17,112 @@ public class Inventory : MonoBehaviour {
     {
         Item item = i.GetComponent<Item>();
 
-       
-
-        for (int x = 0; x < amountOfItems; x++)
-        {                
-            Item currentSlot = slots[x].GetComponent<Item>();
-
-            if( item.ID == currentSlot.ID ) //If you have one in inventory
+        //If equippable
+        if(item.equipable == true)
+        {
+            if(item.type == "equipment")
             {
-                if(currentSlot.unique) //Check unique
+                //check if you have one equipped, if not, equip it CAN TURN OFF IN SETTINGS?
+                //if not equipped, go to the other part
+            }
+            else if(item.type == "spell")
+            {
+                //ADD TO SPELL LIST, NO AUTO EQUIP
+
+            }
+        }
+        else //Not equippable
+        {
+            for (int x = 0; x < amountOfItems; x++)
+            {
+                Item currentSlot = slots[x].GetComponent<Item>();
+
+                if (item.ID == currentSlot.ID) //If you have one in inventory
                 {
-                    //Display ui error here?
-                    return;
-                }
-                else if(currentSlot.stackable)//check stackable
-                {
-                    int spaceLeft = currentSlot.amount - currentSlot.held; //Amount of space left in currently held stack
-                    if (spaceLeft < item.held) //if you have more than space left
+                    if (currentSlot.unique) //Check unique
                     {
-                        print("More than space left");
-                        //fill up stack then make new one
-
-                        int toAdd = currentSlot.amount - currentSlot.held; //Too add onto current stack
-                        item.held = item.held - toAdd; //to new slot
-
-                        currentSlot.held += toAdd;
-
-                        slots[lastSlot] = i;
-                        totalWeight += item.weight * item.held;
-                        i.transform.parent = transform;
-                        i.SetActive(false);
-
-                        lastSlot++;
-                        //Audio cue here?
+                        //Display ui error here?
                         return;
                     }
-                    else if(spaceLeft == 0) //If no space left
+                    else if (currentSlot.stackable)//check stackable
                     {
-                        print("no space left");
-                        //Add to next free slot
-                        slots[lastSlot] = i;
-                        totalWeight += item.weight * item.held;
-                        i.transform.parent = transform;
-                        i.SetActive(false);
+                        int spaceLeft = currentSlot.amount - currentSlot.held; //Amount of space left in currently held stack
+                        if (spaceLeft < item.held) //if you have more than space left
+                        {
+                            print("More than space left");
+                            //fill up stack then make new one
 
-                        lastSlot++;
-                        //Audio cue here?
-                        return;
+                            int toAdd = currentSlot.amount - currentSlot.held; //Too add onto current stack
+                            item.held = item.held - toAdd; //to new slot
 
-                    }
-                    else //you have space left
-                    {
-                        print("space left");
-                        //Add to current itemstack
-                        Item increaseVal = slots[x].GetComponent<Item>();
-                        increaseVal.held += item.held;
-                        Destroy(i);
-                        //Audio cue here?
-                        return;
+                            currentSlot.held += toAdd;
+
+                            slots[lastSlot] = i;
+                            totalWeight += item.weight * item.held;
+                            i.transform.parent = transform;
+                            i.SetActive(false);
+
+                            lastSlot++;
+                            //Audio cue here?
+                            return;
+                        }
+                        else if (spaceLeft == 0) //If no space left
+                        {
+                            print("no space left");
+                            //Add to next free slot
+                            slots[lastSlot] = i;
+                            totalWeight += item.weight * item.held;
+                            i.transform.parent = transform;
+                            i.SetActive(false);
+
+                            lastSlot++;
+                            //Audio cue here?
+                            return;
+
+                        }
+                        else //you have space left
+                        {
+                            print("space left");
+                            //Add to current itemstack
+                            Item increaseVal = slots[x].GetComponent<Item>();
+                            increaseVal.held += item.held;
+                            Destroy(i);
+                            //Audio cue here?
+                            return;
+                        }
                     }
                 }
             }
-        }
 
-        if (amountOfItems < 20 && !item.unique) //Not in inv, and not unique
-        {
+            if (amountOfItems < 20 && !item.unique) //Not in inv, and not unique
+            {
+                slots[lastSlot] = i;
+                totalWeight += item.weight * item.held;
+                i.transform.parent = transform;
+                i.SetActive(false);
+
+                lastSlot++;
+                amountOfItems++;
+                return;
+            }
+            else if (amountOfItems == 20)// inv full
+            {
+                //inv full error
+                return;
+            }
+
+            //not full, not unique, none in inv
+            //Add to next free slot
             slots[lastSlot] = i;
-            totalWeight += item.weight * item.held;
+            totalWeight += item.weight;
             i.transform.parent = transform;
             i.SetActive(false);
 
             lastSlot++;
-            amountOfItems++;
+            //Audio cue here?
             return;
         }
-        else if (amountOfItems == 20)// inv full
-        {
-            //inv full error
-            return;
-        }
-
-        //not full, not unique, none in inv
-        //Add to next free slot
-        slots[lastSlot] = i;
-        totalWeight += item.weight;
-        i.transform.parent = transform;
-        i.SetActive(false);
-
-        lastSlot++;
-        //Audio cue here?
-        return;
+       
     }
 
 
@@ -123,9 +141,16 @@ public class Inventory : MonoBehaviour {
         int weight = 0;
         foreach(GameObject i in slots)
         {
-            Item w = GetComponent<Item>();
+            Item w = i.GetComponent<Item>();
             weight += w.weight * w.held;
         }
+
+        foreach (GameObject i in equipped)
+        {
+            Item w = i.GetComponent<Item>();
+            weight += w.weight * w.held;
+        }
+
         totalWeight = weight;
     }
 }
