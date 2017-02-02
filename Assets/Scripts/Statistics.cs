@@ -27,7 +27,6 @@ public class Statistics : MonoBehaviour {
     public int intellect; //Magic spells etc;
 
     public Inventory inv;
-    public GameObject[] equipment = new GameObject[10];
 
     public int level; //Exp for level = level * 100 * (level * 0.25)
     public int exp;
@@ -46,16 +45,7 @@ public class Statistics : MonoBehaviour {
     public AudioSource audioPlayer;
     public AudioClip hurtSound;
 
-    //Main hand
-    //Offhand
-    //Helmet
-    //Chestpiece
-    //Leggings
-    //Gloves
-    //Feet
-    //Neck
-    //ring
-    //ring
+
 
 
     // Use this for initialization
