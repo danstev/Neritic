@@ -6,6 +6,17 @@ public class Inventory : MonoBehaviour {
     public GameObject[] slots = new GameObject[20];
     public GameObject[] equipped = new GameObject[10];
     public GameObject[] spells = new GameObject[50];
+	
+	    //Main hand
+    //Offhand
+    //Helmet
+    //Chestpiece
+    //Leggings
+    //Gloves
+    //Feet
+    //Neck
+    //ring
+    //ring
 
     private int amountOfItems = 0;
     private int lastSlot = 0;
