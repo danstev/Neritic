@@ -11,11 +11,11 @@ public class Statistics : MonoBehaviour {
     public int mana;
 
     public int armour;
-    public int attack;
+    public float attack;
     public float meleeReach;
     public float attackTime = 1f;
 
-    public int magicAttack;
+    public float magicAttack;
     public float magicSpeed;
     public GameObject magicSpell;
 
