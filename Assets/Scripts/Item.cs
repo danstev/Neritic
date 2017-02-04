@@ -14,6 +14,7 @@ public class Item : MonoBehaviour {
     public bool equipable;
     public string statNeeded;
     public int statNeed;
+    public string description;
 
     // Use this for initialization
     void Start () {

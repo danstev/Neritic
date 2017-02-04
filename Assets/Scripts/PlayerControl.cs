@@ -159,6 +159,31 @@ public class PlayerControl : MonoBehaviour {
             spellA.setMagicAttack((int)stats.magicAttack);
         }
 
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            invOn(tab);
+        }
+
+        if (Input.GetKeyDown("i"))
+        {
+            invOn("inventory");
+        }
+
+        if (Input.GetKeyDown("u"))
+        {
+            invOn("equipment");
+        }
+
+        if (Input.GetKeyDown("y"))
+        {
+            invOn("spells");
+        }
+
+        if (Input.GetKeyDown("t"))
+        {
+            invOn("statisticsPage");
+        }
+
     }
 
     void refreshWeapon() //Refreshes what gameObject to use for the animator.
@@ -187,21 +212,38 @@ public class PlayerControl : MonoBehaviour {
     {
         if (GUION)
         {
+            Cursor.lockState = CursorLockMode.None;
             if (tab == "inventory")
             {
                 inventory.SetActive(true);
+
+                equipment.SetActive(false);
+                spells.SetActive(false);
+                statisticsPage.SetActive(false);
             }
             else if (tab == "equipment")
             {
                 equipment.SetActive(true);
+
+                inventory.SetActive(false);
+                spells.SetActive(false);
+                statisticsPage.SetActive(false);
             }
             else if (tab == "spells")
             {
                 spells.SetActive(true);
+
+                inventory.SetActive(false);
+                equipment.SetActive(false);
+                statisticsPage.SetActive(false);
             }
             else if (tab == "statisticsPage")
             {
                 statisticsPage.SetActive(true);
+
+                inventory.SetActive(false);
+                equipment.SetActive(false);
+                spells.SetActive(false);
             }
         }
         else
@@ -210,7 +252,7 @@ public class PlayerControl : MonoBehaviour {
             equipment.SetActive(false);
             spells.SetActive(false);
             statisticsPage.SetActive(false);
-
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
     }
