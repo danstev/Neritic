@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour {
     public GameObject[] equipped = new GameObject[10];
     public GameObject[] spells = new GameObject[50];
 	
-	    //Main hand
+	//Main hand
     //Offhand
     //Helmet
     //Chestpiece
@@ -163,5 +163,25 @@ public class Inventory : MonoBehaviour {
         }
 
         totalWeight = weight;
+    }
+
+    void updateInv()
+    {
+
+    }
+
+    void updateEquipment()
+    {
+
+    }
+
+    void updateSpells()
+    {
+
+    }
+
+    void updateStatsPage()
+    {
+
     }
 }

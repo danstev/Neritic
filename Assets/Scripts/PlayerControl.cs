@@ -210,7 +210,7 @@ public class PlayerControl : MonoBehaviour {
 
     private void invOn(string tab)
     {
-        if (GUION)
+        if (GUION == false)
         {
             Cursor.lockState = CursorLockMode.None;
             if (tab == "inventory")
@@ -220,6 +220,7 @@ public class PlayerControl : MonoBehaviour {
                 equipment.SetActive(false);
                 spells.SetActive(false);
                 statisticsPage.SetActive(false);
+                GUION = true;
             }
             else if (tab == "equipment")
             {
@@ -228,6 +229,7 @@ public class PlayerControl : MonoBehaviour {
                 inventory.SetActive(false);
                 spells.SetActive(false);
                 statisticsPage.SetActive(false);
+                GUION = true;
             }
             else if (tab == "spells")
             {
@@ -236,6 +238,7 @@ public class PlayerControl : MonoBehaviour {
                 inventory.SetActive(false);
                 equipment.SetActive(false);
                 statisticsPage.SetActive(false);
+                GUION = true;
             }
             else if (tab == "statisticsPage")
             {
@@ -244,6 +247,7 @@ public class PlayerControl : MonoBehaviour {
                 inventory.SetActive(false);
                 equipment.SetActive(false);
                 spells.SetActive(false);
+                GUION = true;
             }
         }
         else
@@ -253,6 +257,7 @@ public class PlayerControl : MonoBehaviour {
             spells.SetActive(false);
             statisticsPage.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+            GUION = false;
         }
 
     }
