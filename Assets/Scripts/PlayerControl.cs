@@ -30,9 +30,15 @@ public class PlayerControl : MonoBehaviour {
     public Animator anim;
     private float attackTimeCD = 0f;
 
-    //Stat stuff
+    //Inv stuff
     private Statistics stats;
     private Inventory inv;
+    private string tab;
+    private bool GUION = false;
+    private GameObject inventory;
+    private GameObject equipment;
+    private GameObject spells;
+    private GameObject statisticsPage;
 
     //Audio stuff
     public AudioSource audioPlayer;
@@ -150,7 +156,7 @@ public class PlayerControl : MonoBehaviour {
             //get spell stats
             Spell spellA = spell.GetComponent<Spell>();
             //edit spell stats
-            spellA.setMagicAttack(stats.magicAttack);
+            spellA.setMagicAttack((int)stats.magicAttack);
         }
 
     }
@@ -171,4 +177,42 @@ public class PlayerControl : MonoBehaviour {
     {
         speed = (stats.agility / 2) + 1;
     }
+
+    private void invOn()
+    {
+        invOn(tab);
+    }
+
+    private void invOn(string tab)
+    {
+        if (GUION)
+        {
+            if (tab == "inventory")
+            {
+                inventory.SetActive(true);
+            }
+            else if (tab == "equipment")
+            {
+                equipment.SetActive(true);
+            }
+            else if (tab == "spells")
+            {
+                spells.SetActive(true);
+            }
+            else if (tab == "statisticsPage")
+            {
+                statisticsPage.SetActive(true);
+            }
+        }
+        else
+        {
+            inventory.SetActive(false);
+            equipment.SetActive(false);
+            spells.SetActive(false);
+            statisticsPage.SetActive(false);
+
+        }
+
+    }
+
 }
