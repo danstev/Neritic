@@ -167,6 +167,30 @@ public class Inventory : MonoBehaviour {
         totalWeight = weight;
     }
 
+    void updateStatisitics()
+    {
+        int s = 0;
+        int a = 0;
+        int i = 0;
+
+        int wDam = 0;
+        int sDam = 0; 
+
+        foreach(GameObject g in equipped)
+        {
+            Equipment e = g.GetComponent<Equipment>();
+            s += e.strength;
+            a += e.agility;
+            i += e.intellect;
+
+            if(e.weapon == true)
+            {
+                
+            }
+        }
+
+    }
+
     void updateInv()
     {
 

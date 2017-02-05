@@ -21,10 +21,13 @@ public class Statistics : MonoBehaviour {
 
     public float momvementSpeedMod = 1f;
 
-    //MOnster stats
     public int strength; //Weapon damage
     public int agility; //Speed, maybe bow damage?
     public int intellect; //Magic spells etc;
+
+    public int actualstrength; //Weapon damage
+    public int actualAgility; //Speed, maybe bow damage?
+    public int actualIntellect; //Magic spells etc;
 
     public Inventory inv;
 
