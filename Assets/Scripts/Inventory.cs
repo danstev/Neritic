@@ -33,6 +33,8 @@ public class Inventory : MonoBehaviour {
         {
             if(item.type == "equipment")
             {
+                Equipment e = i.GetComponent<Equipment>();
+                string slot = e.slot;
                 //check if you have one equipped, if not, equip it CAN TURN OFF IN SETTINGS?
                 //if not equipped, go to the other part
             }

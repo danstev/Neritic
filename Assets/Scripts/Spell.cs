@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Spell : MonoBehaviour {
 
-    // Use this for initialization
-
     //on start get stats of what damage etc to dooo
     //On collision do damage plz
 
