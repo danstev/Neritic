@@ -167,7 +167,7 @@ public class Inventory : MonoBehaviour {
         totalWeight = weight;
     }
 
-    void updateStatisitics()
+    void updateAllStatisitics()
     {
         int s = 0;
         int a = 0;
@@ -185,9 +185,13 @@ public class Inventory : MonoBehaviour {
 
             if(e.weapon == true)
             {
-                
+                //Set wDam
             }
+
+            //Same for spell
         }
+
+        //set these on the stats page
 
     }
 
