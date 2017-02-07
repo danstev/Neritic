@@ -50,12 +50,13 @@ public class PlayerControl : MonoBehaviour {
         stats = GetComponent<Statistics>();
         inv = GetComponent<Inventory>();
         refreshStats();
+        Cursor.lockState = CursorLockMode.Locked;
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        Cursor.lockState = CursorLockMode.Locked;
+        
 
         //Mouse handler
         yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
@@ -205,7 +206,20 @@ public class PlayerControl : MonoBehaviour {
 
     private void invOn()
     {
-        invOn(tab);
+        if (tab == null)
+        {
+            invOn(tab);
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+            inventory.SetActive(true);
+
+            equipment.SetActive(false);
+            spells.SetActive(false);
+            statisticsPage.SetActive(false);
+            GUION = true;
+        }
     }
 
     private void invOn(string tab)

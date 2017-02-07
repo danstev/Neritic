@@ -3,11 +3,15 @@ using System.Collections;
 
 public class EnemyBaseAi : MonoBehaviour {
 
+    //TODO
+    //fix random move
+    //Add attacking/spells which takes from statistics
+    //maybe spell queue?
+
     //target stuff
     public GameObject target;
     public float scanTimer;
     public float scanDist;
-
 
     //move stuff
     public Statistics stats;

@@ -3,6 +3,10 @@ using System.Collections;
 
 public class Inventory : MonoBehaviour {
 
+    //TODO
+    //Update all pages
+    //Remove item function
+    
     public GameObject[] slots = new GameObject[20];
     public GameObject[] equipped = new GameObject[10];
     public GameObject[] spells = new GameObject[50];
