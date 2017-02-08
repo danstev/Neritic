@@ -8,7 +8,8 @@ public class Statistics : MonoBehaviour {
     public string nameOfMob;
     public int curHealth;
     public int maxHealth;
-    public int mana;
+    public int curMana;
+    public int maxMana;
 
     public int armour;
     public float attack;
@@ -141,11 +142,11 @@ public class Statistics : MonoBehaviour {
         strength++;
         agility++;
         intellect++;
-
-        attack += 10;
+        //attack += 10;
         maxHealth += 10;
         curHealth = maxHealth;
-        mana = intellect * 10;
+        maxMana = intellect * 10;
+        curMana = maxMana;
         level++;
         expForLevel = level * 100 * (int)(level * 0.25);
         refreshWeaponDamage();
