@@ -54,8 +54,6 @@ public class PlayerControl : MonoBehaviour {
         inv = GetComponent<Inventory>();
         refreshStats();
         Cursor.lockState = CursorLockMode.Locked;
-
-        
         movement = mouseController;
         movement += movementController;
     }
@@ -68,30 +66,9 @@ public class PlayerControl : MonoBehaviour {
         //Attack 
         if (Input.GetMouseButtonDown(0))
         {
-            if (attackTimeCD <= 0)
-            {
-                attackTimeCD = stats.attackTime;
-                anim.SetTrigger("swing");
-                audioPlayer.PlayOneShot(weaponAttack);
-                RaycastHit melee = new RaycastHit();
-                if (Physics.Raycast(transform.position, cam.transform.forward, out melee, stats.meleeReach))
-                {
-                    Debug.DrawLine(transform.position, melee.transform.position, Color.cyan, 10f);
-                    float[] v = new float[6]; //Redo this so only sends attack, x,y,z
-                    v[0] = transform.eulerAngles.y;
-                    v[1] = stats.attack;
-                    v[2] = transform.position.x;
-                    v[3] = transform.position.y;
-                    v[4] = transform.position.z;
-                    melee.transform.SendMessage(("takeDamage"), v, SendMessageOptions.DontRequireReceiver);
-                }
-            }
-            else if (attackTimeCD < 0)
-            {
-                //Do nothing, do time trigger for health stuff before here
-            }
-            
+            attack();
         }
+
         if (attackTimeCD > 0)
         {
             attackTimeCD -= Time.deltaTime;
@@ -163,7 +140,6 @@ public class PlayerControl : MonoBehaviour {
         {
             Cursor.lockState = CursorLockMode.None;
             inventory.SetActive(true);
-
             equipment.SetActive(false);
             spells.SetActive(false);
             statisticsPage.SetActive(false);
@@ -171,49 +147,45 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
-    private void invOn(string tab)
+    private void invOn(string toDoTab)
     {
         if (GUION == false)
         {
             Cursor.lockState = CursorLockMode.None;
-            if (tab == "inventory")
+            if (toDoTab == "inventory")
             {
                 inventory.SetActive(true);
-
                 equipment.SetActive(false);
                 spells.SetActive(false);
                 statisticsPage.SetActive(false);
                 GUION = true;
             }
-            else if (tab == "equipment")
+            else if (toDoTab == "equipment")
             {
                 equipment.SetActive(true);
-
                 inventory.SetActive(false);
                 spells.SetActive(false);
                 statisticsPage.SetActive(false);
                 GUION = true;
             }
-            else if (tab == "spells")
+            else if (toDoTab == "spells")
             {
                 spells.SetActive(true);
-
                 inventory.SetActive(false);
                 equipment.SetActive(false);
                 statisticsPage.SetActive(false);
                 GUION = true;
             }
-            else if (tab == "statisticsPage")
+            else if (toDoTab == "statisticsPage")
             {
                 statisticsPage.SetActive(true);
-
                 inventory.SetActive(false);
                 equipment.SetActive(false);
                 spells.SetActive(false);
                 GUION = true;
             }
         }
-        else
+        else if(GUION)
         {
             inventory.SetActive(false);
             equipment.SetActive(false);
@@ -222,7 +194,6 @@ public class PlayerControl : MonoBehaviour {
             Cursor.lockState = CursorLockMode.Locked;
             GUION = false;
         }
-
     }
 
     void castSpell()
@@ -296,5 +267,31 @@ public class PlayerControl : MonoBehaviour {
         moveDirection.y -= gravity * Time.deltaTime;
         //Making the character move
         controller.Move(moveDirection * Time.deltaTime);
+    }
+
+    void attack()
+    {
+        if (attackTimeCD <= 0)
+        {
+            attackTimeCD = stats.attackTime;
+            anim.SetTrigger("swing");
+            audioPlayer.PlayOneShot(weaponAttack);
+            RaycastHit melee = new RaycastHit();
+            if (Physics.Raycast(transform.position, cam.transform.forward, out melee, stats.meleeReach))
+            {
+                Debug.DrawLine(transform.position, melee.transform.position, Color.cyan, 10f);
+                float[] v = new float[6]; //Redo this so only sends attack, x,y,z
+                v[0] = transform.eulerAngles.y;
+                v[1] = stats.attack;
+                v[2] = transform.position.x;
+                v[3] = transform.position.y;
+                v[4] = transform.position.z;
+                melee.transform.SendMessage(("takeDamage"), v, SendMessageOptions.DontRequireReceiver);
+            }
+        }
+        else if (attackTimeCD < 0)
+        {
+            //Do nothing, do time trigger for health stuff before here
+        }
     }
 }

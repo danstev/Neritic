@@ -166,6 +166,5 @@ public class Statistics : MonoBehaviour {
     void setExpForLevel()
     {
         expForLevel = level * 100 * (level * 0.25f);
-        print(expForLevel);
     }
 }
