@@ -118,7 +118,7 @@ public class PlayerControl : MonoBehaviour {
         Animator[] anims = gameObject.GetComponentsInChildren<Animator>();
         foreach (Animator a in anims)
         {
-            if (a.gameObject.name == "EquippedWeapon")
+            if (a.gameObject.tag == "Weapon")
             {
                 anim = a;
             }
@@ -144,6 +144,7 @@ public class PlayerControl : MonoBehaviour {
             spells.SetActive(false);
             statisticsPage.SetActive(false);
             GUION = true;
+            movement -= mouseController;
         }
     }
 
@@ -159,6 +160,7 @@ public class PlayerControl : MonoBehaviour {
                 spells.SetActive(false);
                 statisticsPage.SetActive(false);
                 GUION = true;
+                movement -= mouseController;
             }
             else if (toDoTab == "equipment")
             {

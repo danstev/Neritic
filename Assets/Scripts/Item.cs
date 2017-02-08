@@ -12,12 +12,19 @@ public class Item : MonoBehaviour {
     public bool unique;
     public int weight;
     public bool equipable;
+    public bool equipped = false;
     public string statNeeded;
     public int statNeed;
     public string description;
 
     // Use this for initialization
     void Start () {
+
+        if(!equipped)
+        {
+            Animator a = GetComponent<Animator>();
+            a.enabled = false;
+        }
 	
 	}
 	
@@ -30,6 +37,12 @@ public class Item : MonoBehaviour {
     {
         //print("asdsad");
         inv.AddItem(gameObject);
+    }
+
+    void equip()
+    {
+        Animator a = GetComponent<Animator>();
+        a.enabled = true;
     }
 
 }
