@@ -44,6 +44,9 @@ public class PlayerControl : MonoBehaviour {
     public AudioSource audioPlayer;
     public AudioClip weaponAttack;
 
+    private delegate void move();
+    move movement;
+
     // Use this for initialization
     void Start () {
         refreshWeapon();
@@ -51,54 +54,16 @@ public class PlayerControl : MonoBehaviour {
         inv = GetComponent<Inventory>();
         refreshStats();
         Cursor.lockState = CursorLockMode.Locked;
+
+        
+        movement = mouseController;
+        movement += movementController;
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        
-
-        //Mouse handler
-        yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
-        xRotation -= Input.GetAxis("Mouse Y") * lookSensitivity;
-        xRotation = Mathf.Clamp(xRotation, -80, 100);
-        currentXRotation = Mathf.SmoothDamp(currentXRotation, xRotation, ref xRotationV, lookSmoothnes);
-        currentYRotation = Mathf.SmoothDamp(currentYRotation, yRotation, ref yRotationV, lookSmoothnes);
-        if(currentXRotation > bottom)
-        {
-            currentXRotation = bottom;
-            xRotation = bottom;
-        }
-
-        if (currentXRotation < top)
-        {
-            currentXRotation = top;
-            xRotation = top;
-        }
-
-        transform.rotation = Quaternion.Euler(0, currentYRotation, 0);
-        cam.transform.rotation = Quaternion.Euler(currentXRotation, currentYRotation, 0);
-
-        //MovementHandler
-        CharacterController controller = GetComponent<CharacterController>();
-        // is the controller on the ground?
-        if (controller.isGrounded)
-        {
-            //Feed moveDirection with input.
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            moveDirection = transform.TransformDirection(moveDirection);
-            //Multiply it by speed.
-            moveDirection *= speed;
-            //Jumping
-            if (Input.GetButton("Jump"))
-                moveDirection.y = jumpSpeed;
-
-        }
-        //Applying gravity to the controller
-        moveDirection.y -= gravity * Time.deltaTime;
-        //Making the character move
-        controller.Move(moveDirection * Time.deltaTime);
-
+        movement();
 
         //Attack 
         if (Input.GetMouseButtonDown(0))
@@ -135,29 +100,13 @@ public class PlayerControl : MonoBehaviour {
         //use 
         if (Input.GetKeyDown("e"))
         {
-            RaycastHit use = new RaycastHit();
-            if(Physics.Raycast(transform.position, cam.transform.forward, out use, 3f))
-            {
-                //Debug.DrawLine(transform.position, use.transform.position, Color.cyan, 10f); Not needed
-                use.transform.SendMessage(("worldUse"), inv, SendMessageOptions.DontRequireReceiver);
-            }
-       }
+            worldUse();
+        }
 
         //spell f NEED to implement timer so no spamming
         if (Input.GetKeyDown("f"))
         {
-            //Get spell
-            GameObject spell;
-            //instantiate spell
-            spell = Instantiate(stats.magicSpell, transform.position + transform.forward * 1, cam.transform.rotation) as GameObject;
-            //get ridigbody for making it move
-            Rigidbody spellR = spell.GetComponent<Rigidbody>();
-            //redo math here to take it from stats.magicSpeed and just times it by like 500 or something
-            spellR.AddForce(spell.transform.forward * stats.magicSpeed);
-            //get spell stats
-            Spell spellA = spell.GetComponent<Spell>();
-            //edit spell stats
-            spellA.setMagicAttack((int)stats.magicAttack);
+            castSpell();
         }
 
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -192,7 +141,7 @@ public class PlayerControl : MonoBehaviour {
         Animator[] anims = gameObject.GetComponentsInChildren<Animator>();
         foreach (Animator a in anims)
         {
-            if (a.gameObject.name == "PlayerWeapon")
+            if (a.gameObject.name == "EquippedWeapon")
             {
                 anim = a;
             }
@@ -276,4 +225,76 @@ public class PlayerControl : MonoBehaviour {
 
     }
 
+    void castSpell()
+    {
+        //Get spell
+        GameObject spell;
+        //instantiate spell
+        spell = Instantiate(stats.magicSpell, transform.position + transform.forward * 1, cam.transform.rotation) as GameObject;
+        //get ridigbody for making it move
+        Rigidbody spellR = spell.GetComponent<Rigidbody>();
+        //redo math here to take it from stats.magicSpeed and just times it by like 500 or something
+        spellR.AddForce(spell.transform.forward * stats.magicSpeed);
+        //get spell stats
+        Spell spellA = spell.GetComponent<Spell>();
+        //edit spell stats
+        spellA.setMagicAttack((int)stats.magicAttack);
+    }
+
+    void worldUse()
+    {
+        RaycastHit use = new RaycastHit();
+        if (Physics.Raycast(transform.position, cam.transform.forward, out use, 3f))
+        {
+            //Debug.DrawLine(transform.position, use.transform.position, Color.cyan, 10f); Not needed
+            use.transform.SendMessage(("worldUse"), inv, SendMessageOptions.DontRequireReceiver);
+        }
+    }
+
+    void mouseController()
+    {
+        //Mouse handler
+        yRotation += Input.GetAxis("Mouse X") * lookSensitivity;
+        xRotation -= Input.GetAxis("Mouse Y") * lookSensitivity;
+        xRotation = Mathf.Clamp(xRotation, -80, 100);
+        currentXRotation = Mathf.SmoothDamp(currentXRotation, xRotation, ref xRotationV, lookSmoothnes);
+        currentYRotation = Mathf.SmoothDamp(currentYRotation, yRotation, ref yRotationV, lookSmoothnes);
+        if (currentXRotation > bottom)
+        {
+            currentXRotation = bottom;
+            xRotation = bottom;
+        }
+
+        if (currentXRotation < top)
+        {
+            currentXRotation = top;
+            xRotation = top;
+        }
+
+        transform.rotation = Quaternion.Euler(0, currentYRotation, 0);
+        cam.transform.rotation = Quaternion.Euler(currentXRotation, currentYRotation, 0);
+    }
+
+    void movementController()
+    {
+        //MovementHandler
+        CharacterController controller = GetComponent<CharacterController>();
+        // is the controller on the ground?
+        if (controller.isGrounded)
+        {
+            //Feed moveDirection with input.
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveDirection = transform.TransformDirection(moveDirection);
+            //Multiply it by speed.
+            moveDirection *= speed;
+            //Jumping
+            if (Input.GetButton("Jump"))
+                moveDirection.y = jumpSpeed;
+
+        }
+        //Applying gravity to the controller
+        moveDirection.y -= gravity * Time.deltaTime;
+        //Making the character move
+        controller.Move(moveDirection * Time.deltaTime);
+    }
 }
