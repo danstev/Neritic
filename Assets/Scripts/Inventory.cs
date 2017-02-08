@@ -31,14 +31,23 @@ public class Inventory : MonoBehaviour {
     public void AddItem ( GameObject i)
     {
         Item item = i.GetComponent<Item>();
-
+        print("h");
         //If equippable
         if(item.equipable == true)
         {
             if(item.type == "equipment")
             {
                 Equipment e = i.GetComponent<Equipment>();
-                string slot = e.slot;
+                int slot = e.slot;
+                if( equipped[slot] == null )
+                {
+                    equipped[slot] = i;
+                    totalWeight += item.weight * item.held;
+                    e.equip();
+                    i.SetActive(false);
+
+                    lastSlot++;
+                }
                 //check if you have one equipped, if not, equip it CAN TURN OFF IN SETTINGS?
                 //if not equipped, go to the other part
             }

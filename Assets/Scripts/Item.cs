@@ -20,7 +20,7 @@ public class Item : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        if(!equipped)
+        if(!equipped && equipable)
         {
             Animator a = GetComponent<Animator>();
             a.enabled = false;
@@ -35,7 +35,6 @@ public class Item : MonoBehaviour {
 
     void worldUse(Inventory inv)
     {
-        //print("asdsad");
         inv.AddItem(gameObject);
     }
 
