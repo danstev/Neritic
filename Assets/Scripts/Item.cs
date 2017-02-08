@@ -38,7 +38,7 @@ public class Item : MonoBehaviour {
         inv.AddItem(gameObject);
     }
 
-    void equip()
+    public void equip()
     {
         Animator a = GetComponent<Animator>();
         a.enabled = true;

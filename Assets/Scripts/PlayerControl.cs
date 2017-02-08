@@ -113,7 +113,7 @@ public class PlayerControl : MonoBehaviour {
 
     }
 
-    void refreshWeapon() //Refreshes what gameObject to use for the animator.
+    public void refreshWeapon() //Refreshes what gameObject to use for the animator.
     {
         Animator[] anims = gameObject.GetComponentsInChildren<Animator>();
         foreach (Animator a in anims)

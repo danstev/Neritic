@@ -10,6 +10,8 @@ public class Inventory : MonoBehaviour {
     public GameObject[] slots = new GameObject[20];
     public GameObject[] equipped = new GameObject[10];
     public GameObject[] spells = new GameObject[50];
+
+    Quaternion weaponRotation;
 	
 	//Main hand
     //Offhand
@@ -43,10 +45,15 @@ public class Inventory : MonoBehaviour {
                 {
                     equipped[slot] = i;
                     totalWeight += item.weight * item.held;
+                    item.equip();
                     e.equip();
-                    i.SetActive(false);
+                    
+                    i.transform.parent = transform;
+                    PlayerControl p = GetComponent<PlayerControl>();
+                    p.refreshWeapon();
+                    CapsuleCollider c = i.GetComponent<CapsuleCollider>();
+                    c.enabled = false;
 
-                    lastSlot++;
                 }
                 //check if you have one equipped, if not, equip it CAN TURN OFF IN SETTINGS?
                 //if not equipped, go to the other part
@@ -154,7 +161,7 @@ public class Inventory : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+	    
 	}
 	
 	// Update is called once per frame
