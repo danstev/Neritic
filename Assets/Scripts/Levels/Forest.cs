@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Forest : MonoBehaviour {
@@ -23,6 +23,21 @@ public class Forest : MonoBehaviour {
         }
 
         //Draw boundaries
+        drawOutskirts(thickness);
+        smoothMap(4, density);
+
+        
+
+        return map;
+    }
+
+    public void setMap(int[,] m)
+    {
+        map = m;
+    }
+
+    private void drawOutskirts(int thickness)
+    {
         for (int g = 0; g < map.GetLength(0); g++)
         {
             for (int h = 0; h < thickness; h++)
@@ -56,7 +71,7 @@ public class Forest : MonoBehaviour {
             }
         }
 
-        for (int g = 0;  g < thickness; g++)
+        for (int g = 0; g < thickness; g++)
         {
             for (int h = 0; h < map.GetLength(1); h++)
             {
@@ -66,8 +81,14 @@ public class Forest : MonoBehaviour {
                 }
             }
         }
+    }
 
-        for(int i = 0; i < 4; i++)
+    private void smoothMap(int smoothness, float density)
+    {
+        int x = map.GetLength(0);
+        int y = map.GetLength(1);
+
+        for (int i = 0; i < smoothness; i++)
         {
             for (int g = 0; g < x; g++)
             {
@@ -80,7 +101,7 @@ public class Forest : MonoBehaviour {
                         continue;
                     }
 
-                    if( map[g + 1, h] == 10)
+                    if (map[g + 1, h] == 10)
                     {
                         count++;
                     }
@@ -115,18 +136,18 @@ public class Forest : MonoBehaviour {
                         count++;
                     }
 
-                    if (map[g - 1, h-+ 1] == 10)
+                    if (map[g - 1, h - +1] == 10)
                     {
                         count++;
                     }
 
-                    if(count > 4)
+                    if (count > 4)
                     {
                         map[g, h] = 10;
                     }
                     else
                     {
-                        if(Random.Range(0f, 1f) < density)
+                        if (Random.Range(0f, 1f) < density)
                         {
                             map[g, h] = 10;
                         }
@@ -135,12 +156,5 @@ public class Forest : MonoBehaviour {
                 }
             }
         }
-
-        return map;
-    }
-
-    public void setMap(int[,] m)
-    {
-        map = m;
     }
 }
