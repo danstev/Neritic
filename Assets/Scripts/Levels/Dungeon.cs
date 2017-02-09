@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Dungeon : MonoBehaviour {
@@ -32,9 +32,88 @@ public class Dungeon : MonoBehaviour {
             }
         }
 
-       //Generate corridors
-       for (int g = 0; g < map.GetLength(0); g++)
-       {
+        smoothMap(4);
+        generateWalls();
+        return map;
+    }
+
+    public void setMap(int [,] m)
+    {
+        map = m;
+    }
+
+    private void smoothMap(int smoothness)
+    {
+        int x = map.GetLength(0);
+        int y = map.GetLength(1);
+
+        for (int i = 0; i < smoothness; i++)
+        {
+            for (int g = 0; g < x; g++)
+            {
+                for (int h = 0; h < y; h++)
+                {
+                    int count = 0;
+
+                    if (g - 1 < 0 || g + 1 >= map.GetLength(0) || h - 1 < 0 || h + 1 >= map.GetLength(1))
+                    {
+                        map[g, h] = 1;
+                        continue;
+                    }
+
+                    if (map[g + 1, h] == 1)
+                    {
+                        count++;
+                    }
+
+                    if (map[g - 1, h] == 1)
+                    {
+                        count++;
+                    }
+
+                    if (map[g, h + 1] == 1)
+                    {
+                        count++;
+                    }
+
+                    if (map[g, h - 1] == 1)
+                    {
+                        count++;
+                    }
+
+                    if (map[g + 1, h + 1] == 1)
+                    {
+                        count++;
+                    }
+
+                    if (map[g - 1, h + 1] == 1)
+                    {
+                        count++;
+                    }
+
+                    if (map[g + 1, h - 1] == 1)
+                    {
+                        count++;
+                    }
+
+                    if (map[g - 1, h - +1] == 1)
+                    {
+                        count++;
+                    }
+
+                    if (count > 4)
+                    {
+                        map[g, h] = 1;
+                    }
+                }
+            }
+        }
+    }
+
+    private void generateWalls()
+    {
+        for (int g = 0; g < map.GetLength(0); g++)
+        {
             for (int h = 0; h < map.GetLength(1); h++)
             {
                 if (g - 1 < 0 || g + 1 >= map.GetLength(0) || h - 1 < 0 || h + 1 >= map.GetLength(1))
@@ -54,16 +133,6 @@ public class Dungeon : MonoBehaviour {
                 }
             }
         }
-
-        //Generate Walls
-
-        //Generate other stuff
-        return map;
-    }
-
-    public void setMap(int [,] m)
-    {
-        map = m;
     }
 
 
