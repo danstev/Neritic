@@ -19,26 +19,39 @@ public class LevelGen : MonoBehaviour {
     public int width;
     public float spaceMod;
 
-    public Forest d;
-
 
 
     // Use this for initialization
     void Start () {
 
-        Forest r = new Forest();
-        d = r;
-        height = Random.Range(46, 64);
-        width = Random.Range(46, 64);
-        map = new int[height,width];
-        d.setMap(map);
-        map = d.genMap();
-        drawMapForest();
+        genDungeon();
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    void genForest()
+    {
+        Forest r = new Forest();
+        height = Random.Range(46, 64);
+        width = Random.Range(46, 64);
+        map = new int[height, width];
+        r.setMap(map);
+        map = r.genMap();
+        drawMapForest();
+    }
+
+    void genDungeon()
+    {
+        Dungeon r = new Dungeon();
+        height = Random.Range(46, 64);
+        width = Random.Range(46, 64);
+        map = new int[height, width];
+        r.setMap(map);
+        map = r.genMap();
+        drawMapDungeon();
+    }
+
+    // Update is called once per frame
+    void Update () {
 	
 	}
 

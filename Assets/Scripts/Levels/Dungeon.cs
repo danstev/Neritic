@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Dungeon : MonoBehaviour {
+public class Dungeon {
 
     //Gen rooms, put walls around rooms, generate doors based on walls, generate corridors based on walls as doors, generate walls again for corridors
 

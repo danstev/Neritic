@@ -43,6 +43,8 @@ public class Equipment : MonoBehaviour {
         }
         return new Quaternion(0,0,0,0);
         
-    } 
+    }
+
+
 
 }

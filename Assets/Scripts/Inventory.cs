@@ -53,7 +53,6 @@ public class Inventory : MonoBehaviour {
                     p.refreshWeapon();
                     CapsuleCollider c = i.GetComponent<CapsuleCollider>();
                     c.enabled = false;
-
                 }
                 //check if you have one equipped, if not, equip it CAN TURN OFF IN SETTINGS?
                 //if not equipped, go to the other part
@@ -233,5 +232,18 @@ public class Inventory : MonoBehaviour {
     void updateStatsPage()
     {
 
+    }
+
+    public bool weaponEquippedCheck()
+    {
+        if (equipped[1] == null)
+        {
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

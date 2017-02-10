@@ -66,7 +66,10 @@ public class PlayerControl : MonoBehaviour {
         //Attack 
         if (Input.GetMouseButtonDown(0))
         {
-            attack();
+            if (inv.weaponEquippedCheck())
+            {
+                attack();
+            }
         }
 
         if (attackTimeCD > 0)
