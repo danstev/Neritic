@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\LevelGen.cs" />
+    <Compile Include="Assets\Scripts\Levels\Cave.cs" />
     <Compile Include="Assets\Scripts\Levels\Dungeon.cs" />
     <Compile Include="Assets\Scripts\Levels\Forest.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
