@@ -107,27 +107,6 @@ public class LevelGen : MonoBehaviour {
 
     void drawMap()
     {
-        //0 Empty
-        //1 Brick floor
-        //2 Cave floor
-        //3 Forest floor
-        //4 Underwater floor
-        //5 Water
-        //6 Lava
-        //7 Blood
-        //8 Poison
-        //9 Brick wall
-        //10 Cave wall
-        //11 Forest wall
-        //12
-        //13
-        //14
-        //16
-        //16
-        //17
-        //18
-        //19 Entrance
-        //20 Exit
 
         for (int x = 0; x < map.GetLength(0); x++)
         {
