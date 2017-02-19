@@ -54,6 +54,17 @@ public class Inventory : MonoBehaviour {
                     CapsuleCollider c = i.GetComponent<CapsuleCollider>();
                     c.enabled = false;
                 }
+                else
+                {
+                    //Add into next free slot
+                    slots[lastSlot] = i;
+                    totalWeight += item.weight * item.held;
+                    i.transform.parent = transform;
+                    i.SetActive(false);
+                    lastSlot++;
+                    return;
+
+                }
                 //check if you have one equipped, if not, equip it CAN TURN OFF IN SETTINGS?
                 //if not equipped, go to the other part
             }
