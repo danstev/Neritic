@@ -225,6 +225,16 @@ public class Inventory : MonoBehaviour {
 
     }
 
+    void dropItem(GameObject item)
+    {
+        Item i = GetComponent<Item>();
+        totalWeight -= i.weight;
+        item.transform.parent = null;
+        i.equipped = false;
+        item.transform.position = item.transform.position + Vector3.forward;
+        item.SetActive(true);
+    }
+
     void updateInv()
     {
 
