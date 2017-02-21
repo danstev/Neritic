@@ -17,6 +17,7 @@ public class EnemyBaseAi : MonoBehaviour {
     public Statistics stats;
     public float randomMoveTimerSet;
     private Vector3 randomMoveSpace;
+    private GameObject sprite;
 
     //Attack stuff
     private float attackTimer = 0f;
@@ -25,7 +26,8 @@ public class EnemyBaseAi : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
+        Transform s = transform.GetChild(0);
+        sprite = s.gameObject;
 	}
 	
 	// Update is called once per frame
@@ -64,6 +66,8 @@ public class EnemyBaseAi : MonoBehaviour {
 
     void aggressiveMove()
     {
+        transform.LookAt(target.transform);
+
         if (attackTimer <= 0 && stats.meleeReach > Vector3.Distance(transform.position, target.transform.position))
         {
             print(stats.attack);
