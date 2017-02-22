@@ -24,7 +24,7 @@ public class LevelGen : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        genDungeon();
+        genCave();
 
     }
 
@@ -47,6 +47,17 @@ public class LevelGen : MonoBehaviour {
         map = new int[height, width];
         r.setMap(map);
         map = r.genMap();
+        drawMapDungeon();
+    }
+
+    void genCave()
+    {
+        Cave c = new Cave();
+        height = Random.Range(46, 64);
+        width = Random.Range(46, 64);
+        map = new int[height, width];
+        c.setMap(map);
+        map = c.genMap();
         drawMapDungeon();
     }
 

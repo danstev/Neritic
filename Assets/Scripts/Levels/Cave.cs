@@ -11,7 +11,7 @@ public class Cave {
         int y = map.GetLength(1);
 
         //Make starting room near edge.
-
+        buildStartRoom();
 
         //Randomly select a wall
 
@@ -38,7 +38,7 @@ public class Cave {
         {
             for(int t = 0; t < 5; t++)
             {
-
+                map[i, t] = 1;
             }
         }
     }
