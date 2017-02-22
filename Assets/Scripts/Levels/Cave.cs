@@ -42,4 +42,24 @@ public class Cave {
             }
         }
     }
+
+    private int[] selectWall()
+    {
+        int[] coord = new int[2];
+
+
+        return coord;
+    }
+
+    private bool checkIfWalls(int[] coords)
+    {
+        if(map[coords[0], coords[1]] == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
