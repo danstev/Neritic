@@ -235,6 +235,19 @@ public class Inventory : MonoBehaviour {
         item.SetActive(true);
     }
 
+    void dropAllItems()
+    {
+        foreach(GameObject i in slots)
+        {
+            dropItem(i);
+        }
+
+        foreach (GameObject i in equipped)
+        {
+            dropItem(i);
+        }
+    }
+
     void updateInv()
     {
 
