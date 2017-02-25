@@ -246,6 +246,7 @@ public class Inventory : MonoBehaviour {
         {
             dropItem(i);
         }
+        updateAllStatisitics();
     }
 
     void updateInv()
