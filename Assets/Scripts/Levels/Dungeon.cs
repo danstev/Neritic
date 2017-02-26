@@ -3,137 +3,64 @@ using System.Collections;
 
 public class Dungeon {
 
-    //Gen rooms, put walls around rooms, generate doors based on walls, generate corridors based on walls as doors, generate walls again for corridors
-
     private int[,] map;
 
     public int[,] genMap()
     {
         int x = map.GetLength(0);
         int y = map.GetLength(1);
-        int rooms = 10;//(x * y) / 30; //Change 30 to a different number maybe to increase/decrease density
-        //int[,] points = new int[rooms * 4, rooms * 4];
 
-        //Generate rooms
-        for(int i = 0; i < rooms; i++)
-        {
-            int height = Random.Range(4, 12);
-            int width = Random.Range(4, 12);
-            int offsetH = Random.Range(0, x - height - 1);
-            int offsetW = Random.Range(0, y - width - 1);
-            
+        //Make starting room near edge.
+        buildStartRoom();
 
-            for(int q = offsetH; q < height + offsetH; q++)
-            {
-                for(int w = offsetW; w < width + offsetW; w++)
-                {
-                    map[q, w] = 1;
-                }
-            }
-        }
+        //Randomly select a wall
 
-        smoothMap(4);
-        generateWalls();
+        //build corridor
+        // check for room
+
+        //Room at end of corridor
+        // check for room
+
+        //1-3 rooms from corridor based on corridor length
+        // check for room
         return map;
     }
 
-    public void setMap(int [,] m)
+    public void setMap(int[,] m)
     {
         map = m;
     }
 
-    private void smoothMap(int smoothness)
+    private void buildStartRoom()
     {
-        int x = map.GetLength(0);
-        int y = map.GetLength(1);
-
-        for (int i = 0; i < smoothness; i++)
+        int c = Random.Range(4, 12);
+        for (int i = 0; i < 5; i++)
         {
-            for (int g = 0; g < x; g++)
+            for (int t = 0; t < 5; t++)
             {
-                for (int h = 0; h < y; h++)
-                {
-                    int count = 0;
-
-                    if (g - 1 < 0 || g + 1 >= map.GetLength(0) || h - 1 < 0 || h + 1 >= map.GetLength(1))
-                    {
-                        map[g, h] = 1;
-                        continue;
-                    }
-
-                    if (map[g + 1, h] == 1)
-                    {
-                        count++;
-                    }
-
-                    if (map[g - 1, h] == 1)
-                    {
-                        count++;
-                    }
-
-                    if (map[g, h + 1] == 1)
-                    {
-                        count++;
-                    }
-
-                    if (map[g, h - 1] == 1)
-                    {
-                        count++;
-                    }
-
-                    if (map[g + 1, h + 1] == 1)
-                    {
-                        count++;
-                    }
-
-                    if (map[g - 1, h + 1] == 1)
-                    {
-                        count++;
-                    }
-
-                    if (map[g + 1, h - 1] == 1)
-                    {
-                        count++;
-                    }
-
-                    if (map[g - 1, h - +1] == 1)
-                    {
-                        count++;
-                    }
-
-                    if (count > 4)
-                    {
-                        map[g, h] = 1;
-                    }
-                }
+                map[i, t] = 1;
             }
         }
     }
 
-    private void generateWalls()
+    private int[] selectWall()
     {
-        for (int g = 0; g < map.GetLength(0); g++)
-        {
-            for (int h = 0; h < map.GetLength(1); h++)
-            {
-                if (g - 1 < 0 || g + 1 >= map.GetLength(0) || h - 1 < 0 || h + 1 >= map.GetLength(1))
-                {
-                    //catch out of bounds?
-                    map[g, h] = 2;
-                }
-                else
-                {
-                    if (map[g, h] == 0)
-                    {
-                        if (map[g - 1, h] == 1 || map[g + 1, h] == 1 || map[g, h - 1] == 1 || map[g, h + 1] == 1)
-                        {
-                            map[g, h] = 2;
-                        }
-                    }
-                }
-            }
-        }
+        int[] coord = new int[2];
+
+
+        return coord;
     }
 
+    private bool checkIfWalls(int[] coords)
+    {
+        if (map[coords[0], coords[1]] == 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }
