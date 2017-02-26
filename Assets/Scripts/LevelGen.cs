@@ -24,7 +24,7 @@ public class LevelGen : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        genCave();
+        genDungeon();
 
     }
 

@@ -9,20 +9,28 @@ public class Dungeon {
     {
         int x = map.GetLength(0);
         int y = map.GetLength(1);
-
+        int rooms = Random.Range(8,12);
         //Make starting room near edge.
         buildStartRoom();
 
-        //Randomly select a wall
+        for (int i = 0; i < rooms; i++)
+        {
+            int height = Random.Range(4, 12);
+            int width = Random.Range(4, 12);
+            int offsetH = Random.Range(0, x - height - 1);
+            int offsetW = Random.Range(0, y - width - 1);
 
-        //build corridor
-        // check for room
 
-        //Room at end of corridor
-        // check for room
+            for (int q = offsetH; q < height + offsetH; q++)
+            {
+                for (int w = offsetW; w < width + offsetW; w++)
+                {
+                    map[q, w] = 1;
+                }
+            }
+        }
 
-        //1-3 rooms from corridor based on corridor length
-        // check for room
+
         return map;
     }
 

@@ -75,6 +75,8 @@
     <Compile Include="Assets\Scripts\Levels\Cave.cs" />
     <Compile Include="Assets\Scripts\Levels\Dungeon.cs" />
     <Compile Include="Assets\Scripts\Levels\Forest.cs" />
+    <Compile Include="Assets\Scripts\Levels\Room.cs" />
+    <Compile Include="Assets\Scripts\Levels\Tile.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Spell.cs" />
     <Compile Include="Assets\Scripts\Statistics.cs" />
