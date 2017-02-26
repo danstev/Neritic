@@ -24,7 +24,7 @@ public class LevelGen : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        genCave();
+        genDungeon();
 
     }
 
@@ -78,13 +78,17 @@ public class LevelGen : MonoBehaviour {
                     Vector3 mapPos = new Vector3(x * spaceMod, 0 + Random.Range(0, 0.25f), y * spaceMod);
                     GameObject j = Instantiate(tile, mapPos, Quaternion.identity) as GameObject;
                     j.transform.localScale = new Vector3(spaceMod, spaceMod, spaceMod);
+
+                    Vector3 mapPos2 = new Vector3(x * spaceMod, 0 + Random.Range(5, 5.25f), y * spaceMod);
+                    GameObject i = Instantiate(tile, mapPos2, Quaternion.identity) as GameObject;
+                    i.transform.localScale = new Vector3(spaceMod, spaceMod, spaceMod);
                 }
 
                 if (map[x, y] == 2)
                 {
                     Vector3 mapPos = new Vector3(x * spaceMod, 1, y * spaceMod);
                     GameObject j = Instantiate(wall, mapPos, Quaternion.identity) as GameObject;
-                    j.transform.localScale = new Vector3(spaceMod, spaceMod * 2, spaceMod);
+                    j.transform.localScale = new Vector3(spaceMod, spaceMod * 4, spaceMod);
                 }
             }
         }
