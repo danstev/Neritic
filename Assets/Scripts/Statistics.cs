@@ -130,9 +130,7 @@ public class Statistics : MonoBehaviour {
         }
         else
         {
-            //c.AddForce(p * 250); Work out how to do character controller knockback easily here
-            playerKnockback = 0.25f;
-            playerKnockbackV = p;
+            c.SimpleMove(p * Time.deltaTime * 2000);
         }
     }
 
