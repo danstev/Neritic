@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class LevelGen : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class LevelGen : MonoBehaviour {
     public GameObject roof;
     public GameObject tree;
     private int[,] map;
+    private Tile[] tileMap;
     public int height;
     public int width;
     public float spaceMod;
@@ -31,8 +33,8 @@ public class LevelGen : MonoBehaviour {
     void genForest()
     {
         Forest r = new Forest();
-        height = Random.Range(46, 64);
-        width = Random.Range(46, 64);
+        height = UnityEngine.Random.Range(46, 64);
+        width = UnityEngine.Random.Range(46, 64);
         map = new int[height, width];
         r.setMap(map);
         map = r.genMap();
@@ -42,8 +44,8 @@ public class LevelGen : MonoBehaviour {
     void genDungeon()
     {
         Dungeon r = new Dungeon();
-        height = Random.Range(46, 64);
-        width = Random.Range(46, 64);
+        height = UnityEngine.Random.Range(46, 64);
+        width = UnityEngine.Random.Range(46, 64);
         map = new int[height, width];
         r.setMap(map);
         map = r.genMap();
@@ -53,8 +55,8 @@ public class LevelGen : MonoBehaviour {
     void genCave()
     {
         Cave c = new Cave();
-        height = Random.Range(46, 64);
-        width = Random.Range(46, 64);
+        height = UnityEngine.Random.Range(46, 64);
+        width = UnityEngine.Random.Range(46, 64);
         map = new int[height, width];
         c.setMap(map);
         map = c.genMap();
@@ -75,11 +77,11 @@ public class LevelGen : MonoBehaviour {
             {
                 if(map[x,y] == 1)
                 {
-                    Vector3 mapPos = new Vector3(x * spaceMod, 0 + Random.Range(0, 0.25f), y * spaceMod);
+                    Vector3 mapPos = new Vector3(x * spaceMod, 0 + UnityEngine.Random.Range(0, 0.25f), y * spaceMod);
                     GameObject j = Instantiate(tile, mapPos, Quaternion.identity) as GameObject;
                     j.transform.localScale = new Vector3(spaceMod, spaceMod, spaceMod);
 
-                    Vector3 mapPos2 = new Vector3(x * spaceMod, 0 + Random.Range(5, 5.25f), y * spaceMod);
+                    Vector3 mapPos2 = new Vector3(x * spaceMod, 0 + UnityEngine.Random.Range(5, 5.25f), y * spaceMod);
                     GameObject i = Instantiate(tile, mapPos2, Quaternion.identity) as GameObject;
                     i.transform.localScale = new Vector3(spaceMod, spaceMod, spaceMod);
                 }
@@ -103,7 +105,7 @@ public class LevelGen : MonoBehaviour {
             {
                 if (map[x, y] == 0)
                 {
-                    Vector3 mapPos = new Vector3(x * spaceMod, 0 + Random.Range(0, 0.25f), y * spaceMod);
+                    Vector3 mapPos = new Vector3(x * spaceMod, 0 + UnityEngine.Random.Range(0, 0.25f), y * spaceMod);
                     GameObject j = Instantiate(tile, mapPos, Quaternion.identity) as GameObject;
                     j.transform.localScale = new Vector3(spaceMod, spaceMod, spaceMod);
                 }
@@ -111,9 +113,9 @@ public class LevelGen : MonoBehaviour {
                 if (map[x, y] == 10)
                 {
                     Vector3 mapPos = new Vector3(x * spaceMod, 1, y * spaceMod);
-                    Quaternion q = new Quaternion(Random.Range(0,360), Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+                    Quaternion q = new Quaternion(UnityEngine.Random.Range(0,360), UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360));
                     GameObject j = Instantiate(tree, mapPos, Quaternion.identity) as GameObject;
-                    j.transform.localScale = new Vector3(spaceMod + Random.Range(0.0f, 0.5f), spaceMod * 2 + Random.Range(0.0f, 0.5f), spaceMod + Random.Range(0.0f, 0.5f));
+                    j.transform.localScale = new Vector3(spaceMod + UnityEngine.Random.Range(0.0f, 0.5f), spaceMod * 2 + UnityEngine.Random.Range(0.0f, 0.5f), spaceMod + UnityEngine.Random.Range(0.0f, 0.5f));
                     j.transform.rotation = q;
                 }
             }
@@ -129,16 +131,16 @@ public class LevelGen : MonoBehaviour {
             {
                 if (map[x, y] == 0)
                 {
-                    Vector3 mapPos = new Vector3(x * spaceMod, 0 + Random.Range(0, 0.25f), y * spaceMod);
+                    Vector3 mapPos = new Vector3(x * spaceMod, 0 + UnityEngine.Random.Range(0, 0.25f), y * spaceMod);
                     GameObject j = Instantiate(tile, mapPos, Quaternion.identity) as GameObject;
                     j.transform.localScale = new Vector3(spaceMod, spaceMod, spaceMod);
                 }
                 else if (map[x, y] == 10)
                 {
                     Vector3 mapPos = new Vector3(x * spaceMod, 1, y * spaceMod);
-                    Quaternion q = new Quaternion(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+                    Quaternion q = new Quaternion(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360));
                     GameObject j = Instantiate(tree, mapPos, Quaternion.identity) as GameObject;
-                    j.transform.localScale = new Vector3(spaceMod + Random.Range(0.0f, 0.5f), spaceMod * 2 + Random.Range(0.0f, 0.5f), spaceMod + Random.Range(0.0f, 0.5f));
+                    j.transform.localScale = new Vector3(spaceMod + UnityEngine.Random.Range(0.0f, 0.5f), spaceMod * 2 + UnityEngine.Random.Range(0.0f, 0.5f), spaceMod + UnityEngine.Random.Range(0.0f, 0.5f));
                     j.transform.rotation = q;
                 }
             }
