@@ -20,13 +20,17 @@ public class LevelGen : MonoBehaviour {
     public int height;
     public int width;
     public float spaceMod;
+    public Tile t;
 
 
 
     // Use this for initialization
     void Start () {
 
-        genDungeon();
+        t.floorTile = (GameObject) Resources.Load("Prefabs/Tiles/grassTile");
+        t.xPosition = 10;
+        t.yPosition = 10;
+        t.render();
 
     }
 

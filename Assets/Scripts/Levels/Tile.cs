@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tile {
+public class Tile : MonoBehaviour
+{
 
-    GameObject floorTile;
+    public GameObject floorTile;
     
     //X position of the tile
-    int xPosition;
+    public int xPosition;
     //Y position of the tile
-    int yPosition;
+    public int yPosition;
     //Whether this tile requires a ceiling
     bool ceiling;
     GameObject ceilingTile;
@@ -19,6 +20,23 @@ public class Tile {
     bool entity;
     GameObject entityObject;
 
+    float spacemod = 1f;
 
+    public void render()
+    {
+        //INit tile at x/y
+        //check ceiling
+        //init ceiling
+        //check torch
+        //init torch
+        //check entity
+        //init enttiy;
+
+        Vector3 mapPos = new Vector3(xPosition, 0, yPosition);
+        GameObject j = Instantiate(floorTile, mapPos, Quaternion.identity) as GameObject;
+        j.transform.localScale = new Vector3(2 * spacemod, 2 * spacemod, 1);
+        //Somehow transform it 90 degrees
+        j.transform.rotation *= Quaternion.Euler(90, 0, 0);
+    }
 
 }
