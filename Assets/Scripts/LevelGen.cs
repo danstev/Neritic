@@ -27,7 +27,7 @@ public class LevelGen : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        t.floorTile = (GameObject) Resources.Load("Prefabs/Tiles/grassTile");
+        t.floorTile = Resources.Load("Prefabs/Tiles/grassTile") as GameObject;
         t.xPosition = 10;
         t.yPosition = 10;
         t.render();
