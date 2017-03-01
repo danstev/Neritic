@@ -20,6 +20,13 @@ public class Tile : MonoBehaviour
     bool entity;
     GameObject entityObject;
 
+
+    //0 top
+    //1 right
+    //2 bottom
+    //3 left
+    public int wallType;
+
     float spacemod = 1f;
 
     public void render()
