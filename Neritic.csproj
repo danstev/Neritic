@@ -80,7 +80,6 @@
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Spell.cs" />
     <Compile Include="Assets\Scripts\Statistics.cs" />
-    <Compile Include="Assets\Scripts\TileTest.cs" />
     <Compile Include="Assets\Scripts\behav\weaponAnimBehav.cs" />
   </ItemGroup>
   <ItemGroup>
