@@ -162,6 +162,7 @@ public class LevelGen : MonoBehaviour {
                     t.xPosition = x;
                     t.yPosition = y;
                     t.floorTile = tile;
+                    t.spacemod = spaceMod;
                     listOfTiles.Add(t);
                 }
             }
@@ -186,9 +187,9 @@ public class LevelGen : MonoBehaviour {
         //check entity
         //init enttiy;
 
-        Vector3 mapPos = new Vector3(t.xPosition, 0, t.yPosition);
+        Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 0, t.yPosition * t.spacemod);
         GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
-        j.transform.localScale = new Vector3(2 * t.spacemod, 2 * t.spacemod, 1);
+        j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
         //Somehow transform it 90 degrees
         j.transform.rotation *= Quaternion.Euler(90, 0, 0);
     }
