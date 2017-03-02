@@ -50,7 +50,8 @@ public class LevelGen : MonoBehaviour {
         map = new int[height, width];
         r.setMap(map);
         map = r.genMap();
-        ();
+        tileMap = fillTileMap(map);
+        renderMap(tileMap);
     }
 
     void genCave()
@@ -196,7 +197,7 @@ public class LevelGen : MonoBehaviour {
     {
         foreach(Tile r in t)
         {
-            renderTile(t);
+            renderTile(r);
         }
     }
 
