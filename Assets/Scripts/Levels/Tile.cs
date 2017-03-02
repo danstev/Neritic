@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Tile : MonoBehaviour
+public class Tile
 {
 
     public GameObject floorTile;
@@ -27,23 +27,8 @@ public class Tile : MonoBehaviour
     //3 left
     public int wallType;
 
-    float spacemod = 1f;
+    public float spacemod = 1f;
 
-    public void render()
-    {
-        //INit tile at x/y
-        //check ceiling
-        //init ceiling
-        //check torch
-        //init torch
-        //check entity
-        //init enttiy;
-
-        Vector3 mapPos = new Vector3(xPosition, 0, yPosition);
-        GameObject j = Instantiate(floorTile, mapPos, Quaternion.identity) as GameObject;
-        j.transform.localScale = new Vector3(2 * spacemod, 2 * spacemod, 1);
-        //Somehow transform it 90 degrees
-        j.transform.rotation *= Quaternion.Euler(90, 0, 0);
-    }
+   
 
 }
