@@ -27,10 +27,7 @@ public class LevelGen : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        t.floorTile = Resources.Load("Prefabs/Tiles/grassTile") as GameObject;
-        t.xPosition = 10;
-        t.yPosition = 10;
-        t.render();
+        genDungeon();
 
     }
 
@@ -53,7 +50,7 @@ public class LevelGen : MonoBehaviour {
         map = new int[height, width];
         r.setMap(map);
         map = r.genMap();
-        drawMapDungeon();
+        ();
     }
 
     void genCave()
@@ -148,6 +145,58 @@ public class LevelGen : MonoBehaviour {
                     j.transform.rotation = q;
                 }
             }
+        }
+    }
+
+    Tile[] fillTileMap(int[,] intMap)
+    {
+        ArrayList listOfTiles = new ArrayList();
+        for (int x = 0; x < map.GetLength(0); x++)
+        {
+            for (int y = 0; y < map.GetLength(1); y++)
+            {
+                if (map[x, y] == 1)
+                {
+                    Tile t = new Tile();
+                    t.xPosition = x;
+                    t.yPosition = y;
+                    t.floorTile = tile;
+                    listOfTiles.Add(t);
+                }
+            }
+        }
+        Tile[] tiles = new Tile[listOfTiles.Count];
+        int count = 0;
+        foreach(Tile h in listOfTiles)
+        {
+            tiles[count] = h;
+            count++;
+        }
+        return tiles;
+    }
+
+    public void renderTile(Tile t)
+    {
+        //INit tile at x/y
+        //check ceiling
+        //init ceiling
+        //check torch
+        //init torch
+        //check entity
+        //init enttiy;
+
+        Vector3 mapPos = new Vector3(t.xPosition, 0, t.yPosition);
+        GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
+        j.transform.localScale = new Vector3(2 * t.spacemod, 2 * t.spacemod, 1);
+        //Somehow transform it 90 degrees
+        j.transform.rotation *= Quaternion.Euler(90, 0, 0);
+    }
+
+    void renderMap(Tile[] t)
+    {
+        foreach(Tile r in t)
+        {
+            renderTile(t);
         }
     }
 
