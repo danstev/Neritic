@@ -19,6 +19,7 @@ public class Statistics : MonoBehaviour {
     public float magicAttack;
     public float magicSpeed;
     public GameObject magicSpell;
+    public float magicTime = 1f;
 
     public float momvementSpeedMod = 1f;
 

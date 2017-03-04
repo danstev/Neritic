@@ -29,6 +29,7 @@ public class PlayerControl : MonoBehaviour {
     //animstuff
     public Animator anim;
     private float attackTimeCD = 0f;
+    private float magicTimeCD = 0f;
 
     //Inv stuff
     private Statistics stats;
@@ -75,6 +76,11 @@ public class PlayerControl : MonoBehaviour {
         if (attackTimeCD > 0)
         {
             attackTimeCD -= Time.deltaTime;
+        }
+
+        if (magicTimeCD > 0)
+        {
+            magicTimeCD -= Time.deltaTime;
         }
 
         //use 
@@ -203,18 +209,20 @@ public class PlayerControl : MonoBehaviour {
 
     void castSpell()
     {
-        //Get spell
-        GameObject spell;
-        //instantiate spell
-        spell = Instantiate(stats.magicSpell, transform.position + transform.forward * 1, cam.transform.rotation) as GameObject;
-        //get ridigbody for making it move
-        Rigidbody spellR = spell.GetComponent<Rigidbody>();
-        //redo math here to take it from stats.magicSpeed and just times it by like 500 or something
-        spellR.AddForce(spell.transform.forward * stats.magicSpeed);
-        //get spell stats
-        Spell spellA = spell.GetComponent<Spell>();
-        //edit spell stats
-        spellA.setMagicAttack((int)stats.magicAttack);
+        if (magicTimeCD <= 0)
+        {
+            magicTimeCD = stats.magicTime;
+            GameObject spell;
+            spell = Instantiate(stats.magicSpell, transform.position + transform.forward * 1, cam.transform.rotation) as GameObject;
+            Rigidbody spellR = spell.GetComponent<Rigidbody>();
+            spellR.AddForce(spell.transform.forward * stats.magicSpeed);
+            Spell spellA = spell.GetComponent<Spell>();
+            spellA.setMagicAttack((int)stats.magicAttack);
+        }
+        else if (magicTimeCD < 0)
+        {
+            
+        }
     }
 
     void worldUse()
@@ -222,7 +230,6 @@ public class PlayerControl : MonoBehaviour {
         RaycastHit use = new RaycastHit();
         if (Physics.Raycast(transform.position, cam.transform.forward, out use, 3f))
         {
-            //Debug.DrawLine(transform.position, use.transform.position, Color.cyan, 10f); Not needed
             use.transform.SendMessage(("worldUse"), inv, SendMessageOptions.DontRequireReceiver);
         }
     }
