@@ -42,6 +42,7 @@ public class Statistics : MonoBehaviour {
     private CharacterController c;
     private Animator a;
     public Text healthUI;
+    public Text manaUI;
     private float playerKnockback;
     private Vector3 playerKnockbackV;
 
@@ -96,7 +97,8 @@ public class Statistics : MonoBehaviour {
 
         if (gameObject.tag == "Player")
         {
-            healthUI.text = "" + curHealth;
+            healthUI.text = "Health: " + curHealth;
+            manaUI.text = "Mana: " + curMana;
         }
 
         
