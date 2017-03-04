@@ -5,7 +5,8 @@ public class BillboardSprite : MonoBehaviour {
 
     private SpriteRenderer r;
     public Sprite front;
-    public Sprite side;
+    public Sprite left;
+    public Sprite right;
     public Sprite back;
     public bool rotate;
 
@@ -16,24 +17,32 @@ public class BillboardSprite : MonoBehaviour {
 
     void Update()
     {
-        // http://answers.unity3d.com/questions/672097/doom-like-angle-based-sprite-changing.html do later
         Vector2 cameraPostion = new Vector2(Camera.main.transform.forward.x, Camera.main.transform.forward.z);
-        float enemyAngle = Vector2.Angle(new Vector2(Camera.main.transform.position.x, Camera.main.transform.position.z), new Vector2(transform.forward.x, transform.forward.z));
-        //Only returns from 0 - 180, so don't use if you are wanting to use different sprite for sides;
-        //fuck this won't work for me;
+        Vector2 parent = new Vector2(transform.forward.x, transform.forward.z);
+        float enemyAngle = Vector2.Angle(cameraPostion, parent);
+        Vector3 cross = Vector3.Cross(cameraPostion, parent);
 
-        if(enemyAngle < 60)
+        if(cross.z > 0)
+        {
+            enemyAngle = 360 - enemyAngle;
+        }
+
+        if (enemyAngle > 135 && enemyAngle < 225)
         {
             r.sprite = front;
         }
-        else if(enemyAngle > 60 && enemyAngle < 120)
+        else if(enemyAngle > 45 && enemyAngle < 135)
         {
-            r.sprite = side;
+            r.sprite = left;
         }
-        else if(enemyAngle > 120)
+        else if(enemyAngle > 225 && enemyAngle < 315)
+        {
+            r.sprite = right;
+        }
+        else if (enemyAngle > 315 || enemyAngle < 45)
         {
             r.sprite = back;
         }
-
+        print(enemyAngle);
     }
 }
