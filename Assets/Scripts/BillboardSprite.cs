@@ -12,7 +12,8 @@ public class BillboardSprite : MonoBehaviour {
 
     void Start()
     {
-        r = GetComponent<SpriteRenderer>();
+        r = GetComponentInChildren<SpriteRenderer>();
+        
     }
 
     void Update()
