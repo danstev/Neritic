@@ -15,6 +15,8 @@ public class Statistics : MonoBehaviour {
     public float attack;
     public float meleeReach;
     public float attackTime = 1f;
+    public float invulvnerableTime = 0.75f;
+    public float invulvnerableTimeTimer = 0f;
 
     public float magicAttack;
     public float magicSpeed;
@@ -102,6 +104,15 @@ public class Statistics : MonoBehaviour {
             manaUI.text = "Mana: " + curMana;
         }
 
+        if(invulvnerableTimeTimer > 0)
+        {
+            damageable = false;
+            invulvnerableTimeTimer -= Time.deltaTime;
+        }
+        else
+        {
+            damageable = true;
+        }
         
 
     }
@@ -111,29 +122,31 @@ public class Statistics : MonoBehaviour {
         audioPlayer.PlayOneShot(hurtSound);
 
         if (damageable)
+        {
             curHealth -= (int)dam[1];
-
-        Vector3 p = new Vector3(dam[2], dam[3], dam[4]);
-        p = transform.position - p;
-        p = p.normalized;
-        p.y = p.y + 1;
-        if (transform.tag != "Player")
-        {
-            r.AddForce(p * 125);
-            //spawn x blood
-            for (int x = 0; x < Random.Range(1, 8); x++)
+            Vector3 p = new Vector3(dam[2], dam[3], dam[4]);
+            p = transform.position - p;
+            p = p.normalized;
+            p.y = p.y + 1;
+            if (transform.tag != "Player")
             {
-                GameObject g;
-                Vector3 v = gameObject.transform.position;
-                Quaternion q = gameObject.transform.rotation;
-                g = Instantiate(Resources.Load("Prefabs/Blood"), v, q) as GameObject;
-                Rigidbody b = g.GetComponent<Rigidbody>();
-                b.AddForce(p * 250);
+                r.AddForce(p * 125);
+                //spawn x blood
+                for (int x = 0; x < Random.Range(1, 8); x++)
+                {
+                    GameObject g;
+                    Vector3 v = gameObject.transform.position;
+                    Quaternion q = gameObject.transform.rotation;
+                    g = Instantiate(Resources.Load("Prefabs/Blood"), v, q) as GameObject;
+                    Rigidbody b = g.GetComponent<Rigidbody>();
+                    b.AddForce(p * 250);
+                }
             }
-        }
-        else
-        {
-            c.SimpleMove(p * Time.deltaTime * 2000);
+            else
+            {
+                c.SimpleMove(p * Time.deltaTime * 2000);
+                invulvnerableTimeTimer = invulvnerableTime;
+            }
         }
     }
 
