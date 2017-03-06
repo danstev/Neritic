@@ -152,17 +152,27 @@ public class LevelGen : MonoBehaviour {
     Tile[] fillTileMap(int[,] intMap)
     {
         ArrayList listOfTiles = new ArrayList();
-        for (int x = 0; x < map.GetLength(0); x++)
+        for (int x = 0; x < intMap.GetLength(0); x++)
         {
-            for (int y = 0; y < map.GetLength(1); y++)
+            for (int y = 0; y < intMap.GetLength(1); y++)
             {
-                if (map[x, y] == 1)
+                if (intMap[x, y] == 1)
                 {
                     Tile t = new Tile();
                     t.xPosition = x;
                     t.yPosition = y;
                     t.floorTile = tile;
                     t.spacemod = spaceMod;
+                    listOfTiles.Add(t);
+                }
+                else if(map[x, y] == 2)
+                {
+                    Tile t = new Tile();
+                    t.xPosition = x;
+                    t.yPosition = y;
+                    t.floorTile = wall;
+                    t.spacemod = spaceMod;
+                    t.wallType = getWallType(intMap,x,y);
                     listOfTiles.Add(t);
                 }
             }
@@ -175,6 +185,30 @@ public class LevelGen : MonoBehaviour {
             count++;
         }
         return tiles;
+    }
+
+    int getWallType(int[,] intMap, int xPos, int yPos)
+    {
+        if(intMap[xPos + 1, yPos] == 1)
+        {
+            return 1;
+        }
+        else if(intMap[xPos - 1, yPos] == 1)
+        {
+            return 3;
+        }
+        else if (intMap[xPos, yPos - 1] == 1)
+        {
+            return 0;
+        }
+        else if (intMap[xPos, yPos + 1] == 1)
+        {
+            return 2;
+        }
+        else
+        {
+            return 5;
+        }
     }
 
     public void renderTile(Tile t)
