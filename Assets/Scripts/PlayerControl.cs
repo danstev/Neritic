@@ -89,7 +89,6 @@ public class PlayerControl : MonoBehaviour {
             worldUse();
         }
 
-        //spell f NEED to implement timer so no spamming
         if (Input.GetKeyDown("f"))
         {
             castSpell();
