@@ -186,12 +186,36 @@ public class LevelGen : MonoBehaviour {
         //init torch
         //check entity
         //init enttiy;
+        if (t.wall)
+        {
+            if(t.wallType == 0)
+            {
+                Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 0, t.yPosition * t.spacemod);
+                GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
+                j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
+                j.transform.rotation *= Quaternion.Euler(90, 0, 0);
+            }
+            else if(t.wallType == 1)
+            {
 
-        Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 0, t.yPosition * t.spacemod);
-        GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
-        j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
-        //Somehow transform it 90 degrees
-        j.transform.rotation *= Quaternion.Euler(90, 0, 0);
+            }
+            else if (t.wallType == 2)
+            {
+
+            }
+            else if (t.wallType == 3)
+            {
+
+            }
+        }
+        else
+        {
+            Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 0, t.yPosition * t.spacemod);
+            GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
+            j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
+            //Somehow transform it 90 degrees
+            j.transform.rotation *= Quaternion.Euler(90, 0, 0);
+        }
     }
 
     void renderMap(Tile[] t)

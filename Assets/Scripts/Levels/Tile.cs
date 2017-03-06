@@ -25,6 +25,7 @@ public class Tile
     //1 right
     //2 bottom
     //3 left
+    public bool wall;
     public int wallType;
 
     public float spacemod = 1f;
