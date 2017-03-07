@@ -227,21 +227,21 @@ public class LevelGen : MonoBehaviour {
                 Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 0, t.yPosition * t.spacemod - 1);
                 GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
-                j.transform.rotation *= Quaternion.Euler(90, 0, 0);
+                j.transform.rotation *= Quaternion.Euler(0, 0, 0);
             }
             else if(t.wallType == 1)
             {
                 Vector3 mapPos = new Vector3(t.xPosition * t.spacemod + 1, 0, t.yPosition * t.spacemod);
                 GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
-                j.transform.rotation *= Quaternion.Euler(90, 0, 90);
+                j.transform.rotation *= Quaternion.Euler(0, 0, 90);
             }
             else if (t.wallType == 2)
             {
                 Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 0, t.yPosition * t.spacemod + 1);
                 GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
-                j.transform.rotation *= Quaternion.Euler(90, 0, 180);
+                j.transform.rotation *= Quaternion.Euler(0, 0, 180);
 
             }
             else if (t.wallType == 3)
@@ -249,7 +249,7 @@ public class LevelGen : MonoBehaviour {
                 Vector3 mapPos = new Vector3(t.xPosition * t.spacemod - 1, 0, t.yPosition * t.spacemod);
                 GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
-                j.transform.rotation *= Quaternion.Euler(90, 0, 270);
+                j.transform.rotation *= Quaternion.Euler(0, 0, 270);
             }
         }
         else
