@@ -215,13 +215,14 @@ public class Inventory : MonoBehaviour {
 
             if(e.weapon == true)
             {
-                //Set wDam
+                wDam = e.attack;
             }
 
             //Same for spell
         }
 
         //set these on the stats page
+        
 
     }
 
