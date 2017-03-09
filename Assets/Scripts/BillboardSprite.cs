@@ -44,6 +44,5 @@ public class BillboardSprite : MonoBehaviour {
         {
             r.sprite = back;
         }
-        print(enemyAngle);
     }
 }
