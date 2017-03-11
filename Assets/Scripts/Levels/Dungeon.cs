@@ -12,7 +12,9 @@ public class Dungeon {
         int rooms = Random.Range(8,12);
         //Make starting room near edge.
         buildStartRoom();
+        buildEndRoom();
 
+        
         for (int i = 0; i < rooms; i++)
         {
             int height = Random.Range(4, 12);
@@ -29,7 +31,7 @@ public class Dungeon {
                 }
             }
         }
-
+        
 
         return map;
     }
@@ -47,6 +49,18 @@ public class Dungeon {
             for (int t = 0; t < 5; t++)
             {
                 map[i, t] = 1;
+            }
+        }
+    }
+
+    private void buildEndRoom()
+    {
+        int c = Random.Range(map.GetLength(0) - 4, map.GetLength(1) - 12);
+        for (int i = 0; i < 5; i++)
+        {
+            for (int t = 0; t < 5; t++)
+            {
+                map[c + i, c + t] = 1;
             }
         }
     }
