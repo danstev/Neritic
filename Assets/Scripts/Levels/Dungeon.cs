@@ -85,4 +85,62 @@ public class Dungeon {
         }
     }
 
+    private int[,] startToEnd(int[,] m)
+    {
+        int[,] corridor = m;
+
+        return corridor;
+    }
+
+    private void buildCorridor(int x1, int x2, int y1, int y2)
+    {
+        //x1,x2 coord 1
+        //y1,y2 coord 2
+        //
+        bool dir = false; //false = horizontal, true = vertical
+        
+        //check input
+        if(x1 > y1)
+        {
+            int t1, t2;
+            t1 = x1;
+            t2 = x2;
+
+            x1 = y1;
+            x2 = y2;
+
+            y1 = t1;
+            y2 = t2;
+        }
+
+        int middle = (x1 + y1) / 2;
+
+        for(int h = x1; h < middle; h++)
+        {
+            map[h, x2] = 1;
+        }
+
+        for (int h = middle; h < y1; h++)
+        {
+            map[h, y2] = 1;
+        }
+
+        if(x2 < y2)
+        {
+            for (int h = x2; h < y2; h++)
+            {
+                map[middle, h] = 1;
+            }
+        }
+        else
+        {
+            for (int h = y2; h < x2; h++)
+            {
+                map[middle, h] = 1;
+            }
+        }
+        
+
+    }
+
 }
