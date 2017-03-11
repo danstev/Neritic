@@ -92,7 +92,7 @@ public class Dungeon {
         return corridor;
     }
 
-    private void buildCorridor(int x1, int x2, int y1, int y2)
+    private void buildCorridor(int x1, int x2, int y1, int y2, int tileType)
     {
         //x1,x2 coord 1
         //y1,y2 coord 2
@@ -117,26 +117,26 @@ public class Dungeon {
 
         for(int h = x1; h < middle; h++)
         {
-            map[h, x2] = 1;
+            map[h, x2] = tileType;
         }
 
         for (int h = middle; h < y1; h++)
         {
-            map[h, y2] = 1;
+            map[h, y2] = tileType;
         }
 
         if(x2 < y2)
         {
             for (int h = x2; h < y2; h++)
             {
-                map[middle, h] = 1;
+                map[middle, h] = tileType;
             }
         }
         else
         {
             for (int h = y2; h < x2; h++)
             {
-                map[middle, h] = 1;
+                map[middle, h] = tileType;
             }
         }
         
