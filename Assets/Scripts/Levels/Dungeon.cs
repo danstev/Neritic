@@ -4,6 +4,7 @@ using System.Collections;
 public class Dungeon {
 
     private int[,] map;
+    int x1, x2, y1, y2;
 
     public int[,] genMap()
     {
@@ -15,6 +16,9 @@ public class Dungeon {
         buildEndRoom();
 
         
+        x1 = 0;
+        x2 = 0;
+
         for (int i = 0; i < rooms; i++)
         {
             int height = Random.Range(4, 12);
@@ -22,16 +26,34 @@ public class Dungeon {
             int offsetH = Random.Range(0, x - height - 1);
             int offsetW = Random.Range(0, y - width - 1);
 
-
-            for (int q = offsetH; q < height + offsetH; q++)
+            for (int q = offsetH; q <= height + offsetH; q++)
             {
-                for (int w = offsetW; w < width + offsetW; w++)
+                for (int w = offsetW; w <= width + offsetW; w++)
                 {
                     map[q, w] = 1;
+
+                    if(w == width + offsetW - 1)
+                    {
+                        
+                        x1 = q;
+                        x2 = w;
+                        if(y1 == -1)
+                        {
+                            y1 = x1;
+                            y2 = x2;
+                        }
+                        else
+                        {
+                            buildCorridor(x1,x2,y1,y2,1);
+                            y1 = x1;
+                            y2 = x2;
+                        }
+                    }
                 }
             }
+
         }
-        
+        buildCorridor(x1, x2, map.GetLength(0) - 8 + 3, map.GetLength(0) - 8 + 3, 1);
 
         return map;
     }
@@ -49,18 +71,20 @@ public class Dungeon {
             for (int t = 0; t < 5; t++)
             {
                 map[i, t] = 1;
+                y1 = i;
+                y2 = t;
             }
         }
     }
 
     private void buildEndRoom()
     {
-        int c = Random.Range(map.GetLength(0) - 4, map.GetLength(1) - 12);
-        for (int i = 0; i < 5; i++)
+        int c = Random.Range(map.GetLength(0) - 5, map.GetLength(1) - 5);
+        for (int i = 0; i < 4; i++)
         {
-            for (int t = 0; t < 5; t++)
+            for (int t = 0; t < 4; t++)
             {
-                map[c + i, c + t] = 1;
+                map[map.GetLength(0) - 8 + i, map.GetLength(0) - 8 + t] = 1;
             }
         }
     }
