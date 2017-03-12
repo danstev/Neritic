@@ -259,6 +259,11 @@ public class LevelGen : MonoBehaviour {
             j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
             //Somehow transform it 90 degrees
             j.transform.rotation *= Quaternion.Euler(90, 0, 0);
+
+            Vector3 mapPosCeiling = new Vector3(t.xPosition * t.spacemod, 2 * t.spacemod, t.yPosition * t.spacemod);
+            GameObject h = Instantiate(t.floorTile, mapPosCeiling, Quaternion.identity) as GameObject;
+            h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
+            h.transform.rotation *= Quaternion.Euler(270, 0, 0);
         }
     }
 
