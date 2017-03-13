@@ -4,30 +4,25 @@ using System.Collections;
 public class EnemyBaseAi : MonoBehaviour {
 
     //TODO
-    //fix random move
-    //Add attacking/spells which takes from statistics
-    //maybe spell queue?
+    //
 
-    //target stuff
     public GameObject target;
     public float scanTimer;
     public float scanDist;
 
-    //move stuff
     public Statistics stats;
     public float randomMoveTimerSet;
     private Vector3 randomMoveSpace;
     private GameObject sprite;
 
-    //Attack stuff
     private float attackTimer = 0f;
 
 
 
     // Use this for initialization
     void Start () {
-        Transform s = transform.GetChild(0);
-        sprite = s.gameObject;
+        //Transform s = transform.GetChild(0);
+        //sprite = s.gameObject;
 	}
 	
 	// Update is called once per frame
@@ -98,13 +93,13 @@ public class EnemyBaseAi : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
         }
 
-        /*
+        
         //If target moves away
-        if (scanDist * 2 > Vector3.Distance(transform.position, target.transform.position)) //Sets target to null as this is ran???
+        if (scanDist * 2 > Vector3.Distance(transform.position, target.transform.position))
         {
             target = null;
         }
-        */
+        
 
     }
 
