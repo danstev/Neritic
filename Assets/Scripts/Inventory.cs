@@ -222,7 +222,7 @@ public class Inventory : MonoBehaviour {
         }
 
         //set these on the stats page
-        
+        updateStatsPage();
 
     }
 
@@ -265,9 +265,15 @@ public class Inventory : MonoBehaviour {
 
     }
 
-    void updateStatsPage()
+    void updateStatsPage(int strength, int intellect, int agility, int wDam, int sDam)
     {
-
+        Statistics s = GetComponent<Statistics>();
+        s.strength = strength;
+        s.intellect = intellect;
+        s.agility = agility;
+        s.attack = wDam;
+        s.magicAttack = sDam;
+        //Should be all stats
     }
 
     public bool weaponEquippedCheck()
