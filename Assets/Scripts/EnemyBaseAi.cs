@@ -3,8 +3,16 @@ using System.Collections;
 
 public class EnemyBaseAi : MonoBehaviour {
 
-    //TODO
-    //
+    //move movement type behaviour
+
+    //1 melee
+    //just move towards character when you have targett
+
+    //2 caster
+    //When not casting, maintain distance
+
+    //3 rogue
+    //Try keep distance, attack when player is not looking
 
     public GameObject target;
     public float scanTimer;
@@ -13,11 +21,10 @@ public class EnemyBaseAi : MonoBehaviour {
     public Statistics stats;
     public float randomMoveTimerSet;
     private Vector3 randomMoveSpace;
+    private float randomMoveMod = 0.05f;
     private GameObject sprite;
 
     private float attackTimer = 0f;
-
-
 
     // Use this for initialization
     void Start () {
@@ -39,7 +46,7 @@ public class EnemyBaseAi : MonoBehaviour {
         }
         else
         {
-            //randomMove(); //until this is fixed
+            //randomMove(); 
         }
 	
 	}
@@ -49,7 +56,6 @@ public class EnemyBaseAi : MonoBehaviour {
         Collider[] detectColliders = Physics.OverlapSphere(transform.position, scanDist); //How efficient is this?
         for (int i = 0; i < detectColliders.Length; i++)
         {
-            //print(detectColliders[i].tag);
             if (detectColliders[i].tag == "NPC" || detectColliders[i].tag == "Player")
             {
                 target = detectColliders[i].gameObject;
@@ -57,6 +63,11 @@ public class EnemyBaseAi : MonoBehaviour {
             }
         }
 
+        if (randomMoveTimerSet > 0)
+        {
+            transform.position += randomMoveSpace;
+            randomMoveTimerSet -= Time.deltaTime;
+        }
     }
 
     void aggressiveMove()
@@ -93,14 +104,12 @@ public class EnemyBaseAi : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step);
         }
 
-        
         //If target moves away
         if (scanDist * 2 > Vector3.Distance(transform.position, target.transform.position))
         {
             target = null;
         }
         
-
     }
 
     void randomMove()
@@ -108,7 +117,7 @@ public class EnemyBaseAi : MonoBehaviour {
             if (randomMoveTimerSet <= 0)
             {
                 randomMoveTimerSet = 3 * Random.Range(1, 2);
-                randomMoveSpace = new Vector3(Random.Range(-1 * stats.momvementSpeedMod, 1 * stats.momvementSpeedMod), 0, Random.Range(-1 * stats.momvementSpeedMod, 1 * stats.momvementSpeedMod));
+                randomMoveSpace = new Vector3(Random.Range(-1 * stats.momvementSpeedMod * randomMoveMod, 1 * stats.momvementSpeedMod * randomMoveMod), 0, Random.Range(-1 * stats.momvementSpeedMod * randomMoveMod, 1 * stats.momvementSpeedMod * randomMoveMod));
                 transform.position += randomMoveSpace;
             }
 
@@ -117,7 +126,5 @@ public class EnemyBaseAi : MonoBehaviour {
                 transform.position += randomMoveSpace;
                 randomMoveTimerSet -= Time.deltaTime;
             }
-        
-
     }
 }
