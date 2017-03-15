@@ -222,7 +222,7 @@ public class Inventory : MonoBehaviour {
         }
 
         //set these on the stats page
-        updateStatsPage();
+        updateStatsPage(s,a,i,wDam,sDam);
 
     }
 
