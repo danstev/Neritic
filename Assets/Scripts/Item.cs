@@ -44,4 +44,10 @@ public class Item : MonoBehaviour {
         a.enabled = true;
     }
 
+    public void equipWeapon()
+    {
+        Animator a = GetComponent<Animator>();
+        a.enabled = true;
+    }
+
 }
