@@ -39,15 +39,16 @@ public class Inventory : MonoBehaviour {
         {
             if(item.type == "equipment")
             {
-                print("h");
                 Equipment e = i.GetComponent<Equipment>();
                 int slot = e.slot;
                 if( equipped[slot] == null )
                 {
                     equipped[slot] = i;
                     totalWeight += item.weight * item.held;
-                    if(slot == 0) //Weapon slot, need another for 2nd weapon slot?
+                    
+                    if (slot == 0) //Weapon slot, need another for 2nd weapon slot?
                     {
+                        print("dfds");
                         item.equipWeapon();
                         PlayerControl p = GetComponent<PlayerControl>();
                         p.refreshWeapon();
@@ -61,7 +62,8 @@ public class Inventory : MonoBehaviour {
                     }
                     e.equip();
                     i.transform.parent = transform;
-                    
+                    updateAllStatisitics();
+                    return;
                 }
                 else
                 {
@@ -163,30 +165,16 @@ public class Inventory : MonoBehaviour {
                 return;
             }
 
-            //not full, not unique, none in inv
-            //Add to next free slot
             slots[lastSlot] = i;
             totalWeight += item.weight;
             i.transform.parent = transform;
             i.SetActive(false);
 
             lastSlot++;
-            //Audio cue here?
             return;
         }
        
     }
-
-
-	// Use this for initialization
-	void Start () {
-	    
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     void recalcWeight() //Should not be needed if i did add properly, but is nice for when dropping maybe etc, maybe just remove any weight stuff for other actions, just plonk this after each?
     {
@@ -213,25 +201,40 @@ public class Inventory : MonoBehaviour {
         int i = 0;
 
         int wDam = 0;
-        int sDam = 0; 
+        int sDam = 0;
+
+        Statistics stats = GetComponent<Statistics>();
+        s += stats.strength;
+        a += stats.agility;
+        i += stats.intellect;
+
 
         foreach(GameObject g in equipped)
         {
-            Equipment e = g.GetComponent<Equipment>();
-            s += e.strength;
-            a += e.agility;
-            i += e.intellect;
-
-            if(e.weapon == true)
+            if (g == null)
             {
-                wDam = e.attack;
+
+            }
+            else
+            {
+                Equipment e = g.GetComponent<Equipment>();
+                s += e.strength;
+                a += e.agility;
+                i += e.intellect;
+
+                if (e.weapon == true)
+                {
+                    wDam = e.attack;
+                }
+                //Same for spell
             }
 
-            //Same for spell
         }
 
         //set these on the stats page
         updateStatsPage(s,a,i,wDam,sDam);
+        PlayerControl p = GetComponent<PlayerControl>();
+        p.refreshStats();
 
     }
 
@@ -277,9 +280,9 @@ public class Inventory : MonoBehaviour {
     void updateStatsPage(int strength, int intellect, int agility, int wDam, int sDam)
     {
         Statistics s = GetComponent<Statistics>();
-        s.strength = strength;
-        s.intellect = intellect;
-        s.agility = agility;
+        s.actualstrength = strength;
+        s.actualIntellect = intellect;
+        s.actualAgility = agility;
         s.attack = wDam;
         s.magicAttack = sDam;
         //Should be all stats
