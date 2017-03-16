@@ -33,26 +33,35 @@ public class Inventory : MonoBehaviour {
     public void AddItem ( GameObject i)
     {
         Item item = i.GetComponent<Item>();
-        print("h");
+ 
         //If equippable
         if(item.equipable == true)
         {
             if(item.type == "equipment")
             {
+                print("h");
                 Equipment e = i.GetComponent<Equipment>();
                 int slot = e.slot;
                 if( equipped[slot] == null )
                 {
                     equipped[slot] = i;
                     totalWeight += item.weight * item.held;
-                    item.equip();
+                    if(slot == 0) //Weapon slot, need another for 2nd weapon slot?
+                    {
+                        item.equipWeapon();
+                        PlayerControl p = GetComponent<PlayerControl>();
+                        p.refreshWeapon();
+                        CapsuleCollider c = i.GetComponent<CapsuleCollider>();
+                        c.enabled = false;
+                    }
+                    else
+                    {
+                        item.equip();
+                        i.SetActive(false);
+                    }
                     e.equip();
-                    
                     i.transform.parent = transform;
-                    PlayerControl p = GetComponent<PlayerControl>();
-                    p.refreshWeapon();
-                    CapsuleCollider c = i.GetComponent<CapsuleCollider>();
-                    c.enabled = false;
+                    
                 }
                 else
                 {
