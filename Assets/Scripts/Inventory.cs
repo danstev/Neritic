@@ -51,7 +51,7 @@ public class Inventory : MonoBehaviour {
                         print("dfds");
                         item.equipWeapon();
                         PlayerControl p = GetComponent<PlayerControl>();
-                        p.refreshWeapon();
+                        p.refreshWeapon(i);
                         CapsuleCollider c = i.GetComponent<CapsuleCollider>();
                         c.enabled = false;
                     }
