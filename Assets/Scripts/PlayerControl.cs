@@ -50,7 +50,6 @@ public class PlayerControl : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        refreshWeapon();
         stats = GetComponent<Statistics>();
         inv = GetComponent<Inventory>();
         refreshStats();
@@ -121,16 +120,10 @@ public class PlayerControl : MonoBehaviour {
 
     }
 
-    public void refreshWeapon() //Refreshes what gameObject to use for the animator.
+    public void refreshWeapon(GameObject w) //Refreshes what gameObject to use for the animator.
     {
-        Animator[] anims = gameObject.GetComponentsInChildren<Animator>();
-        foreach (Animator a in anims)
-        {
-            if (a.gameObject.tag == "Weapon")
-            {
-                anim = a;
-            }
-        }
+        Animator a = w.GetComponent<Animator>();
+        anim = a;
     }
 
     public void refreshStats() //I think this is it for player controller;
