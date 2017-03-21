@@ -21,7 +21,7 @@ public class EnemyBaseAi : MonoBehaviour {
     public Statistics stats;
     public float randomMoveTimerSet;
     private Vector3 randomMoveSpace;
-    private float randomMoveMod = 0.05f;
+    private float randomMoveMod = 0.0125f;
     private GameObject sprite;
 
     private float attackTimer = 0f;
@@ -46,7 +46,7 @@ public class EnemyBaseAi : MonoBehaviour {
         }
         else
         {
-            //randomMove(); 
+            randomMove(); 
         }
 	
 	}
@@ -105,9 +105,11 @@ public class EnemyBaseAi : MonoBehaviour {
         }
 
         //If target moves away
-        if (scanDist * 2 > Vector3.Distance(transform.position, target.transform.position))
+        if (scanDist > Vector3.Distance(transform.position, target.transform.position))
         {
+            print(Vector3.Distance(transform.position, target.transform.position));
             target = null;
+            
         }
         
     }
