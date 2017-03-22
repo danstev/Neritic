@@ -105,11 +105,11 @@ public class EnemyBaseAi : MonoBehaviour {
         }
 
         //If target moves away NOT WOKRING : (
-        //if (scanDist > Vector3.Distance(transform.position, target.transform.position))
-        //{
-        //    print(Vector3.Distance(transform.position, target.transform.position));
-        //    target = null;
-        //}
+        if (scanDist < Vector3.Distance(transform.position, target.transform.position))
+        {
+            print(Vector3.Distance(transform.position, target.transform.position));
+            target = null;
+        }
         
     }
 
