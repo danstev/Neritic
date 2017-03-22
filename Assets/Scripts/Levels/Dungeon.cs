@@ -55,6 +55,8 @@ public class Dungeon {
         }
         buildCorridor(x1, x2, map.GetLength(0) - 8 + 3, map.GetLength(0) - 8 + 3, 1);
 
+        buildWalls();
+
         return map;
     }
 
@@ -121,7 +123,7 @@ public class Dungeon {
         //x1,x2 coord 1
         //y1,y2 coord 2
         //
-        bool dir = false; //false = horizontal, true = vertical
+        //bool dir = false; //false = horizontal, true = vertical Not implemented yet
         
         //check input
         if(x1 > y1)
@@ -165,6 +167,27 @@ public class Dungeon {
         }
         
 
+    }
+
+    private void buildWalls()
+    {
+        for (int i = 0; i < map.GetLength(0); i++)
+        {
+            for (int t = 0; t < map.GetLength(0); t++) //For every box
+            {
+                if(map[i,t] == 0) //if its empty
+                {
+                    if(i == 0 || i == map.GetLength(0) || t == 0 || t == map.GetLength(1))
+                    {
+
+                    }
+                    else if (map[i -1 ,t] != 0 || map[i + 1, t] != 0 || map[i, t -1] != 0 || map[i, t + 1] != 0 ) //Check borders
+                    {
+                        map[i, t] = 2;
+                    }
+                }
+            }
+        }
     }
 
 }

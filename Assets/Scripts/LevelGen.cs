@@ -172,9 +172,17 @@ public class LevelGen : MonoBehaviour {
                     t.yPosition = y;
                     t.floorTile = wall;
                     t.spacemod = spaceMod;
+                    t.wall = true;
                     t.wallType = getWallType(intMap,x,y);
                     listOfTiles.Add(t);
                 }
+                //else if (map[x, y] == 0) //Maybe not needed?
+                //{
+                //    if(map[x-1, y] != 0)
+                //    {
+
+                //    }
+                //}
             }
         }
         Tile[] tiles = new Tile[listOfTiles.Count];
@@ -189,19 +197,23 @@ public class LevelGen : MonoBehaviour {
 
     int getWallType(int[,] intMap, int xPos, int yPos)
     {
-        if(intMap[xPos + 1, yPos] == 1)
+        if(xPos == 0 || yPos == 0 || xPos + 1 == height || yPos + 1 == width)
+        {
+            return 5;
+        }
+        else if (intMap[xPos + 1, yPos] != 0)
         {
             return 1;
         }
-        else if(intMap[xPos - 1, yPos] == 1)
+        else if(intMap[xPos - 1, yPos] != 0)
         {
             return 3;
         }
-        else if (intMap[xPos, yPos - 1] == 1)
+        else if (intMap[xPos, yPos - 1] != 0)
         {
             return 0;
         }
-        else if (intMap[xPos, yPos + 1] == 1)
+        else if (intMap[xPos, yPos + 1] != 0)
         {
             return 2;
         }
