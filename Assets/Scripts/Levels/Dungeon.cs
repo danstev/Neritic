@@ -179,7 +179,7 @@ public class Dungeon {
                 {
                     if(i == 0 || i == map.GetLength(0) || t == 0 || t == map.GetLength(1))
                     {
-
+                        map[i, t] = 0;
                     }
                     else if (map[i -1 ,t] != 0 || map[i + 1, t] != 0 || map[i, t -1] != 0 || map[i, t + 1] != 0 ) //Check borders
                     {
