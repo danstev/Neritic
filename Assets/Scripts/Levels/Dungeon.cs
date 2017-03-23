@@ -91,38 +91,8 @@ public class Dungeon {
         }
     }
 
-    private int[] selectWall()
-    {
-        int[] coord = new int[2];
-
-
-        return coord;
-    }
-
-    private bool checkIfWalls(int[] coords)
-    {
-        if (map[coords[0], coords[1]] == 1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private int[,] startToEnd(int[,] m)
-    {
-        int[,] corridor = m;
-
-        return corridor;
-    }
-
     private void buildCorridor(int x1, int x2, int y1, int y2, int tileType)
     {
-        //x1,x2 coord 1
-        //y1,y2 coord 2
-        //
         //bool dir = false; //false = horizontal, true = vertical Not implemented yet
         
         //check input
@@ -171,23 +141,50 @@ public class Dungeon {
 
     private void buildWalls()
     {
+        int[,] tempMap = map;
         for (int i = 0; i < map.GetLength(0); i++)
         {
             for (int t = 0; t < map.GetLength(1); t++) //For every box
             {
                 if(map[i,t] == 0) //if its empty
                 {
-                    if(i == 0 || i == map.GetLength(0) || t == 0 || t == map.GetLength(1))
+                    if (i == 0)
                     {
-                        map[i, t] = 0;
+                        //Do check in else, for eeach case except the one above
                     }
-                    else if (map[i -1 ,t] != 0 || map[i + 1, t] != 0 || map[i, t -1] != 0 || map[i, t + 1] != 0 ) //Check borders
+                    else if(i == map.GetLength(0))
                     {
-                        map[i, t] = 2;
+
+                    }
+                    else if (t == 0)
+                    {
+
+                    }
+                    else if (t == map.GetLength(1))
+                    {
+
+                    }
+                    else
+                    {
+                        if (map[i - 1, t] != 0 || map[i + 1, t] != 0 || map[i, t - 1] != 0 || map[i, t + 1] != 0) //Check borders
+                        {
+                            tempMap[i, t] = 2;
+                        }
                     }
                 }
             }
         }
+        map = tempMap;
+    }
+
+    private bool checkBorders(int x, int y)
+    {
+        bool check = false;
+        if((map[x - 1, y] != 0))
+        {
+
+        }
+        return check;
     }
 
 }
