@@ -7,6 +7,7 @@ public class Spell : MonoBehaviour {
     //On collision do damage plz
 
     public int magicAttack;
+    public int manaCost;
 
     void Start () {
 	
@@ -19,7 +20,7 @@ public class Spell : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        print(col.gameObject.name);
+        //print(col.gameObject.name);
         if(col.gameObject.name == "Player") //check for friendly/seethrough etc? here
         {
 

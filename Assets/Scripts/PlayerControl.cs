@@ -210,6 +210,8 @@ public class PlayerControl : MonoBehaviour {
             spellR.AddForce(spell.transform.forward * stats.magicSpeed);
             Spell spellA = spell.GetComponent<Spell>();
             spellA.setMagicAttack((int)stats.magicAttack);
+            //Mana cost -
+            stats.curMana -= spellA.manaCost;
         }
         else if (magicTimeCD < 0)
         {
