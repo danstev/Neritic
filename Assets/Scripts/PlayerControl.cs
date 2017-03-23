@@ -48,6 +48,9 @@ public class PlayerControl : MonoBehaviour {
     private delegate void move();
     move movement;
 
+    //Tick system?
+    int tick;
+
     // Use this for initialization
     void Start () {
         stats = GetComponent<Statistics>();
@@ -56,12 +59,25 @@ public class PlayerControl : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         movement = mouseController;
         movement += movementController;
+        tick = 0;
     }
+
+    void FixedUpdate()
+    {
+        if (tick % 60 == 0)
+        {
+            if(stats.curMana < stats.maxMana)
+            stats.curMana++;
+        }
+        tick++;
+        movement();
+    }
+
 	
 	// Update is called once per frame
 	void Update () {
 
-        movement();
+        
 
         //Attack 
         if (Input.GetMouseButtonDown(0))
@@ -203,15 +219,23 @@ public class PlayerControl : MonoBehaviour {
     {
         if (magicTimeCD <= 0)
         {
-            magicTimeCD = stats.magicTime;
-            GameObject spell;
-            spell = Instantiate(stats.magicSpell, transform.position + transform.forward * 1, cam.transform.rotation) as GameObject;
-            Rigidbody spellR = spell.GetComponent<Rigidbody>();
-            spellR.AddForce(spell.transform.forward * stats.magicSpeed);
-            Spell spellA = spell.GetComponent<Spell>();
-            spellA.setMagicAttack((int)stats.magicAttack);
-            //Mana cost -
-            stats.curMana -= spellA.manaCost;
+            if(stats.curMana >= stats.magicSpell.GetComponent<Spell>().manaCost)
+            {
+                magicTimeCD = stats.magicTime;
+                GameObject spell;
+                spell = Instantiate(stats.magicSpell, transform.position + transform.forward * 1, cam.transform.rotation) as GameObject;
+                Rigidbody spellR = spell.GetComponent<Rigidbody>();
+                spellR.AddForce(spell.transform.forward * stats.magicSpeed);
+                Spell spellA = spell.GetComponent<Spell>();
+                spellA.setMagicAttack((int)stats.magicAttack);
+                //Mana cost -
+                stats.curMana -= spellA.manaCost;
+            }
+            else
+            {
+                //error message?
+            }
+            
         }
         else if (magicTimeCD < 0)
         {
