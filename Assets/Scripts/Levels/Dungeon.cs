@@ -86,7 +86,7 @@ public class Dungeon {
         {
             for (int t = 0; t < 4; t++)
             {
-                map[map.GetLength(0) - 8 + i, map.GetLength(0) - 8 + t] = 1;
+                map[map.GetLength(0) - 8 + i, map.GetLength(1) - 8 + t] = 1;
             }
         }
     }
@@ -173,7 +173,7 @@ public class Dungeon {
     {
         for (int i = 0; i < map.GetLength(0); i++)
         {
-            for (int t = 0; t < map.GetLength(0); t++) //For every box
+            for (int t = 0; t < map.GetLength(1); t++) //For every box
             {
                 if(map[i,t] == 0) //if its empty
                 {

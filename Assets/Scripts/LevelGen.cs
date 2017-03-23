@@ -9,7 +9,6 @@ public class LevelGen : MonoBehaviour {
     //0     Empty
     //1     Floor
     //2     Wall
-    //10    Tree
 
     public GameObject tile;
     public GameObject wall;
