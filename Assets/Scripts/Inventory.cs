@@ -22,7 +22,7 @@ public class Inventory : MonoBehaviour {
     //Feet
     //Neck
     //ring
-    //ring
+    //ring 
 
     private int amountOfItems = 0;
     private int lastSlot = 0;
