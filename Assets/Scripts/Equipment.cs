@@ -9,16 +9,17 @@ public class Equipment : MonoBehaviour {
     public bool weapon;
     public int attack;
     public int armour;
-    private int baseStrength;
-    private int baseAgility;
-    private int baseIntellect;
+    public int baseStrength;
+    public int baseAgility;
+    public int baseIntellect;
     public int strength;
     public int agility;
     public int intellect;
     public int level;
 
-    public void start()
+    public void Start()
     {
+        print("sdsad");
         int s = Random.Range(0,3);
         if(s <= 1)
         {
