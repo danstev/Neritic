@@ -277,7 +277,7 @@ public class Inventory : MonoBehaviour {
 
     }
 
-    void updateStatsPage(int strength, int intellect, int agility, int wDam, int sDam)
+    void updateStatsPage(int strength, int agility, int intellect, int wDam, int sDam)
     {
         Statistics s = GetComponent<Statistics>();
         s.actualstrength = strength;

@@ -19,7 +19,6 @@ public class Equipment : MonoBehaviour {
 
     public void Start()
     {
-        print("sdsad");
         int s = Random.Range(0,3);
         if(s <= 1)
         {
