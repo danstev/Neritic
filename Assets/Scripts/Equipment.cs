@@ -9,9 +9,30 @@ public class Equipment : MonoBehaviour {
     public bool weapon;
     public int attack;
     public int armour;
+    private int baseStrength;
+    private int baseAgility;
+    private int baseIntellect;
     public int strength;
     public int agility;
     public int intellect;
+    public int level;
+
+    public void start()
+    {
+        int s = Random.Range(0,3);
+        if(s <= 1)
+        {
+            strength = baseStrength + Random.Range(level * 1, level * 3);
+        }
+        else if(s <= 2)
+        {
+            agility = baseAgility + Random.Range(level * 1, level * 3);
+        }
+        else if(s <= 3)
+        {
+            intellect = baseIntellect + Random.Range(level * 1, level * 3);
+        }
+    }
 
     public void equip()
     {
