@@ -24,14 +24,21 @@ public class Equipment : MonoBehaviour {
         if(s <= 1)
         {
             strength = baseStrength + Random.Range(level * 1, level * 3);
+            agility = baseAgility;
+            intellect = baseIntellect;
         }
         else if(s <= 2)
         {
             agility = baseAgility + Random.Range(level * 1, level * 3);
+            intellect = baseIntellect;
+            strength = baseStrength;
+
         }
         else if(s <= 3)
         {
             intellect = baseIntellect + Random.Range(level * 1, level * 3);
+            agility = baseAgility;
+            strength = baseStrength;
         }
     }
 
