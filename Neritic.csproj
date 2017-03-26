@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Bleed.cs" />
     <Compile Include="Assets\Scripts\Box.cs" />
     <Compile Include="Assets\Scripts\EnemyBaseAi.cs" />
+    <Compile Include="Assets\Scripts\EnemyDrop.cs" />
     <Compile Include="Assets\Scripts\Equipment.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
