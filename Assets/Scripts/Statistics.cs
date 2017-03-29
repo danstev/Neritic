@@ -180,6 +180,7 @@ public class Statistics : MonoBehaviour {
 
     void setExpForLevel()
     {
+        exp = 0;
         expForLevel = level * 100 * (level * 0.25f);
     }
 }
