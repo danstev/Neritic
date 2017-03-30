@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
+public class EnemySpawner : MonoBehaviour {
 
-    string level;
-
-
+	// Use this for initialization
 	void Start () {
 	
 	}
