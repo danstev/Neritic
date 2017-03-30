@@ -10,6 +10,7 @@ public class LevelGen : MonoBehaviour {
     //1     Floor
     //2     Wall
 
+    public string level;
     public GameObject tile;
     public GameObject wall;
     public GameObject roof;
@@ -26,7 +27,28 @@ public class LevelGen : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        genDungeon();
+        if(level == "dream") //tutorial level
+        {
+
+        }
+        else if (level == "forest") //easy level, outside
+        {
+
+        }
+        else if(level == "cave") //Harder, can die easily
+        {
+
+        }
+        else if(level == "dungeon") //Very hard
+        {
+            genDungeon();
+        }
+        else if(level == "endLevel") //??? not planned yet, maybe underwater flowerbed? Very hard, boss level
+        {
+
+        }
+
+        
 
     }
 
@@ -38,7 +60,8 @@ public class LevelGen : MonoBehaviour {
         map = new int[height, width];
         r.setMap(map);
         map = r.genMap();
-        drawMapForest();
+        tileMap = fillTileMap(map);
+        renderMap(tileMap);
     }
 
     void genDungeon()
@@ -55,13 +78,14 @@ public class LevelGen : MonoBehaviour {
 
     void genCave()
     {
-        Cave c = new Cave();
+        Cave r = new Cave();
         height = UnityEngine.Random.Range(46, 64);
         width = UnityEngine.Random.Range(46, 64);
         map = new int[height, width];
-        c.setMap(map);
-        map = c.genMap();
-        drawMapDungeon();
+        r.setMap(map);
+        map = r.genMap();
+        tileMap = fillTileMap(map);
+        renderMap(tileMap);
     }
 
     // Update is called once per frame
