@@ -29,15 +29,15 @@ public class LevelGen : MonoBehaviour {
 
         if(level == "dream") //tutorial level
         {
-
+            genDungeon();
         }
         else if (level == "forest") //easy level, outside
         {
-
+            genForest();
         }
         else if(level == "cave") //Harder, can die easily
         {
-
+            genCave();
         }
         else if(level == "dungeon") //Very hard
         {
@@ -45,7 +45,7 @@ public class LevelGen : MonoBehaviour {
         }
         else if(level == "endLevel") //??? not planned yet, maybe underwater flowerbed? Very hard, boss level
         {
-
+            genDungeon();
         }
 
         

@@ -3,7 +3,9 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-
+    //Changes level
+    //Sets monster level in level gen
+    //
 
 
 	void Start () {
