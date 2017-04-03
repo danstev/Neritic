@@ -13,16 +13,16 @@ public class Inventory : MonoBehaviour {
 
     Quaternion weaponRotation;
 	
-	//Main hand
-    //Offhand
-    //Helmet
-    //Chestpiece
-    //Leggings
-    //Gloves
-    //Feet
-    //Neck
-    //ring
-    //ring 
+	//Main hand     0
+    //Offhand       1
+    //Helmet        2
+    //Chestpiece    3
+    //Leggings      4
+    //Gloves        5
+    //Feet          6
+    //Neck          7
+    //ring          8
+    //ring          9
 
     private int amountOfItems = 0;
     private int lastSlot = 0;
