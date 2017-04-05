@@ -199,12 +199,12 @@ public class Dungeon {
 
         if (x == 0 || x == map.GetLength(0))
         {
-            return check;
+            return true;
         }
 
         if (y == 0 || y == map.GetLength(1))
         {
-            return check;
+            return true;
         }
 
         return check;
