@@ -70,14 +70,14 @@ public class PlayerControl : MonoBehaviour {
             stats.curMana++;
         }
         tick++;
-        movement();
+
     }
 
 	
 	// Update is called once per frame
 	void Update () {
 
-        
+        movement();
 
         //Attack 
         if (Input.GetMouseButtonDown(0))

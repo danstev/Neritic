@@ -72,7 +72,7 @@ public class Dungeon {
         {
             for (int t = 0; t < 5; t++)
             {
-                map[i, t] = 1;
+                map[i + c, t + c] = 1;
                 y1 = i;
                 y2 = t;
             }
@@ -146,47 +146,50 @@ public class Dungeon {
         {
             for (int t = 0; t < map.GetLength(1); t++) //For every box
             {
-                if(map[i,t] == 0) //if its empty
+                if(checkBorders(i,t))
                 {
-                    if (i == 0)
-                    {
-                        //Do check in else, for eeach case except the one above
-                    }
-                    else if(i == map.GetLength(0))
-                    {
-
-                    }
-                    else if (t == 0)
-                    {
-
-                    }
-                    else if (t == map.GetLength(1))
-                    {
-
-                    }
-                    else
-                    {
-                        if (map[i - 1, t] != 0 || map[i + 1, t] != 0 || map[i, t - 1] != 0 || map[i, t + 1] != 0 || map[i - 1, t] != 2 || map[i + 1, t] != 2 || map[i, t - 1] != 2 || map[i, t + 1] != 2) //Check borders
-                        {
-                            //if (map[i - 1, t] != 2 || map[i + 1, t] != 2 || map[i, t - 1] != 2 || map[i, t + 1] != 2) //Check borders
-                            //{
-                                tempMap[i, t] = 2;
-                            //}
-                        }
-                    }
+                    tempMap[i, t] = 2;
                 }
             }
         }
         map = tempMap;
     }
-
-    private bool checkBorders(int x, int y)
+    
+    private bool checkBorders(int x, int y) //true if wall should be here
     {
         bool check = false;
-        if((map[x - 1, y] != 0))
+        
+        if(x == 0 || x == map.GetLength(0))
         {
-
+            return check;
         }
+
+        if (y == 0 || y == map.GetLength(1))
+        {
+            return check;
+        }
+
+        if (map[x-1,y] != 0 && map[x - 1, y] != 2)
+        {
+            check = true;
+            //Perhaps do wall type here as well?
+        }
+
+        if (map[x + 1, y] != 0 && map[x + 1, y] != 2)
+        {
+            check = true;
+        }
+
+        if (map[x, y + 1] != 0 && map[x, y + 1] != 2)
+        {
+            check = true;
+        }
+
+        if (map[x, y - 1] != 0 && map[x, y - 1] != 2)
+        {
+            check = true;
+        }
+
         return check;
     }
 
