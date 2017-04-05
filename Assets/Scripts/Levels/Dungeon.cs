@@ -193,4 +193,21 @@ public class Dungeon {
         return check;
     }
 
+    private bool oobCheck(int x, int y) //shouldn't need this maybe im bad
+    {
+        bool check = false; //False = no oob, true == oob
+
+        if (x == 0 || x == map.GetLength(0))
+        {
+            return check;
+        }
+
+        if (y == 0 || y == map.GetLength(1))
+        {
+            return check;
+        }
+
+        return check;
+    }
+
 }

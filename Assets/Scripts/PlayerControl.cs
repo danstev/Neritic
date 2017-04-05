@@ -51,7 +51,6 @@ public class PlayerControl : MonoBehaviour {
     //Tick system?
     int tick;
 
-    // Use this for initialization
     void Start () {
         stats = GetComponent<Statistics>();
         inv = GetComponent<Inventory>();
@@ -70,11 +69,8 @@ public class PlayerControl : MonoBehaviour {
             stats.curMana++;
         }
         tick++;
-
     }
 
-	
-	// Update is called once per frame
 	void Update () {
 
         movement();
