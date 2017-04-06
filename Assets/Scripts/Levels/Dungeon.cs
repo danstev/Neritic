@@ -34,7 +34,6 @@ public class Dungeon {
 
                     if(w == width + offsetW - 1)
                     {
-                        
                         x1 = q;
                         x2 = w;
                         if(y1 == -1)
@@ -53,7 +52,7 @@ public class Dungeon {
             }
 
         }
-        buildCorridor(x1, x2, map.GetLength(0) - 8 + 3, map.GetLength(0) - 8 + 3, 1);
+        buildCorridor(x1, x2, map.GetLength(0) - 8 + 3, map.GetLength(1) - 8 + 3, 1);
 
         buildWalls();
 
@@ -144,11 +143,21 @@ public class Dungeon {
         int[,] tempMap = map;
         for (int i = 0; i < map.GetLength(0); i++)
         {
-            for (int t = 0; t < map.GetLength(0); t++) //For every box
+            for (int t = 0; t < map.GetLength(1); t++) //For every box //perhaps just check borders of every box which is not 0 or 2
             {
-                if(checkBorders(i,t))
+                if (map[i, t] == 0 || map[i, t] == 2)
                 {
-                    tempMap[i, t] = 2;
+                    try
+                    {
+                        if (checkBorders(i, t))
+                        {
+                            tempMap[i, t] = 2;
+                        }
+                    }
+                    catch
+                    {
+
+                    }
                 }
             }
         }
