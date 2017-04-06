@@ -251,7 +251,7 @@ public class LevelGen : MonoBehaviour {
     {
         //walltype = wall here
 
-        //0     top
+        //0     top //Perhaps just first 4 in an array and draw for each type in array?
         //1     bottom
         //2     left
         //3     right
