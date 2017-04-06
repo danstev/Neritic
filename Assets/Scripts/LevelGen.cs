@@ -249,16 +249,24 @@ public class LevelGen : MonoBehaviour {
 
     public void renderTile(Tile t)
     {
-        //INit tile at x/y
-        //check ceiling
-        //init ceiling
-        //check torch
-        //init torch
-        //check entity
-        //init enttiy;
+        //walltype = wall here
+
+        //0     top
+        //1     bottom
+        //2     left
+        //3     right
+        //4     top, bottom
+        //5     top, left
+        //6     top, right
+        //7     bottom, left
+        //8     bottom, right
+        //9     left, right
+        //10    
+        //11
+
         if (t.wall)
         {
-            if(t.wallType == 0)
+            if(t.wallType == 0) 
             {
                 Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 2, t.yPosition * t.spacemod - 1);
                 GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
