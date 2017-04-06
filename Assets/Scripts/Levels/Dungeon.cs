@@ -159,17 +159,12 @@ public class Dungeon {
     {
         bool check = false;
         
-        if(x == 0 || x == map.GetLength(0))
+        if( oobCheck(x, y) )
         {
             return check;
         }
 
-        if (y == 0 || y == map.GetLength(1))
-        {
-            return check;
-        }
-
-        if (map[x-1,y] != 0 && map[x - 1, y] != 2)
+        if (map[x - 1, y] != 0 && map[x - 1, y] != 2)
         {
             check = true;
             //Perhaps do wall type here as well?
@@ -202,7 +197,7 @@ public class Dungeon {
             return true;
         }
 
-        if (y == 0 || y == map.GetLength(1))
+        if (y == 0 || y == map.GetLength(0))
         {
             return true;
         }
