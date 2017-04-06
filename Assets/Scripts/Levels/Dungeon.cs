@@ -72,7 +72,7 @@ public class Dungeon {
         {
             for (int t = 0; t < 5; t++)
             {
-                map[i + c, t + c] = 1;
+                map[i , t ] = 1;
                 y1 = i;
                 y2 = t;
             }
@@ -144,7 +144,7 @@ public class Dungeon {
         int[,] tempMap = map;
         for (int i = 0; i < map.GetLength(0); i++)
         {
-            for (int t = 0; t < map.GetLength(1); t++) //For every box
+            for (int t = 0; t < map.GetLength(0); t++) //For every box
             {
                 if(checkBorders(i,t))
                 {

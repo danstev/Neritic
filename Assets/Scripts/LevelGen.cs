@@ -19,6 +19,7 @@ public class LevelGen : MonoBehaviour {
     private Tile[] tileMap;
     public int height;
     public int width;
+    public int boxMap;
     public float spaceMod;
     public Tile t;
 
@@ -67,9 +68,8 @@ public class LevelGen : MonoBehaviour {
     void genDungeon()
     {
         Dungeon r = new Dungeon();
-        height = UnityEngine.Random.Range(46, 64);
-        width = UnityEngine.Random.Range(46, 64);
-        map = new int[height, width];
+        boxMap = UnityEngine.Random.Range(46, 64);
+        map = new int[boxMap, boxMap];
         r.setMap(map);
         map = r.genMap();
         tileMap = fillTileMap(map);
