@@ -48,9 +48,6 @@ public class LevelGen : MonoBehaviour {
         {
             genDungeon();
         }
-
-        
-
     }
 
     void genForest()
@@ -87,11 +84,6 @@ public class LevelGen : MonoBehaviour {
         tileMap = fillTileMap(map);
         renderMap(tileMap);
     }
-
-    // Update is called once per frame
-    void Update () {
-	
-	}
 
     void drawMapDungeon()
     {
@@ -252,7 +244,6 @@ public class LevelGen : MonoBehaviour {
             h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
             h.transform.rotation *= Quaternion.Euler(270, 0, 0);
         }
-
         renderWalls(t.xPosition, t.yPosition, t.floorTile, t.spacemod);
     }
 
@@ -273,7 +264,7 @@ public class LevelGen : MonoBehaviour {
             j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
             j.transform.rotation *= Quaternion.Euler(0, -90, 0);
         }
-        else if( map[x-1,y] == 0)
+        else if( map[x - 1, y] == 0 )
         {
             Vector3 mapPos = new Vector3(x * spacemod -1, 2, y * spacemod);
             GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
