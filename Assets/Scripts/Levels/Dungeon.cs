@@ -54,7 +54,7 @@ public class Dungeon {
         }
         buildCorridor(x1, x2, map.GetLength(0) - 8 + 3, map.GetLength(1) - 8 + 3, 1);
 
-        buildWalls();
+        //buildWalls();
 
         return map;
     }
