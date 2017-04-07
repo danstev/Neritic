@@ -71,7 +71,7 @@ public class Dungeon {
         {
             for (int t = 0; t < 5; t++)
             {
-                map[i , t ] = 1;
+                map[i + 1, t + 1] = 1;
                 y1 = i;
                 y2 = t;
             }
