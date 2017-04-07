@@ -188,17 +188,7 @@ public class LevelGen : MonoBehaviour {
                     t.spacemod = spaceMod;
                     listOfTiles.Add(t);
                 }
-                else if(map[x, y] == 2)
-                {
-                    Tile t = new Tile();
-                    t.xPosition = x;
-                    t.yPosition = y;
-                    t.floorTile = wall;
-                    t.spacemod = spaceMod;
-                    t.wall = true;
-                    t.wallType = getWallType(intMap,x,y);
-                    listOfTiles.Add(t);
-                }
+
                 //else if (map[x, y] == 0) //Maybe not needed?
                 //{
                 //    if(map[x-1, y] != 0)
@@ -253,15 +243,17 @@ public class LevelGen : MonoBehaviour {
         Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 0, t.yPosition * t.spacemod);
         GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
         j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
-        //Somehow transform it 90 degrees
         j.transform.rotation *= Quaternion.Euler(90, 0, 0);
 
-        Vector3 mapPosCeiling = new Vector3(t.xPosition * t.spacemod, 2 * t.spacemod, t.yPosition * t.spacemod);
-        GameObject h = Instantiate(t.floorTile, mapPosCeiling, Quaternion.identity) as GameObject;
-        h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
-        h.transform.rotation *= Quaternion.Euler(270, 0, 0);
+        if (t.ceiling)
+        {
+            Vector3 mapPosCeiling = new Vector3(t.xPosition * t.spacemod, 2 * t.spacemod, t.yPosition * t.spacemod);
+            GameObject h = Instantiate(t.floorTile, mapPosCeiling, Quaternion.identity) as GameObject;
+            h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
+            h.transform.rotation *= Quaternion.Euler(270, 0, 0);
+        }
 
-        renderWalls(t.xPosition, t.yPosition, t.floorTile);
+        renderWalls(t.xPosition, t.yPosition, t.floorTile, t.spacemod);
     }
 
     void renderMap(Tile[] t)
@@ -272,27 +264,34 @@ public class LevelGen : MonoBehaviour {
         }
     }
 
-    void renderWalls(int x, int y, GameObject wallType)
+    void renderWalls(int x, int y, GameObject wallType, float spacemod)
     {
-        if(map[x-1,y] == 0)
+        if (x == 0)
         {
-            Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 2, t.yPosition * t.spacemod - 1);
-            GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
-            j.transform.localScale = new Vector3(2 * t.spacemod, 1 * t.spacemod, 2);
-            j.transform.rotation *= Quaternion.Euler(0, 0, 0);
+            Vector3 mapPos = new Vector3(x * spacemod -1, 2, y * spacemod);
+            GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
+            j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
+            j.transform.rotation *= Quaternion.Euler(0, -90, 0);
+        }
+        else if( map[x-1,y] == 0)
+        {
+            Vector3 mapPos = new Vector3(x * spacemod -1, 2, y * spacemod);
+            GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
+            j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
+            j.transform.rotation *= Quaternion.Euler(0, -90, 0);
         }
 
-        if (map[x + 1, y] == 0)
+        if (x == map.GetLength(0) || map[x + 1, y] == 0)
         {
             //Render wall
         }
 
-        if (map[x, y - 1] == 0)
+        if (y == 0 || map[x, y - 1] == 0)
         {
             //Render wall
         }
 
-        if (map[x, y + 1] == 0)
+        if (y == map.GetLength(1) || map[x, y + 1] == 0)
         {
             //Render wall
         }
