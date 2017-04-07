@@ -178,8 +178,9 @@ public class LevelGen : MonoBehaviour {
                     t.yPosition = y;
                     t.floorTile = tile;
                     t.spacemod = spaceMod;
-                    listOfTiles.Add(t);
                     t.ceiling = true;
+                    listOfTiles.Add(t);
+                    
                 }
 
             }
