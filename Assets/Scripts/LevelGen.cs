@@ -179,15 +179,9 @@ public class LevelGen : MonoBehaviour {
                     t.floorTile = tile;
                     t.spacemod = spaceMod;
                     listOfTiles.Add(t);
+                    t.ceiling = true;
                 }
 
-                //else if (map[x, y] == 0) //Maybe not needed?
-                //{
-                //    if(map[x-1, y] != 0)
-                //    {
-
-                //    }
-                //}
             }
         }
         Tile[] tiles = new Tile[listOfTiles.Count];
