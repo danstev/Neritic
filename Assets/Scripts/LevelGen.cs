@@ -250,51 +250,18 @@ public class LevelGen : MonoBehaviour {
     public void renderTile(Tile t)
     {
 
-        if (t.wall)
-        {
-            if(t.wallType == 0) 
-            {
-                Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 2, t.yPosition * t.spacemod - 1);
-                GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
-                j.transform.localScale = new Vector3(2 * t.spacemod, 1 * t.spacemod, 2);
-                j.transform.rotation *= Quaternion.Euler(0, 0, 0);
-            }
-            else if(t.wallType == 1)
-            {
-                Vector3 mapPos = new Vector3(t.xPosition * t.spacemod + 1, 2, t.yPosition * t.spacemod);
-                GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
-                j.transform.localScale = new Vector3(2 * t.spacemod, 1 * t.spacemod, 2);
-                j.transform.rotation *= Quaternion.Euler(0, 0, 90);
-            }
-            else if (t.wallType == 2)
-            {
-                Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 2, t.yPosition * t.spacemod + 1);
-                GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
-                j.transform.localScale = new Vector3(2 * t.spacemod, 1 * t.spacemod, 2);
-                j.transform.rotation *= Quaternion.Euler(0, 0, 180);
+        Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 0, t.yPosition * t.spacemod);
+        GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
+        j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
+        //Somehow transform it 90 degrees
+        j.transform.rotation *= Quaternion.Euler(90, 0, 0);
 
-            }
-            else if (t.wallType == 3)
-            {
-                Vector3 mapPos = new Vector3(t.xPosition * t.spacemod - 1, 2, t.yPosition * t.spacemod);
-                GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
-                j.transform.localScale = new Vector3(2 * t.spacemod, 1 * t.spacemod, 2);
-                j.transform.rotation *= Quaternion.Euler(0, 0, 270);
-            }
-        }
-        else
-        {
-            Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 0, t.yPosition * t.spacemod);
-            GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
-            j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
-            //Somehow transform it 90 degrees
-            j.transform.rotation *= Quaternion.Euler(90, 0, 0);
+        Vector3 mapPosCeiling = new Vector3(t.xPosition * t.spacemod, 2 * t.spacemod, t.yPosition * t.spacemod);
+        GameObject h = Instantiate(t.floorTile, mapPosCeiling, Quaternion.identity) as GameObject;
+        h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
+        h.transform.rotation *= Quaternion.Euler(270, 0, 0);
 
-            Vector3 mapPosCeiling = new Vector3(t.xPosition * t.spacemod, 2 * t.spacemod, t.yPosition * t.spacemod);
-            GameObject h = Instantiate(t.floorTile, mapPosCeiling, Quaternion.identity) as GameObject;
-            h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
-            h.transform.rotation *= Quaternion.Euler(270, 0, 0);
-        }
+        renderWalls(t.xPosition, t.yPosition, t.floorTile);
     }
 
     void renderMap(Tile[] t)
@@ -303,6 +270,34 @@ public class LevelGen : MonoBehaviour {
         {
             renderTile(r);
         }
+    }
+
+    void renderWalls(int x, int y, GameObject wallType)
+    {
+        if(map[x-1,y] == 0)
+        {
+            Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 2, t.yPosition * t.spacemod - 1);
+            GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
+            j.transform.localScale = new Vector3(2 * t.spacemod, 1 * t.spacemod, 2);
+            j.transform.rotation *= Quaternion.Euler(0, 0, 0);
+        }
+
+        if (map[x + 1, y] == 0)
+        {
+            //Render wall
+        }
+
+        if (map[x, y - 1] == 0)
+        {
+            //Render wall
+        }
+
+        if (map[x, y + 1] == 0)
+        {
+            //Render wall
+        }
+
+
     }
 
 
