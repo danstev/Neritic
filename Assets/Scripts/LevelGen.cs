@@ -249,20 +249,6 @@ public class LevelGen : MonoBehaviour {
 
     public void renderTile(Tile t)
     {
-        //walltype = wall here
-
-        //0     top //Perhaps just first 4 in an array and draw for each type in array?
-        //1     bottom
-        //2     left
-        //3     right
-        //4     top, bottom
-        //5     top, left
-        //6     top, right
-        //7     bottom, left
-        //8     bottom, right
-        //9     left, right
-        //10    
-        //11
 
         if (t.wall)
         {
