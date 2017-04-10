@@ -14,6 +14,7 @@ public class Forest {
     {
         int x = map.GetLength(0);
         int y = map.GetLength(1);
+        fillMapWithGroundFirst();
         float density = 0.05f;
         int thickness = (x + y) / 20; //100 + 100 = 200 / 20 = 10
 
@@ -36,6 +37,17 @@ public class Forest {
         map = m;
     }
 
+    private void fillMapWithGroundFirst()
+    {
+        for(int i = 0; i < map.GetLength(0);i++)
+        {
+            for(int x = 0; x < map.GetLength(1); x++)
+            {
+                map[x, i] = 1;
+            }
+        }
+    }
+
     private void drawOutskirts(int thickness)
     {
         for (int g = 0; g < map.GetLength(0); g++)
@@ -44,7 +56,7 @@ public class Forest {
             {
                 if (Random.Range(0.0f, 1f) > 0.5f)
                 {
-                    map[g, h] = 10; //10 is tree to the drawer.
+                    map[g, h] = 0; //10 is tree to the drawer.
                 }
             }
         }
@@ -55,7 +67,7 @@ public class Forest {
             {
                 if (Random.Range(0.0f, 1f) > 0.5f)
                 {
-                    map[g, h] = 10; //10 is tree to the drawer.
+                    map[g, h] = 0; //10 is tree to the drawer.
                 }
             }
         }
@@ -66,7 +78,7 @@ public class Forest {
             {
                 if (Random.Range(0.0f, 1f) > 0.5f)
                 {
-                    map[g, h] = 10; //10 is tree to the drawer.
+                    map[g, h] = 0; //10 is tree to the drawer.
                 }
             }
         }
@@ -77,7 +89,7 @@ public class Forest {
             {
                 if (Random.Range(0.0f, 1f) > 0.5f)
                 {
-                    map[g, h] = 10; //10 is tree to the drawer.
+                    map[g, h] = 0; //10 is tree to the drawer.
                 }
             }
         }
@@ -143,13 +155,13 @@ public class Forest {
 
                     if (count > 4)
                     {
-                        map[g, h] = 10;
+                        map[g, h] = 0;
                     }
                     else
                     {
                         if (Random.Range(0f, 1f) < density)
                         {
-                            map[g, h] = 10;
+                            map[g, h] = 0;
                         }
                     }
 
