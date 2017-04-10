@@ -39,11 +39,11 @@ public class Forest {
 
     private void fillMapWithGroundFirst()
     {
-        for(int i = 0; i < map.GetLength(0);i++)
+        for(int i = 0; i < map.GetLength(0); i++)
         {
             for(int x = 0; x < map.GetLength(1); x++)
             {
-                map[x, i] = 1;
+                map[i, x] = 1;
             }
         }
     }
@@ -56,7 +56,7 @@ public class Forest {
             {
                 if (Random.Range(0.0f, 1f) > 0.5f)
                 {
-                    map[g, h] = 0; //10 is tree to the drawer.
+                    map[g, h] = 0; 
                 }
             }
         }
@@ -67,7 +67,7 @@ public class Forest {
             {
                 if (Random.Range(0.0f, 1f) > 0.5f)
                 {
-                    map[g, h] = 0; //10 is tree to the drawer.
+                    map[g, h] = 0; 
                 }
             }
         }
@@ -78,7 +78,7 @@ public class Forest {
             {
                 if (Random.Range(0.0f, 1f) > 0.5f)
                 {
-                    map[g, h] = 0; //10 is tree to the drawer.
+                    map[g, h] = 0; 
                 }
             }
         }
@@ -89,7 +89,7 @@ public class Forest {
             {
                 if (Random.Range(0.0f, 1f) > 0.5f)
                 {
-                    map[g, h] = 0; //10 is tree to the drawer.
+                    map[g, h] = 0;
                 }
             }
         }
@@ -109,7 +109,7 @@ public class Forest {
                     int count = 0;
                     if (g - 1 < 0 || g + 1 >= map.GetLength(0) || h - 1 < 0 || h + 1 >= map.GetLength(1))
                     {
-                        map[g, h] = 10;
+                        map[g, h] = 0;
                         continue;
                     }
 
