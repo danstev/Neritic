@@ -30,7 +30,7 @@ public class LevelGen : MonoBehaviour {
 
         if(level == "dream") //tutorial level
         {
-            genDungeon();
+            genDream();
         }
         else if (level == "forest") //easy level, outside
         {
@@ -55,6 +55,18 @@ public class LevelGen : MonoBehaviour {
         Forest r = new Forest();
         height = UnityEngine.Random.Range(46, 64);
         width = UnityEngine.Random.Range(46, 64);
+        map = new int[height, width];
+        r.setMap(map);
+        map = r.genMap();
+        tileMap = fillTileMap(map);
+        renderMap(tileMap);
+    }
+
+    void genDream()
+    {
+        Dream r = new Dream();
+        height = UnityEngine.Random.Range(32, 46);
+        width = 250;
         map = new int[height, width];
         r.setMap(map);
         map = r.genMap();
