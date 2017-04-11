@@ -134,7 +134,9 @@ public class Dungeon {
                 map[middle, h] = tileType;
             }
         }
-        
+
+        map[middle, x2] = tileType;
+        map[middle, y2] = tileType;
 
     }
 
