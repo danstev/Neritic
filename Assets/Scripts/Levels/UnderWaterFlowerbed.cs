@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NewBehaviourScript : MonoBehaviour {
+public class UnderWaterFlowerbed {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    private int[,] map;
+
+    public int[,] genMap()
+    {
+        //Large map, large rooms, smoothed out a lot
+        return map;
+    }
+
+    public void setMap(int[,] m)
+    {
+        map = m;
+    }
 }
