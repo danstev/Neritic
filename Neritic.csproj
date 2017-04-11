@@ -79,9 +79,9 @@
     <Compile Include="Assets\Scripts\Levels\Dream.cs" />
     <Compile Include="Assets\Scripts\Levels\Dungeon.cs" />
     <Compile Include="Assets\Scripts\Levels\Forest.cs" />
-    <Compile Include="Assets\Scripts\Levels\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\Levels\Room.cs" />
     <Compile Include="Assets\Scripts\Levels\Tile.cs" />
+    <Compile Include="Assets\Scripts\Levels\UnderWaterFlowerbed.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\Spell.cs" />
     <Compile Include="Assets\Scripts\Statistics.cs" />
