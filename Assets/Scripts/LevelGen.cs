@@ -17,9 +17,9 @@ public class LevelGen : MonoBehaviour {
     public GameObject tree;
     private int[,] map;
     private Tile[] tileMap;
-    public int height;
-    public int width;
-    public int boxMap;
+    private int height;
+    private int width;
+    private int boxMap;
     public float spaceMod;
     public Tile t;
 
@@ -126,9 +126,7 @@ public class LevelGen : MonoBehaviour {
                     t.spacemod = spaceMod;
                     t.ceiling = true;
                     listOfTiles.Add(t);
-                    
                 }
-
             }
         }
         Tile[] tiles = new Tile[listOfTiles.Count];
