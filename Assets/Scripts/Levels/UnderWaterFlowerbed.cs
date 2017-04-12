@@ -56,11 +56,11 @@ public class UnderWaterFlowerbed {
             int q = Random.Range(1, x - 2);
             int z = Random.Range(1, y - 2);
 
-            map[q, z] = 1;
-            map[q, z + 1] = 1;
-            map[q + 1, z] = 1;
-            map[q, z - 1] = 1;
-            map[q - 1, z] = 1;
+            map[q, z] = 0;
+            map[q, z + 1] = 0;
+            map[q + 1, z] = 0;
+            map[q, z - 1] = 0;
+            map[q - 1, z] = 0;
         }
         //Smooth
         smoothMap(5);
