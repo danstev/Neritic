@@ -46,7 +46,7 @@ public class LevelGen : MonoBehaviour {
         }
         else if(level == "endLevel") //??? not planned yet, maybe underwater flowerbed? Very hard, boss level
         {
-            genDungeon();
+            genUnderwater();
         }
     }
 
@@ -90,6 +90,19 @@ public class LevelGen : MonoBehaviour {
         Cave r = new Cave();
         height = UnityEngine.Random.Range(46, 64);
         width = UnityEngine.Random.Range(46, 64);
+        map = new int[height, width];
+        r.setMap(map);
+        map = r.genMap();
+        tileMap = fillTileMap(map);
+        renderMap(tileMap);
+    }
+
+    void genUnderwater()
+    {
+        //spaceMod = 0.5f;
+        UnderWaterFlowerbed r = new UnderWaterFlowerbed();
+        height = UnityEngine.Random.Range(100, 125);
+        width = UnityEngine.Random.Range(100, 125);
         map = new int[height, width];
         r.setMap(map);
         map = r.genMap();

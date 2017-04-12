@@ -8,14 +8,9 @@ public class UnderWaterFlowerbed {
 
     public int[,] genMap()
     {
-        //Build many large rooms
         int x = map.GetLength(0);
         int y = map.GetLength(1);
         int rooms = Random.Range(8, 12);
-        //Make starting room near edge.
-        buildStartRoom();
-        buildEndRoom();
-
 
         x1 = 0;
         x2 = 0;
@@ -55,8 +50,22 @@ public class UnderWaterFlowerbed {
         }
         buildCorridor(x1, x2, map.GetLength(0) - 8 + 3, map.GetLength(1) - 8 + 3, 1);
         //Go over and place a bunch of pillars
+
+        for(int r = 0; r < 50; r++)
+        {
+            int q = Random.Range(1, x - 2);
+            int z = Random.Range(1, y - 2);
+
+            map[q, z] = 1;
+            map[q, z + 1] = 1;
+            map[q + 1, z] = 1;
+            map[q, z - 1] = 1;
+            map[q - 1, z] = 1;
+        }
         //Smooth
+        smoothMap(5);
         //Outskirts
+        drawOutskirts(2);
         return map;
     }
 
