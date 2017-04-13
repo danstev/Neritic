@@ -63,7 +63,7 @@ public class UnderWaterFlowerbed {
             map[q - 1, z] = 0;
         }
         //Smooth
-        smoothMap(5);
+        smoothMap(3);
         //Outskirts
         drawOutskirts(2);
         return map;
