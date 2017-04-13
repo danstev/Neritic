@@ -139,35 +139,6 @@ public class LevelGen : MonoBehaviour {
         return tiles;
     }
 
-    int getWallType(int[,] intMap, int xPos, int yPos)
-    {
-        if(xPos == 0 || yPos == 0 || xPos + 1 == height || yPos + 1 == width)
-        {
-            return 5;
-        }
-        else if (intMap[xPos + 1, yPos] != 0)
-        {
-            print(intMap[xPos + 1, yPos]);
-            return 1;
-        }
-        else if(intMap[xPos - 1, yPos] != 0)
-        {
-            return 3;
-        }
-        else if (intMap[xPos, yPos - 1] != 0)
-        {
-            return 0;
-        }
-        else if (intMap[xPos, yPos + 1] != 0)
-        {
-            return 2;
-        }
-        else
-        {
-            return 5;
-        }
-    }
-
     public void renderTile(Tile t)
     {
 
@@ -236,7 +207,6 @@ public class LevelGen : MonoBehaviour {
             j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
             j.transform.rotation *= Quaternion.Euler(0, 0, 0);
         }
-
 
     }
 
