@@ -15,6 +15,8 @@ public class UnderWaterFlowerbed {
         x1 = 0;
         x2 = 0;
 
+        //Do start room here
+
         for (int i = 0; i < rooms; i++)
         {
             int height = Random.Range(4, 12);
@@ -46,11 +48,9 @@ public class UnderWaterFlowerbed {
                     }
                 }
             }
-
         }
+        //Last room build
         buildCorridor(x1, x2, map.GetLength(0) - 8 + 3, map.GetLength(1) - 8 + 3, 1);
-        //Go over and place a bunch of pillars
-
         for(int r = 0; r < 50; r++)
         {
             int q = Random.Range(1, x - 2);
@@ -63,7 +63,7 @@ public class UnderWaterFlowerbed {
             map[q - 1, z] = 0;
         }
         //Smooth
-        smoothMap(3);
+        smoothMap(2);
         //Outskirts
         drawOutskirts(2);
         return map;
