@@ -168,44 +168,52 @@ public class LevelGen : MonoBehaviour {
 
     void renderWalls(int x, int y, GameObject wallType, float spacemod)
     {
-        if (x == 0)
+        try
         {
-            Vector3 mapPos = new Vector3(x * spacemod -1, 2, y * spacemod);
-            GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
-            j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
-            j.transform.rotation *= Quaternion.Euler(0, -90, 0);
-        }
-        else if(map[x - 1, y] == 0)
-        {
+            if (x == 0)
+            {
+                Vector3 mapPos = new Vector3(x * spacemod -1, 2, y * spacemod);
+                GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
+                j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
+                j.transform.rotation *= Quaternion.Euler(0, -90, 0);
+            }
+            else if(map[x - 1, y] == 0)
+            {
             
-            Vector3 mapPos = new Vector3(x * spacemod -1, 2, y * spacemod);
-            GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
-            j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
-            j.transform.rotation *= Quaternion.Euler(0, -90, 0);
-        }
+                Vector3 mapPos = new Vector3(x * spacemod -1, 2, y * spacemod);
+                GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
+                j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
+                j.transform.rotation *= Quaternion.Euler(0, -90, 0);
+            }
 
-        if (x == map.GetLength(0) || map[x + 1, y] == 0)
-        {
-            Vector3 mapPos = new Vector3(x * spacemod + 1, 2, y * spacemod);
-            GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
-            j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
-            j.transform.rotation *= Quaternion.Euler(0, 90, 0);
-        }
+            if (x == map.GetLength(0) || map[x + 1, y] == 0)
+            {
+                Vector3 mapPos = new Vector3(x * spacemod + 1, 2, y * spacemod);
+                GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
+                j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
+                j.transform.rotation *= Quaternion.Euler(0, 90, 0);
+            }
 
-        if (y == 0 || map[x, y - 1] == 0)
-        {
-            Vector3 mapPos = new Vector3(x * spacemod, 2, y * spacemod -1);
-            GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
-            j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
-            j.transform.rotation *= Quaternion.Euler(0, 180, 0);
-        }
+            if (y == 0 || map[x, y - 1] == 0)
+            {
+                Vector3 mapPos = new Vector3(x * spacemod, 2, y * spacemod -1);
+                GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
+                j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
+                j.transform.rotation *= Quaternion.Euler(0, 180, 0);
+            }
 
-        if (y == map.GetLength(1) || map[x, y + 1] == 0)
+        
+            if (y == map.GetLength(1) || map[x, y + 1] == 0)
+            {
+                Vector3 mapPos = new Vector3(x * spacemod, 2, y * spacemod + 1);
+                GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
+                j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
+                j.transform.rotation *= Quaternion.Euler(0, 0, 0);
+            }
+        }
+        catch(Exception e)
         {
-            Vector3 mapPos = new Vector3(x * spacemod, 2, y * spacemod + 1);
-            GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
-            j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
-            j.transform.rotation *= Quaternion.Euler(0, 0, 0);
+
         }
 
     }
