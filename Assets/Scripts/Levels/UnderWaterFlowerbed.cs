@@ -10,7 +10,7 @@ public class UnderWaterFlowerbed {
     {
         int x = map.GetLength(0);
         int y = map.GetLength(1);
-        int rooms = Random.Range(8, 12);
+        int rooms = Random.Range(12, 24);
 
         x1 = 0;
         x2 = 0;
@@ -80,10 +80,7 @@ public class UnderWaterFlowerbed {
         {
             for (int h = 0; h < thickness; h++)
             {
-                if (Random.Range(0.0f, 1f) > 0.5f)
-                {
                     map[g, h] = 0;
-                }
             }
         }
 
@@ -91,10 +88,7 @@ public class UnderWaterFlowerbed {
         {
             for (int h = map.GetLength(1) - thickness; h < map.GetLength(1); h++)
             {
-                if (Random.Range(0.0f, 1f) > 0.5f)
-                {
                     map[g, h] = 0;
-                }
             }
         }
 
@@ -102,10 +96,7 @@ public class UnderWaterFlowerbed {
         {
             for (int h = 0; h < map.GetLength(1); h++)
             {
-                if (Random.Range(0.0f, 1f) > 0.5f)
-                {
                     map[g, h] = 0;
-                }
             }
         }
 
@@ -113,10 +104,7 @@ public class UnderWaterFlowerbed {
         {
             for (int h = 0; h < map.GetLength(1); h++)
             {
-                if (Random.Range(0.0f, 1f) > 0.5f)
-                {
                     map[g, h] = 0;
-                }
             }
         }
     }
