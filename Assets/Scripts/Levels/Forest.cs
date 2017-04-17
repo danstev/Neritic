@@ -27,7 +27,8 @@ public class Forest {
         drawOutskirts(thickness);
         smoothMap(4, density);
 
-        
+        //Draw end point in middle of "forest"
+        drawEnd();
 
         return map;
     }
@@ -35,6 +36,19 @@ public class Forest {
     public void setMap(int[,] m)
     {
         map = m;
+    }
+
+    private void drawEnd()
+    {
+        int wid = map.GetLength(0) /2;
+        int hei = map.GetLength(1) /2;
+        for (int i = 0; i < 5; i++)
+        {
+            for(int x = 0; x < 5; x++)
+            {
+                map[wid + i, hei + x] = 10;
+            }
+        }
     }
 
     private void fillMapWithGroundFirst()
