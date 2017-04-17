@@ -30,6 +30,11 @@ public class UnderWaterFlowerbed {
                 {
                     map[q, w] = 1;
 
+                    if(i == rooms-1)
+                    {
+                        map[q, w] = 10;
+                    }
+
                     if (w == width + offsetW - 1)
                     {
                         x1 = q;
@@ -51,6 +56,7 @@ public class UnderWaterFlowerbed {
         }
         //Last room build
         buildCorridor(x1, x2, map.GetLength(0) - 8 + 3, map.GetLength(1) - 8 + 3, 1);
+        //Build a bunch of random pillars
         for(int r = 0; r < 50; r++)
         {
             int q = Random.Range(1, x - 2);

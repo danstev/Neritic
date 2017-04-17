@@ -43,8 +43,6 @@ public class Dream {
                             buildCorridor(x1, x2, y1, y2, 1);
                             y1 = x1;
                             y2 = x2;
-
-                            
                         }
                     }
                 }
