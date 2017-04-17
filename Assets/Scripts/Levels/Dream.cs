@@ -12,7 +12,7 @@ public class Dream {
         x2 = 0;
         int x = map.GetLength(0);
         int y = map.GetLength(1);
-
+        int endRoomX = 0;
         //Gen start room
         buildStartRoom();
         int offsetW = Random.Range(7, 15);
@@ -44,14 +44,22 @@ public class Dream {
                             buildCorridor(x1, x2, y1, y2, 1);
                             y1 = x1;
                             y2 = x2;
+
+                            endRoomX = y1;
                         }
                     }
                 }
             }
 
         }
-        //Gen a bunch of rooms which lead to end room, no offshoots
         //Gen end room (large with boss)
+        for (int q = endRoomX; q <= x + endRoomX - 3; q++)
+        {
+            for (int w = 3; w <= 30; w++)
+            {
+                map[q, w] = 1;
+            }
+        }
 
         return map;
     }
