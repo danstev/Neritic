@@ -12,7 +12,6 @@ public class Dream {
         x2 = 0;
         int x = map.GetLength(0);
         int y = map.GetLength(1);
-        int endRoomX = 0;
         //Gen start room
         buildStartRoom();
         int offsetW = Random.Range(7, 15);
@@ -45,7 +44,7 @@ public class Dream {
                             y1 = x1;
                             y2 = x2;
 
-                            endRoomX = y1;
+                            
                         }
                     }
                 }
@@ -53,14 +52,17 @@ public class Dream {
 
         }
         //Gen end room (large with boss)
-        for (int q = endRoomX; q <= x + endRoomX - 3; q++)
+        for(int o = 0; o < 25; o++)
         {
-            for (int w = 3; w <= 30; w++)
+            for(int u = 0; u < 25; u++)
             {
-                map[q, w] = 1;
+                map[u, o + 150] = 1;
+                x1 = u;
+                x2 = o + 150;
+                
             }
         }
-
+        buildCorridor(x1, x2, y1, y2, 1);
         return map;
     }
 
