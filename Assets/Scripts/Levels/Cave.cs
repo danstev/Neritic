@@ -32,7 +32,9 @@ public class Cave {
             }
         }
 
-        smoothMap(4);
+        //NEEDS CORRIDORS
+        randomEachSquare();
+        smoothMap(6);
         generateWalls();
         return map;
     }
@@ -106,6 +108,18 @@ public class Cave {
                         map[g, h] = 1;
                     }
                 }
+            }
+        }
+    }
+
+    private void randomEachSquare()
+    {
+        for (int g = 0; g < map.GetLength(0); g++)
+        {
+            for (int h = 0; h < map.GetLength(1); h++)
+            {
+                if (Random.Range(0f, 1f) > 0.75f)
+                    map[g, h] = 1;
             }
         }
     }
