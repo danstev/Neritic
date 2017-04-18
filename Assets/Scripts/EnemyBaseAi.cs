@@ -123,4 +123,33 @@ public class EnemyBaseAi : MonoBehaviour {
                 randomMoveTimerSet -= Time.deltaTime;
             }
     }
+
+    void castMagic()
+    {
+        if(stats.magicSpell == null)
+        {
+
+        }
+        else
+        {
+            if (stats.curMana >= stats.magicSpell.GetComponent<Spell>().manaCost && attackTimer <= 0)
+            {
+                attackTimer = stats.magicTime;
+                GameObject spell;
+                spell = Instantiate(stats.magicSpell, transform.position + transform.forward * 1, transform.rotation) as GameObject;
+                Rigidbody spellR = spell.GetComponent<Rigidbody>();
+                spellR.AddForce(spell.transform.forward * stats.magicSpeed);
+                Spell spellA = spell.GetComponent<Spell>();
+                spellA.setMagicAttack((int)stats.magicAttack);
+                //Mana cost -
+                stats.curMana -= spellA.manaCost;
+            }
+            else if (attackTimer > 0)
+            {
+                attackTimer -= Time.deltaTime;
+                float step = stats.momvementSpeedMod * Time.deltaTime;
+                transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step / 2);
+            }
+        }
+    }
 }
