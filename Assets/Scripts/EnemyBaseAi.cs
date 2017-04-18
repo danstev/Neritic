@@ -40,9 +40,13 @@ public class EnemyBaseAi : MonoBehaviour {
             targetScan();
         }
 
-        if(target != null)
+        if(target != null) //Add in other moves inside here
         {
             aggressiveMove();
+            //Back off move
+            //Cast a spell move
+            //Special Attack?
+            //Jump
         }
         else
         {
@@ -99,7 +103,6 @@ public class EnemyBaseAi : MonoBehaviour {
 
         if (scanDist < Vector3.Distance(transform.position, target.transform.position))
         {
-            print(Vector3.Distance(transform.position, target.transform.position));
             target = null;
         }
         
