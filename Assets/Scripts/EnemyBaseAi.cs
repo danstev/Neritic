@@ -76,19 +76,13 @@ public class EnemyBaseAi : MonoBehaviour {
 
         if (attackTimer <= 0 && stats.meleeReach > Vector3.Distance(transform.position, target.transform.position))
         {
-            print(stats.attack);
-            //Do attack
-           float[] v = new float[6];
-                
+           float[] v = new float[6];  
            v[0] = transform.eulerAngles.y;
            v[1] = stats.attack;
            v[2] = transform.position.x;
            v[3] = transform.position.y;
            v[4] = transform.position.z;
            target.transform.SendMessage(("takeDamage"), v, SendMessageOptions.DontRequireReceiver);
-
-
-           //Set timer to attackspeed
            attackTimer = stats.attackTime;
         }
         else if (attackTimer > 0)
@@ -96,7 +90,6 @@ public class EnemyBaseAi : MonoBehaviour {
             attackTimer -= Time.deltaTime;
             float step = stats.momvementSpeedMod * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step / 2);
-
         }
         else
         {
