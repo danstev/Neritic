@@ -42,6 +42,7 @@ public class EnemyBaseAi : MonoBehaviour {
 
         if(target != null) //Add in other moves inside here
         {
+            castMagic();
             aggressiveMove();
             //Back off move
             //Cast a spell move
@@ -126,9 +127,11 @@ public class EnemyBaseAi : MonoBehaviour {
 
     void castMagic()
     {
-        if(stats.magicSpell == null)
-        {
+        transform.LookAt(target.transform);
 
+        if (stats.magicSpell == null)
+        {
+            aggressiveMove();
         }
         else
         {
