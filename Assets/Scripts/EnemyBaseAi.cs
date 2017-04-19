@@ -37,13 +37,22 @@ public class EnemyBaseAi : MonoBehaviour {
 
         if(target == null)
         {
-            targetScan();
+            if (scanTimer <= 0)
+            {
+                targetScan();
+                scanTimer = Random.Range(0f, 5f);
+            }
+            else
+            {
+                scanTimer -= Time.deltaTime;
+
+            }
         }
 
         if(target != null) //Add in other moves inside here
         {
-            castMagic();
-            aggressiveMove();
+            //castMagic();
+            //aggressiveMove();
             //Back off move
             //Cast a spell move
             //Special Attack?

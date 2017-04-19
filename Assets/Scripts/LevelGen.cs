@@ -15,6 +15,7 @@ public class LevelGen : MonoBehaviour {
     public GameObject wall;
     public GameObject roof;
     public GameObject tree;
+    public GameObject enemTest;
     private int[,] map;
     private Tile[] tileMap;
     private int height;
@@ -126,6 +127,12 @@ public class LevelGen : MonoBehaviour {
                     t.spacemod = spaceMod;
                     t.ceiling = true;
                     listOfTiles.Add(t);
+                    float e = UnityEngine.Random.Range(0f,1f);
+                    if(e > 0.95f)
+                    {
+                        t.entity = true;
+                        t.entityObject = enemTest;
+                    }
                 }
             }
         }
@@ -153,6 +160,11 @@ public class LevelGen : MonoBehaviour {
             GameObject h = Instantiate(t.floorTile, mapPosCeiling, Quaternion.identity) as GameObject;
             h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
             h.transform.rotation *= Quaternion.Euler(270, 0, 0);
+        }
+
+        if(t.entityObject != null)
+        {
+            GameObject h = Instantiate(t.entityObject, mapPos, Quaternion.identity) as GameObject;
         }
 
         renderWalls(t.xPosition, t.yPosition, t.floorTile, t.spacemod);
