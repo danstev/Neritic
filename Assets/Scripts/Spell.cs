@@ -23,7 +23,13 @@ public class Spell : MonoBehaviour {
         //print(col.gameObject.name);
         if(col.gameObject.name == "Player") //check for friendly/seethrough etc? here
         {
-
+            float[] v = new float[6];
+            v[1] = magicAttack;
+            v[2] = transform.position.x;
+            v[3] = transform.position.y;
+            v[4] = transform.position.z;
+            col.transform.SendMessage(("takeDamage"), v, SendMessageOptions.DontRequireReceiver);
+            Destroy(gameObject);
         }
         else
         {
