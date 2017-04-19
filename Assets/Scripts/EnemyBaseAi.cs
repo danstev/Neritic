@@ -51,7 +51,7 @@ public class EnemyBaseAi : MonoBehaviour {
 
         if(target != null) //Add in other moves inside here
         {
-            //castMagic();
+            castMagic();
             //aggressiveMove();
             //Back off move
             //Cast a spell move
