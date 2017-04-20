@@ -23,14 +23,16 @@ public class EnemyBaseAi : MonoBehaviour {
     private Vector3 randomMoveSpace;
     private float randomMoveMod = 0.0125f;
     private GameObject sprite;
+    private Rigidbody r;
 
     private float attackTimer = 0f;
 
     // Use this for initialization
     void Start () {
+        r = GetComponent<Rigidbody>();
         //Transform s = transform.GetChild(0);
         //sprite = s.gameObject;
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -85,9 +87,9 @@ public class EnemyBaseAi : MonoBehaviour {
     {
         if (randomMoveTimerSet <= 0)
         {
-            Rigidbody r = GetComponent<Rigidbody>();
+            
             randomMoveTimerSet = 3 * Random.Range(1, 2);
-            r.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
+            r.AddForce(new Vector3(transform.forward.x, 5, transform.forward.z), ForceMode.Impulse);
         }
 
         if (randomMoveTimerSet > 0)
