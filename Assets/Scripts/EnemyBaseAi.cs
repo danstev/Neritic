@@ -70,7 +70,7 @@ public class EnemyBaseAi : MonoBehaviour {
     {
 
         float step = stats.momvementSpeedMod * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step / 2);
+        transform.position += transform.forward * -1 * step;
     }
 
     void targetScan()
