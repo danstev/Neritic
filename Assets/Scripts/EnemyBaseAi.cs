@@ -51,10 +51,11 @@ public class EnemyBaseAi : MonoBehaviour {
 
         if(target != null) //Add in other moves inside here
         {
-            castMagic();
-            aggressiveMove();
+            transform.LookAt(target.transform);
+            //castMagic();
+            //aggressiveMove();
+            moveBack();
             //Back off move
-            //Cast a spell move
             //Special Attack?
             //Jump
         }
@@ -64,6 +65,13 @@ public class EnemyBaseAi : MonoBehaviour {
         }
 	
 	}
+
+    void moveBack()
+    {
+
+        float step = stats.momvementSpeedMod * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step / 2);
+    }
 
     void targetScan()
     {
@@ -86,7 +94,7 @@ public class EnemyBaseAi : MonoBehaviour {
 
     void aggressiveMove()
     {
-        transform.LookAt(target.transform);
+        
 
         if (attackTimer <= 0 && stats.meleeReach > Vector3.Distance(transform.position, target.transform.position))
         {
