@@ -69,8 +69,20 @@ public class EnemyBaseAi : MonoBehaviour {
     void moveBack()
     {
 
-        float step = stats.momvementSpeedMod * Time.deltaTime;
-        transform.position += transform.forward * -1 * step;
+        
+        if (randomMoveTimerSet <= 0)
+        {
+            randomMoveTimerSet = 3 * Random.Range(1, 2);
+            float step = stats.momvementSpeedMod * Time.deltaTime;
+            transform.position += transform.forward * -1 * step;
+        }
+
+        if (randomMoveTimerSet > 0)
+        {
+            float step = stats.momvementSpeedMod * Time.deltaTime;
+            transform.position += transform.forward * -1 * step;
+            randomMoveTimerSet -= Time.deltaTime;
+        }
     }
 
     void targetScan()
