@@ -57,7 +57,7 @@ public class EnemyBaseAi : MonoBehaviour {
             //castMagic();
             //aggressiveMove();
             //moveBack();
-            jumpForward();
+            //jumpForward();
         }
         else
         {
