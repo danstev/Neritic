@@ -54,10 +54,8 @@ public class EnemyBaseAi : MonoBehaviour {
             transform.LookAt(target.transform);
             //castMagic();
             //aggressiveMove();
-            moveBack();
-            //Back off move
-            //Special Attack?
-            //Jump
+            //moveBack();
+            jumpForward();
         }
         else
         {
@@ -68,8 +66,6 @@ public class EnemyBaseAi : MonoBehaviour {
 
     void moveBack()
     {
-
-        
         if (randomMoveTimerSet <= 0)
         {
             randomMoveTimerSet = 3 * Random.Range(1, 2);
@@ -81,6 +77,21 @@ public class EnemyBaseAi : MonoBehaviour {
         {
             float step = stats.momvementSpeedMod * Time.deltaTime;
             transform.position += transform.forward * -1 * step;
+            randomMoveTimerSet -= Time.deltaTime;
+        }
+    }
+
+    void jumpForward()
+    {
+        if (randomMoveTimerSet <= 0)
+        {
+            Rigidbody r = GetComponent<Rigidbody>();
+            randomMoveTimerSet = 3 * Random.Range(1, 2);
+            r.AddForce(new Vector3(0, 10, 0), ForceMode.Impulse);
+        }
+
+        if (randomMoveTimerSet > 0)
+        {
             randomMoveTimerSet -= Time.deltaTime;
         }
     }
