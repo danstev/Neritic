@@ -30,8 +30,6 @@ public class EnemyBaseAi : MonoBehaviour {
     // Use this for initialization
     void Start () {
         r = GetComponent<Rigidbody>();
-        //Transform s = transform.GetChild(0);
-        //sprite = s.gameObject;
     }
 	
 	// Update is called once per frame
@@ -56,7 +54,7 @@ public class EnemyBaseAi : MonoBehaviour {
             transform.LookAt(target.transform);
             //castMagic();
             //aggressiveMove();
-            //moveBack();
+            moveBack();
             //jumpForward();
         }
         else
