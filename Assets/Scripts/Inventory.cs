@@ -33,11 +33,12 @@ public class Inventory : MonoBehaviour {
     public void AddItem ( GameObject i)
     {
         Item item = i.GetComponent<Item>();
- 
+        
         //If equippable
         if(item.equipable == true)
         {
-            if(item.type == "equipment")
+            
+            if (item.type == "equipment")
             {
                 Equipment e = i.GetComponent<Equipment>();
                 int slot = e.slot;
