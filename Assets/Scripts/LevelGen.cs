@@ -147,6 +147,7 @@ public class LevelGen : MonoBehaviour {
                     float e = UnityEngine.Random.Range(0f,1f);
                     if(e > 0.95f)
                     {
+                        //enemy spawn
                         t.entity = true;
                         t.entityObject = enemTest;
                     }
@@ -192,20 +193,17 @@ public class LevelGen : MonoBehaviour {
         j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
         j.transform.rotation *= Quaternion.Euler(90, 0, 0);
 
-        if (t.ceiling)
+        Vector3 mapPosCeiling = new Vector3(t.xPosition * t.spacemod, 2 * t.spacemod, t.yPosition * t.spacemod);
+        GameObject h = Instantiate(t.ceilingTile, mapPosCeiling, Quaternion.identity) as GameObject;
+        h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
+        h.transform.rotation *= Quaternion.Euler(270, 0, 0);
+
+        if(t.entity == true)
         {
-            Vector3 mapPosCeiling = new Vector3(t.xPosition * t.spacemod, 2 * t.spacemod, t.yPosition * t.spacemod);
-            GameObject h = Instantiate(t.floorTile, mapPosCeiling, Quaternion.identity) as GameObject;
-            h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
-            h.transform.rotation *= Quaternion.Euler(270, 0, 0);
+            GameObject j = Instantiate(t.entityObject, mapPos, Quaternion.identity) as GameObject;
         }
 
-        if(t.entityObject != null)
-        {
-            GameObject h = Instantiate(t.entityObject, mapPos, Quaternion.identity) as GameObject;
-        }
-
-        renderWalls(t.xPosition, t.yPosition, t.floorTile, t.spacemod);
+        renderWalls(t.xPosition, t.yPosition, t.wallTile, t.spacemod);
     }
 
     void renderMap(Tile[] t)
