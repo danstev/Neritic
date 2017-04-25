@@ -14,6 +14,10 @@ public class EnemyBaseAi : MonoBehaviour {
     //3 rogue
     //Try keep distance, attack when player is not looking
 
+    public int enemyType;
+    private delegate void action();
+    action enemyAI;
+
     public GameObject target;
     public float scanTimer;
     public float scanDist;
@@ -30,11 +34,40 @@ public class EnemyBaseAi : MonoBehaviour {
     // Use this for initialization
     void Start () {
         r = GetComponent<Rigidbody>();
+        if(enemyType == 1)
+        {
+            enemyAI += meleeEnemy;
+        }
+        else if(enemyType == 2)
+        {
+            enemyAI += mageEnemy;
+        }
+        else if (enemyType == 3)
+        {
+            enemyAI += rogueEnemy;
+        }
     }
-	
-	// Update is called once per frame
-	void Update () {
 
+    void meleeEnemy()
+    {
+
+    }
+
+    void mageEnemy()
+    {
+
+    }
+
+    void rogueEnemy()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        enemyAI();
+        //////////////////////////////////////////////////
         if(target == null)
         {
             if (scanTimer <= 0)
