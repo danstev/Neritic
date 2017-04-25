@@ -142,8 +142,6 @@ public class LevelGen : MonoBehaviour {
                     t.yPosition = y;
                     t.floorTile = tile;
                     t.spacemod = spaceMod;
-                    t.ceiling = true;
-                    listOfTiles.Add(t);
                     float e = UnityEngine.Random.Range(0f,1f);
                     if(e > 0.95f)
                     {
@@ -172,6 +170,8 @@ public class LevelGen : MonoBehaviour {
                             t.entity = true;
                         }
                     }
+
+                    listOfTiles.Add(t);
                 }
             }
         }
