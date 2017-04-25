@@ -200,7 +200,7 @@ public class LevelGen : MonoBehaviour {
 
         if(t.entity == true)
         {
-            GameObject j = Instantiate(t.entityObject, mapPos, Quaternion.identity) as GameObject;
+            GameObject o = Instantiate(t.entityObject, mapPos, Quaternion.identity) as GameObject;
         }
 
         renderWalls(t.xPosition, t.yPosition, t.wallTile, t.spacemod);
