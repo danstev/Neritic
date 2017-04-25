@@ -150,6 +150,27 @@ public class LevelGen : MonoBehaviour {
                         t.entity = true;
                         t.entityObject = enemTest;
                     }
+
+                    if(e > 0.90f && e < 0.95f)
+                    {
+                        //Spawn foley
+                        int f = UnityEngine.Random.Range(1, 3);
+                        if(f == 1)
+                        {
+                            t.entityObject = foley1;
+                            t.entity = true;
+                        }
+                        else if(f == 2)
+                        {
+                            t.entityObject = foley2;
+                            t.entity = true;
+                        }
+                        else if(f == 3)
+                        {
+                            t.entityObject = foley3;
+                            t.entity = true;
+                        }
+                    }
                 }
             }
         }
