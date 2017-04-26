@@ -81,7 +81,7 @@ public class PlayerControl : MonoBehaviour {
         {
             for (int x = 0; x < 9; x++)
             {
-                GUI.Box(new Rect(70 * x + 30, 30, 50, 50), "hello" + x);
+                GUI.Box(new Rect(70 * x + 30, 30, 50, 50), "hello" + x); //draw buttons here
             }
         }
     }
