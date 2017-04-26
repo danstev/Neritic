@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Levels\Tile.cs" />
     <Compile Include="Assets\Scripts\Levels\UnderWaterFlowerbed.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
+    <Compile Include="Assets\Scripts\PopUp.cs" />
     <Compile Include="Assets\Scripts\Spell.cs" />
     <Compile Include="Assets\Scripts\Statistics.cs" />
     <Compile Include="Assets\Scripts\behav\weaponAnimBehav.cs" />
