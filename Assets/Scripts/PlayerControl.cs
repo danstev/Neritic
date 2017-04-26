@@ -36,10 +36,8 @@ public class PlayerControl : MonoBehaviour {
     private Inventory inv;
     private string tab;
     private bool GUION = false;
-    private GameObject inventory;
-    private GameObject equipment;
-    private GameObject spells;
-    private GameObject statisticsPage;
+    private GUIStyle style;
+
 
     //Audio stuff
     public AudioSource audioPlayer;
@@ -59,6 +57,8 @@ public class PlayerControl : MonoBehaviour {
         movement = mouseController;
         movement += movementController;
         tick = 0;
+        //style = new GUIStyle();
+        //style.alignment = TextAnchor.UpperCenter;
     }
 
     void FixedUpdate()
@@ -69,6 +69,21 @@ public class PlayerControl : MonoBehaviour {
             stats.curMana++;
         }
         tick++;
+    }
+
+    void OnGUI()
+    {
+        if (GUION)
+        {
+
+        }
+        else
+        {
+            for (int x = 0; x < 9; x++)
+            {
+                GUI.Box(new Rect(70 * x + 30, 30, 50, 50), "hello" + x);
+            }
+        }
     }
 
 	void Update () {
@@ -107,29 +122,8 @@ public class PlayerControl : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            invOn(tab);
+            
         }
-
-        if (Input.GetKeyDown("i"))
-        {
-            invOn("inventory");
-        }
-
-        if (Input.GetKeyDown("u"))
-        {
-            invOn("equipment");
-        }
-
-        if (Input.GetKeyDown("y"))
-        {
-            invOn("spells");
-        }
-
-        if (Input.GetKeyDown("t"))
-        {
-            invOn("statisticsPage");
-        }
-
     }
 
     public void refreshWeapon(GameObject w) //Refreshes what gameObject to use for the animator.
@@ -141,74 +135,6 @@ public class PlayerControl : MonoBehaviour {
     public void refreshStats() //I think this is it for player controller;
     {
         speed = (stats.actualAgility / 2) + 1;
-    }
-
-    private void invOn()
-    {
-        if (tab == null)
-        {
-            invOn(tab);
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.None;
-            inventory.SetActive(true);
-            equipment.SetActive(false);
-            spells.SetActive(false);
-            statisticsPage.SetActive(false);
-            GUION = true;
-            movement -= mouseController;
-        }
-    }
-
-    private void invOn(string toDoTab)
-    {
-        if (GUION == false)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            if (toDoTab == "inventory")
-            {
-                inventory.SetActive(true);
-                equipment.SetActive(false);
-                spells.SetActive(false);
-                statisticsPage.SetActive(false);
-                GUION = true;
-                movement -= mouseController;
-            }
-            else if (toDoTab == "equipment")
-            {
-                equipment.SetActive(true);
-                inventory.SetActive(false);
-                spells.SetActive(false);
-                statisticsPage.SetActive(false);
-                GUION = true;
-            }
-            else if (toDoTab == "spells")
-            {
-                spells.SetActive(true);
-                inventory.SetActive(false);
-                equipment.SetActive(false);
-                statisticsPage.SetActive(false);
-                GUION = true;
-            }
-            else if (toDoTab == "statisticsPage")
-            {
-                statisticsPage.SetActive(true);
-                inventory.SetActive(false);
-                equipment.SetActive(false);
-                spells.SetActive(false);
-                GUION = true;
-            }
-        }
-        else if(GUION)
-        {
-            inventory.SetActive(false);
-            equipment.SetActive(false);
-            spells.SetActive(false);
-            statisticsPage.SetActive(false);
-            Cursor.lockState = CursorLockMode.Locked;
-            GUION = false;
-        }
     }
 
     void castSpell()
