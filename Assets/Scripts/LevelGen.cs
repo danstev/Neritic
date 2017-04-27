@@ -100,10 +100,10 @@ public class LevelGen : MonoBehaviour {
             tile = Resources.Load("Prefabs/Tiles/sandTile") as GameObject;
             wall = Resources.Load("Prefabs/Tiles/dreamWall") as GameObject;
             roof = Resources.Load("Prefabs/Tiles/waterTile") as GameObject;
-            foley1 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
-            foley2 = Resources.Load("Prefabs/dreamFoley2") as GameObject;
-            foley3 = Resources.Load("Prefabs/dreamFoley3") as GameObject;
-            enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            foley1 = Resources.Load("Prefabs/Blood") as GameObject;
+            foley2 = Resources.Load("Prefabs/Blood") as GameObject;
+            foley3 = Resources.Load("Prefabs/Blood") as GameObject;
+            enemTest = Resources.Load("Prefabs/Blood") as GameObject;
             enemy2 = Resources.Load("Prefabs/dreamEnemy2") as GameObject;
             enemy3 = Resources.Load("Prefabs/dreamEnemy3") as GameObject;
             boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
@@ -163,8 +163,8 @@ public class LevelGen : MonoBehaviour {
     {
         //spaceMod = 0.5f;
         UnderWaterFlowerbed r = new UnderWaterFlowerbed();
-        height = UnityEngine.Random.Range(100, 125);
-        width = UnityEngine.Random.Range(100, 125);
+        height = UnityEngine.Random.Range(75, 100);
+        width = UnityEngine.Random.Range(75, 100);
         map = new int[height, width];
         r.setMap(map);
         map = r.genMap();
@@ -186,6 +186,7 @@ public class LevelGen : MonoBehaviour {
                     t.yPosition = y;
                     t.floorTile = tile;
                     t.ceilingTile = roof;
+                    t.wallTile = wall;
                     t.spacemod = spaceMod;
                     float e = UnityEngine.Random.Range(0f,1f);
                     if(e > 0.95f)
