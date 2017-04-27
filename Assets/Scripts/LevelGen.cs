@@ -11,14 +11,14 @@ public class LevelGen : MonoBehaviour {
     //2     Wall
 
     public string level;
-    private GameObject tile;
-    private GameObject wall;
-    private GameObject roof;
-    private GameObject foley1;
-    private GameObject foley2;
-    private GameObject foley3;
-    private GameObject enemTest;
-    private GameObject enemy2;
+    public GameObject tile;
+    public GameObject wall;
+    public GameObject roof;
+    public GameObject foley1;
+    public GameObject foley2;
+    public GameObject foley3;
+    public GameObject enemTest;
+    public GameObject enemy2;
     private GameObject enemy3;
     private GameObject boss;
     private GameObject torch;
@@ -37,33 +37,77 @@ public class LevelGen : MonoBehaviour {
 
         if(level == "dream") //tutorial level
         {
-            tile = Resources.Load("Prefabs/Blood") as GameObject;
-            wall = Resources.Load("Prefabs/Blood") as GameObject;
-            roof = Resources.Load("Prefabs/Blood") as GameObject;
-            foley1 = Resources.Load("Prefabs/Blood") as GameObject;
-            foley2 = Resources.Load("Prefabs/Blood") as GameObject;
-            foley3 = Resources.Load("Prefabs/Blood") as GameObject;
-            enemTest = Resources.Load("Prefabs/Blood") as GameObject;
-            enemy2 = Resources.Load("Prefabs/Blood") as GameObject;
-            enemy3 = Resources.Load("Prefabs/Blood") as GameObject;
-            boss = Resources.Load("Prefabs/Blood") as GameObject;
-            torch = Resources.Load("Prefabs/Blood") as GameObject;
+            tile = Resources.Load("Prefabs/dreamFloor") as GameObject;
+            wall = Resources.Load("Prefabs/dreamWall") as GameObject;
+            roof = Resources.Load("Prefabs/dreamRoof") as GameObject;
+            foley1 = Resources.Load("Prefabs/dreamFoley1") as GameObject;
+            foley2 = Resources.Load("Prefabs/dreamFoley2") as GameObject;
+            foley3 = Resources.Load("Prefabs/dreamFoley3") as GameObject;
+            enemTest = Resources.Load("Prefabs/dreamEnemy1") as GameObject;
+            enemy2 = Resources.Load("Prefabs/dreamEnemy2") as GameObject;
+            enemy3 = Resources.Load("Prefabs/dreamEnemy3") as GameObject;
+            boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
+            torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genDream();
         }
         else if (level == "forest") //easy level, outside
         {
+            tile = Resources.Load("Prefabs/dreamFloor") as GameObject;
+            wall = Resources.Load("Prefabs/dreamWall") as GameObject;
+            roof = Resources.Load("Prefabs/dreamRoof") as GameObject;
+            foley1 = Resources.Load("Prefabs/dreamFoley1") as GameObject;
+            foley2 = Resources.Load("Prefabs/dreamFoley2") as GameObject;
+            foley3 = Resources.Load("Prefabs/dreamFoley3") as GameObject;
+            enemTest = Resources.Load("Prefabs/dreamEnemy1") as GameObject;
+            enemy2 = Resources.Load("Prefabs/dreamEnemy2") as GameObject;
+            enemy3 = Resources.Load("Prefabs/dreamEnemy3") as GameObject;
+            boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
+            torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genForest();
         }
         else if(level == "cave") //Harder, can die easily
         {
+            tile = Resources.Load("Prefabs/dreamFloor") as GameObject;
+            wall = Resources.Load("Prefabs/dreamWall") as GameObject;
+            roof = Resources.Load("Prefabs/dreamRoof") as GameObject;
+            foley1 = Resources.Load("Prefabs/dreamFoley1") as GameObject;
+            foley2 = Resources.Load("Prefabs/dreamFoley2") as GameObject;
+            foley3 = Resources.Load("Prefabs/dreamFoley3") as GameObject;
+            enemTest = Resources.Load("Prefabs/dreamEnemy1") as GameObject;
+            enemy2 = Resources.Load("Prefabs/dreamEnemy2") as GameObject;
+            enemy3 = Resources.Load("Prefabs/dreamEnemy3") as GameObject;
+            boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
+            torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genCave();
         }
         else if(level == "dungeon") //Very hard
         {
+            tile = Resources.Load("Prefabs/dreamFloor") as GameObject;
+            wall = Resources.Load("Prefabs/dreamWall") as GameObject;
+            roof = Resources.Load("Prefabs/dreamRoof") as GameObject;
+            foley1 = Resources.Load("Prefabs/dreamFoley1") as GameObject;
+            foley2 = Resources.Load("Prefabs/dreamFoley2") as GameObject;
+            foley3 = Resources.Load("Prefabs/dreamFoley3") as GameObject;
+            enemTest = Resources.Load("Prefabs/dreamEnemy1") as GameObject;
+            enemy2 = Resources.Load("Prefabs/dreamEnemy2") as GameObject;
+            enemy3 = Resources.Load("Prefabs/dreamEnemy3") as GameObject;
+            boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
+            torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genDungeon();
         }
         else if(level == "endLevel") //??? not planned yet, maybe underwater flowerbed? Very hard, boss level
         {
+            tile = Resources.Load("Prefabs/dreamFloor") as GameObject;
+            wall = Resources.Load("Prefabs/dreamWall") as GameObject;
+            roof = Resources.Load("Prefabs/dreamRoof") as GameObject;
+            foley1 = Resources.Load("Prefabs/dreamFoley1") as GameObject;
+            foley2 = Resources.Load("Prefabs/dreamFoley2") as GameObject;
+            foley3 = Resources.Load("Prefabs/dreamFoley3") as GameObject;
+            enemTest = Resources.Load("Prefabs/dreamEnemy1") as GameObject;
+            enemy2 = Resources.Load("Prefabs/dreamEnemy2") as GameObject;
+            enemy3 = Resources.Load("Prefabs/dreamEnemy3") as GameObject;
+            boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
+            torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genUnderwater();
         }
     }
@@ -141,6 +185,7 @@ public class LevelGen : MonoBehaviour {
                     t.xPosition = x;
                     t.yPosition = y;
                     t.floorTile = tile;
+                    t.ceilingTile = roof;
                     t.spacemod = spaceMod;
                     float e = UnityEngine.Random.Range(0f,1f);
                     if(e > 0.95f)
