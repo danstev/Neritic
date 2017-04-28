@@ -37,15 +37,15 @@ public class LevelGen : MonoBehaviour {
 
         if(level == "dream") //tutorial level
         {
-            tile = Resources.Load("Prefabs/dreamFloor") as GameObject;
-            wall = Resources.Load("Prefabs/dreamWall") as GameObject;
-            roof = Resources.Load("Prefabs/dreamRoof") as GameObject;
-            foley1 = Resources.Load("Prefabs/dreamFoley1") as GameObject;
-            foley2 = Resources.Load("Prefabs/dreamFoley2") as GameObject;
-            foley3 = Resources.Load("Prefabs/dreamFoley3") as GameObject;
-            enemTest = Resources.Load("Prefabs/dreamEnemy1") as GameObject;
-            enemy2 = Resources.Load("Prefabs/dreamEnemy2") as GameObject;
-            enemy3 = Resources.Load("Prefabs/dreamEnemy3") as GameObject;
+            tile = Resources.Load("Prefabs/Tiles/dreamTile") as GameObject;
+            wall = Resources.Load("Prefabs/Tiles/dreamWall") as GameObject;
+            roof = Resources.Load("Prefabs/Tiles/lavaTile") as GameObject;
+            foley1 = Resources.Load("Prefabs/Tiles/waterTile") as GameObject;
+            foley2 = Resources.Load("Prefabs/Tiles/waterTile") as GameObject;
+            foley3 = Resources.Load("Prefabs/Tiles/waterTile") as GameObject;
+            enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy3 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genDream();

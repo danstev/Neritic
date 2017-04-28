@@ -34,6 +34,7 @@ public class EnemyBaseAi : MonoBehaviour {
     // Use this for initialization
     void Start () {
         r = GetComponent<Rigidbody>();
+        /*
         if(enemyType == 1)
         {
             enemyAI += meleeEnemy;
@@ -46,6 +47,8 @@ public class EnemyBaseAi : MonoBehaviour {
         {
             enemyAI += rogueEnemy;
         }
+        */
+        enemyAI += moveBack;
     }
 
     void meleeEnemy()
@@ -68,6 +71,7 @@ public class EnemyBaseAi : MonoBehaviour {
 
         enemyAI();
         //////////////////////////////////////////////////
+        /*
         if(target == null)
         {
             if (scanTimer <= 0)
@@ -94,7 +98,7 @@ public class EnemyBaseAi : MonoBehaviour {
         {
             randomMove(); 
         }
-	
+	*/
 	}
 
     void moveBack()
