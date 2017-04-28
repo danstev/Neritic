@@ -3,17 +3,19 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-    //Changes level
-    //Sets monster level in level gen
-    //
+    string level;
+    float xStartPos;
+    float yStartPos;
+
+    void Start()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject g in players)
+        {
+            g.transform.position = new Vector3(xStartPos, 1, yStartPos);
+        }
+    }
 
 
-	void Start () {
 	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

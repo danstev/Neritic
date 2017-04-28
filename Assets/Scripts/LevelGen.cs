@@ -29,6 +29,9 @@ public class LevelGen : MonoBehaviour {
     private int boxMap;
     public float spaceMod;
     public Tile t;
+    private float xStart;
+    private float yStart;
+
 
 
 
