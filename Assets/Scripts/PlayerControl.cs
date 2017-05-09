@@ -38,6 +38,9 @@ public class PlayerControl : MonoBehaviour {
     private string GUION = "basic";
     private GUIStyle style;
 
+    //Silly inv stuff, but efficient
+    Texture2D[] invTextures = new Texture2D[20];
+    Texture2D[] equipTextures = new Texture2D[8];
 
     //Audio stuff
     public AudioSource audioPlayer;
@@ -50,6 +53,7 @@ public class PlayerControl : MonoBehaviour {
     int tick;
 
     void Start () {
+        invTextures = new Texture2D[20];
         stats = GetComponent<Statistics>();
         inv = GetComponent<Inventory>();
         refreshStats();
@@ -78,7 +82,15 @@ public class PlayerControl : MonoBehaviour {
             //Just top ui
             for (int x = 0; x < 6; x++)
             {
-                GUI.Box(new Rect(70 * (x % 9) + 30, 30, 50, 50), "hello" + x); //draw buttons here
+                if (inv.slots[x] == null)
+                {
+
+                }
+                else
+                {
+                    GUI.Box(new Rect(70 * (x % 9) + 30, 30, 50, 50), "hello" + x); //draw buttons here
+                    GUI.Box(new Rect(70 * (x % 9) + 30, 30, 50, 50), inv.slots[x].renderer);
+                }
             }
         }
         else if (GUION == "inv")
@@ -90,10 +102,9 @@ public class PlayerControl : MonoBehaviour {
         }
         else if (GUION == "equipment")
         {
+
         }
-        else if (GUION == "inv")
-        {
-        }
+
 
     }
 
