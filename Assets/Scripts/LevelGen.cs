@@ -11,14 +11,14 @@ public class LevelGen : MonoBehaviour {
     //2     Wall
 
     public string level;
-    public GameObject tile;
-    public GameObject wall;
-    public GameObject roof;
-    public GameObject foley1;
-    public GameObject foley2;
-    public GameObject foley3;
-    public GameObject enemTest;
-    public GameObject enemy2;
+    private GameObject tile;
+    private GameObject wall;
+    private GameObject roof;
+    private GameObject foley1;
+    private GameObject foley2;
+    private GameObject foley3;
+    private GameObject enemTest;
+    private GameObject enemy2;
     private GameObject enemy3;
     private GameObject boss;
     private GameObject torch;
