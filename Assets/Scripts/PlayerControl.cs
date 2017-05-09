@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour {
     private Statistics stats;
     private Inventory inv;
     private string tab;
-    private bool GUION = false;
+    private string GUION = "basic";
     private GUIStyle style;
 
 
@@ -73,33 +73,28 @@ public class PlayerControl : MonoBehaviour {
 
     void OnGUI()
     {
-        if (GUION)
+        if (GUION == "basic")
         {
-
-        }
-        else
-        {
-            for (int x = 0; x < 20; x++)
+            //Just top ui
+            for (int x = 0; x < 6; x++)
             {
-                if(x > 8)
-                {
-                    if(x > 17)
-                    {
-                        GUI.Box(new Rect(70 * (x % 9) + 30, 170, 50, 50), "hello" + x);
-                    }
-                    else
-                    {
-                        GUI.Box(new Rect(70 * (x % 9) + 30, 100, 50, 50), "hello" + x);
-                    }
-                }
-                else
-                {
-                    GUI.Box(new Rect(70 * (x % 9) + 30, 30, 50, 50), "hello" + x); //draw buttons here
-                }
-                
+                GUI.Box(new Rect(70 * (x % 9) + 30, 30, 50, 50), "hello" + x); //draw buttons here
             }
+        }
+        else if (GUION == "inv")
+        {
+            //display items
+            print("a");
+
 
         }
+        else if (GUION == "equipment")
+        {
+        }
+        else if (GUION == "inv")
+        {
+        }
+
     }
 
 	void Update () {
@@ -138,7 +133,14 @@ public class PlayerControl : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            
+            if (GUION == "basic")
+            {
+                GUION = "inv";
+            }
+            else
+            {
+                GUION = "basic";
+            }
         }
     }
 
