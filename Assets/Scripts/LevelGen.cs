@@ -46,7 +46,7 @@ public class LevelGen : MonoBehaviour {
             foley1 = Resources.Load("Prefabs/Foley/dreamFoley1") as GameObject;
             foley2 = Resources.Load("Prefabs/Foley/dreamFoley2") as GameObject;
             foley3 = Resources.Load("Prefabs/Foley/dreamFoley3") as GameObject;
-            enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemTest = Resources.Load("Prefabs/NPC/Marshmellow") as GameObject;
             enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             enemy3 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
