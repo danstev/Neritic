@@ -40,7 +40,7 @@ public class PlayerControl : MonoBehaviour {
 
     //Silly inv stuff, but efficient
     public Texture2D[] invTextures = new Texture2D[20];
-    public Texture2D[] equipTextures = new Texture2D[8];
+    public Texture2D[] equipTextures = new Texture2D[10];
 
     //Audio stuff
     public AudioSource audioPlayer;
