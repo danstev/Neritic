@@ -43,9 +43,9 @@ public class LevelGen : MonoBehaviour {
             tile = Resources.Load("Prefabs/Tiles/dreamTile") as GameObject;
             wall = Resources.Load("Prefabs/Tiles/dreamWall") as GameObject;
             roof = Resources.Load("Prefabs/Tiles/lavaTile") as GameObject;
-            foley1 = Resources.Load("Prefabs/Tiles/waterTile") as GameObject;
-            foley2 = Resources.Load("Prefabs/Tiles/waterTile") as GameObject;
-            foley3 = Resources.Load("Prefabs/Tiles/waterTile") as GameObject;
+            foley1 = Resources.Load("Prefabs/Foley/dreamFoley1") as GameObject;
+            foley2 = Resources.Load("Prefabs/Foley/dreamFoley2") as GameObject;
+            foley3 = Resources.Load("Prefabs/Foley/dreamFoley3") as GameObject;
             enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             enemy3 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
@@ -199,7 +199,7 @@ public class LevelGen : MonoBehaviour {
                         t.entityObject = enemTest;
                     }
 
-                    if(e > 0.90f && e < 0.95f)
+                    if(e > 0.80f && e < 0.95f)
                     {
                         //Spawn foley
                         int f = UnityEngine.Random.Range(1, 3);
@@ -249,7 +249,8 @@ public class LevelGen : MonoBehaviour {
 
         if(t.entity == true)
         {
-            GameObject o = Instantiate(t.entityObject, mapPos, Quaternion.identity) as GameObject;
+            Vector3 pos = new Vector3(t.xPosition * t.spacemod, 1, t.yPosition * t.spacemod);
+            GameObject o = Instantiate(t.entityObject, pos, Quaternion.identity) as GameObject;
         }
 
         renderWalls(t.xPosition, t.yPosition, t.wallTile, t.spacemod);

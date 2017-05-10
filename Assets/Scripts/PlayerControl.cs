@@ -102,8 +102,8 @@ public class PlayerControl : MonoBehaviour {
                 }
                 else
                 {
-                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), "hello" + x); //draw buttons here
-                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), invTextures[x]);
+                    GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), "hello" + x); //draw buttons here
+                    GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), invTextures[x]);
                 }
             }
 
