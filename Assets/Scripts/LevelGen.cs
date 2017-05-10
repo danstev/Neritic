@@ -202,7 +202,7 @@ public class LevelGen : MonoBehaviour {
                     if(e > 0.80f && e < 0.95f)
                     {
                         //Spawn foley
-                        int f = UnityEngine.Random.Range(1, 3);
+                        int f = UnityEngine.Random.Range(1, 4);
                         if(f == 1)
                         {
                             t.entityObject = foley1;
@@ -250,7 +250,7 @@ public class LevelGen : MonoBehaviour {
         if(t.entity == true)
         {
             Vector3 pos = new Vector3(t.xPosition * t.spacemod + ( t.spacemod * UnityEngine.Random.Range(0f,1f) / 2), 1, t.yPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2));
-            GameObject o = Instantiate(t.entityObject, pos, Quaternion.identity) as GameObject;
+            GameObject o = Instantiate(t.entityObject, pos, t.entityObject.transform.rotation) as GameObject;
         }
 
         renderWalls(t.xPosition, t.yPosition, t.wallTile, t.spacemod);
