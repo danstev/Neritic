@@ -213,7 +213,7 @@ public class LevelGen : MonoBehaviour {
                             t.entityObject = foley2;
                             t.entity = true;
                         }
-                        else if(f == 3)
+                        else if(f > 2)
                         {
                             t.entityObject = foley3;
                             t.entity = true;
@@ -249,7 +249,7 @@ public class LevelGen : MonoBehaviour {
 
         if(t.entity == true)
         {
-            Vector3 pos = new Vector3(t.xPosition * t.spacemod, 1, t.yPosition * t.spacemod);
+            Vector3 pos = new Vector3(t.xPosition * t.spacemod + ( t.spacemod * UnityEngine.Random.Range(0f,1f) / 2), 1, t.yPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2));
             GameObject o = Instantiate(t.entityObject, pos, Quaternion.identity) as GameObject;
         }
 
