@@ -39,8 +39,8 @@ public class PlayerControl : MonoBehaviour {
     private GUIStyle style;
 
     //Silly inv stuff, but efficient
-    Texture2D[] invTextures = new Texture2D[20];
-    Texture2D[] equipTextures = new Texture2D[8];
+    public Texture2D[] invTextures = new Texture2D[20];
+    public Texture2D[] equipTextures = new Texture2D[8];
 
     //Audio stuff
     public AudioSource audioPlayer;
@@ -53,7 +53,6 @@ public class PlayerControl : MonoBehaviour {
     int tick;
 
     void Start () {
-        invTextures = new Texture2D[20];
         stats = GetComponent<Statistics>();
         inv = GetComponent<Inventory>();
         refreshStats();
@@ -84,28 +83,84 @@ public class PlayerControl : MonoBehaviour {
             {
                 if (inv.slots[x] == null)
                 {
-
+                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), "hello" + x); //draw buttons here
                 }
                 else
                 {
-                    GUI.Box(new Rect(70 * (x % 9) + 30, 30, 50, 50), "hello" + x); //draw buttons here
-                    GUI.Box(new Rect(70 * (x % 9) + 30, 30, 50, 50), inv.slots[x].renderer);
+                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), "hello" + x); //draw buttons here
+                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), invTextures[x]);
                 }
             }
         }
         else if (GUION == "inv")
         {
-            //display items
-            print("a");
-
+            for (int x = 0; x < 20; x++)
+            {
+                if (inv.slots[x] == null)
+                {
+                    GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), "hello" + x); //draw buttons here
+                }
+                else
+                {
+                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), "hello" + x); //draw buttons here
+                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), invTextures[x]);
+                }
+            }
 
         }
         else if (GUION == "equipment")
         {
+            GUI.Box(new Rect(70 * 1 + 30, 30, 50, 50), "weapon");
+            GUI.Box(new Rect(70 * 2 + 30, 30, 50, 50), "helmet");
+            GUI.Box(new Rect(70 * 2 + 30, 30 + 80, 50, 50), "body");
+            GUI.Box(new Rect(70 * 2 + 30, 30 + 160, 50, 50), "legs");
+            GUI.Box(new Rect(70 * 1 + 30, 30 + 80, 50, 50), "gloves");
+            GUI.Box(new Rect(70 * 1 + 30, 30 + 160, 50, 50), "feet");
+            GUI.Box(new Rect(70 * 3 + 30, 30 + 80, 50, 50), "neck");
+            GUI.Box(new Rect(70 * 3 + 30, 30 , 50, 50), "ring");
+
+            if(inv.equipped[0] != null)
+            {
+                GUI.Box(new Rect(70 * 1 + 30, 30, 50, 50), equipTextures[0]);
+            }
+
+            if (inv.equipped[2] != null)
+            {
+                GUI.Box(new Rect(70 * 2 + 30, 30, 50, 50), equipTextures[2]);
+            }
+
+            if (inv.equipped[3] != null)
+            {
+                GUI.Box(new Rect(70 * 2 + 30, 30 + 80, 50, 50), equipTextures[3]);
+            }
+
+            if (inv.equipped[4] != null)
+            {
+                GUI.Box(new Rect(70 * 2 + 30, 30 + 160, 50, 50), equipTextures[4]);
+            }
+
+            if (inv.equipped[5] != null)
+            {
+                GUI.Box(new Rect(70 * 1 + 30, 30 + 80, 50, 50), equipTextures[5]);
+            }
+
+            if (inv.equipped[6] != null)
+            {
+                GUI.Box(new Rect(70 * 1 + 30, 30 + 160, 50, 50), equipTextures[6]);
+            }
+
+            if (inv.equipped[7] != null)
+            {
+                GUI.Box(new Rect(70 * 3 + 30, 30 + 80, 50, 50), equipTextures[7]);
+            }
+
+            if (inv.equipped[8] != null)
+            {
+                GUI.Box(new Rect(70 * 3 + 30, 30, 50, 50), equipTextures[8]);
+            }
 
         }
-
-
+       
     }
 
 	void Update () {
@@ -153,6 +208,19 @@ public class PlayerControl : MonoBehaviour {
                 GUION = "basic";
             }
         }
+
+        if (Input.GetKeyDown("u"))
+        {
+            if (GUION == "basic")
+            {
+                GUION = "equipment";
+            }
+            else
+            {
+                GUION = "basic";
+            }
+        }
+
     }
 
     public void refreshWeapon(GameObject w) //Refreshes what gameObject to use for the animator.

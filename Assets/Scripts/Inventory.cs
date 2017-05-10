@@ -64,6 +64,7 @@ public class Inventory : MonoBehaviour {
                     e.equip();
                     i.transform.parent = transform;
                     updateAllStatisitics();
+                    updateGUITextures();
                     return;
                 }
                 else
@@ -74,6 +75,7 @@ public class Inventory : MonoBehaviour {
                     i.transform.parent = transform;
                     i.SetActive(false);
                     lastSlot++;
+                    updateGUITextures();
                     return;
 
                 }
@@ -83,7 +85,7 @@ public class Inventory : MonoBehaviour {
             else if(item.type == "spell")
             {
                 //ADD TO SPELL LIST, NO AUTO EQUIP
-
+                updateGUITextures();
             }
         }
         else //Not equippable
@@ -116,6 +118,7 @@ public class Inventory : MonoBehaviour {
                             totalWeight += item.weight * item.held;
                             i.transform.parent = transform;
                             i.SetActive(false);
+                            updateGUITextures();
 
                             lastSlot++;
                             //Audio cue here?
@@ -129,6 +132,7 @@ public class Inventory : MonoBehaviour {
                             totalWeight += item.weight * item.held;
                             i.transform.parent = transform;
                             i.SetActive(false);
+                            updateGUITextures();
 
                             lastSlot++;
                             //Audio cue here?
@@ -142,6 +146,7 @@ public class Inventory : MonoBehaviour {
                             Item increaseVal = slots[x].GetComponent<Item>();
                             increaseVal.held += item.held;
                             Destroy(i);
+                            updateGUITextures();
                             //Audio cue here?
                             return;
                         }
@@ -158,6 +163,7 @@ public class Inventory : MonoBehaviour {
 
                 lastSlot++;
                 amountOfItems++;
+                updateGUITextures();
                 return;
             }
             else if (amountOfItems == 20)// inv full
@@ -172,6 +178,7 @@ public class Inventory : MonoBehaviour {
             i.SetActive(false);
 
             lastSlot++;
+            updateGUITextures();
             return;
         }
        
@@ -247,6 +254,7 @@ public class Inventory : MonoBehaviour {
         i.equipped = false;
         item.transform.position = item.transform.position + Vector3.forward;
         item.SetActive(true);
+        updateGUITextures();
     }
 
     void dropAllItems()
@@ -287,6 +295,28 @@ public class Inventory : MonoBehaviour {
         s.attack = wDam;
         s.magicAttack = sDam;
         //Should be all stats
+    }
+
+    void updateGUITextures()
+    {
+        PlayerControl p = GetComponent<PlayerControl>();
+        for(int x = 0; x < slots.Length; x++)
+        {
+            if(slots[x] != null)
+            {
+                SpriteRenderer s = slots[x].GetComponent<SpriteRenderer>();
+                p.invTextures[x] = s.sprite.texture;
+            }
+        }
+
+        for (int x = 0; x < equipped.Length; x++)
+        {
+            if (equipped[x] != null)
+            {
+                SpriteRenderer s = equipped[x].GetComponent<SpriteRenderer>();
+                p.equipTextures[x] = s.sprite.texture;
+            }
+        }
     }
 
     public bool weaponEquippedCheck()
