@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
@@ -10,17 +11,28 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
-        GameObject level = GameObject.FindGameObjectWithTag("levelGen");
-        LevelGen gen = level.GetComponent<LevelGen>();
-        xStartPos = gen.getXStart();
-        yStartPos = gen.getYStart();
+        Scene s = SceneManager.GetActiveScene();
+        map = s.name;
+
+        GameObject levelG = Resources.Load("Prefabs/Scripts/LevelGen") as GameObject;
+        GameObject gen = Instantiate(levelG, new Vector3(0,0,0), Quaternion.identity) as GameObject;
+        LevelGen generateMap = gen.GetComponent<LevelGen>();
+        generateMap.level = map;
+        generateMap.spaceMod = 2;
+        generateMap.genMap();
+        xStartPos = generateMap.getXStart();
+        yStartPos = generateMap.getYStart();
+
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject g in players)
         {
             g.transform.position = new Vector3(xStartPos, 2, yStartPos);
         }
 
-        map = gen.level;
+        GameObject e = GameObject.FindGameObjectWithTag("LevelSwitch");
+        ExitLevel exit = e.GetComponent<ExitLevel>();
+        exit.setLevel(map);
+
         if(map == "dream")
         {
             //god stats etc
@@ -29,7 +41,11 @@ public class GameManager : MonoBehaviour {
         {
             //basic stats no inv
         }
-        else
+        else if(map == "dungeon")
+        {
+            //nothin?
+        }
+        else if(map == "endLevel")
         {
             //nothin?
         }
