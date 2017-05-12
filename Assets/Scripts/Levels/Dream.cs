@@ -5,6 +5,8 @@ public class Dream {
 
     private int[,] map;
     int x1, x2, y1, y2;
+    public float sx, sy;
+    public float ex, ey;
 
     public int[,] genMap()
     {
@@ -57,7 +59,14 @@ public class Dream {
                 map[u, o + 150] = 1;
                 x1 = u;
                 x2 = o + 150;
-                
+
+                if (o == 12 && u == 13)
+                {
+                    map[u, o + 150] = 3;
+                    sx = u;
+                    sy = o;
+                }
+
             }
         }
         buildCorridor(x1, x2, y1, y2, 1);
@@ -79,18 +88,7 @@ public class Dream {
                 map[i, t] = 1;
                 y1 = i;
                 y2 = t;
-            }
-        }
-    }
 
-    private void buildEndRoom()
-    {
-        int c = Random.Range(map.GetLength(0) - 5, map.GetLength(1) - 5);
-        for (int i = 0; i < 4; i++)
-        {
-            for (int t = 0; t < 4; t++)
-            {
-                map[map.GetLength(0) - 8 + i, map.GetLength(1) - 8 + t] = 1;
             }
         }
     }
