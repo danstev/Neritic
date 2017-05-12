@@ -64,6 +64,11 @@ public class PlayerControl : MonoBehaviour {
         //style.alignment = TextAnchor.UpperCenter;
     }
 
+    void Awake()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
+
     void FixedUpdate()
     {
         if (tick % 60 == 0)
