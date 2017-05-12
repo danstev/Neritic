@@ -22,6 +22,7 @@ public class LevelGen : MonoBehaviour {
     private GameObject enemy3;
     private GameObject boss;
     private GameObject torch;
+    private GameObject exitLevel;
     private int[,] map;
     private Tile[] tileMap;
     private int height;
@@ -35,6 +36,7 @@ public class LevelGen : MonoBehaviour {
 
     public void genMap()
     {
+        exitLevel = Resources.Load("Prefabs/Entities/OutPortal") as GameObject;
         if (level == "dream") //tutorial level
         {
             tile = Resources.Load("Prefabs/Tiles/dreamTile") as GameObject;
