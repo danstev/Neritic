@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\EnemyDrop.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Equipment.cs" />
+    <Compile Include="Assets\Scripts\ExitLevel.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
