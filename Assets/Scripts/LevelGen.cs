@@ -29,16 +29,13 @@ public class LevelGen : MonoBehaviour {
     private int boxMap;
     public float spaceMod;
     public Tile t;
-    private float xStart;
-    private float yStart;
+    private float xStart = 0f;
+    private float yStart = 0f;
 
 
-
-
-    // Use this for initialization
-    void Start () {
-
-        if(level == "dream") //tutorial level
+    public void genMap()
+    {
+        if (level == "dream") //tutorial level
         {
             tile = Resources.Load("Prefabs/Tiles/dreamTile") as GameObject;
             wall = Resources.Load("Prefabs/Tiles/dreamWall") as GameObject;
@@ -68,7 +65,7 @@ public class LevelGen : MonoBehaviour {
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genForest();
         }
-        else if(level == "cave") //Harder, can die easily
+        else if (level == "cave") //Harder, can die easily
         {
             tile = Resources.Load("Prefabs/dreamFloor") as GameObject;
             wall = Resources.Load("Prefabs/dreamWall") as GameObject;
@@ -83,7 +80,7 @@ public class LevelGen : MonoBehaviour {
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genCave();
         }
-        else if(level == "dungeon") //Very hard
+        else if (level == "dungeon") //Very hard
         {
             tile = Resources.Load("Prefabs/dreamFloor") as GameObject;
             wall = Resources.Load("Prefabs/dreamWall") as GameObject;
@@ -98,7 +95,7 @@ public class LevelGen : MonoBehaviour {
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genDungeon();
         }
-        else if(level == "endLevel") //??? not planned yet, maybe underwater flowerbed? Very hard, boss level
+        else if (level == "endLevel") //??? not planned yet, maybe underwater flowerbed? Very hard, boss level
         {
             tile = Resources.Load("Prefabs/Tiles/sandTile") as GameObject;
             wall = Resources.Load("Prefabs/Tiles/dreamWall") as GameObject;
