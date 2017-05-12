@@ -19,6 +19,20 @@ public class GameManager : MonoBehaviour {
         {
             g.transform.position = new Vector3(xStartPos, 2, yStartPos);
         }
+
+        map = gen.level;
+        if(map == "dream")
+        {
+            //god stats etc
+        }
+        else if(map == "forest")
+        {
+            //basic stats no inv
+        }
+        else
+        {
+            //nothin?
+        }
     }
 
 
