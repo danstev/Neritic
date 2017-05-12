@@ -137,6 +137,8 @@ public class LevelGen : MonoBehaviour {
         map = r.genMap();
         tileMap = fillTileMap(map);
         renderMap(tileMap);
+        xStart = r.sx;
+        yStart = r.sy;
     }
 
     void genDungeon()
@@ -191,29 +193,29 @@ public class LevelGen : MonoBehaviour {
                     t.ceilingTile = roof;
                     t.wallTile = wall;
                     t.spacemod = spaceMod;
-                    float e = UnityEngine.Random.Range(0f,1f);
-                    if(e > 0.95f)
+                    float e = UnityEngine.Random.Range(0f, 1f);
+                    if (e > 0.95f)
                     {
                         //enemy spawn
                         t.entity = true;
                         t.entityObject = enemTest;
                     }
 
-                    if(e > 0.80f && e < 0.95f)
+                    if (e > 0.80f && e < 0.95f)
                     {
                         //Spawn foley
                         int f = UnityEngine.Random.Range(1, 4);
-                        if(f == 1)
+                        if (f == 1)
                         {
                             t.entityObject = foley1;
                             t.entity = true;
                         }
-                        else if(f == 2)
+                        else if (f == 2)
                         {
                             t.entityObject = foley2;
                             t.entity = true;
                         }
-                        else if(f > 2)
+                        else if (f > 2)
                         {
                             t.entityObject = foley3;
                             t.entity = true;
@@ -221,6 +223,22 @@ public class LevelGen : MonoBehaviour {
                     }
 
                     listOfTiles.Add(t);
+                }
+                else if (intMap[x, y] == 2)
+                {
+                    Tile t = new Tile();
+                    t.xPosition = x;
+                    t.yPosition = y;
+                    t.floorTile = tile;
+                    t.ceilingTile = roof;
+                    t.wallTile = wall;
+                    t.spacemod = spaceMod;
+
+                    listOfTiles.Add(t);
+                }
+                else if (intMap[x, y] == 3)
+                {
+
                 }
             }
         }
@@ -249,7 +267,7 @@ public class LevelGen : MonoBehaviour {
 
         if(t.entity == true)
         {
-            Vector3 pos = new Vector3(t.xPosition * t.spacemod + ( t.spacemod * UnityEngine.Random.Range(0f,1f) / 2), 1, t.yPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2));
+            Vector3 pos = new Vector3(t.xPosition * t.spacemod + ( t.spacemod * UnityEngine.Random.Range(0f,1f) / 2), 1.5f, t.yPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2));
             GameObject o = Instantiate(t.entityObject, pos, t.entityObject.transform.rotation) as GameObject;
         }
 
@@ -314,6 +332,16 @@ public class LevelGen : MonoBehaviour {
 
         }
 
+    }
+
+    public float getXStart()
+    {
+        return xStart;
+    }
+
+    public float getYStart()
+    {
+        return yStart;
     }
 
 
