@@ -63,8 +63,8 @@ public class Dream {
                 if (o == 12 && u == 13)
                 {
                     map[u, o + 150] = 3;
-                    sx = u;
-                    sy = o;
+                    ex = u;
+                    ey = o;
                 }
 
             }
@@ -88,7 +88,12 @@ public class Dream {
                 map[i, t] = 1;
                 y1 = i;
                 y2 = t;
-
+                if (i == 3 && t == 2)
+                {
+                    map[i, t + 150] = 2;
+                    sx = i;
+                    sy = t;
+                }
             }
         }
     }

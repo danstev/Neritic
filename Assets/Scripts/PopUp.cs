@@ -124,7 +124,6 @@ public class PopUp : MonoBehaviour {
     void OnMouseEnter()
     {
         gui = true;
-        print(gui);
     }
 
     void OnMouseExit()
