@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Levels\Forest.cs" />
     <Compile Include="Assets\Scripts\Levels\Tile.cs" />
     <Compile Include="Assets\Scripts\Levels\UnderWaterFlowerbed.cs" />
+    <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\PopUp.cs" />
     <Compile Include="Assets\Scripts\RandomShader.cs" />
