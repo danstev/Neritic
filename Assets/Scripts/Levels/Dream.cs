@@ -70,7 +70,61 @@ public class Dream {
             }
         }
         buildCorridor(x1, x2, y1, y2, 1);
+        cleanUp();
+        drawOutskirts(1);
         return map;
+    }
+
+    private void drawOutskirts(int thickness)
+    {
+        for (int g = 0; g < map.GetLength(0); g++)
+        {
+            for (int h = 0; h < thickness; h++)
+            {
+                map[g, h] = 0;
+            }
+        }
+
+        for (int g = 0; g < map.GetLength(0); g++)
+        {
+            for (int h = map.GetLength(1) - thickness; h < map.GetLength(1); h++)
+            {
+                map[g, h] = 0;
+            }
+        }
+
+        for (int g = map.GetLength(0) - thickness; g < map.GetLength(0); g++)
+        {
+            for (int h = 0; h < map.GetLength(1); h++)
+            {
+                map[g, h] = 0;
+            }
+        }
+
+        for (int g = 0; g < thickness; g++)
+        {
+            for (int h = 0; h < map.GetLength(1); h++)
+            {
+                map[g, h] = 0;
+            }
+        }
+    }
+
+    void cleanUp()
+    {
+        for (int x = 0 + 1; x < map.GetLength(0) - 1; x++)
+        {
+            for (int y = 0 + 1; y < map.GetLength(1) - 1; y++)
+            {
+                if (map[x, y] == 1)
+                {
+                    if (map[x - 1, y] != 1 && map[x + 1, y] != 1 && map[x, y - 1] != 1 && map[x, y] + 1 != 1)
+                    {
+                        map[x, y] = 0;
+                    }
+                }
+            }
+        }
     }
 
     public void setMap(int[,] m)
