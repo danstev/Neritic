@@ -119,7 +119,7 @@ public class Statistics : MonoBehaviour {
 
     public void takeDamage(float[] dam)
     {
-        audioPlayer.PlayOneShot(hurtSound);
+        
 
         if (damageable)
         {
@@ -128,6 +128,7 @@ public class Statistics : MonoBehaviour {
             p = transform.position - p;
             p = p.normalized;
             p.y = p.y + 1;
+            audioPlayer.PlayOneShot(hurtSound);
             if (transform.tag != "Player")
             {
                 r.AddForce(p * 125);

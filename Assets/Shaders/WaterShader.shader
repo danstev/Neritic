@@ -3,8 +3,8 @@
 	Properties
 	{
 		_MainTex("Texture", 2D) = "white" {}
-	_DisplaceTex("Displacement Texture", 2D) = "white" {}
-	_Magnitude("Magnitude", Range(0,0.1)) = 1
+		_DisplaceTex("Displacement Texture", 2D) = "white" {}
+		_Magnitude("Magnitude", Range(0,0.1)) = 1
 		_Alpha("Alpha", Range(0,1)) = 1
 	}
 		SubShader
@@ -14,17 +14,14 @@
 
 		Pass
 	{
-		// No culling or depth
 		Cull Off
-		//ZWrite Off 
-		//ZTest Always
 		Blend SrcAlpha OneMinusSrcAlpha
 
 		CGPROGRAM
-#pragma vertex vert
-#pragma fragment frag
+		#pragma vertex vert
+		#pragma fragment frag
 
-#include "UnityCG.cginc"
+		#include "UnityCG.cginc"
 
 	struct appdata
 	{
