@@ -18,10 +18,12 @@ public class GameManager : MonoBehaviour {
         GameObject gen = Instantiate(levelG, new Vector3(0,0,0), Quaternion.identity) as GameObject;
         LevelGen generateMap = gen.GetComponent<LevelGen>();
         generateMap.level = map;
-        generateMap.spaceMod = 2;
+        generateMap.spaceMod = Random.Range(1.5f, 2f);
         generateMap.genMap();
         xStartPos = generateMap.getXStart();
         yStartPos = generateMap.getYStart();
+        print(xStartPos);
+        print(yStartPos);
 
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach(GameObject g in players)
