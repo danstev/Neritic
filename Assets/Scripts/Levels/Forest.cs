@@ -9,6 +9,7 @@ public class Forest {
     //Sparse/dense setting
 
     private int[,] map;
+    public int sx, sy, ex, ey;
 
     public int[,] genMap()
     {
@@ -16,21 +17,58 @@ public class Forest {
         int y = map.GetLength(1);
         fillMapWithGroundFirst();
         float density = 0.05f;
-        int thickness = (x + y) / 20; //100 + 100 = 200 / 20 = 10
+        int thickness = (x + y) / 20;
 
         if(thickness < 7)
         {
             thickness = 7;
         }
-
         //Draw boundaries
         drawOutskirts(thickness);
         smoothMap(4, density);
 
-        //Draw end point in middle of "forest"
+        drawStart();
         drawEnd();
-
+        cleanUp();
         return map;
+    }
+
+    void cleanUp()
+    {
+        for(int x = 0 + 1; x < map.GetLength(0) - 1; x ++)
+        {
+            for (int y = 0 + 1; y < map.GetLength(1) - 1; y++)
+            {
+                if(map[x,y] == 1)
+                {
+                    if(map[x -1,y] != 1 && map[x + 1, y] != 1 && map[x, y - 1] != 1 && map[x, y] + 1  != 1)
+                    {
+                        map[x, y] = 0;
+                    }
+                }
+            }
+        }
+    }
+
+
+    void drawStart()
+    {
+        for(int i = 4; i < 13; i++)
+        {
+            for(int x = 4; x < 13; x++)
+            {
+                if(i == 10 && x == 10)
+                {
+                    map[i, x] = 2;
+                    sx = i;
+                    sy = x;
+                }
+                else
+                {
+                    map[i, x] = 1;
+                }
+            }
+        }
     }
 
     public void setMap(int[,] m)
@@ -46,7 +84,14 @@ public class Forest {
         {
             for(int x = 0; x < 5; x++)
             {
-                map[wid + i, hei + x] = 10;
+                if (i == 3 && x == 3)
+                {
+                    map[wid + i, hei + x] = 3;
+                }
+                else
+                {
+                    map[wid + i, hei + x] = 1;
+                }
             }
         }
     }
