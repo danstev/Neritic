@@ -5,15 +5,16 @@ public class Dungeon {
 
     private int[,] map;
     int x1, x2, y1, y2;
-
+    public int sx, sy, ex, ey;
+    int x, y;
     public int[,] genMap()
     {
-        int x = map.GetLength(0);
-        int y = map.GetLength(1);
-        int rooms = Random.Range(8,12);
+        x = map.GetLength(0);
+        y = map.GetLength(1);
+        int rooms = Random.Range(10,12);
         //Make starting room near edge.
         buildStartRoom();
-        buildEndRoom();
+        
 
         
         x1 = 0;
@@ -52,9 +53,10 @@ public class Dungeon {
             }
 
         }
-        buildCorridor(x1, x2, map.GetLength(0) - 8 + 3, map.GetLength(1) - 8 + 3, 1);
 
-        //buildWalls();
+        buildCorridor(x1, x2, x - 8 + 3, y - 8 + 3, 1);
+        buildEndRoom();
+        buildCorridor(x1, x2, y1, y2, 1);
 
         return map;
     }
@@ -71,23 +73,44 @@ public class Dungeon {
         {
             for (int t = 0; t < 5; t++)
             {
-                map[i + 1, t + 1] = 1;
+                
                 y1 = i;
                 y2 = t;
+
+                if(i == 3 && t == 3)
+                {
+                    map[i + 1, t + 1] = 2;
+                    sx = i + 1;
+                    sy = t + 1;
+                }
+                else
+                {
+                    map[i + 1, t + 1] = 1;
+                }
             }
         }
     }
 
     private void buildEndRoom()
     {
-        int c = Random.Range(map.GetLength(0) - 5, map.GetLength(1) - 5);
-        for (int i = 0; i < 4; i++)
+        for (int o = x - 20; o < x - 5; o++)
         {
-            for (int t = 0; t < 4; t++)
+            for (int u = y - 20; u <  y - 5; u++)
             {
-                map[map.GetLength(0) - 8 + i, map.GetLength(1) - 8 + t] = 1;
+                map[u, o] = 1;
+                x1 = u;
+                x2 = o;
+
+                if (o == x - 10 && u == y -10)
+                {
+                    map[u, o] = 3;
+                    ex = u;
+                    ey = o;
+                }
+
             }
         }
+        
     }
 
     private void buildCorridor(int x1, int x2, int y1, int y2, int tileType)
