@@ -5,24 +5,26 @@ public class UnderWaterFlowerbed {
 
     private int[,] map;
     int x1, x2, y1, y2;
+    public int sx, sy, ex, ey;
+    public int xHeight, yWidth;
 
     public int[,] genMap()
     {
-        int x = map.GetLength(0);
-        int y = map.GetLength(1);
-        int rooms = Random.Range(12, 24);
+        xHeight = map.GetLength(0);
+        yWidth = map.GetLength(1);
+        int rooms = Random.Range(18, 24);
 
         x1 = 0;
         x2 = 0;
 
         //Do start room here
-
+        buildStartRoom();
         for (int i = 0; i < rooms; i++)
         {
             int height = Random.Range(4, 12);
             int width = Random.Range(4, 12);
-            int offsetH = Random.Range(0, x - height - 1);
-            int offsetW = Random.Range(0, y - width - 1);
+            int offsetH = Random.Range(0, xHeight - height - 1);
+            int offsetW = Random.Range(0, yWidth - width - 1);
 
             for (int q = offsetH; q <= height + offsetH; q++)
             {
@@ -30,10 +32,7 @@ public class UnderWaterFlowerbed {
                 {
                     map[q, w] = 1;
 
-                    if(i == rooms-1)
-                    {
-                        map[q, w] = 10;
-                    }
+
 
                     if (w == width + offsetW - 1)
                     {
@@ -54,13 +53,14 @@ public class UnderWaterFlowerbed {
                 }
             }
         }
+        smoothMap(2);
         //Last room build
         buildCorridor(x1, x2, map.GetLength(0) - 8 + 3, map.GetLength(1) - 8 + 3, 1);
         //Build a bunch of random pillars
         for(int r = 0; r < 50; r++)
         {
-            int q = Random.Range(1, x - 2);
-            int z = Random.Range(1, y - 2);
+            int q = Random.Range(1, xHeight - 2);
+            int z = Random.Range(1, yWidth - 2);
 
             map[q, z] = 0;
             map[q, z + 1] = 0;
@@ -68,12 +68,60 @@ public class UnderWaterFlowerbed {
             map[q, z - 1] = 0;
             map[q - 1, z] = 0;
         }
-        //Smooth
-        smoothMap(2);
-        //Outskirts
-        drawOutskirts(2);
+
+        
+        buildEndRoom();
+        buildCorridor(x1, x2, y1, y2, 1);
+        buildCorridor(4, 4, xHeight-5, yWidth -5, 1);
+        drawOutskirts(1);
         return map;
     }
+
+
+    void buildStartRoom()
+    {
+        for( int x = 1; x < 6; x++)
+        {
+            for(int i = 1; i < 6; i++)
+            {
+                if (x == 4 && i == 4)
+                {
+                    sx = x;
+                    sy = i;
+                    map[x,i] = 2;
+                }
+                else
+                {
+                    map[x, i] = 1;
+                    y1 = x;
+                    y2 = i;
+                }
+            }
+        }
+    }
+
+    void buildEndRoom()
+    {
+        for (int x = xHeight - 10; x < xHeight - 3; x++)
+        {
+            for (int i = yWidth - 10; i < yWidth - 3; i++)
+            {
+                if (x == xHeight - 7 && i == yWidth - 7)
+                {
+                    ex = x;
+                    ey = i;
+                    map[x, i] = 3;
+                }
+                else
+                {
+                    map[x, i] = 1;
+                    y1 = x;
+                    y2 = i;
+                }
+            }
+        }
+    }
+
 
     public void setMap(int[,] m)
     {
