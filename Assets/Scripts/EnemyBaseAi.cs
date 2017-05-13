@@ -53,7 +53,32 @@ public class EnemyBaseAi : MonoBehaviour {
 
     void meleeEnemy()
     {
+        if (target == null)
+        {
+            if (scanTimer <= 0)
+            {
+                targetScan();
+                scanTimer = Random.Range(0f, 5f);
+            }
+            else
+            {
+                scanTimer -= Time.deltaTime;
 
+            }
+        }
+
+        if (target != null) //Add in other moves inside here
+        {
+            transform.LookAt(target.transform);
+            //castMagic();
+            aggressiveMove();
+            //moveBack();
+            //jumpForward();
+        }
+        else
+        {
+            randomMove();
+        }
     }
 
     void mageEnemy()
@@ -69,9 +94,9 @@ public class EnemyBaseAi : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
-        enemyAI();
+        //enemyAI();
         //////////////////////////////////////////////////
-        /*
+        
         if(target == null)
         {
             if (scanTimer <= 0)
@@ -90,15 +115,15 @@ public class EnemyBaseAi : MonoBehaviour {
         {
             transform.LookAt(target.transform);
             //castMagic();
-            //aggressiveMove();
-            moveBack();
+            aggressiveMove();
+            //moveBack();
             //jumpForward();
         }
         else
         {
             randomMove(); 
         }
-	*/
+	//*/
 	}
 
     void moveBack()
