@@ -45,7 +45,7 @@ public class LevelGen : MonoBehaviour {
             foley1 = Resources.Load("Prefabs/Foley/dreamFoley1") as GameObject;
             foley2 = Resources.Load("Prefabs/Foley/dreamFoley2") as GameObject;
             foley3 = Resources.Load("Prefabs/Foley/dreamFoley3") as GameObject;
-            enemTest = Resources.Load("Prefabs/NPC/Marshmellow") as GameObject;
+            enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             enemy3 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
@@ -54,15 +54,15 @@ public class LevelGen : MonoBehaviour {
         }
         else if (level == "forest") //easy level, outside
         {
-            tile = Resources.Load("Prefabs/dreamFloor") as GameObject;
-            wall = Resources.Load("Prefabs/dreamWall") as GameObject;
-            roof = Resources.Load("Prefabs/dreamRoof") as GameObject;
-            foley1 = Resources.Load("Prefabs/dreamFoley1") as GameObject;
-            foley2 = Resources.Load("Prefabs/dreamFoley2") as GameObject;
-            foley3 = Resources.Load("Prefabs/dreamFoley3") as GameObject;
-            enemTest = Resources.Load("Prefabs/dreamEnemy1") as GameObject;
-            enemy2 = Resources.Load("Prefabs/dreamEnemy2") as GameObject;
-            enemy3 = Resources.Load("Prefabs/dreamEnemy3") as GameObject;
+            tile = Resources.Load("Prefabs/Tiles/forestFloor") as GameObject;
+            wall = Resources.Load("Prefabs/Tiles/forestWall") as GameObject;
+            roof = Resources.Load("Prefabs/Tiles/forestCeiling") as GameObject;
+            foley1 = Resources.Load("Prefabs/Foley/dreamFoley1") as GameObject;
+            foley2 = Resources.Load("Prefabs/Foley/dreamFoley2") as GameObject;
+            foley3 = Resources.Load("Prefabs/Foley/dreamFoley3") as GameObject;
+            enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy3 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genForest();
@@ -75,39 +75,39 @@ public class LevelGen : MonoBehaviour {
             foley1 = Resources.Load("Prefabs/dreamFoley1") as GameObject;
             foley2 = Resources.Load("Prefabs/dreamFoley2") as GameObject;
             foley3 = Resources.Load("Prefabs/dreamFoley3") as GameObject;
-            enemTest = Resources.Load("Prefabs/dreamEnemy1") as GameObject;
-            enemy2 = Resources.Load("Prefabs/dreamEnemy2") as GameObject;
-            enemy3 = Resources.Load("Prefabs/dreamEnemy3") as GameObject;
+            enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy3 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
-            genCave();
+            //genCave();
         }
         else if (level == "dungeon") //Very hard
         {
-            tile = Resources.Load("Prefabs/dreamFloor") as GameObject;
-            wall = Resources.Load("Prefabs/dreamWall") as GameObject;
-            roof = Resources.Load("Prefabs/dreamRoof") as GameObject;
-            foley1 = Resources.Load("Prefabs/dreamFoley1") as GameObject;
-            foley2 = Resources.Load("Prefabs/dreamFoley2") as GameObject;
-            foley3 = Resources.Load("Prefabs/dreamFoley3") as GameObject;
-            enemTest = Resources.Load("Prefabs/dreamEnemy1") as GameObject;
-            enemy2 = Resources.Load("Prefabs/dreamEnemy2") as GameObject;
-            enemy3 = Resources.Load("Prefabs/dreamEnemy3") as GameObject;
+            tile = Resources.Load("Prefabs/Tiles/dungeonFloor") as GameObject;
+            wall = Resources.Load("Prefabs/Tiles/dungeonWall") as GameObject;
+            roof = Resources.Load("Prefabs/Tiles/dungeonCeiling") as GameObject;
+            foley1 = Resources.Load("Prefabs/Foley/dreamFoley1") as GameObject;
+            foley2 = Resources.Load("Prefabs/Foley/dreamFoley2") as GameObject;
+            foley3 = Resources.Load("Prefabs/Foley/dreamFoley3") as GameObject;
+            enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy3 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genDungeon();
         }
         else if (level == "endLevel") //??? not planned yet, maybe underwater flowerbed? Very hard, boss level
         {
-            tile = Resources.Load("Prefabs/Tiles/sandTile") as GameObject;
-            wall = Resources.Load("Prefabs/Tiles/dreamWall") as GameObject;
-            roof = Resources.Load("Prefabs/Tiles/waterTile") as GameObject;
+            tile = Resources.Load("Prefabs/Tiles/flowerbedFloor") as GameObject;
+            wall = Resources.Load("Prefabs/Tiles/flowerbedWall") as GameObject;
+            roof = Resources.Load("Prefabs/Tiles/flowerbedCeiling") as GameObject;
             foley1 = Resources.Load("Prefabs/Blood") as GameObject;
             foley2 = Resources.Load("Prefabs/Blood") as GameObject;
             foley3 = Resources.Load("Prefabs/Blood") as GameObject;
-            enemTest = Resources.Load("Prefabs/Blood") as GameObject;
-            enemy2 = Resources.Load("Prefabs/dreamEnemy2") as GameObject;
-            enemy3 = Resources.Load("Prefabs/dreamEnemy3") as GameObject;
+            enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy3 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genUnderwater();
@@ -124,6 +124,8 @@ public class LevelGen : MonoBehaviour {
         map = r.genMap();
         tileMap = fillTileMap(map);
         renderMap(tileMap);
+        xStart = r.sx * spaceMod;
+        yStart = r.sy * spaceMod;
     }
 
     void genDream()
@@ -136,21 +138,24 @@ public class LevelGen : MonoBehaviour {
         map = r.genMap();
         tileMap = fillTileMap(map);
         renderMap(tileMap);
-        xStart = r.sx;
-        yStart = r.sy;
+        xStart = r.sx * spaceMod;
+        yStart = r.sy * spaceMod;
     }
 
     void genDungeon()
     {
         Dungeon r = new Dungeon();
-        boxMap = UnityEngine.Random.Range(46, 64);
+        boxMap = UnityEngine.Random.Range(60, 64);
         map = new int[boxMap, boxMap];
         r.setMap(map);
         map = r.genMap();
         tileMap = fillTileMap(map);
         renderMap(tileMap);
+        xStart = r.sx * spaceMod;
+        yStart = r.sy * spaceMod;
     }
 
+    /*
     void genCave()
     {
         Cave r = new Cave();
@@ -161,19 +166,22 @@ public class LevelGen : MonoBehaviour {
         map = r.genMap();
         tileMap = fillTileMap(map);
         renderMap(tileMap);
-    }
+        xStart = r.sx;
+        yStart = r.sy;
+    }*/
 
     void genUnderwater()
     {
         //spaceMod = 0.5f;
         UnderWaterFlowerbed r = new UnderWaterFlowerbed();
-        height = UnityEngine.Random.Range(75, 100);
-        width = UnityEngine.Random.Range(75, 100);
-        map = new int[height, width];
+
+        map = new int[75, 75];
         r.setMap(map);
         map = r.genMap();
         tileMap = fillTileMap(map);
         renderMap(tileMap);
+        xStart = r.sx * spaceMod;
+        yStart = r.sy * spaceMod;
     }
 
     Tile[] fillTileMap(int[,] intMap)
@@ -198,26 +206,38 @@ public class LevelGen : MonoBehaviour {
                         //enemy spawn
                         t.entity = true;
                         t.entityObject = enemTest;
+                        int f = UnityEngine.Random.Range(1, 4);
+                        if (f == 1)
+                        {
+                            t.entityObject = enemTest;
+                        }
+                        else if (f == 2)
+                        {
+                            t.entityObject = enemy2;
+                        }
+                        else if (f > 2)
+                        {
+                            t.entityObject = enemy3;
+                        }
                     }
 
                     if (e > 0.80f && e < 0.95f)
                     {
                         //Spawn foley
+                        t.entity = true;
                         int f = UnityEngine.Random.Range(1, 4);
                         if (f == 1)
                         {
                             t.entityObject = foley1;
-                            t.entity = true;
+                            
                         }
                         else if (f == 2)
                         {
                             t.entityObject = foley2;
-                            t.entity = true;
                         }
                         else if (f > 2)
                         {
                             t.entityObject = foley3;
-                            t.entity = true;
                         }
                     }
 
@@ -232,12 +252,21 @@ public class LevelGen : MonoBehaviour {
                     t.ceilingTile = roof;
                     t.wallTile = wall;
                     t.spacemod = spaceMod;
-
                     listOfTiles.Add(t);
                 }
                 else if (intMap[x, y] == 3)
                 {
-
+                    
+                    Tile t = new Tile();
+                    t.xPosition = x;
+                    t.yPosition = y;
+                    t.floorTile = tile;
+                    t.ceilingTile = roof;
+                    t.wallTile = wall;
+                    t.spacemod = spaceMod;
+                    t.entity = true;
+                    t.entityObject = exitLevel;
+                    listOfTiles.Add(t);
                 }
             }
         }
@@ -254,6 +283,29 @@ public class LevelGen : MonoBehaviour {
     public void renderTile(Tile t)
     {
 
+        Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 0 * t.spacemod, t.yPosition * t.spacemod);
+        GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
+        j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1 * t.spacemod);
+        j.transform.rotation *= Quaternion.Euler(90, 0, 0);
+
+        Vector3 mapPosCeiling = new Vector3(t.xPosition * t.spacemod, 2 * t.spacemod, t.yPosition * t.spacemod);
+        GameObject h = Instantiate(t.ceilingTile, mapPosCeiling, Quaternion.identity) as GameObject;
+        h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1 * t.spacemod);
+        h.transform.rotation *= Quaternion.Euler(270, 0, 0);
+
+        if(t.entity == true)
+        {
+            Vector3 pos = new Vector3(t.xPosition * t.spacemod + ( t.spacemod * UnityEngine.Random.Range(0f,1f) / 2), 1.5f * t.spacemod, t.yPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2));
+            GameObject o = Instantiate(t.entityObject, pos, t.entityObject.transform.rotation) as GameObject;
+            o.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1 * t.spacemod);
+        }
+
+        renderWalls(t.xPosition, t.yPosition, t.wallTile, t.spacemod);
+    }
+
+    /*public void renderTile(Tile t)
+    {
+
         Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 0, t.yPosition * t.spacemod);
         GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
         j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
@@ -264,14 +316,14 @@ public class LevelGen : MonoBehaviour {
         h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1);
         h.transform.rotation *= Quaternion.Euler(270, 0, 0);
 
-        if(t.entity == true)
+        if (t.entity == true)
         {
-            Vector3 pos = new Vector3(t.xPosition * t.spacemod + ( t.spacemod * UnityEngine.Random.Range(0f,1f) / 2), 1.5f, t.yPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2));
+            Vector3 pos = new Vector3(t.xPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2), 1.5f, t.yPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2));
             GameObject o = Instantiate(t.entityObject, pos, t.entityObject.transform.rotation) as GameObject;
         }
 
         renderWalls(t.xPosition, t.yPosition, t.wallTile, t.spacemod);
-    }
+    }*/
 
     void renderMap(Tile[] t)
     {
@@ -287,7 +339,7 @@ public class LevelGen : MonoBehaviour {
         {
             if (x == 0)
             {
-                Vector3 mapPos = new Vector3(x * spacemod -1, 2, y * spacemod);
+                Vector3 mapPos = new Vector3(x * spacemod - (spacemod /2), spacemod, y * spacemod);
                 GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, -90, 0);
@@ -295,7 +347,7 @@ public class LevelGen : MonoBehaviour {
             else if(map[x - 1, y] == 0)
             {
             
-                Vector3 mapPos = new Vector3(x * spacemod -1, 2, y * spacemod);
+                Vector3 mapPos = new Vector3(x * spacemod - (spacemod / 2), spacemod, y * spacemod);
                 GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, -90, 0);
@@ -303,7 +355,7 @@ public class LevelGen : MonoBehaviour {
 
             if (x == map.GetLength(0) || map[x + 1, y] == 0)
             {
-                Vector3 mapPos = new Vector3(x * spacemod + 1, 2, y * spacemod);
+                Vector3 mapPos = new Vector3(x * spacemod + (spacemod / 2), spacemod, y * spacemod);
                 GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, 90, 0);
@@ -311,7 +363,7 @@ public class LevelGen : MonoBehaviour {
 
             if (y == 0 || map[x, y - 1] == 0)
             {
-                Vector3 mapPos = new Vector3(x * spacemod, 2, y * spacemod -1);
+                Vector3 mapPos = new Vector3(x * spacemod, spacemod, y * spacemod - (spacemod / 2));
                 GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, 180, 0);
@@ -320,7 +372,7 @@ public class LevelGen : MonoBehaviour {
         
             if (y == map.GetLength(1) || map[x, y + 1] == 0)
             {
-                Vector3 mapPos = new Vector3(x * spacemod, 2, y * spacemod + 1);
+                Vector3 mapPos = new Vector3(x * spacemod, spacemod, y * spacemod + (spacemod / 2));
                 GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, 0, 0);
