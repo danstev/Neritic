@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class Statistics : MonoBehaviour {
@@ -13,6 +14,7 @@ public class Statistics : MonoBehaviour {
 
     public int armour;
     public float attack;
+    public float baseAttack = 0;
     public float meleeReach;
     public float attackTime = 1f;
     public float invulvnerableTime = 0.75f;
@@ -53,6 +55,8 @@ public class Statistics : MonoBehaviour {
     public AudioSource audioPlayer;
     public AudioClip hurtSound;
 
+    private bool player = false;
+
     //Enemy Drops
     public GameObject drop1;
     public GameObject drop2;
@@ -66,6 +70,9 @@ public class Statistics : MonoBehaviour {
         c = GetComponent<CharacterController>();
         a = GetComponent<Animator>();
         setExpForLevel();
+
+        if (gameObject.tag == "Player")
+            player = true;
     }
 
     void fixedUpdate()
@@ -84,9 +91,24 @@ public class Statistics : MonoBehaviour {
         if (a != null)
             a.speed = momvementSpeedMod;
 
+        if (curHealth > maxHealth)
+            curHealth = maxHealth;
+
+        if (curMana > maxMana)
+            curMana = maxMana;
+
         if (curHealth <= 0)
         {
-            Collider[] detectColliders = Physics.OverlapSphere(transform.position, 100);
+
+            if( tag == "Player")
+            {
+                GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
+                Destroy(gameObject);
+                Instantiate(player);
+                SceneManager.LoadScene("dream");
+            }
+
+            Collider[] detectColliders = Physics.OverlapSphere(transform.position, 25);
             for (int i = 0; i < detectColliders.Length; i++)
             {
                 if (detectColliders[i].tag == "Player")
@@ -99,7 +121,8 @@ public class Statistics : MonoBehaviour {
                     }
                 }
             }
-            if(tag =="NPC")
+
+            if(tag =="Enemy")
             {
                 float rate = Random.Range(0f, 1f);
                 if (rate > 0.75f)
@@ -177,7 +200,7 @@ public class Statistics : MonoBehaviour {
             }
             else
             {
-                c.SimpleMove(p * Time.deltaTime * 2000);
+                c.SimpleMove(p * Time.deltaTime * 1000);
                 invulvnerableTimeTimer = invulvnerableTime;
             }
         }
@@ -187,12 +210,13 @@ public class Statistics : MonoBehaviour {
     {
         //More stat stuff to do here, gotta get it written down.
         strength++;
+
         agility++;
         intellect++;
-        //attack += 10;
+        baseAttack += 5;
         maxHealth += 10;
         curHealth = maxHealth;
-        maxMana = intellect * 10;
+        maxMana += 5;
         curMana = maxMana;
         level++;
         expForLevel = level * 100 * (int)(level * 0.25);
@@ -207,6 +231,14 @@ public class Statistics : MonoBehaviour {
         //Weapon
         //TODO weapon class here 
         //Magic
+        int atk = (int)baseAttack;
+        foreach(GameObject g in inv.equipped)
+        {
+            Equipment w = GetComponent<Equipment>();
+            atk += w.attack;
+        }
+
+        attack = atk;
         int x = magicSpell.GetComponent<Spell>().magicAttack;
         magicAttack = x + (int)(x * 0.5);
     }
@@ -215,5 +247,14 @@ public class Statistics : MonoBehaviour {
     {
         exp = 0;
         expForLevel = level * 100 * (level * 0.25f);
+    }
+
+    void OnGUI ()
+    {
+        /*if(player)
+        {
+            GUI.Box( new Rect(Screen.height / 12, Screen.height - (Screen.height / 12), 200, 50), "hi");
+        }
+        */
     }
 }
