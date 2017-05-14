@@ -18,6 +18,12 @@ public class Item : MonoBehaviour {
     public int statNeed;
     public string description;
 
+    public int health;
+    public int mana;
+    public int strength;
+    public int agility;
+    public int intellect;
+
     // Use this for initialization
     void Start () {
 
@@ -51,6 +57,23 @@ public class Item : MonoBehaviour {
         Animator a = GetComponent<Animator>();
         a.enabled = true;
         equipped = true;
+    }
+
+    public void use(Statistics s)
+    {
+        if(equipable)
+        {
+            equip();
+        }
+        else
+        {
+            s.curHealth += health;
+            s.curMana += mana;
+            s.strength += strength;
+            s.agility += agility;
+            s.intellect += intellect;
+            
+        }
     }
 
 }
