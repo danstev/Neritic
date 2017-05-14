@@ -43,7 +43,7 @@ public class PopUp : MonoBehaviour {
                 if (e.armour != 0)
                 {
                     string armour = e.armour.ToString();
-                    text += "\nAttack: ";
+                    text += "\nArmour: ";
                     text += armour;
                 }
 
