@@ -49,7 +49,6 @@ public class Inventory : MonoBehaviour {
                     
                     if (slot == 0) //Weapon slot, need another for 2nd weapon slot?
                     {
-                        print("dfds");
                         item.equipWeapon();
                         PlayerControl p = GetComponent<PlayerControl>();
                         p.refreshWeapon(i);
@@ -154,7 +153,7 @@ public class Inventory : MonoBehaviour {
                 }
             }
 
-            if (amountOfItems < 20 && !item.unique) //Not in inv, and not unique
+            if (amountOfItems < 20) //inv not full
             {
                 slots[lastSlot] = i;
                 totalWeight += item.weight * item.held;
@@ -182,6 +181,19 @@ public class Inventory : MonoBehaviour {
             return;
         }
        
+    }
+
+    void addItem()
+    {
+        //equipable
+            //is slot full?
+                //yes, inv
+                //no, equip
+        //item
+            //check if you alreeady have some
+                //if yes, check held is less than amount
+                //if no add to inv with held 1
+            
     }
 
     void recalcWeight() //Should not be needed if i did add properly, but is nice for when dropping maybe etc, maybe just remove any weight stuff for other actions, just plonk this after each?
@@ -246,7 +258,7 @@ public class Inventory : MonoBehaviour {
 
     }
 
-    void dropItem(GameObject item)
+    public void dropItem(GameObject item)
     {
         Item i = GetComponent<Item>();
         totalWeight -= i.weight;
@@ -255,6 +267,33 @@ public class Inventory : MonoBehaviour {
         item.transform.position = item.transform.position + Vector3.forward;
         item.SetActive(true);
         updateGUITextures();
+    }
+
+    public void deleteItem(int itemId) //used for using items
+    {
+        //find item in slots
+        //if amount is > 1, -1, else destroy;
+        Item target;
+        GameObject g;
+        foreach(GameObject i in slots)
+        {
+            Item item = i.GetComponent<Item>();
+            if(item.ID == itemId)
+            {
+                target = item;
+                g = i;
+                if (target.held > 1)
+                {
+                    target.held -= 1;
+                }
+                else
+                {
+                    Destroy(g);
+                }
+                updateGUITextures();
+                return;
+            }
+        }
     }
 
     void dropAllItems()
@@ -271,21 +310,6 @@ public class Inventory : MonoBehaviour {
         updateAllStatisitics();
     }
 
-    void updateInv()
-    {
-
-    }
-
-    void updateEquipment()
-    {
-
-    }
-
-    void updateSpells()
-    {
-
-    }
-
     void updateStatsPage(int strength, int agility, int intellect, int wDam, int sDam)
     {
         Statistics s = GetComponent<Statistics>();
@@ -300,7 +324,7 @@ public class Inventory : MonoBehaviour {
     void updateGUITextures()
     {
         PlayerControl p = GetComponent<PlayerControl>();
-        for(int x = 0; x < slots.Length; x++)
+        for(int x = 0; x < slots.Length -1; x++)
         {
             if(slots[x] != null)
             {
