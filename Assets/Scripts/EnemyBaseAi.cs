@@ -34,7 +34,7 @@ public class EnemyBaseAi : MonoBehaviour {
     // Use this for initialization
     void Start () {
         r = GetComponent<Rigidbody>();
-        /*
+        
         if(enemyType == 1)
         {
             enemyAI += meleeEnemy;
@@ -47,8 +47,8 @@ public class EnemyBaseAi : MonoBehaviour {
         {
             enemyAI += rogueEnemy;
         }
-        */
-        enemyAI += moveBack;
+        
+        //enemyAI += moveBack;
     }
 
     void meleeEnemy()
@@ -83,21 +83,7 @@ public class EnemyBaseAi : MonoBehaviour {
 
     void mageEnemy()
     {
-
-    }
-
-    void rogueEnemy()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update () {
-
-        //enemyAI();
-        //////////////////////////////////////////////////
-        
-        if(target == null)
+        if (target == null)
         {
             if (scanTimer <= 0)
             {
@@ -111,19 +97,27 @@ public class EnemyBaseAi : MonoBehaviour {
             }
         }
 
-        if(target != null) //Add in other moves inside here
+        if (target != null) //Add in other moves inside here
         {
             transform.LookAt(target.transform);
-            //castMagic();
-            aggressiveMove();
+            castMagic();
             //moveBack();
-            //jumpForward();
         }
         else
         {
-            randomMove(); 
+            randomMove();
         }
-	//*/
+
+    }
+
+    void rogueEnemy()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update () {
+        enemyAI();   
 	}
 
     void moveBack()
@@ -237,7 +231,7 @@ public class EnemyBaseAi : MonoBehaviour {
         }
         else
         {
-            if (stats.curMana >= stats.magicSpell.GetComponent<Spell>().manaCost && attackTimer <= 0)
+            if (attackTimer <= 0 && 25 > Vector3.Distance(transform.position, target.transform.position)) //stats.curMana >= stats.magicSpell.GetComponent<Spell>().manaCost && 
             {
                 attackTimer = stats.magicTime;
                 GameObject spell;
@@ -247,7 +241,7 @@ public class EnemyBaseAi : MonoBehaviour {
                 Spell spellA = spell.GetComponent<Spell>();
                 spellA.setMagicAttack((int)stats.magicAttack);
                 //Mana cost -
-                stats.curMana -= spellA.manaCost;
+                //stats.curMana -= spellA.manaCost;
             }
             else if (attackTimer > 0)
             {
