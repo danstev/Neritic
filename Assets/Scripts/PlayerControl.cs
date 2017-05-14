@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PlayerControl : MonoBehaviour {
@@ -103,12 +104,24 @@ public class PlayerControl : MonoBehaviour {
             {
                 if (inv.slots[x] == null)
                 {
+                    GUI.backgroundColor = Color.blue;
                     GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), "hello" + x); //draw buttons here
                 }
                 else
                 {
-                    GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), "hello" + x); //draw buttons here
+                    GUI.backgroundColor = Color.blue;
+                    //GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), "hello" + x); //draw buttons here
                     GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), invTextures[x]);
+                    GUI.backgroundColor = Color.clear;
+                    if (GUI.Button(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), " "))
+                    {
+                        print("use item: " + x);
+                        Item i = inv.slots[x].GetComponent<Item>();
+                        i.use(stats);
+                        print(i.held);
+                        inv.deleteItem(i.ID);
+                        print(i.held);
+        }
                 }
             }
 
@@ -124,9 +137,14 @@ public class PlayerControl : MonoBehaviour {
             GUI.Box(new Rect(70 * 3 + 30, 30 + 80, 50, 50), "neck");
             GUI.Box(new Rect(70 * 3 + 30, 30 , 50, 50), "ring");
 
-            if(inv.equipped[0] != null)
+            if (inv.equipped[0] != null)
             {
+                if (GUI.Button(new Rect(70 * 1 + 30, 30, 50, 50), " "))
+                {
+                    print("unequip");
+                }
                 GUI.Box(new Rect(70 * 1 + 30, 30, 50, 50), equipTextures[0]);
+
             }
 
             if (inv.equipped[2] != null)
@@ -162,8 +180,35 @@ public class PlayerControl : MonoBehaviour {
             if (inv.equipped[8] != null)
             {
                 GUI.Box(new Rect(70 * 3 + 30, 30, 50, 50), equipTextures[8]);
+                print(equipTextures.Length);
             }
 
+        }
+        else if(GUION == "menu")
+        {
+            //Start game
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), "New Game"))
+            {
+                GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
+                Destroy(gameObject);
+                Instantiate(player);
+                SceneManager.LoadScene("dream");
+            }
+            //Help
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 25, 100, 50), "Controls"))
+            {
+                //nothing atm lol
+            }
+            //option
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 75, 100, 50), "Options"))
+            {
+                //todo
+            }
+            //exit
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 125, 100, 50), "Exit Game"))
+            {
+                Application.Quit();
+            }
         }
        
     }
@@ -173,7 +218,7 @@ public class PlayerControl : MonoBehaviour {
         movement();
 
         //Attack 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && GUION == "basic")
         {
             if (inv.weaponEquippedCheck())
             {
@@ -206,10 +251,12 @@ public class PlayerControl : MonoBehaviour {
         {
             if (GUION == "basic")
             {
+                Cursor.lockState = CursorLockMode.None;
                 GUION = "inv";
             }
             else
             {
+                Cursor.lockState = CursorLockMode.Locked;
                 GUION = "basic";
             }
         }
@@ -218,10 +265,40 @@ public class PlayerControl : MonoBehaviour {
         {
             if (GUION == "basic")
             {
+                Cursor.lockState = CursorLockMode.None;
                 GUION = "equipment";
             }
             else
             {
+                Cursor.lockState = CursorLockMode.Locked;
+                GUION = "basic";
+            }
+        }
+
+        if (Input.GetKeyDown("y"))
+        {
+            if (GUION == "basic")
+            {
+                Cursor.lockState = CursorLockMode.None;
+                GUION = "stats";
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                GUION = "basic";
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            if (GUION == "basic")
+            {
+                GUION = "menu";
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
                 GUION = "basic";
             }
         }
