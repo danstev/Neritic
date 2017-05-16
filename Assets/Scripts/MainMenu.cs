@@ -28,7 +28,7 @@ public class MainMenu : MonoBehaviour {
         int h = Screen.height / 12;
         if (menu)
         {
-            
+            GUI.Box(new Rect(w * 6 - (w / 2), h * 6 - (h * 5), 200, 50), "NERITIC");
             //Start game
             if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6 - (h * 4), 200, 50), "Start Game"))
             {

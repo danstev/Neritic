@@ -39,9 +39,12 @@ public class PlayerControl : MonoBehaviour {
     private string GUION = "basic";
     private GUIStyle style;
 
-    //Silly inv stuff, but efficient
+    //Silly gui stuff, but efficient
     public Texture2D[] invTextures = new Texture2D[20];
     public Texture2D[] equipTextures = new Texture2D[10];
+    public Texture2D weapon;
+    public Texture2D spell;
+    private string statsPage;
 
     //Audio stuff
     public AudioSource audioPlayer;
@@ -61,6 +64,8 @@ public class PlayerControl : MonoBehaviour {
         movement = mouseController;
         movement += movementController;
         tick = 0;
+        statsPage = stats.updateStatPage();
+        
         //style = new GUIStyle();
         //style.alignment = TextAnchor.UpperCenter;
     }
@@ -76,6 +81,8 @@ public class PlayerControl : MonoBehaviour {
         {
             if(stats.curMana < stats.maxMana)
             stats.curMana++;
+            uiStuff();
+            statsPage = stats.updateStatPage();
         }
         tick++;
     }
@@ -97,6 +104,19 @@ public class PlayerControl : MonoBehaviour {
                     GUI.Box(new Rect(70 * x + 30, 30, 50, 50), invTextures[x]);
                 }
             }
+
+            int gh = Screen.width / 12;
+            int hg = Screen.height / 12;
+            //Weapon with RMB
+            GUI.backgroundColor = Color.black;
+            GUI.Box(new Rect(gh * 10, hg * 10, 55, 55), "RMB");
+            GUI.backgroundColor = Color.clear;
+            GUI.Box(new Rect(gh * 10, hg * 10 + 15, 55, 55), weapon);
+            //Spell with F
+            GUI.backgroundColor = Color.black;
+            GUI.Box(new Rect(gh * 11, hg * 10, 55, 55), "F");
+            GUI.backgroundColor = Color.clear;
+            GUI.Box(new Rect(gh * 11, hg * 10 + 15, 55, 55), spell);
         }
         else if (GUION == "inv")
         {
@@ -117,7 +137,6 @@ public class PlayerControl : MonoBehaviour {
                     }
                 }
             }
-
         }
         else if (GUION == "equipment")
         {
@@ -133,12 +152,10 @@ public class PlayerControl : MonoBehaviour {
             //GUI.color = Color.magenta;
             if (inv.equipped[0] != null)
             {
-                
                 if (GUI.Button(new Rect(70 * 1 + 30, 30, 50, 50), equipTextures[0]))
                 {
                     inv.unequipItem(inv.equipped[0]);
                 }
-
             }
 
             if (inv.equipped[2] != null)
@@ -235,6 +252,12 @@ public class PlayerControl : MonoBehaviour {
             GUI.Box(new Rect(w * 6 - (w), h * 6 - (h * 2), w * 2, h), "Clicking swings your \nsword, \"F\" fires a fire spell.");
             GUI.Box(new Rect(w * 6 - (w), h * 6 - (h * 1), w * 2, h), "Use tab to open inventory, \n\"U\" to open equipment and \n\"Escape\" to open the \nmain menu.");
         }
+        else if(GUION == "stats")
+        {
+            int w = Screen.width / 12;
+            int h = Screen.height / 12;
+            GUI.Box(new Rect(w * 5, h * 4, w * 2, h * 3), statsPage);
+        }
        
     }
 
@@ -304,7 +327,6 @@ public class PlayerControl : MonoBehaviour {
         {
             if (GUION == "basic")
             {
-                Cursor.lockState = CursorLockMode.None;
                 GUION = "stats";
             }
             else
@@ -417,6 +439,11 @@ public class PlayerControl : MonoBehaviour {
         }
     }
 
+    void OnLevelWasLoaded()
+    {
+        uiStuff();
+    }
+
     void mouseController()
     {
         //Mouse handler
@@ -488,5 +515,12 @@ public class PlayerControl : MonoBehaviour {
         {
             //Do nothing, do time trigger for health stuff before here
         }
+    }
+
+    void uiStuff()
+    {
+        GameObject spellF = stats.magicSpell;
+        spell = spellF.GetComponent<SpriteRenderer>().sprite.texture;
+        weapon = inv.equipped[0].GetComponent<SpriteRenderer>().sprite.texture;
     }
 }

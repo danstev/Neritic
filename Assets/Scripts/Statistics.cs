@@ -81,6 +81,26 @@ public class Statistics : MonoBehaviour {
         }
     }
 
+    public string updateStatPage()
+    {
+        string text;
+        text = "\nMax health: ";
+        text += maxHealth;
+        text += "\nMax mana: ";
+        text += maxMana;
+        text += "\nAttack damage: ";
+        text += attack;
+        text += "\nSpell damage: ";
+        text += magicAttack;
+        text += "\nStrength: ";
+        text += actualstrength;
+        text += "\nAgility: ";
+        text += actualAgility;
+        text += "\nIntellect: ";
+        text += actualIntellect;
+        return text;
+    }
+
     void fixedUpdate()
     {
         if (playerKnockback <= 0)
@@ -229,7 +249,7 @@ public class Statistics : MonoBehaviour {
         strength++;
         agility++;
         intellect++;
-        baseAttack += 5;
+        attack += 5;
         maxHealth += 10;
         curHealth = maxHealth;
         maxMana += 5;
