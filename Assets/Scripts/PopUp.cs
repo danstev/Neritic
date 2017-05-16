@@ -8,6 +8,8 @@ public class PopUp : MonoBehaviour {
     GUIStyle style;
     public bool customText;
     public string customTextString;
+    private float time = 1f;
+    private float timer = 0f;
 
     void Start () {
         if (customText == false)
@@ -106,7 +108,6 @@ public class PopUp : MonoBehaviour {
                 }
                 text += "\n";
                 text += slot;
-
             }
         }
         else
@@ -124,6 +125,7 @@ public class PopUp : MonoBehaviour {
     void OnMouseEnter()
     {
         gui = true;
+        timer = time;
     }
 
     void OnMouseExit()
@@ -136,6 +138,9 @@ public class PopUp : MonoBehaviour {
 
         if (gui)
         {
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+                gui = false;
             //GUI.Box(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), " ");
             GUI.backgroundColor = Color.blue;
             GUI.Label(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), text, style);
