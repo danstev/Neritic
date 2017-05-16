@@ -47,7 +47,7 @@ public class LevelGen : MonoBehaviour {
             foley3 = Resources.Load("Prefabs/Foley/dreamFoley3") as GameObject;
             enemTest = Resources.Load("Prefabs/NPC/marsh") as GameObject;
             enemy2 = Resources.Load("Prefabs/NPC/shadow") as GameObject;
-            enemy3 = Resources.Load("Prefabs/NPC/shadow") as GameObject;
+            enemy3 = Resources.Load("Prefabs/NPC/marsh") as GameObject;
             boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genDream();
@@ -92,7 +92,7 @@ public class LevelGen : MonoBehaviour {
             foley3 = Resources.Load("Prefabs/Foley/dreamFoley3") as GameObject;
             enemTest = Resources.Load("Prefabs/NPC/beholder") as GameObject;
             enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
-            enemy3 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy3 = Resources.Load("Prefabs/NPC/shadow") as GameObject;
             boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genDungeon();
@@ -106,7 +106,7 @@ public class LevelGen : MonoBehaviour {
             foley2 = Resources.Load("Prefabs/Blood") as GameObject;
             foley3 = Resources.Load("Prefabs/Blood") as GameObject;
             enemTest = Resources.Load("Prefabs/NPC/beholder") as GameObject;
-            enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy2 = Resources.Load("Prefabs/NPC/smile") as GameObject;
             enemy3 = Resources.Load("Prefabs/NPC/treant") as GameObject;
             boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
@@ -201,7 +201,7 @@ public class LevelGen : MonoBehaviour {
                     t.wallTile = wall;
                     t.spacemod = spaceMod;
                     float e = UnityEngine.Random.Range(0f, 1f);
-                    if (e > 0.95f)
+                    if (e > 0.97f)
                     {
                         //enemy spawn
                         t.entity = true;
