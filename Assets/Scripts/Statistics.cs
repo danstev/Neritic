@@ -54,8 +54,11 @@ public class Statistics : MonoBehaviour {
     //Audio
     public AudioSource audioPlayer;
     public AudioClip hurtSound;
+    public AudioClip music;
+    private float musicLength = 1f;
+    private float musicLengthTemp = 0f;
 
-    private bool player = false;
+    private bool play = false;
 
     //Enemy Drops
     public GameObject drop1;
@@ -72,7 +75,10 @@ public class Statistics : MonoBehaviour {
         setExpForLevel();
 
         if (gameObject.tag == "Player")
-            player = true;
+        {
+            play = true;
+            musicLength = music.length;
+        }
     }
 
     void fixedUpdate()
@@ -82,11 +88,21 @@ public class Statistics : MonoBehaviour {
             c.Move(playerKnockbackV * Time.deltaTime);
             playerKnockback -= Time.deltaTime;
         }
-
     }
 
     // Update is called once per frame
     void Update() {
+
+        if(play)
+        {
+            if(musicLengthTemp <= 0)
+            {
+                audioPlayer.PlayOneShot(music);
+                musicLengthTemp = musicLength;
+            }
+
+            musicLengthTemp -= Time.deltaTime;
+        }
 
         if (a != null)
             a.speed = momvementSpeedMod;
@@ -105,7 +121,7 @@ public class Statistics : MonoBehaviour {
                 GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
                 Destroy(gameObject);
                 Instantiate(player);
-                SceneManager.LoadScene("dream");
+                SceneManager.LoadScene("forest");
             }
 
             Collider[] detectColliders = Physics.OverlapSphere(transform.position, 25);
@@ -186,16 +202,17 @@ public class Statistics : MonoBehaviour {
             audioPlayer.PlayOneShot(hurtSound);
             if (transform.tag != "Player")
             {
+                GameObject b = Resources.Load("Prefabs/Blood") as GameObject;
                 r.AddForce(p * 125);
-                //spawn x blood
-                for (int x = 0; x < Random.Range(1, 8); x++)
+                
+                for (int x = 0; x < Random.Range(1, 4); x++)
                 {
                     GameObject g;
                     Vector3 v = gameObject.transform.position;
                     Quaternion q = gameObject.transform.rotation;
-                    g = Instantiate(Resources.Load("Prefabs/Blood"), v, q) as GameObject;
-                    Rigidbody b = g.GetComponent<Rigidbody>();
-                    b.AddForce(p * 250);
+                    g = Instantiate(b, v, q) as GameObject;
+                    Rigidbody brdi = g.GetComponent<Rigidbody>();
+                    brdi.AddForce(p * 250);
                 }
             }
             else
@@ -210,7 +227,6 @@ public class Statistics : MonoBehaviour {
     {
         //More stat stuff to do here, gotta get it written down.
         strength++;
-
         agility++;
         intellect++;
         baseAttack += 5;
@@ -220,7 +236,7 @@ public class Statistics : MonoBehaviour {
         curMana = maxMana;
         level++;
         expForLevel = level * 100 * (int)(level * 0.25);
-        refreshWeaponDamage();
+        //refreshWeaponDamage();
         PlayerControl p = GetComponent<PlayerControl>();
         p.refreshStats();
         setExpForLevel();
@@ -228,9 +244,6 @@ public class Statistics : MonoBehaviour {
 
     void refreshWeaponDamage()
     {
-        //Weapon
-        //TODO weapon class here 
-        //Magic
         int atk = (int)baseAttack;
         foreach(GameObject g in inv.equipped)
         {
@@ -239,8 +252,9 @@ public class Statistics : MonoBehaviour {
         }
 
         attack = atk;
+        /*
         int x = magicSpell.GetComponent<Spell>().magicAttack;
-        magicAttack = x + (int)(x * 0.5);
+        magicAttack = x + (int)(x * 0.5);*/
     }
 
     void setExpForLevel()
