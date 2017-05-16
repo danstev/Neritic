@@ -57,6 +57,12 @@ public class Equipment : MonoBehaviour {
         }
     }
 
+    public void unEquip()
+    {
+        Animator a = GetComponent<Animator>();
+        a.enabled = false;
+    }
+
     private Quaternion getRot()
     {
         Quaternion r;
