@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour {
                 if( equipped[slot] == null )
                 {
                     equipped[slot] = i;
-                    totalWeight += item.weight * item.held;
+                    //totalWeight += item.weight * item.held;
                     
                     if (slot == 0) //Weapon slot, need another for 2nd weapon slot?
                     {
@@ -70,7 +70,7 @@ public class Inventory : MonoBehaviour {
                 {
                     //Add into next free slot
                     slots[lastSlot] = i;
-                    totalWeight += item.weight * item.held;
+                    //totalWeight += item.weight * item.held;
                     i.transform.parent = transform;
                     i.SetActive(false);
                     lastSlot++;
@@ -114,7 +114,7 @@ public class Inventory : MonoBehaviour {
                             currentSlot.held += toAdd;
 
                             slots[lastSlot] = i;
-                            totalWeight += item.weight * item.held;
+                            //totalWeight += item.weight * item.held;
                             i.transform.parent = transform;
                             i.SetActive(false);
                             updateGUITextures();
@@ -128,7 +128,7 @@ public class Inventory : MonoBehaviour {
                             print("no space left");
                             //Add to next free slot
                             slots[lastSlot] = i;
-                            totalWeight += item.weight * item.held;
+                            //totalWeight += item.weight * item.held;
                             i.transform.parent = transform;
                             i.SetActive(false);
                             updateGUITextures();
@@ -156,7 +156,7 @@ public class Inventory : MonoBehaviour {
             if (amountOfItems < 20) //inv not full
             {
                 slots[lastSlot] = i;
-                totalWeight += item.weight * item.held;
+                //totalWeight += item.weight * item.held;
                 i.transform.parent = transform;
                 i.SetActive(false);
 
@@ -172,7 +172,7 @@ public class Inventory : MonoBehaviour {
             }
 
             slots[lastSlot] = i;
-            totalWeight += item.weight;
+            //totalWeight += item.weight;
             i.transform.parent = transform;
             i.SetActive(false);
 
@@ -214,7 +214,7 @@ public class Inventory : MonoBehaviour {
         totalWeight = weight;
     }
 
-    void updateAllStatisitics()
+    public void updateAllStatisitics()
     {
         int s = 0;
         int a = 0;
@@ -227,6 +227,8 @@ public class Inventory : MonoBehaviour {
         s += stats.strength;
         a += stats.agility;
         i += stats.intellect;
+
+        sDam += (int)stats.magicAttack;
 
 
         foreach(GameObject g in equipped)
@@ -260,14 +262,56 @@ public class Inventory : MonoBehaviour {
 
     public void dropItem(GameObject item)
     {
-        Item i = GetComponent<Item>();
+        Item i = item.GetComponent<Item>();
         totalWeight -= i.weight;
         item.transform.parent = null;
         i.equipped = false;
         item.transform.position = item.transform.position + Vector3.forward;
         item.SetActive(true);
+
+        GameObject g = GameObject.Find("OutPortal").gameObject;
+        item.transform.parent = g.transform;
         updateGUITextures();
     }
+
+    public void dropEverything()
+    {
+        foreach(GameObject i in slots)
+        {
+
+        }
+
+        foreach(GameObject e in equipped)
+        {
+
+        }
+    }
+
+    public void equipEquipment(GameObject toEquip)
+    {
+        Item item = toEquip.GetComponent<Item>();
+        Equipment e = toEquip.GetComponent<Equipment>();
+
+        if (equipped[e.slot] == null)
+        {
+            item.equip();
+            toEquip.SetActive(false);
+            e.equip();
+            toEquip.transform.parent = transform;
+            updateAllStatisitics();
+            updateGUITextures();
+        }
+        else
+        {
+            unequipItem(equipped[e.slot]);
+            item.equip();
+            toEquip.SetActive(false);
+            e.equip();
+            toEquip.transform.parent = transform;
+            updateAllStatisitics();
+            updateGUITextures();
+        }
+}
 
     public void deleteItem(int itemId) //used for using items
     {
@@ -354,5 +398,28 @@ public class Inventory : MonoBehaviour {
         {
             return false;
         }
+    }
+
+    public void unequipItem(GameObject toUnequip)
+    {
+        Equipment i = toUnequip.GetComponent<Equipment>();
+        int slot = i.slot;
+        //if(slot == 0)
+        //{
+            i.unEquip();
+            equipped[slot] = null;
+            toUnequip.SetActive(true);
+            toUnequip.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1, gameObject.transform.position.z);
+            toUnequip.transform.parent = null;
+        CapsuleCollider c = toUnequip.GetComponent<CapsuleCollider>();
+        c.enabled = true;
+        updateAllStatisitics();
+        updateGUITextures();
+       // }
+        //else
+        //{
+            
+        //}
+
     }
 }
