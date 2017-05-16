@@ -89,11 +89,11 @@ public class PlayerControl : MonoBehaviour {
             {
                 if (inv.slots[x] == null)
                 {
-                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), "hello" + x); //draw buttons here
+                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), x.ToString()); //draw buttons here
                 }
                 else
                 {
-                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), "hello" + x); //draw buttons here
+                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), x.ToString()); //draw buttons here
                     GUI.Box(new Rect(70 * x + 30, 30, 50, 50), invTextures[x]);
                 }
             }
@@ -105,29 +105,23 @@ public class PlayerControl : MonoBehaviour {
                 if (inv.slots[x] == null)
                 {
                     GUI.backgroundColor = Color.blue;
-                    GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), "hello" + x); //draw buttons here
+                    GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), x.ToString()); //draw buttons here
                 }
                 else
                 {
-                    GUI.backgroundColor = Color.blue;
-                    //GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), "hello" + x); //draw buttons here
-                    GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), invTextures[x]);
-                    GUI.backgroundColor = Color.clear;
-                    if (GUI.Button(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), " "))
+                    if (GUI.Button(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), invTextures[x]))
                     {
-                        print("use item: " + x);
                         Item i = inv.slots[x].GetComponent<Item>();
-                        i.use(stats);
-                        print(i.held);
-                        inv.deleteItem(i.ID);
-                        print(i.held);
-        }
+                        i.use(stats, inv);
+                        //inv.deleteItem(i.ID);
+                    }
                 }
             }
 
         }
         else if (GUION == "equipment")
         {
+            //GUI.color = Color.clear;
             GUI.Box(new Rect(70 * 1 + 30, 30, 50, 50), "weapon");
             GUI.Box(new Rect(70 * 2 + 30, 30, 50, 50), "helmet");
             GUI.Box(new Rect(70 * 2 + 30, 30 + 80, 50, 50), "body");
@@ -136,51 +130,72 @@ public class PlayerControl : MonoBehaviour {
             GUI.Box(new Rect(70 * 1 + 30, 30 + 160, 50, 50), "feet");
             GUI.Box(new Rect(70 * 3 + 30, 30 + 80, 50, 50), "neck");
             GUI.Box(new Rect(70 * 3 + 30, 30 , 50, 50), "ring");
-
+            //GUI.color = Color.magenta;
             if (inv.equipped[0] != null)
             {
-                if (GUI.Button(new Rect(70 * 1 + 30, 30, 50, 50), " "))
+                
+                if (GUI.Button(new Rect(70 * 1 + 30, 30, 50, 50), equipTextures[0]))
                 {
-                    print("unequip");
+                    inv.unequipItem(inv.equipped[0]);
                 }
-                GUI.Box(new Rect(70 * 1 + 30, 30, 50, 50), equipTextures[0]);
 
             }
 
             if (inv.equipped[2] != null)
             {
-                GUI.Box(new Rect(70 * 2 + 30, 30, 50, 50), equipTextures[2]);
+                if (GUI.Button(new Rect(70 * 2 + 30, 30, 50, 50), equipTextures[2]))
+                {
+                    inv.unequipItem(inv.equipped[2]);
+                }
+                
             }
 
             if (inv.equipped[3] != null)
             {
-                GUI.Box(new Rect(70 * 2 + 30, 30 + 80, 50, 50), equipTextures[3]);
+                if (GUI.Button(new Rect(70 * 2 + 30, 30 + 80, 50, 50), equipTextures[3]))
+                {
+                    inv.unequipItem(inv.equipped[3]);
+                }
             }
 
             if (inv.equipped[4] != null)
             {
-                GUI.Box(new Rect(70 * 2 + 30, 30 + 160, 50, 50), equipTextures[4]);
+                if (GUI.Button(new Rect(70 * 2 + 30, 30 + 160, 50, 50), equipTextures[4]))
+                {
+                    inv.unequipItem(inv.equipped[4]);
+                }
             }
 
             if (inv.equipped[5] != null)
             {
-                GUI.Box(new Rect(70 * 1 + 30, 30 + 80, 50, 50), equipTextures[5]);
+                if (GUI.Button(new Rect(70 * 1 + 30, 30 + 80, 50, 50), equipTextures[5]))
+                {
+                    inv.unequipItem(inv.equipped[5]);
+                }
             }
 
             if (inv.equipped[6] != null)
             {
-                GUI.Box(new Rect(70 * 1 + 30, 30 + 160, 50, 50), equipTextures[6]);
+                if (GUI.Button(new Rect(70 * 1 + 30, 30 + 160, 50, 50), equipTextures[6]))
+                {
+                    inv.unequipItem(inv.equipped[6]);
+                }
             }
 
             if (inv.equipped[7] != null)
             {
-                GUI.Box(new Rect(70 * 3 + 30, 30 + 80, 50, 50), equipTextures[7]);
+                if (GUI.Button(new Rect(70 * 3 + 30, 30 + 80, 50, 50), equipTextures[7]))
+                {
+                    inv.unequipItem(inv.equipped[7]);
+                }
             }
 
             if (inv.equipped[8] != null)
             {
-                GUI.Box(new Rect(70 * 3 + 30, 30, 50, 50), equipTextures[8]);
-                print(equipTextures.Length);
+                if (GUI.Button(new Rect(70 * 3 + 30, 30, 50, 50), equipTextures[8]))
+                {
+                    inv.unequipItem(inv.equipped[8]);
+                }
             }
 
         }
@@ -197,10 +212,10 @@ public class PlayerControl : MonoBehaviour {
             //Help
             if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 25, 100, 50), "Controls"))
             {
-                //nothing atm lol
+                GUION = "help";
             }
             //option
-            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 75, 100, 50), "Options"))
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 75, 100, 50), "Options DOES NOTHING ATM LOL"))
             {
                 //todo
             }
@@ -209,6 +224,16 @@ public class PlayerControl : MonoBehaviour {
             {
                 Application.Quit();
             }
+        }
+        else if(GUION == "help")
+        {
+            int w = Screen.width / 12;
+            int h = Screen.height / 12;
+            GUI.Box(new Rect(w * 6 - (w / 2), h * 6 - (h * 4), w, h), "Controls");
+            GUI.backgroundColor = Color.blue;
+            GUI.Box(new Rect(w * 6 - (w), h * 6 - (h * 3), w * 2, h), "Use WASD or the arrow \nkeys to move around and the mouse to aim.");
+            GUI.Box(new Rect(w * 6 - (w), h * 6 - (h * 2), w * 2, h), "Clicking swings your \nsword, \"F\" fires a fire spell.");
+            GUI.Box(new Rect(w * 6 - (w), h * 6 - (h * 1), w * 2, h), "Use tab to open inventory, \n\"U\" to open equipment and \n\"Escape\" to open the \nmain menu.");
         }
        
     }
@@ -303,6 +328,37 @@ public class PlayerControl : MonoBehaviour {
             }
         }
 
+        if (Input.GetKeyDown("1"))
+        {
+            Item i = inv.slots[0].GetComponent<Item>();
+            i.use(stats, inv);
+        }
+
+        if (Input.GetKeyDown("2"))
+        {
+            Item i = inv.slots[1].GetComponent<Item>();
+            i.use(stats, inv);
+        }
+        if (Input.GetKeyDown("3"))
+        {
+            Item i = inv.slots[2].GetComponent<Item>();
+            i.use(stats, inv);
+        }
+        if (Input.GetKeyDown("4"))
+        {
+            Item i = inv.slots[3].GetComponent<Item>();
+            i.use(stats, inv);
+        }
+        if (Input.GetKeyDown("5"))
+        {
+            Item i = inv.slots[4].GetComponent<Item>();
+            i.use(stats, inv);
+        }
+        if (Input.GetKeyDown("6"))
+        {
+            Item i = inv.slots[5].GetComponent<Item>();
+            i.use(stats, inv);
+        }
     }
 
     public void refreshWeapon(GameObject w) //Refreshes what gameObject to use for the animator.
@@ -313,7 +369,15 @@ public class PlayerControl : MonoBehaviour {
 
     public void refreshStats() //I think this is it for player controller;
     {
-        speed = (stats.actualAgility / 2) + 1;
+        if(stats.actualAgility < 20)
+        {
+            speed = (stats.actualAgility / 3) + 1;
+        }
+        else
+        {
+            speed = (stats.actualAgility / 2) + 1;
+        }
+        
     }
 
     void castSpell()
