@@ -14,38 +14,32 @@ Platform assembly: C:\Users\Danstev\Desktop\gameDev\Neritic\gamu_Data\Managed\Un
 Loading C:\Users\Danstev\Desktop\gameDev\Neritic\gamu_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\Danstev\Desktop\gameDev\Neritic\gamu_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading C:\Users\Danstev\Desktop\gameDev\Neritic\gamu_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.065 seconds
+- Completed reload, in  0.068 seconds
 Platform assembly: C:\Users\Danstev\Desktop\gameDev\Neritic\gamu_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: C:\Users\Danstev\Desktop\gameDev\Neritic\gamu_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 3520x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 1.047304 ms
+UnloadTime: 1.060021 ms
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 13ec -> priority: 1 
-  Thread -> id: 1f54 -> priority: 1 
+  Thread -> id: 21e4 -> priority: 1 
+  Thread -> id: 24b8 -> priority: 1 
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.134131 ms
+UnloadTime: 0.141442 ms
 
 Unloading 60 unused Assets to reduce memory usage. Loaded Objects now: 281.
-Total: 0.355670 ms (FindLiveObjects: 0.017481 ms CreateObjectMapping: 0.026699 ms MarkObjects: 0.215500 ms  DeleteObjects: 0.095354 ms)
+Total: 0.402077 ms (FindLiveObjects: 0.024792 ms CreateObjectMapping: 0.030195 ms MarkObjects: 0.239657 ms  DeleteObjects: 0.105843 ms)
 
-5.517222
+15.57358
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
-3.678148
+15.57358
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
 NullReferenceException: Object reference not set to an instance of an object
-  at PlayerControl.attack () [0x00000] in <filename unknown>:0 
-  at PlayerControl.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-NullReferenceException: Object reference not set to an instance of an object
   at Statistics.refreshWeaponDamage () [0x00000] in <filename unknown>:0 
   at Statistics.levelUp () [0x00000] in <filename unknown>:0 
   at Statistics.Update () [0x00000] in <filename unknown>:0 
@@ -66,10 +60,14 @@ NullReferenceException: Object reference not set to an instance of an object
  
 (Filename:  Line: -1)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at Statistics.refreshWeaponDamage () [0x00000] in <filename unknown>:0 
-  at Statistics.levelUp () [0x00000] in <filename unknown>:0 
-  at Statistics.Update () [0x00000] in <filename unknown>:0 
+IndexOutOfRangeException: Array index is out of range.
+  at (wrapper stelemref) object:stelemref (object,intptr,object)
+  at Inventory.updateGUITextures () [0x00000] in <filename unknown>:0 
+  at Inventory.AddItem (UnityEngine.GameObject i) [0x00000] in <filename unknown>:0 
+  at Item.worldUse (.Inventory inv) [0x00000] in <filename unknown>:0 
+UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
+PlayerControl:worldUse()
+PlayerControl:Update()
  
 (Filename:  Line: -1)
 
@@ -79,83 +77,83 @@ NullReferenceException: Object reference not set to an instance of an object
   at Statistics.Update () [0x00000] in <filename unknown>:0 
  
 (Filename:  Line: -1)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at Statistics.refreshWeaponDamage () [0x00000] in <filename unknown>:0 
-  at Statistics.levelUp () [0x00000] in <filename unknown>:0 
-  at Statistics.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at Statistics.refreshWeaponDamage () [0x00000] in <filename unknown>:0 
-  at Statistics.levelUp () [0x00000] in <filename unknown>:0 
-  at Statistics.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at Statistics.refreshWeaponDamage () [0x00000] in <filename unknown>:0 
-  at Statistics.levelUp () [0x00000] in <filename unknown>:0 
-  at Statistics.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at Statistics.refreshWeaponDamage () [0x00000] in <filename unknown>:0 
-  at Statistics.levelUp () [0x00000] in <filename unknown>:0 
-  at Statistics.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at Statistics.refreshWeaponDamage () [0x00000] in <filename unknown>:0 
-  at Statistics.levelUp () [0x00000] in <filename unknown>:0 
-  at Statistics.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-NullReferenceException: Object reference not set to an instance of an object
-  at Statistics.refreshWeaponDamage () [0x00000] in <filename unknown>:0 
-  at Statistics.levelUp () [0x00000] in <filename unknown>:0 
-  at Statistics.Update () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-dream
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 181.857574 ms
-
-Unloading 189 unused Assets to reduce memory usage. Loaded Objects now: 294.
-Total: 0.658896 ms (FindLiveObjects: 0.025109 ms CreateObjectMapping: 0.027970 ms MarkObjects: 0.389362 ms  DeleteObjects: 0.215817 ms)
-
-16.54467
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
-
-16.54467
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
 forest
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 121.574127 ms
+UnloadTime: 64.832008 ms
 
-Unloading 207 unused Assets to reduce memory usage. Loaded Objects now: 294.
-Total: 0.906498 ms (FindLiveObjects: 0.098214 ms CreateObjectMapping: 0.028924 ms MarkObjects: 0.563860 ms  DeleteObjects: 0.214546 ms)
+Unloading 217 unused Assets to reduce memory usage. Loaded Objects now: 304.
+Total: 0.670022 ms (FindLiveObjects: 0.030831 ms CreateObjectMapping: 0.029241 ms MarkObjects: 0.380781 ms  DeleteObjects: 0.228532 ms)
 
-NullReferenceException: Object reference not set to an instance of an object
-  at LevelGen.renderTile (.Tile t) [0x00000] in <filename unknown>:0 
-  at LevelGen.renderMap (.Tile[] t) [0x00000] in <filename unknown>:0 
-  at LevelGen.genDungeon () [0x00000] in <filename unknown>:0 
-  at LevelGen.genMap () [0x00000] in <filename unknown>:0 
-  at GameManager.Start () [0x00000] in <filename unknown>:0 
+6.681309
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+6.681309
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+IndexOutOfRangeException: Array index is out of range.
+  at (wrapper stelemref) object:stelemref (object,intptr,object)
+  at Inventory.updateGUITextures () [0x00000] in <filename unknown>:0 
+  at Inventory.AddItem (UnityEngine.GameObject i) [0x00000] in <filename unknown>:0 
+  at Item.worldUse (.Inventory inv) [0x00000] in <filename unknown>:0 
+UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
+PlayerControl:worldUse()
+PlayerControl:Update()
  
 (Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Statistics.refreshWeaponDamage () [0x00000] in <filename unknown>:0 
+  at Statistics.levelUp () [0x00000] in <filename unknown>:0 
+  at Statistics.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Statistics.refreshWeaponDamage () [0x00000] in <filename unknown>:0 
+  at Statistics.levelUp () [0x00000] in <filename unknown>:0 
+  at Statistics.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Statistics.refreshWeaponDamage () [0x00000] in <filename unknown>:0 
+  at Statistics.levelUp () [0x00000] in <filename unknown>:0 
+  at Statistics.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+IndexOutOfRangeException: Array index is out of range.
+  at (wrapper stelemref) object:stelemref (object,intptr,object)
+  at Inventory.updateGUITextures () [0x00000] in <filename unknown>:0 
+  at Inventory.AddItem (UnityEngine.GameObject i) [0x00000] in <filename unknown>:0 
+  at Item.worldUse (.Inventory inv) [0x00000] in <filename unknown>:0 
+UnityEngine.Component:SendMessage(String, Object, SendMessageOptions)
+PlayerControl:worldUse()
+PlayerControl:Update()
+ 
+(Filename:  Line: -1)
+
+dungeon
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 29.752760 ms
+
+Unloading 186 unused Assets to reduce memory usage. Loaded Objects now: 328.
+Total: 0.793347 ms (FindLiveObjects: 0.054034 ms CreateObjectMapping: 0.062933 ms MarkObjects: 0.465646 ms  DeleteObjects: 0.208825 ms)
+
+7.09902
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+7.09902
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
 
