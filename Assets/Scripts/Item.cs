@@ -59,11 +59,18 @@ public class Item : MonoBehaviour {
         equipped = true;
     }
 
-    public void use(Statistics s)
+    public void unequip()
+    {
+        Animator a = GetComponent<Animator>();
+        a.enabled = false;
+        equipped = false;
+    }
+
+    public void use(Statistics s, Inventory i)
     {
         if(equipable)
         {
-            equip();
+            i.equipEquipment(gameObject);
         }
         else
         {
@@ -72,7 +79,14 @@ public class Item : MonoBehaviour {
             s.strength += strength;
             s.agility += agility;
             s.intellect += intellect;
-            
+            if(held == 1)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                held--;
+            }
         }
     }
 
