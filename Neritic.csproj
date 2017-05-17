@@ -90,6 +90,8 @@
     <Compile Include="Assets\Scripts\Spell.cs" />
     <Compile Include="Assets\Scripts\Statistics.cs" />
     <Compile Include="Assets\Scripts\behav\weaponAnimBehav.cs" />
+    <Compile Include="Assets\Scripts\death.cs" />
+    <Compile Include="Assets\Scripts\win.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Levels\OldLevelGenScripts.txt" />
