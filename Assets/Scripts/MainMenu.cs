@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour {
                 SceneManager.LoadScene("dream");
             }
             //skip tut
-            if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6 - (h * 3), 200, 50), "Start Game but skip\n tutorial level"))
+            if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6 - (h * 3), 200, 50), "Start Game but skip\n practice level"))
             {
                 GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
                 Instantiate(player);
