@@ -35,8 +35,10 @@ public class GameManager : MonoBehaviour {
             stats = g.GetComponent<Statistics>();
             GameObject rain = player.transform.Find("Rain").gameObject;
             Inventory i = player.GetComponent<Inventory>();
+            PlayerControl cont = player.GetComponent<PlayerControl>();
             if (map == "dream")
             {
+                stats.setMusic(1);
                 GameObject sword = Instantiate(Resources.Load("Prefabs/Weapons/SmallSword")) as GameObject;
                 i.AddItem(sword);
                 //god stats etc
@@ -49,17 +51,19 @@ public class GameManager : MonoBehaviour {
                 stats.strength = 20;
                 stats.intellect = 20;
                 stats.agility = 20;
-                PlayerControl cont = player.GetComponent<PlayerControl>();
                 cont.refreshStats();
                 stats.level = 10;
                 i.updateAllStatisitics();
                 rain.SetActive(false);
 
+                
+
             }
             else if (map == "forest")
             {
+                stats.setMusic(2);
                 //check if sword is equipped
-                if(i.equipped[0] == null)
+                if (i.equipped[0] == null)
                 {
                     GameObject sword = Instantiate(Resources.Load("Prefabs/Weapons/SmallSword")) as GameObject;
                     i.AddItem(sword);
@@ -76,7 +80,7 @@ public class GameManager : MonoBehaviour {
                 stats.strength = 5;
                 stats.intellect = 5;
                 stats.agility = 10;
-                PlayerControl cont = player.GetComponent<PlayerControl>();
+                
                 cont.refreshStats();
                 i.updateAllStatisitics();
                 stats.level = 1;
@@ -85,11 +89,13 @@ public class GameManager : MonoBehaviour {
             }
             else if (map == "dungeon")
             {
+                stats.setMusic(3);
                 //rain off
                 rain.SetActive(false);
             }
             else if (map == "endLevel")
             {
+                stats.setMusic(4);
                 //rain on
                 rain.SetActive(true);
             }
