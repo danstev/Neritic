@@ -55,10 +55,14 @@ public class Statistics : MonoBehaviour {
     public AudioSource audioPlayer;
     public AudioClip hurtSound;
     public AudioClip music;
+    public AudioClip music1;
+    public AudioClip music2;
+    public AudioClip music3;
+    public AudioClip music4;
     private float musicLength = 1f;
     private float musicLengthTemp = 0f;
 
-    private bool play = false;
+    public bool play = false;
 
     //Enemy Drops
     public GameObject drop1;
@@ -76,9 +80,36 @@ public class Statistics : MonoBehaviour {
 
         if (gameObject.tag == "Player")
         {
-            play = true;
-            musicLength = music.length;
+            resetMusic();
         }
+    }
+
+    public void setMusic(int x)
+    {
+        if(x == 1)
+        {
+            music = music1;
+        }
+        else if(x == 2)
+        {
+            music = music2;
+        }
+        else if (x == 3)
+        {
+            music = music3;
+        }
+        else if (x == 4)
+        {
+            music = music4;
+        }
+        resetMusic();
+    }
+
+    public void resetMusic()
+    {
+        play = false;
+        musicLength = music.length;
+        musicLengthTemp = musicLength;
     }
 
     public string updateStatPage()
@@ -117,11 +148,17 @@ public class Statistics : MonoBehaviour {
         {
             if(musicLengthTemp <= 0)
             {
-                audioPlayer.PlayOneShot(music);
+                audioPlayer.PlayOneShot(music, 0.1f);
                 musicLengthTemp = musicLength;
             }
 
             musicLengthTemp -= Time.deltaTime;
+        }
+        else
+        {
+            audioPlayer.Stop();
+            audioPlayer.PlayOneShot(music, 0.1f);
+            play = true;
         }
 
         if (a != null)
@@ -141,7 +178,7 @@ public class Statistics : MonoBehaviour {
                 GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
                 Destroy(gameObject);
                 Instantiate(player);
-                SceneManager.LoadScene("forest");
+                SceneManager.LoadScene("death");
             }
 
             Collider[] detectColliders = Physics.OverlapSphere(transform.position, 25);
