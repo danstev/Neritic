@@ -102,9 +102,9 @@ public class LevelGen : MonoBehaviour {
             tile = Resources.Load("Prefabs/Tiles/flowerbedFloor") as GameObject;
             wall = Resources.Load("Prefabs/Tiles/flowerbedWall") as GameObject;
             roof = Resources.Load("Prefabs/Tiles/flowerbedCeiling") as GameObject;
-            foley1 = Resources.Load("Prefabs/Blood") as GameObject;
-            foley2 = Resources.Load("Prefabs/Blood") as GameObject;
-            foley3 = Resources.Load("Prefabs/Blood") as GameObject;
+            foley1 = Resources.Load("Prefabs/Foley/pentagram") as GameObject;
+            foley2 = Resources.Load("Prefabs/Foley/palegrass") as GameObject;
+            foley3 = Resources.Load("Prefabs/Foley/coral") as GameObject;
             enemTest = Resources.Load("Prefabs/NPC/beholder") as GameObject;
             enemy2 = Resources.Load("Prefabs/NPC/smile") as GameObject;
             enemy3 = Resources.Load("Prefabs/NPC/treant") as GameObject;
