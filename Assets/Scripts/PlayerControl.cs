@@ -45,7 +45,10 @@ public class PlayerControl : MonoBehaviour {
     public Texture2D weapon;
     public Texture2D spell;
     private string statsPage;
-
+    public Texture2D esc;
+    public Texture2D u;
+    public Texture2D statsImage;
+    public Texture2D tabImage;
     //Audio stuff
     public AudioSource audioPlayer;
     public AudioClip weaponAttack;
@@ -117,6 +120,18 @@ public class PlayerControl : MonoBehaviour {
             GUI.Box(new Rect(gh * 11, hg * 10, 55, 55), "F");
             GUI.backgroundColor = Color.clear;
             GUI.Box(new Rect(gh * 11, hg * 10 + 15, 55, 55), spell);
+
+            GUI.backgroundColor = Color.black;
+            GUI.Box(new Rect(gh /2, hg * 3, 50, 50), "ESC");
+            GUI.Box(new Rect(gh /2, hg * 4, 50, 50), "U");
+            GUI.Box(new Rect(gh /2, hg * 5, 50, 50), "Y");
+            GUI.Box(new Rect(gh /2, hg * 6, 50, 50), "TAB");
+            GUI.backgroundColor = Color.clear;
+            GUI.Box(new Rect(gh / 2, hg * 3, 50, 50), esc);
+            GUI.Box(new Rect(gh / 2, hg * 4, 50, 50), u);
+            GUI.Box(new Rect(gh / 2, hg * 5, 50, 50), statsImage);
+            GUI.Box(new Rect(gh / 2, hg * 6, 50, 50), tabImage);
+
         }
         else if (GUION == "inv")
         {
