@@ -17,6 +17,7 @@ public class Item : MonoBehaviour {
     public string statNeeded;
     public int statNeed;
     public string description;
+    public int slotTaken;
 
     public int health;
     public int mana;
@@ -82,6 +83,7 @@ public class Item : MonoBehaviour {
             if(held == 1)
             {
                 Destroy(gameObject);
+                i.slots[slotTaken] = null;
             }
             else
             {
