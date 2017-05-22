@@ -311,7 +311,7 @@ public class Inventory : MonoBehaviour {
             updateAllStatisitics();
             updateGUITextures();
         }
-}
+    }
 
     public void deleteItem(int itemId) //used for using items
     {
