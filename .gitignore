@@ -318,3 +318,8 @@ Library/metadata/00/00000000000000004000000000000000
 Library/metadata/21/21b685e986ac521478e60182156abada
 *.dll
 *.stamp
+/Temp
+/64
+/gamu-data
+Neritic.rar
+gamefull.rar
