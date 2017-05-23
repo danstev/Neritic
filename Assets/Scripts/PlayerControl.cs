@@ -113,25 +113,25 @@ public class PlayerControl : MonoBehaviour {
 
             //Weapon with RMB
             GUI.backgroundColor = Color.black;
-            GUI.Box(new Rect(gh * 10, hg * 10, 55, 55), "RMB");
+            GUI.Box(new Rect(gh * 10, hg * 10, gh / 2, gh / 2), "RMB");
             GUI.backgroundColor = Color.clear;
-            GUI.Box(new Rect(gh * 10, hg * 10 + 15, 55, 55), weapon);
+            GUI.Box(new Rect(gh * 10, hg * 10 + 15, gh / 2, gh / 2), weapon);
             //Spell with F
             GUI.backgroundColor = Color.black;
-            GUI.Box(new Rect(gh * 11, hg * 10, 55, 55), "F");
+            GUI.Box(new Rect(gh * 11, hg * 10, gh / 2, gh / 2), "F");
             GUI.backgroundColor = Color.clear;
-            GUI.Box(new Rect(gh * 11, hg * 10 + 15, 55, 55), spell);
+            GUI.Box(new Rect(gh * 11, hg * 10 + 15, gh / 2, gh / 2), spell);
 
             GUI.backgroundColor = Color.black;
-            GUI.Box(new Rect(gh /2, hg * 3, 50, 50), "ESC");
-            GUI.Box(new Rect(gh /2, hg * 4, 50, 50), "U");
-            GUI.Box(new Rect(gh /2, hg * 5, 50, 50), "Y");
-            GUI.Box(new Rect(gh /2, hg * 6, 50, 50), "TAB");
+            GUI.Box(new Rect(gh /2, hg * 3, gh / 2, gh / 2), "ESC");
+            GUI.Box(new Rect(gh /2, hg * 4, gh / 2, gh / 2), "U");
+            GUI.Box(new Rect(gh /2, hg * 5, gh / 2, gh / 2), "Y");
+            GUI.Box(new Rect(gh /2, hg * 6, gh / 2, gh / 2), "TAB");
             GUI.backgroundColor = Color.clear;
-            GUI.Box(new Rect(gh / 2, hg * 3, 50, 50), esc);
-            GUI.Box(new Rect(gh / 2, hg * 4, 50, 50), u);
-            GUI.Box(new Rect(gh / 2, hg * 5, 50, 50), statsImage);
-            GUI.Box(new Rect(gh / 2, hg * 6, 50, 50), tabImage);
+            GUI.Box(new Rect(gh / 2, hg * 3, gh / 2, gh / 2), esc);
+            GUI.Box(new Rect(gh / 2, hg * 4, gh / 2, gh / 2), u);
+            GUI.Box(new Rect(gh / 2, hg * 5, gh / 2, gh / 2), statsImage);
+            GUI.Box(new Rect(gh / 2, hg * 6, gh / 2, gh / 2), tabImage);
 
         }
         else if (GUION == "inv")
