@@ -141,11 +141,11 @@ public class PlayerControl : MonoBehaviour {
                 if (inv.slots[x] == null)
                 {
                     GUI.backgroundColor = Color.blue;
-                    GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), (x + 1).ToString()); //draw buttons here
+                    GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), gh / 2, gh / 2), (x + 1).ToString()); //draw buttons here
                 }
                 else
                 {
-                    if (GUI.Button(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), 50, 50), invTextures[x]))
+                    if (GUI.Button(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), gh / 2, gh / 2), invTextures[x]))
                     {
                         Item i = inv.slots[x].GetComponent<Item>();
                         i.use(stats, inv);
