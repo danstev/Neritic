@@ -8,7 +8,7 @@ public class PopUp : MonoBehaviour {
     GUIStyle style;
     public bool customText;
     public string customTextString;
-    private float time = 1f;
+    private float time = 5f;
     private float timer = 0f;
 
     void Start () {
