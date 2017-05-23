@@ -92,24 +92,25 @@ public class PlayerControl : MonoBehaviour {
 
     void OnGUI()
     {
+        int gh = Screen.width / 12;
+        int hg = Screen.height / 12;
         if (GUION == "basic")
         {
+
             //Just top ui
             for (int x = 0; x < 6; x++)
             {
                 if (inv.slots[x] == null)
                 {
-                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), (x + 1).ToString()); //draw buttons here
+                    GUI.Box(new Rect((gh * x + (gh * 2.5f)) + (gh/2), (hg * 11) - (hg /2), gh/2, gh / 2), (x + 1).ToString()); //draw buttons here
                 }
                 else
                 {
-                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), (x + 1).ToString()); //draw buttons here
-                    GUI.Box(new Rect(70 * x + 30, 30, 50, 50), invTextures[x]);
+                    GUI.Box(new Rect((gh * x + (gh * 2.5f)) + (gh / 2), (hg * 11) - (hg / 2), gh / 2, gh / 2), (x + 1).ToString()); //draw buttons here
+                    GUI.Box(new Rect((gh * x + (gh * 2.5f)) + (gh / 2), (hg * 11) - (hg / 2), gh / 2, gh / 2), invTextures[x]);
                 }
             }
 
-            int gh = Screen.width / 12;
-            int hg = Screen.height / 12;
             //Weapon with RMB
             GUI.backgroundColor = Color.black;
             GUI.Box(new Rect(gh * 10, hg * 10, 55, 55), "RMB");
