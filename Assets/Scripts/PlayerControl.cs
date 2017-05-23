@@ -141,7 +141,7 @@ public class PlayerControl : MonoBehaviour {
                 if (inv.slots[x] == null)
                 {
                     GUI.backgroundColor = Color.blue;
-                    GUI.Box(new Rect(70 * (x % 6) + 30, 30 + (60 * (int)(x / 6)), gh / 2, gh / 2), (x + 1).ToString()); //draw buttons here
+                    GUI.Box(new Rect((gh * 3) + (gh * (x%6)), (hg * 3) + (hg * (x / 6)) + (hg / 2), gh / 2, gh / 2), (x + 1).ToString()); //draw buttons here
                 }
                 else
                 {
@@ -149,7 +149,6 @@ public class PlayerControl : MonoBehaviour {
                     {
                         Item i = inv.slots[x].GetComponent<Item>();
                         i.use(stats, inv);
-                        //inv.deleteItem(i.ID);
                     }
                 }
             }
