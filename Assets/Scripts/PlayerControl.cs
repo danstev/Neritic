@@ -167,7 +167,7 @@ public class PlayerControl : MonoBehaviour {
             //GUI.color = Color.magenta;
             if (inv.equipped[0] != null)
             {
-                if (GUI.Button(new Rect(70 * 1 + 30, 30, 50, 50), equipTextures[0]))
+                if (GUI.Button(new Rect(gh * 5, hg * 4, 50, 50), equipTextures[0]))
                 {
                     inv.unequipItem(inv.equipped[0]);
                 }
@@ -175,7 +175,7 @@ public class PlayerControl : MonoBehaviour {
 
             if (inv.equipped[2] != null)
             {
-                if (GUI.Button(new Rect(70 * 2 + 30, 30, 50, 50), equipTextures[2]))
+                if (GUI.Button(new Rect(gh * 6, hg * 4, 50, 50), equipTextures[2]))
                 {
                     inv.unequipItem(inv.equipped[2]);
                 }
@@ -184,7 +184,7 @@ public class PlayerControl : MonoBehaviour {
 
             if (inv.equipped[3] != null)
             {
-                if (GUI.Button(new Rect(70 * 2 + 30, 30 + 80, 50, 50), equipTextures[3]))
+                if (GUI.Button(new Rect(gh * 6, hg * 6, 50, 50), equipTextures[3]))
                 {
                     inv.unequipItem(inv.equipped[3]);
                 }
@@ -192,7 +192,7 @@ public class PlayerControl : MonoBehaviour {
 
             if (inv.equipped[4] != null)
             {
-                if (GUI.Button(new Rect(70 * 2 + 30, 30 + 160, 50, 50), equipTextures[4]))
+                if (GUI.Button(new Rect(gh * 6, hg * 8, 50, 50), equipTextures[4]))
                 {
                     inv.unequipItem(inv.equipped[4]);
                 }
@@ -200,7 +200,7 @@ public class PlayerControl : MonoBehaviour {
 
             if (inv.equipped[5] != null)
             {
-                if (GUI.Button(new Rect(70 * 1 + 30, 30 + 80, 50, 50), equipTextures[5]))
+                if (GUI.Button(new Rect(gh * 5, hg * 6, 50, 50), equipTextures[5]))
                 {
                     inv.unequipItem(inv.equipped[5]);
                 }
@@ -208,7 +208,7 @@ public class PlayerControl : MonoBehaviour {
 
             if (inv.equipped[6] != null)
             {
-                if (GUI.Button(new Rect(70 * 1 + 30, 30 + 160, 50, 50), equipTextures[6]))
+                if (GUI.Button(new Rect(gh * 5, hg * 8, 50, 50), equipTextures[6]))
                 {
                     inv.unequipItem(inv.equipped[6]);
                 }
@@ -216,7 +216,7 @@ public class PlayerControl : MonoBehaviour {
 
             if (inv.equipped[7] != null)
             {
-                if (GUI.Button(new Rect(70 * 3 + 30, 30 + 80, 50, 50), equipTextures[7]))
+                if (GUI.Button(new Rect(gh * 7, hg * 6, 50, 50), equipTextures[7]))
                 {
                     inv.unequipItem(inv.equipped[7]);
                 }
@@ -224,7 +224,7 @@ public class PlayerControl : MonoBehaviour {
 
             if (inv.equipped[8] != null)
             {
-                if (GUI.Button(new Rect(70 * 3 + 30, 30, 50, 50), equipTextures[8]))
+                if (GUI.Button(new Rect(gh * 7, hg * 4, 50, 50), equipTextures[8]))
                 {
                     inv.unequipItem(inv.equipped[8]);
                 }
