@@ -156,14 +156,14 @@ public class PlayerControl : MonoBehaviour {
         else if (GUION == "equipment")
         {
             //GUI.color = Color.clear;
-            GUI.Box(new Rect(70 * 1 + 30, 30, 50, 50), "weapon");
-            GUI.Box(new Rect(70 * 2 + 30, 30, 50, 50), "helmet");
-            GUI.Box(new Rect(70 * 2 + 30, 30 + 80, 50, 50), "body");
-            GUI.Box(new Rect(70 * 2 + 30, 30 + 160, 50, 50), "legs");
-            GUI.Box(new Rect(70 * 1 + 30, 30 + 80, 50, 50), "gloves");
-            GUI.Box(new Rect(70 * 1 + 30, 30 + 160, 50, 50), "feet");
-            GUI.Box(new Rect(70 * 3 + 30, 30 + 80, 50, 50), "neck");
-            GUI.Box(new Rect(70 * 3 + 30, 30 , 50, 50), "ring");
+            GUI.Box(new Rect(gh * 5, hg * 4, 50, 50), "weapon");
+            GUI.Box(new Rect(gh * 6, hg * 4, 50, 50), "helmet");
+            GUI.Box(new Rect(gh * 6, hg * 6, 50, 50), "body");
+            GUI.Box(new Rect(gh * 6, hg * 8, 50, 50), "legs");
+            GUI.Box(new Rect(gh * 5, hg * 6, 50, 50), "gloves");
+            GUI.Box(new Rect(gh * 5, hg * 8, 50, 50), "feet");
+            GUI.Box(new Rect(gh * 7, hg * 6, 50, 50), "neck");
+            GUI.Box(new Rect(gh * 7, hg * 4, 50, 50), "ring");
             //GUI.color = Color.magenta;
             if (inv.equipped[0] != null)
             {
