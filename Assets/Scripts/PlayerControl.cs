@@ -147,8 +147,16 @@ public class PlayerControl : MonoBehaviour {
                 {
                     if (GUI.Button(new Rect((gh * 3) + (gh * (x % 6)), (hg * 3) + (hg * (x / 6)), gh / 2, gh / 2), invTextures[x]))
                     {
-                        Item i = inv.slots[x].GetComponent<Item>();
-                        i.use(stats, inv);
+                        if (Input.GetMouseButtonUp(0))
+                        {
+                            Item i = inv.slots[x].GetComponent<Item>();
+                            i.use(stats, inv);
+                        }
+                        else if (Input.GetMouseButtonUp(1))
+                        {
+                            inv.dropItem(inv.slots[x]);
+                        }
+                        
                     }
                 }
             }
