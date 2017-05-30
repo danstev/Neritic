@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class PlayerControl : MonoBehaviour {
+public class PlayerControl : NetworkBehaviour{
 
     //3d stuff
     public Transform cam;
@@ -68,7 +69,17 @@ public class PlayerControl : MonoBehaviour {
         movement += movementController;
         tick = 0;
         statsPage = stats.updateStatPage();
-        
+
+        if (!isLocalPlayer)
+        {
+            GameObject cam = transform.Find("Camera").gameObject; 
+            GameObject hud = transform.Find("HUD").gameObject;
+            GameObject Rain = transform.Find("Rain").gameObject;
+            cam.SetActive(false);
+            hud.SetActive(false);
+            Rain.SetActive(false);
+        }
+
         //style = new GUIStyle();
         //style.alignment = TextAnchor.UpperCenter;
     }
@@ -92,6 +103,10 @@ public class PlayerControl : MonoBehaviour {
 
     void OnGUI()
     {
+        if (!isLocalPlayer)
+        {
+            return;
+        }
         int gh = Screen.width / 12;
         int hg = Screen.height / 12;
         if (GUION == "basic")
@@ -285,6 +300,11 @@ public class PlayerControl : MonoBehaviour {
     }
 
 	void Update () {
+
+        if (!isLocalPlayer)
+        {
+            return;
+        }
 
         movement();
 
