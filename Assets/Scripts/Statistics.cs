@@ -1,46 +1,47 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class Statistics : MonoBehaviour {
+public class Statistics : NetworkBehaviour{
 
     public bool damageable = false;
     public string nameOfMob;
-    public int curHealth;
-    public int maxHealth;
-    public int curMana;
-    public int maxMana;
+    [SyncVar] public int curHealth;
+    [SyncVar] public int maxHealth;
+    [SyncVar] public int curMana;
+    [SyncVar] public int maxMana;
 
-    public int armour;
-    public float attack;
-    public float baseAttack = 0;
-    public float meleeReach;
-    public float attackTime = 1f;
-    public float invulvnerableTime = 0.75f;
-    public float invulvnerableTimeTimer = 0f;
+    [SyncVar]public int armour;
+    [SyncVar] public float attack;
+    [SyncVar] public float baseAttack = 0;
+    [SyncVar] public float meleeReach;
+    [SyncVar] public float attackTime = 1f;
+    [SyncVar] public float invulvnerableTime = 0.75f;
+    [SyncVar] public float invulvnerableTimeTimer = 0f;
 
-    public float magicAttack;
-    public float magicSpeed;
-    public GameObject magicSpell;
-    public float magicTime = 1f;
+    [SyncVar] public float magicAttack;
+    [SyncVar] public float magicSpeed;
+    [SyncVar] public GameObject magicSpell;
+    [SyncVar] public float magicTime = 1f;
 
-    public float momvementSpeedMod = 1f;
+    [SyncVar] public float momvementSpeedMod = 1f;
 
-    public int strength; //Weapon damage
-    public int agility; //Speed, maybe bow damage?
-    public int intellect; //Magic spells etc;
+    [SyncVar] public int strength; //Weapon damage
+    [SyncVar] public int agility; //Speed, maybe bow damage?
+    [SyncVar] public int intellect; //Magic spells etc;
 
-    public int actualstrength; //Weapon damage
-    public int actualAgility; //Speed, maybe bow damage?
-    public int actualIntellect; //Magic spells etc;
+    [SyncVar] public int actualstrength; //Weapon damage
+    [SyncVar] public int actualAgility; //Speed, maybe bow damage?
+    [SyncVar] public int actualIntellect; //Magic spells etc;
 
     public Inventory inv;
 
-    public int level; //Exp for level = level * 100 * (level * 0.25)
-    public int exp;
-    public float expForLevel;
-    public int expGranted;
+    [SyncVar] public int level; //Exp for level = level * 100 * (level * 0.25)
+    [SyncVar] public int exp;
+    [SyncVar] public float expForLevel;
+    [SyncVar] public int expGranted;
 
     //Get component
     private Rigidbody r;
@@ -115,7 +116,9 @@ public class Statistics : MonoBehaviour {
     public string updateStatPage()
     {
         string text;
-        text = "\nMax health: ";
+        text = "\nLevel: ";
+        text += level;
+        text += "\nMax health: ";
         text += maxHealth;
         text += "\nMax mana: ";
         text += maxMana;
@@ -129,6 +132,8 @@ public class Statistics : MonoBehaviour {
         text += actualAgility;
         text += "\nIntellect: ";
         text += actualIntellect;
+        text += "\nExperience to next level: ";
+        text += expForLevel;
         return text;
     }
 
@@ -156,9 +161,12 @@ public class Statistics : MonoBehaviour {
         }
         else
         {
-            audioPlayer.Stop();
-            audioPlayer.PlayOneShot(music, 0.1f);
-            play = true;
+            if (isLocalPlayer)
+            {
+                audioPlayer.Stop();
+                audioPlayer.PlayOneShot(music, 0.1f);
+                play = true;
+            }
         }
 
         if (a != null)
@@ -175,10 +183,13 @@ public class Statistics : MonoBehaviour {
 
             if( tag == "Player")
             {
-                GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
-                Destroy(gameObject);
-                Instantiate(player);
-                SceneManager.LoadScene("death");
+                if (isLocalPlayer)
+                {
+                    GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
+                    Destroy(gameObject);
+                    Instantiate(player);
+                    SceneManager.LoadScene("death");
+                }
             }
 
             Collider[] detectColliders = Physics.OverlapSphere(transform.position, 25);
