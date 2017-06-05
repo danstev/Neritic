@@ -9,39 +9,39 @@ public class Statistics : NetworkBehaviour{
     public bool damageable = false;
     public string nameOfMob;
     [SyncVar] public int curHealth;
-    [SyncVar] public int maxHealth;
-    [SyncVar] public int curMana;
-    [SyncVar] public int maxMana;
+    public int maxHealth;
+    public int curMana;
+    public int maxMana;
 
-    [SyncVar]public int armour;
-    [SyncVar] public float attack;
-    [SyncVar] public float baseAttack = 0;
-    [SyncVar] public float meleeReach;
-    [SyncVar] public float attackTime = 1f;
-    [SyncVar] public float invulvnerableTime = 0.75f;
-    [SyncVar] public float invulvnerableTimeTimer = 0f;
+    public int armour; //Not implemented yet
+    public float attack;
+    public float baseAttack = 0;
+    public float meleeReach;
+    public float attackTime = 1f;
+    public float invulvnerableTime = 0.75f;
+    public float invulvnerableTimeTimer = 0f;
 
-    [SyncVar] public float magicAttack;
-    [SyncVar] public float magicSpeed;
-    [SyncVar] public GameObject magicSpell;
-    [SyncVar] public float magicTime = 1f;
+    public float magicAttack;
+    public float magicSpeed;
+    public GameObject magicSpell;
+    public float magicTime = 1f;
 
-    [SyncVar] public float momvementSpeedMod = 1f;
+    public float momvementSpeedMod = 1f;
 
-    [SyncVar] public int strength; //Weapon damage
-    [SyncVar] public int agility; //Speed, maybe bow damage?
-    [SyncVar] public int intellect; //Magic spells etc;
+    public int strength; //Weapon damage
+    public int agility; //Speed, maybe bow damage?
+    public int intellect; //Magic spells etc;
 
-    [SyncVar] public int actualstrength; //Weapon damage
-    [SyncVar] public int actualAgility; //Speed, maybe bow damage?
-    [SyncVar] public int actualIntellect; //Magic spells etc;
+    public int actualstrength; //Weapon damage
+    public int actualAgility; //Speed, maybe bow damage?
+    public int actualIntellect; //Magic spells etc;
 
     public Inventory inv;
 
-    [SyncVar] public int level; //Exp for level = level * 100 * (level * 0.25)
-    [SyncVar] public int exp;
-    [SyncVar] public float expForLevel;
-    [SyncVar] public int expGranted;
+    public int level; //Exp for level = level * 100 * (level * 0.25)
+    public int exp;
+    public float expForLevel;
+    public int expGranted;
 
     //Get component
     private Rigidbody r;
