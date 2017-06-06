@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour {
         generateMap.genMap();
         xStartPos = generateMap.getXStart();
         yStartPos = generateMap.getYStart();
-        print(xStartPos);
-        print(yStartPos);
+        //print(xStartPos);
+        //print(yStartPos);
 
         GameObject player;
         Statistics stats;
