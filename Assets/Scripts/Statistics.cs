@@ -285,7 +285,7 @@ public class Statistics : NetworkBehaviour{
             }
             else
             {
-                c.SimpleMove(p * Time.deltaTime * 1000);
+                //c.SimpleMove(p * Time.deltaTime * 1000);
                 invulvnerableTimeTimer = invulvnerableTime;
             }
         }
