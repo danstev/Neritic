@@ -70,18 +70,23 @@ public class PlayerControl : NetworkBehaviour{
         tick = 0;
         statsPage = stats.updateStatPage();
 
-        if (!isLocalPlayer)
+        if (isLocalPlayer)
         {
-            GameObject cam = transform.Find("Camera").gameObject; 
-            GameObject hud = transform.Find("HUD").gameObject;
-            GameObject Rain = transform.Find("Rain").gameObject;
-            cam.SetActive(false);
-            hud.SetActive(false);
-            Rain.SetActive(false);
+            disableCamHud();
         }
 
         //style = new GUIStyle();
         //style.alignment = TextAnchor.UpperCenter;
+    }
+
+    void disableCamHud()
+    {
+        GameObject cam = transform.Find("Camera").gameObject;
+        GameObject hud = transform.Find("HUD").gameObject;
+        GameObject Rain = transform.Find("Rain").gameObject;
+        cam.SetActive(false);
+        hud.SetActive(false);
+        Rain.SetActive(false);
     }
 
     void Awake()
@@ -301,7 +306,7 @@ public class PlayerControl : NetworkBehaviour{
 
 	void Update () {
 
-        if (!isLocalPlayer)
+        if (isLocalPlayer)
         {
             return;
         }
