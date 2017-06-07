@@ -243,7 +243,7 @@ public class Statistics : NetworkBehaviour{
         }
     }
 
-    private void levelUp()
+    public void levelUp()
     {
         //More stat stuff to do here, gotta get it written down.
         strength++;
