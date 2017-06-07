@@ -65,12 +65,7 @@ public class Statistics : NetworkBehaviour{
 
     public bool play = false;
 
-    //Enemy Drops
-    public GameObject drop1;
-    public GameObject drop2;
-    public GameObject drop3;
-    public GameObject rareDrop;
-    public GameObject veryRareDrop;
+    
 
     // Use this for initialization
     void Start() {
@@ -181,15 +176,12 @@ public class Statistics : NetworkBehaviour{
         if (curHealth <= 0)
         {
 
-            if( tag == "Player")
+            if (isLocalPlayer)
             {
-                if (isLocalPlayer)
-                {
-                    GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
-                    Destroy(gameObject);
-                    Instantiate(player);
-                    SceneManager.LoadScene("death");
-                }
+                GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
+                Destroy(gameObject);
+                Instantiate(player);
+                SceneManager.LoadScene("death");
             }
 
             Collider[] detectColliders = Physics.OverlapSphere(transform.position, 25);
@@ -205,37 +197,9 @@ public class Statistics : NetworkBehaviour{
                     }
                 }
             }
-
-            if(tag =="Enemy")
-            {
-                float rate = Random.Range(0f, 1f);
-                if (rate > 0.75f)
-                {
-                    int item = Random.Range(0, 4);
-                    if (item == 1)
-                    {
-                        Instantiate(drop1, transform.position, Quaternion.identity);
-                    }
-                    else if (item == 2)
-                    {
-                        Instantiate(drop2, transform.position, Quaternion.identity);
-                    }
-                    else if (item == 3)
-                    {
-                        Instantiate(drop3, transform.position, Quaternion.identity);
-                    }
-                }
-                else if (rate > 0.95f)
-                {
-                    Instantiate(rareDrop, transform.position, Quaternion.identity);
-                }
-                else if (rate > 0.98f)
-                {
-                    Instantiate(veryRareDrop, transform.position, Quaternion.identity);
-                }
-            }
-            Destroy(gameObject);
         }
+
+            
 
         if (gameObject.tag == "Player")
         {
