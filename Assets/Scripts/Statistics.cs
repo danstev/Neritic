@@ -41,7 +41,7 @@ public class Statistics : NetworkBehaviour{
     public int level; //Exp for level = level * 100 * (level * 0.25)
     public int exp;
     public float expForLevel;
-    public int expGranted;
+    
 
     //Get component
     private Rigidbody r;
@@ -184,19 +184,7 @@ public class Statistics : NetworkBehaviour{
                 SceneManager.LoadScene("death");
             }
 
-            Collider[] detectColliders = Physics.OverlapSphere(transform.position, 25);
-            for (int i = 0; i < detectColliders.Length; i++)
-            {
-                if (detectColliders[i].tag == "Player")
-                {
-                    Statistics s = detectColliders[i].GetComponent<Statistics>();
-                    s.exp += expGranted;
-                    if (s.exp > s.expForLevel)
-                    {
-                        s.levelUp();
-                    }
-                }
-            }
+            
         }
 
             

@@ -7,6 +7,8 @@ public class NPCStats : NetworkBehaviour{
     //Stats
     [SyncVar] public int curHealth;
     public int maxHealth;
+    public int expGranted;
+
     //Enemy Drops
     public GameObject drop1;
     public GameObject drop2;
@@ -21,6 +23,9 @@ public class NPCStats : NetworkBehaviour{
 
     // Update is called once per frame
     void Update() {
+
+        if (curHealth > maxHealth)
+            curHealth = maxHealth;
 
         if (curHealth <= 0)
         {
@@ -51,6 +56,20 @@ public class NPCStats : NetworkBehaviour{
                 else if (rate > 0.98f)
                 {
                     Instantiate(veryRareDrop, transform.position, Quaternion.identity);
+                }
+            }
+
+            Collider[] detectColliders = Physics.OverlapSphere(transform.position, 25);
+            for (int i = 0; i < detectColliders.Length; i++)
+            {
+                if (detectColliders[i].tag == "Player")
+                {
+                    Statistics s = detectColliders[i].GetComponent<Statistics>();
+                    s.exp += expGranted;
+                    if (s.exp > s.expForLevel)
+                    {
+                        s.levelUp();
+                    }
                 }
             }
             Destroy(gameObject);
