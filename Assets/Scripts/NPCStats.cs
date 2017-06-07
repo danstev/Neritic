@@ -8,6 +8,11 @@ public class NPCStats : NetworkBehaviour{
     [SyncVar] public int curHealth;
     public int maxHealth;
     public int expGranted;
+    public float attack;
+    public AudioSource audioPlayer;
+    public AudioClip hurtSound;
+    public bool damageable = true;
+    private Rigidbody r;
 
     //Enemy Drops
     public GameObject drop1;
@@ -18,8 +23,8 @@ public class NPCStats : NetworkBehaviour{
 
     // Use this for initialization
     void Start () {
-	
-	}
+        r = GetComponent<Rigidbody>();
+}
 
     // Update is called once per frame
     void Update() {
@@ -73,6 +78,33 @@ public class NPCStats : NetworkBehaviour{
                 }
             }
             Destroy(gameObject);
+        }
+    }
+
+    public void takeDamage(float[] dam)
+    {
+
+
+        if (damageable)
+        {
+            curHealth -= (int)dam[1];
+            Vector3 p = new Vector3(dam[2], dam[3], dam[4]);
+            p = transform.position - p;
+            p = p.normalized;
+            p.y = p.y + 1;
+            audioPlayer.PlayOneShot(hurtSound);
+            GameObject b = Resources.Load("Prefabs/Blood") as GameObject;
+            r.AddForce(p * 125);
+
+            for (int x = 0; x < Random.Range(1, 4); x++)
+            {
+                Vector3 v = gameObject.transform.position;
+                Quaternion q = gameObject.transform.rotation;
+                GameObject g = Instantiate(b, v, q) as GameObject;
+                Rigidbody brdi = g.GetComponent<Rigidbody>();
+                brdi.AddForce(p * 250);
+            }
+
         }
     }
 
