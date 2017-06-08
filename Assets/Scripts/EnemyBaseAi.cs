@@ -22,7 +22,7 @@ public class EnemyBaseAi : MonoBehaviour {
     public float scanTimer;
     public float scanDist;
 
-    public Statistics stats;
+    public NPCStats stats;
     public float randomMoveTimerSet;
     private Vector3 randomMoveSpace;
     private float randomMoveMod = 0.0125f;
