@@ -13,6 +13,13 @@ public class NPCStats : NetworkBehaviour{
     public AudioClip hurtSound;
     public bool damageable = true;
     private Rigidbody r;
+    public float momvementSpeedMod;
+    public float meleeReach;
+    public float attackTime = 1f;
+    public float magicAttack;
+    public float magicSpeed;
+    public GameObject magicSpell;
+    public float magicTime = 1f;
 
     //Enemy Drops
     public GameObject drop1;
