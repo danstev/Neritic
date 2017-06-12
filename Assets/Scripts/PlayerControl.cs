@@ -70,7 +70,7 @@ public class PlayerControl : NetworkBehaviour{
         tick = 0;
         statsPage = stats.updateStatPage();
 
-        if (isLocalPlayer)
+        if (!isLocalPlayer)
         {
             disableCamHud();
         }
@@ -92,6 +92,11 @@ public class PlayerControl : NetworkBehaviour{
     void Awake()
     {
         DontDestroyOnLoad(transform.gameObject);
+        
+        if (isLocalPlayer)
+        {
+            uiStuff();
+        }
     }
 
     void FixedUpdate()
@@ -306,7 +311,7 @@ public class PlayerControl : NetworkBehaviour{
 
 	void Update () {
 
-        if (isLocalPlayer)
+        if (!isLocalPlayer)
         {
             return;
         }
@@ -485,11 +490,6 @@ public class PlayerControl : NetworkBehaviour{
         {
             use.transform.SendMessage(("worldUse"), inv, SendMessageOptions.DontRequireReceiver);
         }
-    }
-
-    void OnLevelWasLoaded()
-    {
-        uiStuff();
     }
 
     void mouseController()
