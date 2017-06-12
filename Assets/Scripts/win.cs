@@ -59,6 +59,14 @@ public class win : MonoBehaviour {
             {
                 Application.Quit();
             }
+
+            if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6, 200, 50), "Test Level"))
+            {
+                GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
+                Instantiate(player);
+                SceneManager.LoadScene("testScene");
+            }
+
         }
         else if (help)
         {
