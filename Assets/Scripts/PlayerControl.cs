@@ -61,6 +61,7 @@ public class PlayerControl : NetworkBehaviour{
     int tick;
 
     void Start () {
+
         stats = GetComponent<Statistics>();
         inv = GetComponent<Inventory>();
         refreshStats();
@@ -70,10 +71,8 @@ public class PlayerControl : NetworkBehaviour{
         tick = 0;
         statsPage = stats.updateStatPage();
 
-        if (!isLocalPlayer)
-        {
-            disableCamHud();
-        }
+        //if (!isLocalPlayer)
+        //    disableCamHud();
 
         //style = new GUIStyle();
         //style.alignment = TextAnchor.UpperCenter;
