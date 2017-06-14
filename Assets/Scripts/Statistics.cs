@@ -156,12 +156,9 @@ public class Statistics : NetworkBehaviour{
         }
         else
         {
-            if (isLocalPlayer)
-            {
                 audioPlayer.Stop();
                 audioPlayer.PlayOneShot(music, 0.1f);
                 play = true;
-            }
         }
 
         if (a != null)
@@ -176,18 +173,17 @@ public class Statistics : NetworkBehaviour{
         if (curHealth <= 0)
         {
 
-            if (isLocalPlayer)
+            if (gameObject.tag == "Player")
             {
-                GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
-                Destroy(gameObject);
-                Instantiate(player);
-                SceneManager.LoadScene("death");
+                if (isLocalPlayer)
+                {
+                    GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
+                    Destroy(gameObject);
+                    Instantiate(player);
+                    SceneManager.LoadScene("death");
+                }
             }
-
-            
         }
-
-            
 
         if (gameObject.tag == "Player")
         {
