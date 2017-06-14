@@ -67,7 +67,6 @@
     <Compile Include="Assets\Scripts\BillboardSprite.cs" />
     <Compile Include="Assets\Scripts\Bleed.cs" />
     <Compile Include="Assets\Scripts\Box.cs" />
-    <Compile Include="Assets\Scripts\Disable.cs" />
     <Compile Include="Assets\Scripts\EnemyBaseAi.cs" />
     <Compile Include="Assets\Scripts\EnemyDrop.cs" />
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
