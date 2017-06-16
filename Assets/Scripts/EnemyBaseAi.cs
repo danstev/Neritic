@@ -225,12 +225,9 @@ public class EnemyBaseAi : MonoBehaviour {
     {
         transform.LookAt(target.transform);
 
-        if (stats.magicSpell == null)
-        {
+
             aggressiveMove();
-        }
-        else
-        {
+
             if (attackTimer <= 0 && 25 > Vector3.Distance(transform.position, target.transform.position)) //stats.curMana >= stats.magicSpell.GetComponent<Spell>().manaCost && 
             {
                 attackTimer = stats.magicTime;
@@ -251,4 +248,4 @@ public class EnemyBaseAi : MonoBehaviour {
             }
         }
     }
-}
+
