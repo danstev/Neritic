@@ -568,6 +568,8 @@ public class PlayerControl : NetworkBehaviour{
     {
         GameObject spellF = stats.magicSpell;
         spell = spellF.GetComponent<SpriteRenderer>().sprite.texture;
+
+        if (inv.equipped[0] != null)
         weapon = inv.equipped[0].GetComponent<SpriteRenderer>().sprite.texture;
     }
 }
