@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour {
             GameObject rain = player.transform.Find("Rain").gameObject;
             Inventory i = player.GetComponent<Inventory>();
             PlayerControl cont = player.GetComponent<PlayerControl>();
+            
             if (map == "dream")
             {
                 stats.setMusic(1);
