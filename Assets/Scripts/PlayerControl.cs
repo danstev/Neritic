@@ -96,6 +96,11 @@ public class PlayerControl : NetworkBehaviour{
         {
             uiStuff();
         }
+        
+        if(!isLocalPlayer)
+        {
+            disableCamHud();
+        }
     }
 
     void FixedUpdate()
@@ -116,6 +121,7 @@ public class PlayerControl : NetworkBehaviour{
         {
             return;
         }
+
         int gh = Screen.width / 12;
         int hg = Screen.height / 12;
         if (GUION == "basic")
