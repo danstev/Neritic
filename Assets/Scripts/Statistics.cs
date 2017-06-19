@@ -177,9 +177,9 @@ public class Statistics : NetworkBehaviour{
             {
                 if (isLocalPlayer)
                 {
-                    GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
+                    //GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
                     Destroy(gameObject);
-                    Instantiate(player);
+                    //Instantiate(player);
                     SceneManager.LoadScene("death");
                 }
             }
