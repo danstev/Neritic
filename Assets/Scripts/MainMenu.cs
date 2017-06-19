@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine.Networking;
 
-public class MainMenu : MonoBehaviour {
+public class MainMenu : NetworkBehaviour
+{
 
     bool menu = true;
     bool help = false;
@@ -22,6 +24,12 @@ public class MainMenu : MonoBehaviour {
 	
 	}
 
+    void instPlayer()
+    {
+        GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
+        Instantiate(player);
+    }
+
     void OnGUI ()
     {
         int w = Screen.width / 12;
@@ -32,15 +40,13 @@ public class MainMenu : MonoBehaviour {
             //Start game
             if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6 - (h * 4), 200, 50), "Start Game"))
             {
-                GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
-                Instantiate(player);
+                //instPlayer();
                 SceneManager.LoadScene("dream");
             }
             //skip tut
             if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6 - (h * 3), 200, 50), "Start Game but skip\n practice level"))
             {
-                GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
-                Instantiate(player);
+                //instPlayer();
                 SceneManager.LoadScene("forest");
             }
             //Help
@@ -58,8 +64,7 @@ public class MainMenu : MonoBehaviour {
 
             if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6, 200, 50), "Test Level"))
             {
-                GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
-                Instantiate(player);
+                //instPlayer();
                 SceneManager.LoadScene("testScene");
             }
         }
