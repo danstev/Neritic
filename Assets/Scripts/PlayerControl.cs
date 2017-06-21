@@ -97,7 +97,7 @@ public class PlayerControl : NetworkBehaviour{
             uiStuff();
         }
         
-        if(!isLocalPlayer)
+        if( isServer )
         {
             disableCamHud();
         }
