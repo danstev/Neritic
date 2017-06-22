@@ -80,7 +80,7 @@ public class NPCStats : NetworkBehaviour{
                     s.exp += expGranted;
                     if (s.exp > s.expForLevel)
                     {
-                        s.levelUp();
+                        s.levelUp(1);
                     }
                 }
             }
