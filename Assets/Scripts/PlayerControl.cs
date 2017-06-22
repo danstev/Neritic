@@ -22,6 +22,7 @@ public class PlayerControl : NetworkBehaviour{
     public float startX;
     public float startY;
     public float startZ;
+    public string deathSetting;
 
     //Movement
     public float speed = 6.0F;
