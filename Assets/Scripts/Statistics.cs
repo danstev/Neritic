@@ -178,8 +178,12 @@ public class Statistics : NetworkBehaviour{
                 if (isLocalPlayer)
                 {
                     //GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
-                    Destroy(gameObject);
                     //Instantiate(player);
+                    string deathType = GetComponent<PlayerControl>().deathSetting;
+                    Destroy(gameObject);
+                    
+
+                    
                     SceneManager.LoadScene("death");
                 }
             }
