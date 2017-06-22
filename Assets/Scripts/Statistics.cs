@@ -179,12 +179,20 @@ public class Statistics : NetworkBehaviour{
                 {
                     //GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
                     //Instantiate(player);
-                    string deathType = GetComponent<PlayerControl>().deathSetting;
-                    Destroy(gameObject);
-                    
+                    PlayerControl l = GetComponent<PlayerControl>();
+                    string deathType = l.deathSetting;
 
+                    if(deathType == "hardcore")
+                    {
+                        Destroy(gameObject);
+                        SceneManager.LoadScene("death");
+                    }
+                    else
+                    {
+                        curHealth = maxHealth;
+                        gameObject.transform.position = new Vector3(l.startX, l.startY, l.startZ);
+                    }
                     
-                    SceneManager.LoadScene("death");
                 }
             }
         }
@@ -243,18 +251,18 @@ public class Statistics : NetworkBehaviour{
         }
     }
 
-    public void levelUp()
+    public void levelUp(int x)
     {
         //More stat stuff to do here, gotta get it written down.
-        strength++;
-        agility++;
-        intellect++;
-        attack += 5;
-        maxHealth += 10;
-        curHealth = maxHealth;
-        maxMana += 5;
-        curMana = maxMana;
-        level++;
+        strength = strength + x;
+        agility = agility + x;
+        intellect = intellect + x;
+        attack = attack + (5 * x);
+        maxHealth = maxHealth + (5 * x);
+        curHealth = intellect + (5 * x);
+        maxMana = maxMana + (5 * x);
+        curMana = curMana + (5 * x);
+        level = level + x;
         expForLevel = level * 100 * (int)(level * 0.25);
         //refreshWeaponDamage();
         PlayerControl p = GetComponent<PlayerControl>();
