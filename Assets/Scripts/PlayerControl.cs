@@ -19,6 +19,9 @@ public class PlayerControl : NetworkBehaviour{
     public float lookSmoothnes = 0.1f;
     public float bottom = 60F;
     public float top = -60f;
+    public float startX;
+    public float startY;
+    public float startZ;
 
     //Movement
     public float speed = 6.0F;
@@ -50,6 +53,7 @@ public class PlayerControl : NetworkBehaviour{
     public Texture2D u;
     public Texture2D statsImage;
     public Texture2D tabImage;
+
     //Audio stuff
     public AudioSource audioPlayer;
     public AudioClip weaponAttack;
