@@ -191,6 +191,7 @@ public class Statistics : NetworkBehaviour{
                     {
                         curHealth = maxHealth;
                         gameObject.transform.position = new Vector3(l.startX, l.startY, l.startZ);
+                        levelUp(-1);
                     }
                     
                 }
