@@ -46,7 +46,7 @@ public class MainMenu : NetworkBehaviour
             //skip tut
             if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6 - (h * 3), 200, 50), "Start Game but skip\n practice level"))
             {
-                //instPlayer();
+                instPlayer();
                 SceneManager.LoadScene("forest");
             }
             //Help
