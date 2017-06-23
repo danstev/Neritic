@@ -290,9 +290,12 @@ public class PlayerControl : NetworkBehaviour{
                 GUION = "help";
             }
             //option
-            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 75, 100, 50), "Options DOES NOTHING ATM LOL"))
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 75, 100, 50), "Forest Start"))
             {
-                //todo
+                //GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
+                //Destroy(gameObject);
+                //Instantiate(player);
+                //SceneManager.LoadScene("forest");
             }
             //exit
             if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 125, 100, 50), "Exit Game"))
