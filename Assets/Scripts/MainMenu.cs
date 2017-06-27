@@ -3,20 +3,20 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.Networking;
 
-public class MainMenu : NetworkBehaviour
+public class MainMenu : MonoBehaviour
 {
 
     bool menu = true;
     bool help = false;
     GUIStyle style;
 
+    public NetworkManager m;
+
 	// Use this for initialization
 	void Start () {
         Cursor.lockState = CursorLockMode.None;
         style = new GUIStyle();
         style.wordWrap = true;
-        
-
     }
 	
 	// Update is called once per frame
@@ -46,7 +46,8 @@ public class MainMenu : NetworkBehaviour
             //skip tut
             if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6 - (h * 3), 200, 50), "Start Game but skip\n practice level"))
             {
-                instPlayer();
+                //instPlayer();
+                m.StartHost();
                 SceneManager.LoadScene("forest");
             }
             //Help
