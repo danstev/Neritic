@@ -41,6 +41,7 @@ public class MainMenu : MonoBehaviour
             if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6 - (h * 4), 200, 50), "Start Game"))
             {
                 //instPlayer();
+                m.StartHost();
                 SceneManager.LoadScene("dream");
             }
             //skip tut
@@ -65,7 +66,7 @@ public class MainMenu : MonoBehaviour
 
             if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6, 200, 50), "Test Level"))
             {
-                //instPlayer();
+                m.StartHost();
                 SceneManager.LoadScene("testScene");
             }
         }
