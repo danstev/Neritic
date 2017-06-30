@@ -264,9 +264,9 @@ public class Statistics : NetworkBehaviour{
         intellect = intellect + x;
         attack = attack + (5 * x);
         maxHealth = maxHealth + (5 * x);
-        curHealth = intellect + (5 * x);
+        curHealth = maxHealth;
         maxMana = maxMana + (5 * x);
-        curMana = curMana + (5 * x);
+        curMana = maxMana;
         level = level + x;
         expForLevel = level * 100 * (int)(level * 0.25);
         //refreshWeaponDamage();
