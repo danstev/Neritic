@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     int level;
     float xStartPos;
     float yStartPos;
+    string[] weatherEffects = new string[2] { "fog", "rain" };
 
     void Start()
     {
@@ -47,21 +48,21 @@ public class GameManager : MonoBehaviour {
                 GameObject sword = Instantiate(Resources.Load("Prefabs/Weapons/SmallSword")) as GameObject;
                 i.AddItem(sword);
                 //god stats etc
-                stats.maxHealth = 500;
-                stats.curHealth = 500;
-                stats.maxMana = 250;
-                stats.curMana = 250;
-                stats.attack = 100;
-                stats.magicAttack = 100;
+                stats.maxHealth = 200;
+                stats.curHealth = 200;
+                stats.maxMana = 100;
+                stats.curMana = 100;
+                stats.attack = 30;
+                stats.magicAttack = 30;
                 stats.strength = 20;
-                stats.intellect = 20;
-                stats.agility = 20;
+                stats.intellect = 15;
+                stats.agility = 15;
                 cont.refreshStats();
                 stats.level = 10;
                 i.updateAllStatisitics();
-                rain.SetActive(false);
 
-                
+
+                setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, player);
 
             }
             else if (map == "forest")
@@ -89,7 +90,7 @@ public class GameManager : MonoBehaviour {
                 cont.refreshStats();
                 i.updateAllStatisitics();
                 stats.level = 1;
-                rain.SetActive(true);
+                setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, player);
 
             }
             else if (map == "dungeon")
@@ -102,15 +103,33 @@ public class GameManager : MonoBehaviour {
             {
                 stats.setMusic(4);
                 //rain on
-                rain.SetActive(true);
+                setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, player);
+            }
+            else if( map == "snow")
+            {
+                setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, player);
             }
         }
 
         GameObject e = GameObject.FindGameObjectWithTag("LevelSwitch");
         ExitLevel exit = e.GetComponent<ExitLevel>();
         exit.setLevel(map);
+    }
 
-        
+    void setParticles(GameObject g, GameObject player)
+    {
+        GameObject p = Instantiate(g);
+        p.transform.SetParent(player.transform);
+        p.transform.position = new Vector3(0,0,0);
+    }
+
+    void removeWeatherEffects(GameObject player)
+    {
+        foreach(string s in weatherEffects)
+        {
+            GameObject g = player.transform.FindChild(s).gameObject;
+            Destroy(g);
+        }
     }
 
 
