@@ -30,6 +30,7 @@ public class Inventory : MonoBehaviour {
     public float totalWeight;
     public int gold;
 
+    /*
     public void AddItem ( GameObject i)
     {
         Item item = i.GetComponent<Item>();
@@ -38,6 +39,7 @@ public class Inventory : MonoBehaviour {
         if(item.equipable == true)
         {
             
+            //If equipment
             if (item.type == "equipment")
             {
                 Equipment e = i.GetComponent<Equipment>();
@@ -86,7 +88,7 @@ public class Inventory : MonoBehaviour {
                 //ADD TO SPELL LIST, NO AUTO EQUIP
                 updateGUITextures();
             }
-        }
+        } //If not equipment
         else //Not equippable
         {
             for (int x = 0; x < amountOfItems; x++)
@@ -159,7 +161,6 @@ public class Inventory : MonoBehaviour {
                 //totalWeight += item.weight * item.held;
                 i.transform.parent = transform;
                 i.SetActive(false);
-
                 lastSlot++;
                 amountOfItems++;
                 updateGUITextures();
@@ -181,19 +182,68 @@ public class Inventory : MonoBehaviour {
             return;
         }
        
+    } */
+
+    public void addItem(GameObject g)
+    {
+        Item i = g.GetComponent<Item>();
+
+        if(i.equipable)
+        {
+            if(equipped[i.slotTaken] == null)
+            {
+                equipped[i.slotTaken] = g;
+                //totalWeight += item.weight * item.held;
+
+                if (i.slotTaken == 0) //Weapon slot, need another for 2nd weapon slot?
+                {
+                    i.equipWeapon();
+                    PlayerControl p = GetComponent<PlayerControl>();
+                    p.refreshWeapon(g);
+                    CapsuleCollider c = i.GetComponent<CapsuleCollider>();
+                    c.enabled = false;
+                }
+                else
+                {
+                    i.equip();
+                    g.SetActive(false);
+                }
+                Equipment e = g.GetComponent<Equipment>();
+                e.equip();
+                i.transform.parent = transform;
+                updateAllStatisitics();
+                updateGUITextures();
+                return;
+            }
+            else
+            {
+                //add to next free slot
+            }
+        }
+        else
+        {
+            //find in inv
+
+        }     
     }
 
-    void addItem()
+    void putItemInInv(Item i)
     {
-        //equipable
-            //is slot full?
-                //yes, inv
-                //no, equip
-        //item
-            //check if you alreeady have some
-                //if yes, check held is less than amount
-                //if no add to inv with held 1
-            
+        foreach(GameObject g in slots)
+        {
+            Item d = g.GetComponent<Item>();
+            if(i.ID == d.ID)
+            {
+                if(d.amount < d.held)
+                {
+
+                }
+                else
+                {
+
+                }
+            }
+        }
     }
 
     void recalcWeight() //Should not be needed if i did add properly, but is nice for when dropping maybe etc, maybe just remove any weight stuff for other actions, just plonk this after each?
@@ -220,16 +270,10 @@ public class Inventory : MonoBehaviour {
         int a = 0;
         int i = 0;
 
-        int wDam = 0;
-        int sDam = 0;
-
         Statistics stats = GetComponent<Statistics>();
         s += stats.strength;
         a += stats.agility;
         i += stats.intellect;
-
-        sDam += (int)stats.magicAttack;
-
 
         foreach(GameObject g in equipped)
         {
@@ -243,18 +287,14 @@ public class Inventory : MonoBehaviour {
                 s += e.strength;
                 a += e.agility;
                 i += e.intellect;
-
-                if (e.weapon == true)
-                {
-                    wDam = e.attack;
-                }
-                //Same for spell
             }
-
         }
 
+        stats.equippedStrength = s;
+        stats.equippedAgility = a;
+        stats.equippedIntellect = i;
+
         //set these on the stats page
-        updateStatsPage(s,a,i,wDam,sDam);
         PlayerControl p = GetComponent<PlayerControl>();
         p.refreshStats();
 
@@ -340,6 +380,12 @@ public class Inventory : MonoBehaviour {
         }
     }
 
+    public void deleteItem(GameObject g)
+    {
+        Item i = g.GetComponent<Item>();
+
+    }
+
     void dropAllItems()
     {
         foreach(GameObject i in slots)
@@ -354,7 +400,7 @@ public class Inventory : MonoBehaviour {
         updateAllStatisitics();
     }
 
-    void updateStatsPage(int strength, int agility, int intellect, int wDam, int sDam)
+    /*void updateStatsPage(int strength, int agility, int intellect, int wDam, int sDam)
     {
         Statistics s = GetComponent<Statistics>();
         s.actualstrength = strength;
@@ -363,7 +409,7 @@ public class Inventory : MonoBehaviour {
         s.attack = wDam;
         s.magicAttack = sDam;
         //Should be all stats
-    }
+    }*/
 
     void updateGUITextures()
     {
@@ -377,12 +423,14 @@ public class Inventory : MonoBehaviour {
             }
         }
 
-        for (int x = 0; x < equipped.Length; x++)
+        for (int x = 0; x < 10; x++)
         {
             if (equipped[x] != null)
             {
                 SpriteRenderer s = equipped[x].GetComponent<SpriteRenderer>();
+                
                 p.equipTextures[x] = s.sprite.texture;
+                print(x);
             }
         }
     }
