@@ -6,7 +6,9 @@ public class Item : MonoBehaviour {
 
     public int ID;
     public string itemName;
+    //amount you have
     public int held;
+    //amount per stack
     public int amount;
     public string type;
     public bool stackable;
@@ -43,7 +45,7 @@ public class Item : MonoBehaviour {
 
     void worldUse(Inventory inv)
     {
-        inv.AddItem(gameObject);
+        inv.addItem(gameObject);
     }
 
     public void equip()
