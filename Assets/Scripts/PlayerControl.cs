@@ -34,6 +34,7 @@ public class PlayerControl : NetworkBehaviour{
 
     //animstuff
     public Animator anim;
+    private AnimationState swingState;
     private float attackTimeCD = 0f;
     private float magicTimeCD = 0f;
 
@@ -75,6 +76,7 @@ public class PlayerControl : NetworkBehaviour{
         movement += movementController;
         tick = 0;
         statsPage = stats.updateStatPage();
+        print(equipTextures.Length);
 
         //if (!isLocalPlayer)
         //    disableCamHud();
@@ -277,26 +279,16 @@ public class PlayerControl : NetworkBehaviour{
         else if(GUION == "menu")
         {
             //Start game
-            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), "New Game"))
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), "Home"))
             {
-                GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
-                Destroy(gameObject);
-                Instantiate(player);
-                SceneManager.LoadScene("dream");
+                SceneManager.LoadScene("home");
             }
             //Help
             if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 25, 100, 50), "Controls"))
             {
                 GUION = "help";
             }
-            //option
-            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 75, 100, 50), "Forest Start"))
-            {
-                //GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
-                //Destroy(gameObject);
-                //Instantiate(player);
-                //SceneManager.LoadScene("forest");
-            }
+
             //exit
             if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 125, 100, 50), "Exit Game"))
             {
@@ -457,15 +449,17 @@ public class PlayerControl : NetworkBehaviour{
 
     public void refreshStats() //I think this is it for player controller;
     {
-        if(stats.actualAgility < 20)
+        int ag = stats.equippedAgility + stats.agility;
+
+        if(ag < 30)
         {
-            speed = (stats.actualAgility / 3) + 1;
+            speed = (ag / 3) + 1;
         }
-        else
+        else if(ag > 30)
         {
-            speed = (stats.actualAgility / 2) + 1;
+            speed = 10;
         }
-        
+          
     }
 
     void castSpell()
@@ -557,7 +551,9 @@ public class PlayerControl : NetworkBehaviour{
         if (attackTimeCD <= 0)
         {
             attackTimeCD = stats.attackTime;
-            anim.SetTrigger("swing");
+            //anim.SetTrigger("swing");
+            anim.Play("swingSword");
+            anim.speed = 1 / stats.attackTime;
             audioPlayer.PlayOneShot(weaponAttack);
             RaycastHit melee = new RaycastHit();
             if (Physics.Raycast(transform.position, cam.transform.forward, out melee, stats.meleeReach))
