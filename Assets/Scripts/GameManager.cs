@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System;
 
 public class GameManager : MonoBehaviour {
 
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour {
         GameObject gen = Instantiate(levelG, new Vector3(0,0,0), Quaternion.identity) as GameObject;
         LevelGen generateMap = gen.GetComponent<LevelGen>();
         generateMap.level = map;
-        generateMap.spaceMod = Random.Range(1.5f, 2f);
+        generateMap.spaceMod = UnityEngine.Random.Range(1.5f, 2f);
         generateMap.genMap();
         xStartPos = generateMap.getXStart();
         yStartPos = generateMap.getYStart();
@@ -34,19 +35,20 @@ public class GameManager : MonoBehaviour {
             g.transform.position = new Vector3(xStartPos, 2, yStartPos);
             player = g;
             stats = g.GetComponent<Statistics>();
-            GameObject rain = player.transform.Find("Rain").gameObject;
             Inventory i = player.GetComponent<Inventory>();
             PlayerControl cont = player.GetComponent<PlayerControl>();
             cont.startX = xStartPos;
             cont.startY = 2;
             cont.startZ = yStartPos;
 
+            removeWeatherEffects(g);
 
             if (map == "dream")
             {
+                
                 stats.setMusic(1);
                 GameObject sword = Instantiate(Resources.Load("Prefabs/Weapons/SmallSword")) as GameObject;
-                i.AddItem(sword);
+                i.addItem(sword);
                 //god stats etc
                 stats.maxHealth = 200;
                 stats.curHealth = 200;
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour {
                 stats.level = 10;
                 i.updateAllStatisitics();
 
-
+                changeLightSize(player, 50,1);
                 setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, player);
 
             }
@@ -72,7 +74,7 @@ public class GameManager : MonoBehaviour {
                 if (i.equipped[0] == null)
                 {
                     GameObject sword = Instantiate(Resources.Load("Prefabs/Weapons/SmallSword")) as GameObject;
-                    i.AddItem(sword);
+                    i.addItem(sword);
                 }
 
                 
@@ -90,17 +92,20 @@ public class GameManager : MonoBehaviour {
                 cont.refreshStats();
                 i.updateAllStatisitics();
                 stats.level = 1;
-                setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, player);
+
+                changeLightSize(player, 30,1);
+                setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, g);
 
             }
             else if (map == "dungeon")
             {
+                changeLightSize(player, 50, 1.5f);
                 stats.setMusic(3);
                 //rain off
-                rain.SetActive(false);
             }
             else if (map == "endLevel")
             {
+                changeLightSize(player, 30,1f);
                 stats.setMusic(4);
                 //rain on
                 setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, player);
@@ -120,16 +125,31 @@ public class GameManager : MonoBehaviour {
     {
         GameObject p = Instantiate(g);
         p.transform.SetParent(player.transform);
-        p.transform.position = new Vector3(0,0,0);
+        
     }
 
     void removeWeatherEffects(GameObject player)
     {
         foreach(string s in weatherEffects)
         {
-            GameObject g = player.transform.FindChild(s).gameObject;
-            Destroy(g);
+            try {
+                GameObject g = player.transform.FindChild(s).gameObject;
+                if (g != null)
+                    Destroy(g);
+            }
+            catch(NullReferenceException e)
+            {
+
+            }
         }
+    }
+
+    void changeLightSize(GameObject p, float size, float intensity)
+    {
+        GameObject pointLight = p.transform.FindChild("Light").gameObject;
+        Light l = pointLight.GetComponent<Light>();
+        l.range = size;
+        l.intensity = intensity;
     }
 
 
