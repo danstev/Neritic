@@ -26,15 +26,15 @@ public class Statistics : NetworkBehaviour{
     public GameObject magicSpell;
     public float magicTime = 1f;
 
-    public float momvementSpeedMod = 1f;
+    public float movementSpeedMod = 1f;
 
     public int strength; //Weapon damage
     public int agility; //Speed, maybe bow damage?
     public int intellect; //Magic spells etc;
 
-    public int actualstrength; //Weapon damage
-    public int actualAgility; //Speed, maybe bow damage?
-    public int actualIntellect; //Magic spells etc;
+    public int equippedStrength; //Weapon damage
+    public int equippedAgility; //Speed, maybe bow damage?
+    public int equippedIntellect; //Magic spells etc;
 
     public Inventory inv;
 
@@ -122,11 +122,11 @@ public class Statistics : NetworkBehaviour{
         text += "\nSpell damage: ";
         text += magicAttack;
         text += "\nStrength: ";
-        text += actualstrength;
+        text += equippedStrength + strength;
         text += "\nAgility: ";
-        text += actualAgility;
+        text += equippedAgility + agility;
         text += "\nIntellect: ";
-        text += actualIntellect;
+        text += equippedIntellect + intellect;
         text += "\nExperience to next level: ";
         text += expForLevel;
         return text;
@@ -162,7 +162,7 @@ public class Statistics : NetworkBehaviour{
         }
 
         if (a != null)
-            a.speed = momvementSpeedMod;
+            a.speed = movementSpeedMod;
 
         if (curHealth > maxHealth)
             curHealth = maxHealth;
@@ -277,14 +277,20 @@ public class Statistics : NetworkBehaviour{
 
     void refreshWeaponDamage()
     {
-        int atk = (int)baseAttack;
+        Weapon weapon = inv.equipped[0].GetComponent<Weapon>();
+        int atk = weapon.damage;
+        attackTime = weapon.swingTimer;
+        
         foreach(GameObject g in inv.equipped)
         {
             Equipment w = GetComponent<Equipment>();
             atk += w.attack;
         }
 
+        atk += 5 * level;
         attack = atk;
+
+        
         /*
         int x = magicSpell.GetComponent<Spell>().magicAttack;
         magicAttack = x + (int)(x * 0.5);*/
