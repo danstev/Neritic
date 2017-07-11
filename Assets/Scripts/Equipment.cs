@@ -3,8 +3,6 @@ using System.Collections;
 
 public class Equipment : MonoBehaviour {
 
-    //Just holding info for now????
-
     public int slot;
     public bool weapon;
     public int attack;
