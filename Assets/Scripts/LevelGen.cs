@@ -287,17 +287,20 @@ public class LevelGen : MonoBehaviour {
         GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
         j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1 * t.spacemod);
         j.transform.rotation *= Quaternion.Euler(90, 0, 0);
+        j.isStatic = true;
 
         Vector3 mapPosCeiling = new Vector3(t.xPosition * t.spacemod, 2 * t.spacemod, t.yPosition * t.spacemod);
         GameObject h = Instantiate(t.ceilingTile, mapPosCeiling, Quaternion.identity) as GameObject;
         h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1 * t.spacemod);
         h.transform.rotation *= Quaternion.Euler(270, 0, 0);
+        h.isStatic = true;
+
 
         if(t.entity == true)
         {
             Vector3 pos = new Vector3(t.xPosition * t.spacemod + ( t.spacemod * UnityEngine.Random.Range(0f,1f) / 2), 1.5f * t.spacemod, t.yPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2));
             GameObject o = Instantiate(t.entityObject, pos, t.entityObject.transform.rotation) as GameObject;
-            o.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1 * t.spacemod);
+            o.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, -1);
         }
 
         renderWalls(t.xPosition, t.yPosition, t.wallTile, t.spacemod);
@@ -343,6 +346,7 @@ public class LevelGen : MonoBehaviour {
                 GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, -90, 0);
+                j.isStatic = true;
             }
             else if(map[x - 1, y] == 0)
             {
@@ -351,6 +355,7 @@ public class LevelGen : MonoBehaviour {
                 GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, -90, 0);
+                j.isStatic = true;
             }
 
             if (x == map.GetLength(0) || map[x + 1, y] == 0)
@@ -359,6 +364,7 @@ public class LevelGen : MonoBehaviour {
                 GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, 90, 0);
+                j.isStatic = true;
             }
 
             if (y == 0 || map[x, y - 1] == 0)
@@ -367,6 +373,7 @@ public class LevelGen : MonoBehaviour {
                 GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, 180, 0);
+                j.isStatic = true;
             }
 
         
@@ -376,6 +383,7 @@ public class LevelGen : MonoBehaviour {
                 GameObject j = Instantiate(wallType, mapPos, Quaternion.identity) as GameObject;
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, 0, 0);
+                j.isStatic = true;
             }
         }
         catch(Exception e)
