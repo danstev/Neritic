@@ -44,7 +44,7 @@ public class LevelGen : MonoBehaviour {
     //Not even started yet lol
     public GameObject NPCs;
 
-    public void Start ()
+    void Start ()
     {
         GameObject f = new GameObject("Floors");
         floors = f;
