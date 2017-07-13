@@ -303,21 +303,24 @@ public class LevelGen : MonoBehaviour {
 
     public void renderTile(Tile t)
     {
-
+        //Floor
         Vector3 mapPos = new Vector3(t.xPosition * t.spacemod, 0 * t.spacemod, t.yPosition * t.spacemod);
         GameObject j = Instantiate(t.floorTile, mapPos, Quaternion.identity) as GameObject;
         j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1 * t.spacemod);
         j.transform.rotation *= Quaternion.Euler(90, 0, 0);
         j.isStatic = true;
+        j.transform.parent = floors.transform;
 
+        //Ceiling
         Vector3 mapPosCeiling = new Vector3(t.xPosition * t.spacemod, 2 * t.spacemod, t.yPosition * t.spacemod);
         GameObject h = Instantiate(t.ceilingTile, mapPosCeiling, Quaternion.identity) as GameObject;
         h.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1 * t.spacemod);
         h.transform.rotation *= Quaternion.Euler(270, 0, 0);
         h.isStatic = true;
+        h.transform.parent = ceilings.transform;
 
-
-        if(t.entity == true)
+        //Entity
+        if (t.entity == true)
         {
             Vector3 pos = new Vector3(t.xPosition * t.spacemod + ( t.spacemod * UnityEngine.Random.Range(0f,1f) / 2), 1.5f * t.spacemod, t.yPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2));
             GameObject o = Instantiate(t.entityObject, pos, t.entityObject.transform.rotation) as GameObject;
@@ -359,6 +362,7 @@ public class LevelGen : MonoBehaviour {
 
     void renderWalls(int x, int y, GameObject wallType, float spacemod)
     {
+        //Walls
         try
         {
             if (x == 0)
@@ -368,6 +372,7 @@ public class LevelGen : MonoBehaviour {
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, -90, 0);
                 j.isStatic = true;
+                j.transform.parent = walls.transform;
             }
             else if(map[x - 1, y] == 0)
             {
@@ -377,6 +382,7 @@ public class LevelGen : MonoBehaviour {
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, -90, 0);
                 j.isStatic = true;
+                j.transform.parent = walls.transform;
             }
 
             if (x == map.GetLength(0) || map[x + 1, y] == 0)
@@ -386,6 +392,7 @@ public class LevelGen : MonoBehaviour {
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, 90, 0);
                 j.isStatic = true;
+                j.transform.parent = walls.transform;
             }
 
             if (y == 0 || map[x, y - 1] == 0)
@@ -395,6 +402,7 @@ public class LevelGen : MonoBehaviour {
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, 180, 0);
                 j.isStatic = true;
+                j.transform.parent = walls.transform;
             }
 
         
@@ -405,6 +413,7 @@ public class LevelGen : MonoBehaviour {
                 j.transform.localScale = new Vector3(1 * spacemod, 2 * spacemod, 2);
                 j.transform.rotation *= Quaternion.Euler(0, 0, 0);
                 j.isStatic = true;
+                j.transform.parent = walls.transform;
             }
         }
         catch(Exception e)
