@@ -88,7 +88,7 @@ public class LevelGen : MonoBehaviour {
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genForest();
         }
-        else if (level == "cave") //Harder, can die easily
+        else if (level == "cave") //TO BE IMPLEMENTED
         {
             tile = Resources.Load("Prefabs/dreamFloor") as GameObject;
             wall = Resources.Load("Prefabs/dreamWall") as GameObject;
@@ -118,7 +118,7 @@ public class LevelGen : MonoBehaviour {
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genDungeon();
         }
-        else if (level == "endLevel") //??? not planned yet, maybe underwater flowerbed? Very hard, boss level
+        else if (level == "endLevel") //TO BE REMOVED BECAUSE ITS SHIT
         {
             tile = Resources.Load("Prefabs/Tiles/flowerbedFloor") as GameObject;
             wall = Resources.Load("Prefabs/Tiles/flowerbedWall") as GameObject;
