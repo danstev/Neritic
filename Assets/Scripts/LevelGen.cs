@@ -38,6 +38,11 @@ public class LevelGen : MonoBehaviour {
     public GameObject ceilings;
 
     //Not implemented yet
+    public GameObject foley;
+    public GameObject enemies;
+
+    //Not even started yet lol
+    public GameObject NPCs;
 
 
     public void genMap()
