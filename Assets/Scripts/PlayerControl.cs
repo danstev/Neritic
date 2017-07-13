@@ -55,6 +55,7 @@ public class PlayerControl : NetworkBehaviour{
     public Texture2D u;
     public Texture2D statsImage;
     public Texture2D tabImage;
+    private float reach;
 
     //Audio stuff
     public AudioSource audioPlayer;
@@ -77,6 +78,7 @@ public class PlayerControl : NetworkBehaviour{
         tick = 0;
         statsPage = stats.updateStatPage();
         print(equipTextures.Length);
+        reach = stats.meleeReach;
 
         //if (!isLocalPlayer)
         //    disableCamHud();
@@ -133,6 +135,12 @@ public class PlayerControl : NetworkBehaviour{
         int hg = Screen.height / 12;
         if (GUION == "basic")
         {
+            RaycastHit check;
+            if (Physics.Raycast(transform.position, cam.transform.forward, out check, stats.meleeReach))
+            {
+                GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 5, 5), ".");
+            }
+            
 
             //Just top ui
             for (int x = 0; x < 6; x++)

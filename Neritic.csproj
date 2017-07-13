@@ -90,12 +90,26 @@
     <Compile Include="Assets\Scripts\ShaderSwitch.cs" />
     <Compile Include="Assets\Scripts\Spell.cs" />
     <Compile Include="Assets\Scripts\Statistics.cs" />
+    <Compile Include="Assets\Scripts\Weapon.cs" />
     <Compile Include="Assets\Scripts\behav\weaponAnimBehav.cs" />
     <Compile Include="Assets\Scripts\death.cs" />
     <Compile Include="Assets\Scripts\win.cs" />
+    <Compile Include="Assets\Shaders\ImageEffect.cs" />
+    <Compile Include="Assets\Shaders\PixelEffect.cs" />
+    <Compile Include="Assets\Shaders\Scripts\Dither.cs" />
+    <Compile Include="Assets\Shaders\Scripts\Posterize.cs" />
+    <Compile Include="Assets\Shaders\Scripts\RetroPixelMax.cs" />
+    <Compile Include="Assets\Shaders\Scripts\RetroPixelPalette.cs" />
+    <Compile Include="Assets\Shaders\Scripts\RetroSize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Scripts\Levels\OldLevelGenScripts.txt" />
+    <None Include="Assets\Shaders\Colour.shader" />
+    <None Include="Assets\Shaders\Dither.shader" />
+    <None Include="Assets\Shaders\GrayScale.shader" />
+    <None Include="Assets\Shaders\Posterize.shader" />
+    <None Include="Assets\Shaders\RetroPixelMax.shader" />
+    <None Include="Assets\Shaders\RetroPixels.shader" />
     <None Include="Assets\Shaders\WaterShader.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
