@@ -46,11 +46,11 @@ public class LevelGen : MonoBehaviour {
 
     public void Start ()
     {
-        GameObject f = new GameObject();
+        GameObject f = new GameObject("Floors");
         floors = f;
-        GameObject c = new GameObject();
+        GameObject c = new GameObject("Ceilings");
         ceilings = c;
-        GameObject w = new GameObject();
+        GameObject w = new GameObject("Walls");
         walls = w;
     }
 
@@ -309,7 +309,7 @@ public class LevelGen : MonoBehaviour {
         j.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, 1 * t.spacemod);
         j.transform.rotation *= Quaternion.Euler(90, 0, 0);
         j.isStatic = true;
-        j.transform.parent = floors.transform;
+        j.transform.SetParent(floors.transform);
 
         //Ceiling
         Vector3 mapPosCeiling = new Vector3(t.xPosition * t.spacemod, 2 * t.spacemod, t.yPosition * t.spacemod);
