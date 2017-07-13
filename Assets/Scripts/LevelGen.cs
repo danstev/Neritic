@@ -33,6 +33,12 @@ public class LevelGen : MonoBehaviour {
     private float xStart = 0f;
     private float yStart = 0f;
 
+    public GameObject floors;
+    public GameObject walls;
+    public GameObject ceilings;
+
+    //Not implemented yet
+
 
     public void genMap()
     {
