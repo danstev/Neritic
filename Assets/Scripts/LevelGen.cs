@@ -44,6 +44,16 @@ public class LevelGen : MonoBehaviour {
     //Not even started yet lol
     public GameObject NPCs;
 
+    public void Start ()
+    {
+        GameObject f = new GameObject();
+        floors = f;
+        GameObject c = new GameObject();
+        ceilings = c;
+        GameObject w = new GameObject();
+        walls = w;
+    }
+
 
     public void genMap()
     {
