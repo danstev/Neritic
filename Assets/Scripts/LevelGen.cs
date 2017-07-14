@@ -46,12 +46,7 @@ public class LevelGen : MonoBehaviour {
 
     void Start ()
     {
-        GameObject f = new GameObject("Floors");
-        floors = f;
-        GameObject c = new GameObject("Ceilings");
-        ceilings = c;
-        GameObject w = new GameObject("Walls");
-        walls = w;
+        
     }
 
 
