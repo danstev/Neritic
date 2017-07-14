@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour {
         GameObject levelG = Resources.Load("Prefabs/Scripts/LevelGen") as GameObject;
         GameObject gen = Instantiate(levelG, new Vector3(0,0,0), Quaternion.identity) as GameObject;
         LevelGen generateMap = gen.GetComponent<LevelGen>();
+        GameObject f = new GameObject("Floors");
+        generateMap.floors = f;
+        GameObject c = new GameObject("Ceilings");
+        generateMap.ceilings = c;
+        GameObject w = new GameObject("Walls");
+        generateMap.walls = w;
         generateMap.level = map;
         generateMap.spaceMod = UnityEngine.Random.Range(1.5f, 2f);
         generateMap.genMap();
