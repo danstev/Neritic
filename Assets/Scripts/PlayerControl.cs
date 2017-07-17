@@ -290,6 +290,7 @@ public class PlayerControl : NetworkBehaviour{
             if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), "Home"))
             {
                 SceneManager.LoadScene("home");
+                gameObject.transform.position = new Vector3(0,1,0);
             }
             //Help
             if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 25, 100, 50), "Controls"))
