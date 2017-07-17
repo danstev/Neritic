@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour {
                 stats.level = 1;
 
                 changeLightSize(player, 30,1);
-                setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, g);
+                setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, g);
 
             }
             else if (map == "dungeon")
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour {
     {
         GameObject p = Instantiate(g);
         p.transform.SetParent(player.transform);
-        
+        p.transform.position = new Vector3(0,0,0);
     }
 
     void removeWeatherEffects(GameObject player)
