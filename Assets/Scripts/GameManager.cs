@@ -130,8 +130,9 @@ public class GameManager : MonoBehaviour {
     void setParticles(GameObject g, GameObject player)
     {
         GameObject p = Instantiate(g);
+
+
         p.transform.SetParent(player.transform);
-        p.transform.position = new Vector3(0,0,0);
     }
 
     void removeWeatherEffects(GameObject player)
