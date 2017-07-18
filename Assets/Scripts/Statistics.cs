@@ -128,7 +128,7 @@ public class Statistics : NetworkBehaviour{
         text += "\nIntellect: ";
         text += equippedIntellect + intellect;
         text += "\nExperience to next level: ";
-        text += exp;
+        text += expForLevel - exp;
         return text;
     }
 
