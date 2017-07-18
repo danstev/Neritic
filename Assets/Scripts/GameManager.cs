@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour {
                 stats.level = 1;
 
                 changeLightSize(player, 30,1);
-                setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, g);
+                setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, g);
 
             }
             else if (map == "dungeon")
