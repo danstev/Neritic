@@ -222,11 +222,11 @@ public class Inventory : MonoBehaviour {
             {
                 //add to next free slot
                 int freeslot = getNextFreeSlot();
-
+                slots[freeslot] = g;
                 g.transform.parent = transform;
                 g.SetActive(false);
                 updateGUITextures();
-                slots[freeslot] = g;
+                
                 return;
             }
         }
@@ -234,7 +234,12 @@ public class Inventory : MonoBehaviour {
         {
             //find in inv
             int freeslot = getNextFreeSlot();
+            slots[freeslot] = g;
+            g.transform.parent = transform;
+            g.SetActive(false);
+            updateGUITextures();
 
+            return;
         }     
     }
 
