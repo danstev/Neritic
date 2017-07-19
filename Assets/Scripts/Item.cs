@@ -82,7 +82,7 @@ public class Item : MonoBehaviour {
             s.strength += strength;
             s.agility += agility;
             s.intellect += intellect;
-            i.slots[slotTaken] = null;
+            //i.slots[slotTaken] = null;
             Destroy(gameObject);
 
         }
