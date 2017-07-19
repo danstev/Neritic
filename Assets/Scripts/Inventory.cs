@@ -188,7 +188,10 @@ public class Inventory : MonoBehaviour {
     {
         Item i = g.GetComponent<Item>();
 
-        if(i.equipable)
+        print(i.name);
+        print(i.slotTaken);
+
+        if (i.equipable)
         {
             if(equipped[i.slotTaken] == null)
             {
@@ -218,13 +221,31 @@ public class Inventory : MonoBehaviour {
             else
             {
                 //add to next free slot
+                int freeslot = getNextFreeSlot();
+
+                g.transform.parent = transform;
+                g.SetActive(false);
+                updateGUITextures();
+                slots[freeslot] = g;
+                return;
             }
         }
         else
         {
             //find in inv
+            int freeslot = getNextFreeSlot();
 
         }     
+    }
+
+    int getNextFreeSlot()
+    {
+        int fs = 0;
+        while(slots[fs] != null)
+        {
+            fs++;
+        }
+        return fs;
     }
 
     void putItemInInv(Item i)
