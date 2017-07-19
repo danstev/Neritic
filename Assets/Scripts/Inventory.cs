@@ -8,7 +8,7 @@ public class Inventory : MonoBehaviour {
     //Remove item function
     
     public GameObject[] slots = new GameObject[20];
-    public GameObject[] equipped = new GameObject[10];
+    public GameObject[] equipped = new GameObject[20];
     public GameObject[] spells = new GameObject[50];
 
     Quaternion weaponRotation;
@@ -494,6 +494,11 @@ public class Inventory : MonoBehaviour {
         //{
             
         //}
+
+    }
+
+    void Start()
+    {
 
     }
 }
