@@ -361,21 +361,23 @@ public class Inventory : MonoBehaviour {
         if (equipped[e.slot] == null)
         {
             item.equip();
-            toEquip.SetActive(false);
             e.equip();
             toEquip.transform.parent = transform;
             updateAllStatisitics();
             updateGUITextures();
+            toEquip.SetActive(false);
+            
         }
         else
         {
             unequipItem(equipped[e.slot]);
             item.equip();
-            toEquip.SetActive(false);
             e.equip();
             toEquip.transform.parent = transform;
             updateAllStatisitics();
             updateGUITextures();
+            toEquip.SetActive(false);
+            
         }
     }
 
