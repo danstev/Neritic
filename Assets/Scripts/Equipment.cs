@@ -41,7 +41,7 @@ public class Equipment : MonoBehaviour {
 
     public void equip()
     {
-        if(slot == 1 || slot == 2)
+        if(slot == 0 || slot == 1)
         {
             //move to correct location on body.
             transform.position = new Vector3(0.43f, 0f, 0.53f);
