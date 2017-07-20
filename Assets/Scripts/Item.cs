@@ -67,6 +67,7 @@ public class Item : MonoBehaviour {
         Animator a = GetComponent<Animator>();
         a.enabled = false;
         equipped = false;
+        gameObject.transform.parent = null;
     }
 
     public void use(Statistics s, Inventory i)
