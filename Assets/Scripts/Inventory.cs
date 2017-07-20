@@ -355,30 +355,29 @@ public class Inventory : MonoBehaviour {
 
     public void equipEquipment(GameObject toEquip)
     {
-        Item item = toEquip.GetComponent<Item>();
-        Equipment e = toEquip.GetComponent<Equipment>();
+        Item i = toEquip.GetComponent<Item>();
 
-        if (equipped[e.slot] == null)
+        equipped[i.slotTaken] = toEquip;
+        //totalWeight += item.weight * item.held;
+
+        if (i.slotTaken == 0) //Weapon slot, need another for 2nd weapon slot?
         {
-            item.equip();
-            e.equip();
-            toEquip.transform.parent = transform;
-            updateAllStatisitics();
-            updateGUITextures();
-            toEquip.SetActive(false);
-            
+            i.equipWeapon();
+            PlayerControl p = GetComponent<PlayerControl>();
+            p.refreshWeapon(toEquip);
+            CapsuleCollider c = i.GetComponent<CapsuleCollider>();
+            c.enabled = false;
         }
         else
         {
-            unequipItem(equipped[e.slot]);
-            item.equip();
-            e.equip();
-            toEquip.transform.parent = transform;
-            updateAllStatisitics();
-            updateGUITextures();
+            i.equip();
             toEquip.SetActive(false);
-            
         }
+        Equipment e = toEquip.GetComponent<Equipment>();
+        e.equip();
+        i.transform.parent = transform;
+        updateAllStatisitics();
+        updateGUITextures();
     }
 
     public void deleteItem(int itemId) //used for using items
