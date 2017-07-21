@@ -10,12 +10,11 @@ public class WinterForest {
 
     public int[,] genMap()
     {
-        //CAVE 2
-        //Draw a bunch of rooms
-        //keep a hold of middle of rooms
-        //Smooth eeverything
-        //Draw corridors between each room in order, then some not in order
-        //
+        //WinterForest
+        //Bunch of tress around edge, exit in middle, start around edge
+        
+        //Gen random trees, sparesly, 1/100?
+        //Exit, entrance, rest is changing up trees a little, and adding tree foleys
 
 
         return map;
