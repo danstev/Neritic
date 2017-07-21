@@ -10,6 +10,13 @@ public class CaveTwo {
 
     public int[,] genMap()
     {
+        //CAVE 2
+        //Draw a bunch of rooms
+        //keep a hold of middle of rooms
+        //Smooth eeverything
+        //Draw corridors between each room in order, then some not in order
+        //
+
         xHeight = map.GetLength(0);
         yWidth = map.GetLength(1);
         int rooms = Random.Range(18, 24);
