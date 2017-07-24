@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour {
                 //rain on
                 setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, player);
             }
-            else if( map == "snow")
+            else if( map == "WinterForest")
             {
                 setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, player);
             }
