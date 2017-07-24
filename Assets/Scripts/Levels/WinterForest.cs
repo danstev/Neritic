@@ -15,16 +15,19 @@ public class WinterForest {
         //WinterForest
         //Bunch of tress around edge, exit in middle, start around edge
         drawOutskirts(5);
+
+        /*
         for(int x = 0; x < xHeight; x++)
         {
             for (int y = 0; y < yWidth; y++)
             {
                 if (Random.Range(0.0f, 1f) > 0.5f)
                 {
-                    map[g, h] = 11; //Tree type, NYI!!
+                    map[x, y] = 11; //Tree type, NYI!!
                 }
             }
         }
+        */
         
         //Gen random trees, sparesly, 1/100?
         //Exit, entrance, rest is changing up trees a little, and adding tree foleys
