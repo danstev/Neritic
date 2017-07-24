@@ -10,14 +10,74 @@ public class WinterForest {
 
     public int[,] genMap()
     {
+        xHeight = map.GetLength(0);
+        yWidth = map.GetLength(1);
         //WinterForest
         //Bunch of tress around edge, exit in middle, start around edge
+        drawOutskirts(5);
+        for(int x = 0; x < xHeight; x++)
+        {
+            for (int y = 0; y < yWidth; y++)
+            {
+                if (Random.Range(0.0f, 1f) > 0.5f)
+                {
+                    map[g, h] = 11; //Tree type, NYI!!
+                }
+            }
+        }
         
         //Gen random trees, sparesly, 1/100?
         //Exit, entrance, rest is changing up trees a little, and adding tree foleys
 
 
         return map;
+    }
+
+    private void drawOutskirts(int thickness)
+    {
+        for (int g = 0; g < map.GetLength(0); g++)
+        {
+            for (int h = 0; h < thickness; h++)
+            {
+                if (Random.Range(0.0f, 1f) > 0.5f)
+                {
+                    map[g, h] = 0;
+                }
+            }
+        }
+
+        for (int g = 0; g < map.GetLength(0); g++)
+        {
+            for (int h = map.GetLength(1) - thickness; h < map.GetLength(1); h++)
+            {
+                if (Random.Range(0.0f, 1f) > 0.5f)
+                {
+                    map[g, h] = 0;
+                }
+            }
+        }
+
+        for (int g = map.GetLength(0) - thickness; g < map.GetLength(0); g++)
+        {
+            for (int h = 0; h < map.GetLength(1); h++)
+            {
+                if (Random.Range(0.0f, 1f) > 0.5f)
+                {
+                    map[g, h] = 0;
+                }
+            }
+        }
+
+        for (int g = 0; g < thickness; g++)
+        {
+            for (int h = 0; h < map.GetLength(1); h++)
+            {
+                if (Random.Range(0.0f, 1f) > 0.5f)
+                {
+                    map[g, h] = 0;
+                }
+            }
+        }
     }
 
     public void setMap(int[,] m)
