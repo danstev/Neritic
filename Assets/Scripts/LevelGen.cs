@@ -53,6 +53,7 @@ public class LevelGen : MonoBehaviour {
     public void genMap()
     {
         exitLevel = Resources.Load("Prefabs/Entities/OutPortal") as GameObject;
+
         if (level == "dream") //tutorial level
         {
             tile = Resources.Load("Prefabs/Tiles/dreamFloorTile") as GameObject;
@@ -128,11 +129,40 @@ public class LevelGen : MonoBehaviour {
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genUnderwater();
         }
+        else if (level == "WinterForest") //easy level, outside
+        {
+            tile = Resources.Load("Prefabs/Tiles/forestFloor") as GameObject;
+            wall = Resources.Load("Prefabs/Tiles/forestWall") as GameObject;
+            roof = Resources.Load("Prefabs/Tiles/forestCeiling") as GameObject;
+            foley1 = Resources.Load("Prefabs/Foley/bush") as GameObject;
+            foley2 = Resources.Load("Prefabs/Foley/flowers") as GameObject;
+            foley3 = Resources.Load("Prefabs/Foley/grassFoleey") as GameObject;
+            enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy2 = Resources.Load("Prefabs/NPC/treant") as GameObject;
+            enemy3 = Resources.Load("Prefabs/NPC/shadow") as GameObject;
+            boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
+            torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
+            genForest();
+        }
     }
 
     void genForest()
     {
         Forest r = new Forest();
+        height = UnityEngine.Random.Range(46, 64);
+        width = UnityEngine.Random.Range(46, 64);
+        map = new int[height, width];
+        r.setMap(map);
+        map = r.genMap();
+        tileMap = fillTileMap(map);
+        renderMap(tileMap);
+        xStart = r.sx * spaceMod;
+        yStart = r.sy * spaceMod;
+    }
+
+    void genWinterForest()
+    {
+        WinterForest r = new WinterForest();
         height = UnityEngine.Random.Range(46, 64);
         width = UnityEngine.Random.Range(46, 64);
         map = new int[height, width];
