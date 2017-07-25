@@ -14,18 +14,18 @@ public class WinterForest {
         yWidth = map.GetLength(1);
         //WinterForest
         //Bunch of tress around edge, exit in middle, start around edge
-        drawOutskirts(5);
+        
 
         for (int x = 0; x < xHeight; x++)
         {
             for (int y = 0; y < yWidth; y++)
             {
-                if (Random.Range(0.0f, 1f) > 0.5f)
-                {
+
                     map[x, y] = 1; 
-                }
+
             }
         }
+        drawOutskirts(7);
 
         /*
         for(int x = 0; x < xHeight; x++)
@@ -42,7 +42,7 @@ public class WinterForest {
 
         //Gen random trees, sparesly, 1/100?
         //Exit, entrance, rest is changing up trees a little, and adding tree foleys
-
+        //smoothMap(1);
         drawStart();
         drawEnd();
         cleanUp();
