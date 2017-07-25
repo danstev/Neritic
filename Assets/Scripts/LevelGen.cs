@@ -52,6 +52,7 @@ public class LevelGen : MonoBehaviour {
 
     public void genMap()
     {
+        print(level);
         exitLevel = Resources.Load("Prefabs/Entities/OutPortal") as GameObject;
 
         if (level == "dream") //tutorial level
@@ -142,7 +143,7 @@ public class LevelGen : MonoBehaviour {
             enemy3 = Resources.Load("Prefabs/NPC/shadow") as GameObject;
             boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
-            genForest();
+            genWinterForest();
         }
     }
 
