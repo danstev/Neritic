@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
     int level;
     float xStartPos;
     float yStartPos;
-    string[] weatherEffects = new string[2] { "fog", "rain" };
+    string[] weatherEffects = new string[2] { "Fog(Clone)", "Rain(Clone)" };
 
     void Start()
     {
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour {
             cont.startY = 2;
             cont.startZ = yStartPos;
 
-            removeWeatherEffects(g);
+            //removeWeatherEffects(g);
 
             if (map == "dream")
             {
@@ -72,8 +72,8 @@ public class GameManager : MonoBehaviour {
                 stats.level = 10;
                 i.updateAllStatisitics();
 
-                changeLightSize(player, 50,1);
-                setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, player);
+                //changeLightSize(player, 50,1);
+                //setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, player);
 
             }
             else if (map == "forest")
@@ -102,13 +102,13 @@ public class GameManager : MonoBehaviour {
                 i.updateAllStatisitics();
                 stats.level = 1;
 
-                changeLightSize(player, 30,1);
-                setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, g);
+                //changeLightSize(player, 30,1);
+                //setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, g);
 
             }
             else if (map == "dungeon")
             {
-                changeLightSize(player, 50, 1.5f);
+                //changeLightSize(player, 50, 1.5f);
                 stats.setMusic(3);
                 //rain off
             }
@@ -117,11 +117,11 @@ public class GameManager : MonoBehaviour {
                 changeLightSize(player, 30,1f);
                 stats.setMusic(4);
                 //rain on
-                setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, player);
+                //setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, player);
             }
             else if( map == "WinterForest")
             {
-                setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, player);
+                //setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, player);
             }
         }
 
@@ -134,9 +134,9 @@ public class GameManager : MonoBehaviour {
     {
         GameObject p = Instantiate(g);
 
-
+        p.transform.position = new Vector3(0, 0, 0);
         p.transform.SetParent(player.transform);
-        p.transform.position = new Vector3(0,0,0);
+        p.transform.position = new Vector3(0, 0, 0);
     }
 
     void removeWeatherEffects(GameObject player)
