@@ -14,9 +14,8 @@ public class LevelGen : MonoBehaviour {
     private GameObject tile;
     private GameObject wall;
     private GameObject roof;
-    private GameObject foley1;
-    private GameObject foley2;
-    private GameObject foley3;
+    private GameObject[] foley = new GameObject[10];
+   
     private GameObject enemTest;
     private GameObject enemy2;
     private GameObject enemy3;
@@ -38,7 +37,7 @@ public class LevelGen : MonoBehaviour {
     public GameObject ceilings;
 
     //Not implemented yet
-    public GameObject foley;
+    public GameObject foleyCollection;
     public GameObject enemies;
 
     //Not even started yet lol
@@ -60,9 +59,9 @@ public class LevelGen : MonoBehaviour {
             tile = Resources.Load("Prefabs/Tiles/dreamFloorTile") as GameObject;
             wall = Resources.Load("Prefabs/Tiles/dreamWallTile") as GameObject;
             roof = Resources.Load("Prefabs/Tiles/dreamCeilingTile") as GameObject;
-            foley1 = Resources.Load("Prefabs/Foley/dreamFoley1") as GameObject;
-            foley2 = Resources.Load("Prefabs/Foley/dreamFoley2") as GameObject;
-            foley3 = Resources.Load("Prefabs/Foley/dreamFoley3") as GameObject;
+            foley[0] = Resources.Load("Prefabs/Foley/dreamFoley1") as GameObject;
+            foley[1] = Resources.Load("Prefabs/Foley/dreamFoley2") as GameObject;
+            foley[2] = Resources.Load("Prefabs/Foley/dreamFoley3") as GameObject;
             enemTest = Resources.Load("Prefabs/NPC/marsh") as GameObject;
             enemy2 = Resources.Load("Prefabs/NPC/shadow") as GameObject;
             enemy3 = Resources.Load("Prefabs/NPC/marsh") as GameObject;
@@ -75,9 +74,9 @@ public class LevelGen : MonoBehaviour {
             tile = Resources.Load("Prefabs/Tiles/forestFloor") as GameObject;
             wall = Resources.Load("Prefabs/Tiles/forestWall") as GameObject;
             roof = Resources.Load("Prefabs/Tiles/forestCeiling") as GameObject;
-            foley1 = Resources.Load("Prefabs/Foley/bush") as GameObject;
-            foley2 = Resources.Load("Prefabs/Foley/flowers") as GameObject;
-            foley3 = Resources.Load("Prefabs/Foley/grassFoleey") as GameObject;
+            foley[0] = Resources.Load("Prefabs/Foley/bush") as GameObject;
+            foley[1] = Resources.Load("Prefabs/Foley/flowers") as GameObject;
+            foley[2] = Resources.Load("Prefabs/Foley/grassFoleey") as GameObject;
             enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             enemy2 = Resources.Load("Prefabs/NPC/treant") as GameObject;
             enemy3 = Resources.Load("Prefabs/NPC/shadow") as GameObject;
@@ -90,9 +89,9 @@ public class LevelGen : MonoBehaviour {
             tile = Resources.Load("Prefabs/dreamFloor") as GameObject;
             wall = Resources.Load("Prefabs/dreamWall") as GameObject;
             roof = Resources.Load("Prefabs/dreamRoof") as GameObject;
-            foley1 = Resources.Load("Prefabs/dreamFoley1") as GameObject;
-            foley2 = Resources.Load("Prefabs/dreamFoley2") as GameObject;
-            foley3 = Resources.Load("Prefabs/dreamFoley3") as GameObject;
+            foley[0] = Resources.Load("Prefabs/dreamFoley1") as GameObject;
+            foley[1] = Resources.Load("Prefabs/dreamFoley2") as GameObject;
+            foley[2] = Resources.Load("Prefabs/dreamFoley3") as GameObject;
             enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             enemy3 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
@@ -105,9 +104,9 @@ public class LevelGen : MonoBehaviour {
             tile = Resources.Load("Prefabs/Tiles/dungeonFloor") as GameObject;
             wall = Resources.Load("Prefabs/Tiles/dungeonWall") as GameObject;
             roof = Resources.Load("Prefabs/Tiles/dungeonCeiling") as GameObject;
-            foley1 = Resources.Load("Prefabs/Foley/dreamFoley3") as GameObject;
-            foley2 = Resources.Load("Prefabs/Foley/skull") as GameObject;
-            foley3 = Resources.Load("Prefabs/Foley/dust") as GameObject;
+            foley[0] = Resources.Load("Prefabs/Foley/dreamFoley3") as GameObject;
+            foley[1] = Resources.Load("Prefabs/Foley/skull") as GameObject;
+            foley[2] = Resources.Load("Prefabs/Foley/dust") as GameObject;
             enemTest = Resources.Load("Prefabs/NPC/beholder") as GameObject;
             enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             enemy3 = Resources.Load("Prefabs/NPC/shadow") as GameObject;
@@ -120,9 +119,9 @@ public class LevelGen : MonoBehaviour {
             tile = Resources.Load("Prefabs/Tiles/flowerbedFloor") as GameObject;
             wall = Resources.Load("Prefabs/Tiles/flowerbedWall") as GameObject;
             roof = Resources.Load("Prefabs/Tiles/flowerbedCeiling") as GameObject;
-            foley1 = Resources.Load("Prefabs/Foley/pentagram") as GameObject;
-            foley2 = Resources.Load("Prefabs/Foley/palegrass") as GameObject;
-            foley3 = Resources.Load("Prefabs/Foley/coral") as GameObject;
+            foley[0] = Resources.Load("Prefabs/Foley/pentagram") as GameObject;
+            foley[1] = Resources.Load("Prefabs/Foley/palegrass") as GameObject;
+            foley[2] = Resources.Load("Prefabs/Foley/coral") as GameObject;
             enemTest = Resources.Load("Prefabs/NPC/beholder") as GameObject;
             enemy2 = Resources.Load("Prefabs/NPC/smile") as GameObject;
             enemy3 = Resources.Load("Prefabs/NPC/treant") as GameObject;
@@ -135,9 +134,9 @@ public class LevelGen : MonoBehaviour {
             tile = Resources.Load("Prefabs/Tiles/forestFloor") as GameObject;
             wall = Resources.Load("Prefabs/Tiles/forestWall") as GameObject;
             roof = Resources.Load("Prefabs/Tiles/forestCeiling") as GameObject;
-            foley1 = Resources.Load("Prefabs/Foley/bush") as GameObject;
-            foley2 = Resources.Load("Prefabs/Foley/flowers") as GameObject;
-            foley3 = Resources.Load("Prefabs/Foley/grassFoleey") as GameObject;
+            foley[0] = Resources.Load("Prefabs/Foley/bush") as GameObject;
+            foley[1] = Resources.Load("Prefabs/Foley/flowers") as GameObject;
+            foley[2] = Resources.Load("Prefabs/Foley/grassFoleey") as GameObject;
             enemTest = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
             enemy2 = Resources.Load("Prefabs/NPC/treant") as GameObject;
             enemy3 = Resources.Load("Prefabs/NPC/shadow") as GameObject;
@@ -272,20 +271,9 @@ public class LevelGen : MonoBehaviour {
                     {
                         //Spawn foley
                         t.entity = true;
-                        int f = UnityEngine.Random.Range(1, 4);
-                        if (f == 1)
-                        {
-                            t.entityObject = foley1;
-                            
-                        }
-                        else if (f == 2)
-                        {
-                            t.entityObject = foley2;
-                        }
-                        else if (f > 2)
-                        {
-                            t.entityObject = foley3;
-                        }
+                        int c = getAmount(foley);
+                        int f = UnityEngine.Random.Range(0, c);
+                        t.entityObject = foley[f];
                     }
 
                     listOfTiles.Add(t);
@@ -457,6 +445,24 @@ public class LevelGen : MonoBehaviour {
     public float getYStart()
     {
         return yStart;
+    }
+
+    public int getAmount(GameObject[] g)
+    {
+        int count = 0;
+        foreach(GameObject c in g)
+        {
+            if(c == null)
+            {
+
+            }
+            else
+            {
+                count++;
+            }
+            
+        }
+        return count;
     }
 
 
