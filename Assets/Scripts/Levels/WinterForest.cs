@@ -63,7 +63,7 @@ public class WinterForest {
                     }
                 }
 
-                if(x == 1 || x == map.GetLength(0) ||  y == 1 || y == map.GetLength(1))
+                if(x == 0 || x == map.GetLength(0) ||  y == 0 || y == map.GetLength(1) || x == 1 || y == 1 )
                 {
                     map[x, y] = 0;
                 }
