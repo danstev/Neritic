@@ -62,6 +62,11 @@ public class WinterForest {
                         map[x, y] = 0;
                     }
                 }
+
+                if(x == 1 || x == map.GetLength(0) ||  y == 1 || y == map.GetLength(1))
+                {
+                    map[x, y] = 0;
+                }
             }
         }
     }
