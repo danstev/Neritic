@@ -163,8 +163,12 @@ public class LevelGen : MonoBehaviour {
     void genWinterForest()
     {
         WinterForest r = new WinterForest();
-        height = UnityEngine.Random.Range(46, 64);
-        width = UnityEngine.Random.Range(46, 64);
+        //height = UnityEngine.Random.Range(46, 64);
+        //width = UnityEngine.Random.Range(46, 64);
+
+        height = 100; width = 100;
+
+
         map = new int[height, width];
         r.setMap(map);
         map = r.genMap();
