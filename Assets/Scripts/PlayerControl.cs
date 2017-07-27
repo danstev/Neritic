@@ -64,11 +64,21 @@ public class PlayerControl : NetworkBehaviour{
     private delegate void move();
     move movement;
 
+    public GameObject cameraForOps;
+    public RetroSize retroS;
+    public Posterize post;
+    public Dither dither;
+
     //Tick system?
     int tick;
 
     void Start () {
-
+        cameraForOps = GameObject.Find("Camera");
+        retroS = cameraForOps.GetComponent<RetroSize>();
+        retroS.horizontalResolution = Screen.width / 4;
+        retroS.verticalResolution = Screen.height / 4;
+        post = cameraForOps.GetComponent<Posterize>();
+        dither = cameraForOps.GetComponent<Dither>();
         stats = GetComponent<Statistics>();
         inv = GetComponent<Inventory>();
         refreshStats();
@@ -290,13 +300,28 @@ public class PlayerControl : NetworkBehaviour{
             //Start game
             if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), "Home"))
             {
-                SceneManager.LoadScene("home");
-                gameObject.transform.position = new Vector3(0,1,0);
+                Scene s = SceneManager.GetActiveScene();
+                string map = s.name;
+
+                if (map == "home")
+                {
+                    
+                }
+                else
+                {
+                    SceneManager.LoadScene("home");
+                    gameObject.transform.position = new Vector3(0, 1, 0);
+                }
             }
             //Help
             if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 25, 100, 50), "Controls"))
             {
                 GUION = "help";
+            }
+            //Options
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 75, 100, 50), "Options"))
+            {
+                GUION = "options";
             }
 
             //exit
@@ -321,7 +346,29 @@ public class PlayerControl : NetworkBehaviour{
             int h = Screen.height / 12;
             GUI.Box(new Rect(w * 5, h * 4, w * 2, h * 3), statsPage);
         }
-       
+        else if (GUION == "options")
+        {
+            int w = Screen.width / 12;
+            int h = Screen.height / 12;
+
+            //Start game
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), "1"))
+            {
+                retroS.enabled = !retroS.enabled;
+            }
+            //Help
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 25, 100, 50), "2"))
+            {
+                dither.enabled = !dither.enabled;
+            }
+
+            //exit
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 125, 100, 50), "3"))
+            {
+                post.enabled = !post.enabled;
+            }
+        }
+
     }
 
 	void Update () {
