@@ -1,6 +1,5 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Cam.Effects {
 	[ExecuteInEditMode]
 	[RequireComponent(typeof(UnityEngine.Camera))]
 	[AddComponentMenu("Image Effects/Custom/Dither")]
@@ -48,4 +47,3 @@ namespace Assets.Scripts.Cam.Effects {
 				DestroyImmediate(m_material);
 		}
 	}
-}
