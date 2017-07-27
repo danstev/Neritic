@@ -1,6 +1,5 @@
 using UnityEngine;
 
-namespace Assets.Scripts.Cam.Effects {
 	[ExecuteInEditMode]
 	[RequireComponent(typeof(Camera))]
 	[AddComponentMenu("Image Effects/Custom/Posterize")]
@@ -42,4 +41,3 @@ namespace Assets.Scripts.Cam.Effects {
 				DestroyImmediate(m_material);
 		}
 	}
-}
