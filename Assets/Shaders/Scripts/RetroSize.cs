@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Assets.Scripts.Cam.Effects {
+
 	[ExecuteInEditMode]
 	[RequireComponent(typeof(UnityEngine.Camera))]
 	[AddComponentMenu("Image Effects/Custom/Retro Size")]
@@ -38,4 +38,3 @@ namespace Assets.Scripts.Cam.Effects {
 			RenderTexture.ReleaseTemporary(scaled);
 		}
 	}
-}
