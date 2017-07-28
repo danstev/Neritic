@@ -55,7 +55,9 @@ public class PlayerControl : NetworkBehaviour{
     public Texture2D u;
     public Texture2D statsImage;
     public Texture2D tabImage;
-    private float reach;
+
+    private float reach = 3f;
+    private float meleeReach;
 
     //Audio stuff
     public AudioSource audioPlayer;
