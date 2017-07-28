@@ -353,10 +353,13 @@ public class Inventory : MonoBehaviour {
         }
     }
 
-    public void equipEquipment(GameObject toEquip)
+    public void equipEquipment(GameObject toEquip, int s)
     {
-        Item i = toEquip.GetComponent<Item>();
+        
 
+        Item i = toEquip.GetComponent<Item>();
+        slots[s] = null;
+        unequipItem(equipped[i.slotTaken]);
         equipped[i.slotTaken] = toEquip;
         //totalWeight += item.weight * item.held;
 
