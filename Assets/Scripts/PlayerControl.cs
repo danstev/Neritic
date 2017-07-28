@@ -206,7 +206,7 @@ public class PlayerControl : NetworkBehaviour{
                         if (Input.GetMouseButtonUp(0))
                         {
                             Item i = inv.slots[x].GetComponent<Item>();
-                            i.use(stats, inv);
+                            i.use(stats, inv, x);
                         }
                         else if (Input.GetMouseButtonUp(1))
                         {
@@ -468,33 +468,33 @@ public class PlayerControl : NetworkBehaviour{
         if (Input.GetKeyDown("1"))
         {
             Item i = inv.slots[0].GetComponent<Item>();
-            i.use(stats, inv);
+            i.use(stats, inv, 0);
         }
 
         if (Input.GetKeyDown("2"))
         {
             Item i = inv.slots[1].GetComponent<Item>();
-            i.use(stats, inv);
+            i.use(stats, inv, 1);
         }
         if (Input.GetKeyDown("3"))
         {
             Item i = inv.slots[2].GetComponent<Item>();
-            i.use(stats, inv);
+            i.use(stats, inv, 2);
         }
         if (Input.GetKeyDown("4"))
         {
             Item i = inv.slots[3].GetComponent<Item>();
-            i.use(stats, inv);
+            i.use(stats, inv, 3);
         }
         if (Input.GetKeyDown("5"))
         {
             Item i = inv.slots[4].GetComponent<Item>();
-            i.use(stats, inv);
+            i.use(stats, inv, 4);
         }
         if (Input.GetKeyDown("6"))
         {
             Item i = inv.slots[5].GetComponent<Item>();
-            i.use(stats, inv);
+            i.use(stats, inv, 5);
         }
     }
 
