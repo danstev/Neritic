@@ -70,11 +70,11 @@ public class Item : MonoBehaviour {
         gameObject.transform.parent = null;
     }
 
-    public void use(Statistics s, Inventory i)
+    public void use(Statistics s, Inventory i, int slot)
     {
         if(equipable)
         {
-            i.equipEquipment(gameObject);
+            i.equipEquipment(gameObject, slot);
         }
         else
         {
