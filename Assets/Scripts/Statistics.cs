@@ -12,6 +12,7 @@ public class Statistics : NetworkBehaviour{
     public int maxHealth;
     public int curMana;
     public int maxMana;
+    public string status = "alive";
 
     public int armour; //Not implemented yet
     public float attack;
@@ -177,27 +178,10 @@ public class Statistics : NetworkBehaviour{
             {
                 if (isLocalPlayer)
                 {
-                    //GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
-                    //Instantiate(player);
-                    PlayerControl l = GetComponent<PlayerControl>();
-                    string deathType = l.deathSetting;
+                    PlayerControl p = GetComponent<PlayerControl>();
+                    p.enabled = !p.enabled;
 
-                    if(deathType == "hardcore")
-                    {
-                        Destroy(gameObject);
-                        SceneManager.LoadScene("death");
-                    }
-                    else
-                    {
-                        curHealth = maxHealth;
-                        gameObject.transform.position = new Vector3(l.startX, l.startY, l.startZ);
-
-                        if(level > 1)
-                            levelUp(-1);
-
-
-                    }
-                    
+                    status = "death";
                 }
             }
         }
@@ -219,6 +203,30 @@ public class Statistics : NetworkBehaviour{
         }
         
 
+    }
+
+    private void Die()
+    {
+        //GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
+        //Instantiate(player);
+        PlayerControl l = GetComponent<PlayerControl>();
+        string deathType = l.deathSetting;
+
+        if (deathType == "hardcore")
+        {
+            Destroy(gameObject);
+            SceneManager.LoadScene("death");
+        }
+        else
+        {
+            curHealth = maxHealth;
+            gameObject.transform.position = new Vector3(l.startX, l.startY, l.startZ);
+
+            if (level > 1)
+                levelUp(-1);
+
+
+        }
     }
 
     public void takeDamage(float[] dam)
@@ -304,10 +312,16 @@ public class Statistics : NetworkBehaviour{
 
     void OnGUI ()
     {
-        /*if(player)
+        int w = Screen.width / 12;
+        int h = Screen.height / 12;
+
+        if (status == "death")
         {
-            GUI.Box( new Rect(Screen.height / 12, Screen.height - (Screen.height / 12), 200, 50), "hi");
+            if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6 - (h * 2), 200, 50), "Controls"))
+            {
+                Die();
+                status = "alive";
+            }
         }
-        */
     }
 }
