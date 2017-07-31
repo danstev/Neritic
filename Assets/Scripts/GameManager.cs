@@ -50,8 +50,16 @@ public class GameManager : MonoBehaviour {
             cont.startY = 2;
             cont.startZ = yStartPos;
 
-            //removeWeatherEffects(g);
+            //REMOVED WHEN OTHER PART BACK In
+            if (i.equipped[0] == null)
+            {
+                GameObject sword = Instantiate(Resources.Load("Prefabs/Weapons/SmallSword")) as GameObject;
+                i.addItem(sword);
+            }
+            //
 
+            //removeWeatherEffects(g);
+            /* REMOVED FOR NOW
             if (map == "dream")
             {
                 
@@ -123,6 +131,7 @@ public class GameManager : MonoBehaviour {
             {
                 //setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, player);
             }
+            */ //Removed for now!
         }
 
         GameObject e = GameObject.FindGameObjectWithTag("LevelSwitch");
