@@ -179,7 +179,7 @@ public class Statistics : NetworkBehaviour{
                 if (isLocalPlayer)
                 {
                     PlayerControl p = GetComponent<PlayerControl>();
-                    p.enabled = !p.enabled;
+                    p.enabled = false;
 
                     status = "death";
                 }
@@ -210,8 +210,10 @@ public class Statistics : NetworkBehaviour{
         //GameObject player = Resources.Load("Prefabs/Player/Player") as GameObject;
         //Instantiate(player);
         PlayerControl l = GetComponent<PlayerControl>();
-        string deathType = l.deathSetting;
 
+        l.enabled = true;
+        string deathType = l.deathSetting;
+        
         if (deathType == "hardcore")
         {
             Destroy(gameObject);
@@ -224,8 +226,6 @@ public class Statistics : NetworkBehaviour{
 
             if (level > 1)
                 levelUp(-1);
-
-
         }
     }
 
