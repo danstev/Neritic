@@ -49,7 +49,7 @@ public class MainMenu : MonoBehaviour
             {
                 //instPlayer();
                 m.StartHost();
-                SceneManager.LoadScene("forest");
+                SceneManager.LoadScene("home");
             }
             //Help
             if (GUI.Button(new Rect(w * 6 - (w / 2), h * 6 - (h * 2), 200, 50), "Controls"))
