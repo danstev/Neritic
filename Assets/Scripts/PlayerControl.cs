@@ -55,6 +55,8 @@ public class PlayerControl : NetworkBehaviour{
     public Texture2D u;
     public Texture2D statsImage;
     public Texture2D tabImage;
+    private GUIStyle guiStyle;
+    private Texture2D tx;
 
     private float reach = 3f;
     private float meleeReach;
@@ -90,8 +92,11 @@ public class PlayerControl : NetworkBehaviour{
         tick = 0;
         statsPage = stats.updateStatPage();
         equipTextures = new Texture2D[10];
-        print(equipTextures.Length);
         reach = stats.meleeReach;
+        guiStyle = new GUIStyle();
+        tx = new Texture2D(1,1);
+        
+
 
         //if (!isLocalPlayer)
         //    disableCamHud();
@@ -151,7 +156,24 @@ public class PlayerControl : NetworkBehaviour{
             RaycastHit check;
             if (Physics.Raycast(transform.position, cam.transform.forward, out check, stats.meleeReach))
             {
-                GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 5, 5), ".");
+                
+
+                if (check.collider.tag == "Enemy")
+                {
+                    Color c = new Color(1,0,0);
+                    tx.SetPixel(0, 0, c);
+                    tx.Apply();
+                    guiStyle.normal.background = tx;
+                    GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 5, 5), ".", guiStyle);
+                }
+                else if (check.collider.tag == "Item" || check.collider.tag == "Equipment" || check.collider.tag == "Weapon" )
+                {
+                    Color c = new Color(0, 1, 0);
+                    tx.SetPixel(0, 0, c);
+                    tx.Apply();
+                    guiStyle.normal.background = tx;
+                    GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 5, 5), ".", guiStyle);
+                }
             }
             
 
