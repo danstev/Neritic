@@ -37,6 +37,8 @@ public class Equipment : MonoBehaviour {
             agility = baseAgility;
             strength = baseStrength;
         }
+
+        
     }
 
     public void equip()
