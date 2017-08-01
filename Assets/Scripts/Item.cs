@@ -35,6 +35,7 @@ public class Item : MonoBehaviour {
             Animator a = GetComponent<Animator>();
             a.enabled = false;
         }
+
 	
 	}
 	
