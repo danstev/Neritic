@@ -22,7 +22,7 @@ public class PopUp : MonoBehaviour {
             //Item stuff
             Item i = GetComponent<Item>();
             Equipment e = GetComponent<Equipment>();
-            string name = i.name;
+            string name = i.itemName;
             string description = i.description;
             text = name;
             text += "\n";
