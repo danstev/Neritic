@@ -59,11 +59,12 @@ public class GameManager : MonoBehaviour {
             //
 
             //removeWeatherEffects(g);
-            /* REMOVED FOR NOW
+            
             if (map == "dream")
             {
                 
                 stats.setMusic(1);
+                /* REMOVED FOR NOW
                 GameObject sword = Instantiate(Resources.Load("Prefabs/Weapons/SmallSword")) as GameObject;
                 i.addItem(sword);
                 //god stats etc
@@ -82,11 +83,12 @@ public class GameManager : MonoBehaviour {
 
                 //changeLightSize(player, 50,1);
                 //setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, player);
-
+                */
             }
             else if (map == "forest")
             {
                 stats.setMusic(2);
+                /* REMOVED FOR NOW
                 //check if sword is equipped
                 if (i.equipped[0] == null)
                 {
@@ -112,6 +114,7 @@ public class GameManager : MonoBehaviour {
 
                 //changeLightSize(player, 30,1);
                 //setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, g);
+                */
 
             }
             else if (map == "dungeon")
@@ -131,10 +134,10 @@ public class GameManager : MonoBehaviour {
             {
                 //setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, player);
             }
-            */ //Removed for now!
+            //Removed for now
         }
 
-        GameObject e = GameObject.FindGameObjectWithTag("LevelSwitch");
+            GameObject e = GameObject.FindGameObjectWithTag("LevelSwitch");
         ExitLevel exit = e.GetComponent<ExitLevel>();
         exit.setLevel(map);
     }
