@@ -633,8 +633,8 @@ public class PlayerControl : NetworkBehaviour{
         {
             attackTimeCD = stats.attackTime;
             //anim.SetTrigger("swing");
-            anim.Play("swingSword");
             anim.speed = 1 / stats.attackTime;
+            anim.Play("swingSword");
             audioPlayer.PlayOneShot(weaponAttack);
             RaycastHit melee = new RaycastHit();
             if (Physics.Raycast(transform.position, cam.transform.forward, out melee, stats.meleeReach))
