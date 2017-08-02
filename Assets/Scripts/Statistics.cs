@@ -43,7 +43,6 @@ public class Statistics : NetworkBehaviour{
     public int exp;
     public float expForLevel;
     
-
     //Get component
     private Rigidbody r;
     private CharacterController c;
