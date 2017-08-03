@@ -13,7 +13,6 @@ public class BillboardSprite : MonoBehaviour {
     void Start()
     {
         r = GetComponentInChildren<SpriteRenderer>();
-        
     }
 
     void Update()
