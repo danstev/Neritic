@@ -144,6 +144,9 @@ public class PlayerControl : NetworkBehaviour{
 
     void OnGUI()
     {
+
+        //Archaic GUI system, please convert to new system
+
         if (!isLocalPlayer)
         {
             return;
