@@ -375,19 +375,19 @@ public class PlayerControl : NetworkBehaviour{
             int w = Screen.width / 12;
             int h = Screen.height / 12;
 
-            //Start game
-            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), "1"))
+            //Pixel density
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), "Pixel density"))
             {
                 retroS.enabled = !retroS.enabled;
             }
-            //Help
-            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 25, 100, 50), "2"))
+            //Dithering
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 25, 100, 50), "Dithering"))
             {
                 dither.enabled = !dither.enabled;
             }
 
-            //exit
-            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 125, 100, 50), "3"))
+            //Posterization
+            if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 + 75, 100, 50), "Posterization"))
             {
                 post.enabled = !post.enabled;
             }
