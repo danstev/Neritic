@@ -27,19 +27,15 @@ public class Item : MonoBehaviour {
     public int agility;
     public int intellect;
 
-    // Use this for initialization
-    void Start () {
-
+    void Start ()
+    {
         if(!equipped && equipable)
         {
             Animator a = GetComponent<Animator>();
             a.enabled = false;
-        }
-
-	
+        }	
 	}
 	
-	// Update is called once per frame
 	void Update () {
 	
 	}
@@ -86,7 +82,6 @@ public class Item : MonoBehaviour {
             s.intellect += intellect;
             //i.slots[slotTaken] = null;
             Destroy(gameObject);
-
         }
     }
 
