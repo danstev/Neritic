@@ -121,20 +121,18 @@ public class GameManager : MonoBehaviour {
             {
                 //changeLightSize(player, 50, 1.5f);
                 stats.setMusic(3);
-                //rain off
             }
             else if (map == "endLevel")
             {
                 changeLightSize(player, 30,1f);
                 stats.setMusic(4);
-                //rain on
                 //setParticles(Resources.Load("Prefabs/Particles/Rain") as GameObject, player);
             }
             else if( map == "WinterForest")
             {
                 //setParticles(Resources.Load("Prefabs/Particles/Fog") as GameObject, player);
             }
-            //Removed for now
+            
         }
 
             GameObject e = GameObject.FindGameObjectWithTag("LevelSwitch");
