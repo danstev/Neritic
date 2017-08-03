@@ -36,9 +36,7 @@ public class Equipment : MonoBehaviour {
             intellect = baseIntellect + Random.Range(level * 1, level * 3);
             agility = baseAgility;
             strength = baseStrength;
-        }
-
-        
+        }        
     }
 
     public void equip()
@@ -76,7 +74,6 @@ public class Equipment : MonoBehaviour {
             }
         }
         return new Quaternion(0,0,0,0);
-        
     }
 
 
