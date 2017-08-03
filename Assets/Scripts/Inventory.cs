@@ -501,8 +501,4 @@ public class Inventory : MonoBehaviour {
 
     }
 
-    void Start()
-    {
-
-    }
 }
