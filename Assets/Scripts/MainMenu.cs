@@ -12,17 +12,11 @@ public class MainMenu : MonoBehaviour
 
     public NetworkManager m;
 
-	// Use this for initialization
 	void Start () {
         Cursor.lockState = CursorLockMode.None;
         style = new GUIStyle();
         style.wordWrap = true;
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     void instPlayer()
     {
