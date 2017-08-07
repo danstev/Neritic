@@ -85,7 +85,7 @@ public class Dungeon {
                 }
                 else
                 {
-                    map[i + 1, t + 1] = 1;
+                    map[i + 1, t + 1] = 2;
                 }
             }
         }
@@ -97,7 +97,7 @@ public class Dungeon {
         {
             for (int u = y - 20; u <  y - 5; u++)
             {
-                map[u, o] = 1;
+                map[u, o] = 2;
                 x1 = u;
                 x2 = o;
 
