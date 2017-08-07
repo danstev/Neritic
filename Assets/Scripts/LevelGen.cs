@@ -43,6 +43,8 @@ public class LevelGen : MonoBehaviour {
     //Not even started yet lol
     public GameObject NPCs;
 
+    private GameObject testTile;
+
     void Start ()
     {
         
@@ -53,6 +55,7 @@ public class LevelGen : MonoBehaviour {
     {
         print(level);
         exitLevel = Resources.Load("Prefabs/Entities/OutPortal") as GameObject;
+        testTile = Resources.Load("Prefabs/Tiles/dreamFloorTile") as GameObject;
 
         if (level == "dream") //tutorial level
         {
@@ -284,7 +287,7 @@ public class LevelGen : MonoBehaviour {
                     Tile t = new Tile();
                     t.xPosition = x;
                     t.yPosition = y;
-                    t.floorTile = tile;
+                    t.floorTile = testTile;
                     t.ceilingTile = roof;
                     t.wallTile = wall;
                     t.spacemod = spaceMod;
