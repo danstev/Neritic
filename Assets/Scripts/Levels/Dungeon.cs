@@ -31,7 +31,7 @@ public class Dungeon {
             {
                 for (int w = offsetW; w <= width + offsetW; w++)
                 {
-                    map[q, w] = 2;
+                    map[q, w] = 1;
 
                     if(w == width + offsetW - 1)
                     {
@@ -85,7 +85,7 @@ public class Dungeon {
                 }
                 else
                 {
-                    map[i + 1, t + 1] = 2;
+                    map[i + 1, t + 1] = 1;
                 }
             }
         }
@@ -97,7 +97,7 @@ public class Dungeon {
         {
             for (int u = y - 20; u <  y - 5; u++)
             {
-                map[u, o] = 2;
+                map[u, o] = 1;
                 x1 = u;
                 x2 = o;
 
