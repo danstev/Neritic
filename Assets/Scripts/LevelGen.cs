@@ -339,10 +339,16 @@ public class LevelGen : MonoBehaviour {
         //Entity
         if (t.entity == true)
         {
-
-            Vector3 pos = new Vector3(t.xPosition * t.spacemod + ( t.spacemod * UnityEngine.Random.Range(0f,1f) / 2), 1.5f * t.spacemod, t.yPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2));
-            GameObject o = Instantiate(t.entityObject, pos, t.entityObject.transform.rotation) as GameObject;
-            o.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, -1);
+            foreach (GameObject g in t.entityObject)
+            {
+                if (g != null)
+                {
+                    Vector3 pos = new Vector3(t.xPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2), 1.5f * t.spacemod, t.yPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2));
+                    GameObject o = Instantiate(g, pos, g.transform.rotation) as GameObject;
+                    o.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, -1);
+                }
+                
+            }
         }
 
         renderWalls(t.xPosition, t.yPosition, t.wallTile, t.spacemod);
