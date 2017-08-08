@@ -255,7 +255,6 @@ public class LevelGen : MonoBehaviour {
                     {
                         //enemy spawn
                         t.entity = true;
-                        t.entityObject = enemTest;
                         int f = UnityEngine.Random.Range(1, 4);
                         if (f == 1)
                         {
@@ -340,6 +339,7 @@ public class LevelGen : MonoBehaviour {
         //Entity
         if (t.entity == true)
         {
+
             Vector3 pos = new Vector3(t.xPosition * t.spacemod + ( t.spacemod * UnityEngine.Random.Range(0f,1f) / 2), 1.5f * t.spacemod, t.yPosition * t.spacemod + (t.spacemod * UnityEngine.Random.Range(0f, 1f) / 2));
             GameObject o = Instantiate(t.entityObject, pos, t.entityObject.transform.rotation) as GameObject;
             o.transform.localScale = new Vector3(1 * t.spacemod, 1 * t.spacemod, -1);

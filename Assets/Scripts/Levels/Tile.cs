@@ -11,6 +11,6 @@ public class Tile
     public bool torch;
     public GameObject torchObject;
     public bool entity;
-    public GameObject entityObject;
+    public GameObject[] entityObject = new GameObject[5];
     public float spacemod = 1f;
 }
