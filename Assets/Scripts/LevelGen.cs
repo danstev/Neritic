@@ -276,7 +276,7 @@ public class LevelGen : MonoBehaviour {
                         t.entity = true;
                         int c = getAmount(foley);
                         int f = UnityEngine.Random.Range(0, c);
-                        t.entityObject = foley[f];
+                        t.entityObject[1] = foley[f];
                     }
 
                     listOfTiles.Add(t);
@@ -303,7 +303,7 @@ public class LevelGen : MonoBehaviour {
                     t.wallTile = wall;
                     t.spacemod = spaceMod;
                     t.entity = true;
-                    t.entityObject = exitLevel;
+                    t.entityObject[3] = exitLevel;
                     listOfTiles.Add(t);
                 }
             }
