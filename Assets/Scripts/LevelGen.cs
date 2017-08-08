@@ -258,15 +258,15 @@ public class LevelGen : MonoBehaviour {
                         int f = UnityEngine.Random.Range(1, 4);
                         if (f == 1)
                         {
-                            t.entityObject = enemTest;
+                            t.entityObject[0] = enemTest;
                         }
                         else if (f == 2)
                         {
-                            t.entityObject = enemy2;
+                            t.entityObject[0] = enemy2;
                         }
                         else if (f > 2)
                         {
-                            t.entityObject = enemy3;
+                            t.entityObject[0] = enemy3;
                         }
                     }
 
