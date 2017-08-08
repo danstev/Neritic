@@ -28,10 +28,10 @@ public class EnemyBaseAi : MonoBehaviour {
     private float randomMoveMod = 0.0125f;
     private GameObject sprite;
     private Rigidbody r;
+    private bool attacked = false;
 
     private float attackTimer = 0f;
 
-    // Use this for initialization
     void Start () {
         r = GetComponent<Rigidbody>();
         
@@ -112,10 +112,39 @@ public class EnemyBaseAi : MonoBehaviour {
 
     void rogueEnemy()
     {
+        if (target == null)
+        {
+            if (scanTimer <= 0)
+            {
+                targetScan();
+                scanTimer = Random.Range(0f, 5f);
+            }
+            else
+            {
+                scanTimer -= Time.deltaTime;
 
+            }
+        }
+
+        if (target != null) //Add in other moves inside here
+        {
+            transform.LookAt(target.transform);
+            //moveBack();
+            if(attacked)
+            {
+                aggressiveMove();
+            }
+            else
+            {
+                moveBack();
+            }
+        }
+        else
+        {
+            randomMove();
+        }
     }
 
-    // Update is called once per frame
     void Update () {
         enemyAI();   
 	}
@@ -247,5 +276,6 @@ public class EnemyBaseAi : MonoBehaviour {
                 transform.position = Vector3.MoveTowards(transform.position, target.transform.position, step / 2);
             }
         }
+
     }
 
