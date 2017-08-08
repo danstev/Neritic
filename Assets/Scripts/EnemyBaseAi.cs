@@ -129,14 +129,13 @@ public class EnemyBaseAi : MonoBehaviour {
         if (target != null) //Add in other moves inside here
         {
             transform.LookAt(target.transform);
-            //moveBack();
             if(attacked)
             {
-                aggressiveMove();
+                moveBack();
             }
             else
             {
-                moveBack();
+                aggressiveMove();
             }
         }
         else
@@ -156,6 +155,7 @@ public class EnemyBaseAi : MonoBehaviour {
             randomMoveTimerSet = 3 * Random.Range(1, 2);
             float step = stats.momvementSpeedMod * Time.deltaTime;
             transform.position += transform.forward * -1 * step;
+            attacked = false;
         }
 
         if (randomMoveTimerSet > 0)
@@ -214,6 +214,7 @@ public class EnemyBaseAi : MonoBehaviour {
            v[4] = transform.position.z;
            target.transform.SendMessage(("takeDamage"), v, SendMessageOptions.DontRequireReceiver);
            attackTimer = stats.attackTime;
+            attacked = true;
         }
         else if (attackTimer > 0)
         {
