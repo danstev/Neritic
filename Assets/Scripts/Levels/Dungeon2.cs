@@ -6,8 +6,13 @@ public class Dungeon2 {
     int x1, x2, y1, y2;
     public int sx, sy, ex, ey;
     int x, y;
+
+    int[] xMid;
+    int[] yMid;
     public int[,] genMap()
     {
+        xMid = new int[4];
+        yMid = new int[4];
         x = map.GetLength(0);
         y = map.GetLength(1);
         int rooms = 4;
@@ -28,15 +33,16 @@ public class Dungeon2 {
         {
             for (int x = 0; x < square; x++)
             {
-                int h = Random.Range(4, 8);
-                int j = Random.Range(4, 8);
+                int h1 = Random.Range(4, 8);
+                int j1 = Random.Range(4, 8);
+                int h = h1;
+                int j = j1;
 
                 for (int u = 0; u < h; u++)
                 {
                     for (int k = j; k < j; k++)
                     {
-                        //Draw rectangle room
-                        //Add coords
+                        
                     }
                 }
             }
@@ -117,31 +123,49 @@ public class Dungeon2 {
 
         for (int h = x1; h < middle; h++)
         {
-            map[h, x2] = tileType;
+            if (map[h, x2] == 0)
+            {
+                map[h, x2] = tileType;
+            }
         }
 
         for (int h = middle; h < y1; h++)
         {
-            map[h, y2] = tileType;
+            if (map[h, y2] == 0)
+            {
+                map[h, y2] = tileType;
+            }
         }
 
         if (x2 < y2)
         {
             for (int h = x2; h < y2; h++)
             {
-                map[middle, h] = tileType;
+                if (map[middle, h] == 0)
+                {
+                    map[middle, h] = tileType;
+                }
             }
         }
         else
         {
             for (int h = y2; h < x2; h++)
             {
-                map[middle, h] = tileType;
+                if (map[middle, h] == 0)
+                {
+                    map[middle, h] = tileType;
+                }
             }
         }
 
-        map[middle, x2] = tileType;
-        map[middle, y2] = tileType;
+        if (map[middle, x2] == 0)
+        {
+            map[middle, x2] = tileType;
+        }
+        if (map[middle, y2] == 0)
+        {
+            map[middle, y2] = tileType;
+        }
 
     }
 
