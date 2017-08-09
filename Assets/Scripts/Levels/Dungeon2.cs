@@ -10,13 +10,37 @@ public class Dungeon2 {
     {
         x = map.GetLength(0);
         y = map.GetLength(1);
-        int rooms = Random.Range(10, 12);
+        int rooms = 4;
         //Make starting room near edge.
-        //Draw rooms
-        //Rememver coords
+        drawRoom(rooms);
+        //Draw start + end
+        //Connect
 
 
         return map;
+    }
+
+    private void drawRoom(int square)
+    {
+        int width = x;
+        int height = y;
+        for(int i = 0; i < square; i++)
+        {
+            for (int x = 0; x < square; x++)
+            {
+                int h = Random.Range(4, 8);
+                int j = Random.Range(4, 8);
+
+                for (int u = 0; u < h; u++)
+                {
+                    for (int k = j; k < j; k++)
+                    {
+                        //Draw rectangle room
+                        //Add coords
+                    }
+                }
+            }
+        }
     }
 
     public void setMap(int[,] m)
