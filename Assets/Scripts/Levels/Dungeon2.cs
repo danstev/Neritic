@@ -36,12 +36,12 @@ public class Dungeon2 {
             {
                 int h1 = Random.Range(4, 8);
                 int j1 = Random.Range(4, 8);
-                int h = h1 + (i * 8);
-                int j = j1 + (x * 8);
-
-                for (int u = 0; u < h; u++)
+                int h = h1 + (i * 10);
+                int j = j1 + (x * 10);
+                
+                for (int u = h; u < h + h1; u++)
                 {
-                    for (int k = j; k < j; k++)
+                    for (int k = j; k < j + j1; k++)
                     {
                         map[u, k] = 1;
                     }
