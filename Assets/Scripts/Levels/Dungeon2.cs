@@ -12,50 +12,9 @@ public class Dungeon2 {
         y = map.GetLength(1);
         int rooms = Random.Range(10, 12);
         //Make starting room near edge.
-        buildStartRoom();
+        //Draw rooms
+        //Rememver coords
 
-
-
-        x1 = 0;
-        x2 = 0;
-
-        for (int i = 0; i < rooms; i++)
-        {
-            int height = Random.Range(4, 12);
-            int width = Random.Range(4, 12);
-            int offsetH = Random.Range(0, x - height - 1);
-            int offsetW = Random.Range(0, y - width - 1);
-
-            for (int q = offsetH; q <= height + offsetH; q++)
-            {
-                for (int w = offsetW; w <= width + offsetW; w++)
-                {
-                    map[q, w] = 1;
-
-                    if (w == width + offsetW - 1)
-                    {
-                        x1 = q;
-                        x2 = w;
-                        if (y1 == -1)
-                        {
-                            y1 = x1;
-                            y2 = x2;
-                        }
-                        else
-                        {
-                            buildCorridor(x1, x2, y1, y2, 1);
-                            y1 = x1;
-                            y2 = x2;
-                        }
-                    }
-                }
-            }
-
-        }
-
-        buildCorridor(x1, x2, x - 8 + 3, y - 8 + 3, 1);
-        buildEndRoom();
-        buildCorridor(x1, x2, y1, y2, 1);
 
         return map;
     }
@@ -162,79 +121,5 @@ public class Dungeon2 {
 
     }
 
-    private void buildWalls()
-    {
-        int[,] tempMap = map;
-        for (int i = 0; i < map.GetLength(0); i++)
-        {
-            for (int t = 0; t < map.GetLength(1); t++) //For every box //perhaps just check borders of every box which is not 0 or 2
-            {
-                if (map[i, t] == 0 || map[i, t] == 2)
-                {
-                    try
-                    {
-                        if (checkBorders(i, t))
-                        {
-                            tempMap[i, t] = 2;
-                        }
-                    }
-                    catch
-                    {
-
-                    }
-                }
-            }
-        }
-        map = tempMap;
-    }
-
-    private bool checkBorders(int x, int y) //true if wall should be here
-    {
-        bool check = false;
-
-        if (oobCheck(x, y))
-        {
-            return check;
-        }
-
-        if (map[x - 1, y] != 0 && map[x - 1, y] != 2)
-        {
-            check = true;
-            //Perhaps do wall type here as well?
-        }
-
-        if (map[x + 1, y] != 0 && map[x + 1, y] != 2)
-        {
-            check = true;
-        }
-
-        if (map[x, y + 1] != 0 && map[x, y + 1] != 2)
-        {
-            check = true;
-        }
-
-        if (map[x, y - 1] != 0 && map[x, y - 1] != 2)
-        {
-            check = true;
-        }
-
-        return check;
-    }
-
-    private bool oobCheck(int x, int y) //shouldn't need this maybe im bad
-    {
-        bool check = false; //False = no oob, true == oob
-
-        if (x == 0 || x == map.GetLength(0))
-        {
-            return true;
-        }
-
-        if (y == 0 || y == map.GetLength(0))
-        {
-            return true;
-        }
-
-        return check;
-    }
+    
 }
