@@ -13,11 +13,12 @@ public class Dungeon2 {
 
     public int[,] genMap()
     {
-        xMid = new int[4];
-        yMid = new int[4];
+        
         x = map.GetLength(0);
         y = map.GetLength(1);
         int rooms = 4;
+        xMid = new int[rooms * rooms];
+        yMid = new int[rooms * rooms];
         //Make starting room near edge.
         drawRoom(rooms);
         //Draw start + end
@@ -29,16 +30,20 @@ public class Dungeon2 {
 
     private void drawRoom(int square)
     {
-         
+        int count = 0;
         for(int i = 0; i < square; i++)
         {
             for (int x = 0; x < square; x++)
             {
                 int h1 = Random.Range(4, 8);
                 int j1 = Random.Range(4, 8);
-                int h = h1 + (i * 10);
-                int j = j1 + (x * 10);
-                
+
+                int h = h1 + (i * 12);
+                int j = j1 + (x * 12);
+
+                xMid[count] = h + (h1 / 2);
+                yMid[count] = j + (j1 / 2);
+
                 for (int u = h; u < h + h1; u++)
                 {
                     for (int k = j; k < j + j1; k++)
@@ -46,6 +51,7 @@ public class Dungeon2 {
                         map[u, k] = 1;
                     }
                 }
+                count++;
             }
         }
     }
