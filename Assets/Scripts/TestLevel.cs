@@ -13,7 +13,7 @@ public class TestLevel : MonoBehaviour {
 
     void TestGenLevel()
     {
-        WinterForest level = new WinterForest();
+        Dungeon2 level = new Dungeon2();
         int[,] map = new int[64, 64];
         level.setMap(map);
         map = level.genMap();
