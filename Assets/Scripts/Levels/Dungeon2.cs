@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Dungeon2 {
+
     private int[,] map;
     int x1, x2, y1, y2;
     public int sx, sy, ex, ey;
@@ -9,6 +10,7 @@ public class Dungeon2 {
 
     int[] xMid;
     int[] yMid;
+
     public int[,] genMap()
     {
         xMid = new int[4];
@@ -27,22 +29,21 @@ public class Dungeon2 {
 
     private void drawRoom(int square)
     {
-        int width = x;
-        int height = y;
+         
         for(int i = 0; i < square; i++)
         {
             for (int x = 0; x < square; x++)
             {
                 int h1 = Random.Range(4, 8);
                 int j1 = Random.Range(4, 8);
-                int h = h1;
-                int j = j1;
+                int h = h1 + (i * 8);
+                int j = j1 + (x * 8);
 
                 for (int u = 0; u < h; u++)
                 {
                     for (int k = j; k < j; k++)
                     {
-                        
+                        map[u, k] = 1;
                     }
                 }
             }
