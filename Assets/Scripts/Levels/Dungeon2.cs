@@ -22,6 +22,38 @@ public class Dungeon2 {
         //Make starting room near edge.
         drawRoom(rooms);
 
+        for(int u = 0; u < xMid.Length; u++)
+        {
+            if(u == 0) //first
+            {
+                //Up down
+            }
+            else if(u == xMid.Length-1) //Last
+            {
+                //Above left
+            }
+            else if(u < rooms) //First line
+            {
+                //lefft right down
+            }
+            else if(u > (xMid.Length - rooms)) //Last line
+            {
+                //left right up
+            }
+            else if(u % rooms == 0) //First column
+            {
+
+            }
+            else if (u % rooms == rooms)
+            {
+
+            }
+            else
+            {
+                //up, down, left right
+            }
+
+        }
 
 
         map[xMid[0], yMid[0]] = 2;
