@@ -21,9 +21,11 @@ public class Dungeon2 {
         yMid = new int[rooms * rooms];
         //Make starting room near edge.
         drawRoom(rooms);
-        //Draw start + end
-        //Connect
 
+
+
+        map[xMid[0], yMid[0]] = 2;
+        map[xMid[xMid.Length -1], yMid[yMid.Length-1]] = 3;
 
         return map;
     }
