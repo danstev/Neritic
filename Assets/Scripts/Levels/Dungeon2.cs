@@ -26,19 +26,29 @@ public class Dungeon2 {
         {
             if(u == 0) //first
             {
-                //Up down
+                //right down
+                buildCorridor(xMid[u], yMid[u], xMid[u + 1], yMid[u + 1], 1);
+                buildCorridor(xMid[u], yMid[u], xMid[u + rooms], yMid[u + rooms], 1);
             }
             else if(u == xMid.Length-1) //Last
             {
                 //Above left
+                buildCorridor(xMid[u], yMid[u], xMid[u - 1], yMid[u - 1], 1);
+                buildCorridor(xMid[u], yMid[u], xMid[u - rooms], yMid[u - rooms], 1);
             }
-            else if(u < rooms) //First line
+            else if(u < rooms -1) //First line
             {
                 //lefft right down
+                buildCorridor(xMid[u], yMid[u], xMid[u - 1], yMid[u - 1], 1);
+                buildCorridor(xMid[u], yMid[u], xMid[u + 1], yMid[u + 1], 1);
+                buildCorridor(xMid[u], yMid[u], xMid[u + rooms], yMid[u + rooms], 1);
             }
             else if(u > (xMid.Length - rooms)) //Last line
             {
                 //left right up
+                buildCorridor(xMid[u], yMid[u], xMid[u - 1], yMid[u - 1], 1);
+                buildCorridor(xMid[u], yMid[u], xMid[u + 1], yMid[u + 1], 1);
+                buildCorridor(xMid[u], yMid[u], xMid[u - rooms], yMid[u - rooms], 1);
             }
             else if(u % rooms == 0) //First column
             {
