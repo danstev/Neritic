@@ -41,6 +41,10 @@ public class ExitLevel : MonoBehaviour {
             {
                 SceneManager.LoadScene("endScreen", LoadSceneMode.Single);
             }
+            else if(level == null)
+            {
+                SceneManager.LoadScene("home", LoadSceneMode.Single);
+            }
         }
     }
 }
