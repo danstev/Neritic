@@ -78,7 +78,7 @@ public class Dungeon2 {
             {
                 //up, down, left right
                 buildCorridor(xMid[u], yMid[u], xMid[u - 1], yMid[u - 1], 1);
-                buildCorridor(xMid[u], yMid[u], xMid[u + 1], yMid[u + 1], 1);
+                //buildCorridor(xMid[u], yMid[u], xMid[u + 1], yMid[u + 1], 1);
                 //buildCorridor(xMid[u], yMid[u], xMid[u - rooms], yMid[u - rooms], 1);
                 buildCorridor(xMid[u], yMid[u], xMid[u + rooms], yMid[u + rooms], 1);
             }
