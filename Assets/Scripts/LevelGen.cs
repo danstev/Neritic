@@ -117,6 +117,21 @@ public class LevelGen : MonoBehaviour {
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genDungeon();
         }
+        else if (level == "tomb") //Very hard
+        {
+            tile = Resources.Load("Prefabs/Tiles/dungeonFloor") as GameObject;
+            wall = Resources.Load("Prefabs/Tiles/dungeonWall") as GameObject;
+            roof = Resources.Load("Prefabs/Tiles/dungeonCeiling") as GameObject;
+            foley[0] = Resources.Load("Prefabs/Foley/dreamFoley3") as GameObject;
+            foley[1] = Resources.Load("Prefabs/Foley/skull") as GameObject;
+            foley[2] = Resources.Load("Prefabs/Foley/dust") as GameObject;
+            enemTest = Resources.Load("Prefabs/NPC/beholder") as GameObject;
+            enemy2 = Resources.Load("Prefabs/NPC/slimeTest") as GameObject;
+            enemy3 = Resources.Load("Prefabs/NPC/shadow") as GameObject;
+            boss = Resources.Load("Prefabs/dreamBoss") as GameObject;
+            torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
+            genTomb();
+        }
         else if (level == "endLevel") //TO BE REMOVED BECAUSE ITS SHIT
         {
             tile = Resources.Load("Prefabs/Tiles/flowerbedFloor") as GameObject;
@@ -195,6 +210,19 @@ public class LevelGen : MonoBehaviour {
     void genDungeon()
     {
         Dungeon r = new Dungeon();
+        boxMap = UnityEngine.Random.Range(60, 64);
+        map = new int[boxMap, boxMap];
+        r.setMap(map);
+        map = r.genMap();
+        tileMap = fillTileMap(map);
+        renderMap(tileMap);
+        xStart = r.sx * spaceMod;
+        yStart = r.sy * spaceMod;
+    }
+
+    void genTomb()
+    {
+        Dungeon2 r = new Dungeon2();
         boxMap = UnityEngine.Random.Range(60, 64);
         map = new int[boxMap, boxMap];
         r.setMap(map);
