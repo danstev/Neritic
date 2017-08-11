@@ -117,7 +117,7 @@ public class LevelGen : MonoBehaviour {
             torch = Resources.Load("Prefabs/dreamTorch") as GameObject;
             genDungeon();
         }
-        else if (level == "tomb") //Very hard
+        else if (level == "Tomb") //Very hard
         {
             tile = Resources.Load("Prefabs/Tiles/dungeonFloor") as GameObject;
             wall = Resources.Load("Prefabs/Tiles/dungeonWall") as GameObject;
