@@ -24,11 +24,18 @@ public class Dungeon2 {
 
         for(int u = 0; u < xMid.Length; u++)
         {
+            Debug.Log(u);
             if(u == 0) //first
             {
                 //right down
                 buildCorridor(xMid[u], yMid[u], xMid[u + 1], yMid[u + 1], 1);
                 buildCorridor(xMid[u], yMid[u], xMid[u + rooms], yMid[u + rooms], 1);
+            }
+            else if (u == (rooms * (rooms-1)) ) //Last
+            {
+                //Above left
+                buildCorridor(xMid[u], yMid[u], xMid[u - 1], yMid[u - 1], 1);
+                buildCorridor(xMid[u], yMid[u], xMid[u - rooms], yMid[u - rooms], 1);
             }
             else if(u == xMid.Length-1) //Last
             {
@@ -43,14 +50,22 @@ public class Dungeon2 {
                 buildCorridor(xMid[u], yMid[u], xMid[u + 1], yMid[u + 1], 1);
                 buildCorridor(xMid[u], yMid[u], xMid[u + rooms], yMid[u + rooms], 1);
             }
-            else if(u > (xMid.Length - rooms)) //Last line
+            else if(u > ((rooms* rooms) - rooms)) //Last line
             {
                 //left right up
                 buildCorridor(xMid[u], yMid[u], xMid[u - 1], yMid[u - 1], 1);
                 buildCorridor(xMid[u], yMid[u], xMid[u + 1], yMid[u + 1], 1);
                 buildCorridor(xMid[u], yMid[u], xMid[u - rooms], yMid[u - rooms], 1);
             }
-            else if(u % rooms == 0 && u > rooms && u != rooms) //First column
+            else if (u % rooms == rooms) //last column?
+            {
+                //left up down
+
+                buildCorridor(xMid[u], yMid[u], xMid[u - 1], yMid[u - 1], 1);
+                buildCorridor(xMid[u], yMid[u], xMid[u - rooms], yMid[u - rooms], 1);
+                buildCorridor(xMid[u], yMid[u], xMid[u + rooms], yMid[u + rooms], 1);
+            }
+            else if(u % rooms == 0 && u > rooms && u != rooms && u < (rooms * rooms) - rooms) //First column
             {
                 //right up down
                 buildCorridor(xMid[u], yMid[u], xMid[u - 1], yMid[u - 1], 1);
@@ -58,14 +73,6 @@ public class Dungeon2 {
                 buildCorridor(xMid[u], yMid[u], xMid[u - rooms], yMid[u - rooms], 1);
                 buildCorridor(xMid[u], yMid[u], xMid[u + rooms], yMid[u + rooms], 1);
 
-            }
-            else if (u % rooms == rooms) //last column?
-            {
-                //left up down
-                
-                buildCorridor(xMid[u], yMid[u], xMid[u + 1], yMid[u + 1], 1);
-                buildCorridor(xMid[u], yMid[u], xMid[u - rooms], yMid[u - rooms], 1);
-                buildCorridor(xMid[u], yMid[u], xMid[u + rooms], yMid[u + rooms], 1);
             }
             else
             {
