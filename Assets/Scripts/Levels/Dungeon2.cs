@@ -103,6 +103,11 @@ public class Dungeon2 {
         map[xMid[0], yMid[0]] = 2;
         map[xMid[xMid.Length -1], yMid[yMid.Length-1]] = 3;
 
+        sx = xMid[0];
+        sy = yMid[0];
+        ex = xMid[ xMid.Length-1];
+        ey = yMid[xMid.Length - 1];
+
         return map;
     }
 
