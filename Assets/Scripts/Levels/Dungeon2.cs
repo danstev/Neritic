@@ -57,12 +57,20 @@ public class Dungeon2 {
                 buildCorridor(xMid[u], yMid[u], xMid[u + 1], yMid[u + 1], 1);
                 buildCorridor(xMid[u], yMid[u], xMid[u - rooms], yMid[u - rooms], 1);
             }
-            else if (u % rooms == rooms) //last column?
+            else if (u % rooms == rooms - 1 && u > rooms) //last column?
             {
                 //left up down
 
                 buildCorridor(xMid[u], yMid[u], xMid[u - 1], yMid[u - 1], 1);
                 buildCorridor(xMid[u], yMid[u], xMid[u - rooms], yMid[u - rooms], 1);
+                buildCorridor(xMid[u], yMid[u], xMid[u + rooms], yMid[u + rooms], 1);
+            }
+            else if (u % rooms == rooms-1) //2nd corner
+            {
+                //left  down
+
+                buildCorridor(xMid[u], yMid[u], xMid[u - 1], yMid[u - 1], 1);
+                
                 buildCorridor(xMid[u], yMid[u], xMid[u + rooms], yMid[u + rooms], 1);
             }
             else if(u % rooms == 0 && u > rooms && u != rooms && u < (rooms * rooms) - rooms) //First column
