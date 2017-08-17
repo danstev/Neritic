@@ -263,6 +263,7 @@ public class EnemyBaseAi : MonoBehaviour {
                 attackTimer = stats.magicTime;
                 GameObject spell;
                 spell = Instantiate(stats.magicSpell, transform.position + transform.forward * 1f, transform.rotation) as GameObject;
+                Physics.IgnoreCollision(spell.GetComponent<Collider>(), gameObject.GetComponent<Collider>());
                 Rigidbody spellR = spell.GetComponent<Rigidbody>();
                 spellR.AddForce(spell.transform.forward * stats.magicSpeed);
                 Spell spellA = spell.GetComponent<Spell>();
