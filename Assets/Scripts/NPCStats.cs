@@ -55,7 +55,8 @@ public class NPCStats : NetworkBehaviour{
                 ai.alive = false;
 
                 //turn of anim
-
+                Animator a = GetComponent<Animator>();
+                a.enabled = false;
 
             }
         }
