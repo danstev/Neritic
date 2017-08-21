@@ -41,36 +41,6 @@ public class NPCStats : NetworkBehaviour{
 
         if (curHealth <= 0)
         {
-
-            if (tag == "Enemy")
-            {
-                float rate = Random.Range(0f, 1f);
-                if (rate > 0.75f)
-                {
-                    int item = Random.Range(0, 4);
-                    if (item == 1)
-                    {
-                        Instantiate(drop1, transform.position, Quaternion.identity);
-                    }
-                    else if (item == 2)
-                    {
-                        Instantiate(drop2, transform.position, Quaternion.identity);
-                    }
-                    else if (item == 3)
-                    {
-                        Instantiate(drop3, transform.position, Quaternion.identity);
-                    }
-                }
-                else if (rate > 0.95f)
-                {
-                    Instantiate(rareDrop, transform.position, Quaternion.identity);
-                }
-                else if (rate > 0.98f)
-                {
-                    Instantiate(veryRareDrop, transform.position, Quaternion.identity);
-                }
-            }
-
             Collider[] detectColliders = Physics.OverlapSphere(transform.position, 25);
             for (int i = 0; i < detectColliders.Length; i++)
             {
@@ -94,6 +64,31 @@ public class NPCStats : NetworkBehaviour{
 
     public void DestroySprite(SpriteRenderer renderer)
     {
+        float rate = Random.Range(0f, 1f);
+        if (rate > 0.75f)
+        {
+            int item = Random.Range(0, 4);
+            if (item == 1)
+            {
+                Instantiate(drop1, transform.position, Quaternion.identity);
+            }
+            else if (item == 2)
+            {
+                Instantiate(drop2, transform.position, Quaternion.identity);
+            }
+            else if (item == 3)
+            {
+                Instantiate(drop3, transform.position, Quaternion.identity);
+            }
+        }
+        else if (rate > 0.95f)
+        {
+            Instantiate(rareDrop, transform.position, Quaternion.identity);
+        }
+        else if (rate > 0.98f)
+        {
+            Instantiate(veryRareDrop, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 
