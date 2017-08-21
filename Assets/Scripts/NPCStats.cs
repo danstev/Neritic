@@ -85,9 +85,9 @@ public class NPCStats : NetworkBehaviour{
                 }
             }
 
-            SpriteRenderer sp = GetComponent<SpriteRenderer>();
-            sp.FadeSprite(this, 2f, DestroySprite);
+            SpriteRenderer sp = GetComponentInChildren<SpriteRenderer>();
 
+            sp.FadeSprite(this, 2f, DestroySprite);
 
         }
     }
