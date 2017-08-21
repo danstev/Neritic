@@ -41,19 +41,7 @@ public class NPCStats : NetworkBehaviour{
 
         if (curHealth <= 0)
         {
-            Collider[] detectColliders = Physics.OverlapSphere(transform.position, 25);
-            for (int i = 0; i < detectColliders.Length; i++)
-            {
-                if (detectColliders[i].tag == "Player")
-                {
-                    Statistics s = detectColliders[i].GetComponent<Statistics>();
-                    s.exp += expGranted;
-                    if (s.exp > s.expForLevel)
-                    {
-                        s.levelUp(1);
-                    }
-                }
-            }
+            
 
             SpriteRenderer sp = GetComponentInChildren<SpriteRenderer>();
 
@@ -64,6 +52,20 @@ public class NPCStats : NetworkBehaviour{
 
     public void DestroySprite(SpriteRenderer renderer)
     {
+        Collider[] detectColliders = Physics.OverlapSphere(transform.position, 25);
+        for (int i = 0; i < detectColliders.Length; i++)
+        {
+            if (detectColliders[i].tag == "Player")
+            {
+                Statistics s = detectColliders[i].GetComponent<Statistics>();
+                s.exp += expGranted;
+                if (s.exp > s.expForLevel)
+                {
+                    s.levelUp(1);
+                }
+            }
+        }
+
         float rate = Random.Range(0f, 1f);
         if (rate > 0.75f)
         {
