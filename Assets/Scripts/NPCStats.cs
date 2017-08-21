@@ -84,8 +84,17 @@ public class NPCStats : NetworkBehaviour{
                     }
                 }
             }
-            Destroy(gameObject);
+
+            SpriteRenderer sp = GetComponent<SpriteRenderer>();
+            sp.FadeSprite(this, 2f, DestroySprite);
+
+
         }
+    }
+
+    public void DestroySprite(SpriteRenderer renderer)
+    {
+        Destroy(gameObject);
     }
 
     public void takeDamage(float[] dam)
