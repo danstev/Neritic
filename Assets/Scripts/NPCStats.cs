@@ -28,6 +28,8 @@ public class NPCStats : NetworkBehaviour{
     public GameObject rareDrop;
     public GameObject veryRareDrop;
 
+    private bool dead;
+
     // Use this for initialization
     void Start () {
         r = GetComponent<Rigidbody>();
@@ -41,13 +43,15 @@ public class NPCStats : NetworkBehaviour{
 
         if (curHealth <= 0)
         {
-            
+
+            dead = true;
 
             SpriteRenderer sp = GetComponentInChildren<SpriteRenderer>();
-
             sp.FadeSprite(this, 2f, DestroySprite);
 
         }
+
+        if(dead == true)
     }
 
     public void DestroySprite(SpriteRenderer renderer)
