@@ -28,7 +28,8 @@ public class NPCStats : NetworkBehaviour{
     public GameObject rareDrop;
     public GameObject veryRareDrop;
 
-    private bool dead;
+    private bool dead = false;
+    private bool alive = true;
 
     // Use this for initialization
     void Start () {
@@ -38,20 +39,32 @@ public class NPCStats : NetworkBehaviour{
     // Update is called once per frame
     void Update() {
 
-        if (curHealth > maxHealth)
-            curHealth = maxHealth;
-
-        if (curHealth <= 0)
+        if (alive)
         {
+            if (curHealth > maxHealth)
+                curHealth = maxHealth;
 
-            dead = true;
+            if (curHealth <= 0)
+            {
 
-            SpriteRenderer sp = GetComponentInChildren<SpriteRenderer>();
-            sp.FadeSprite(this, 2f, DestroySprite);
+                dead = true;
+                alive = false;
+                
 
+            }
         }
 
         if(dead == true)
+        {
+            KillNPC();
+            dead = false;
+        }
+    }
+
+    private void KillNPC()
+    {
+        SpriteRenderer sp = GetComponentInChildren<SpriteRenderer>();
+        sp.FadeSprite(this, 2f, DestroySprite);
     }
 
     public void DestroySprite(SpriteRenderer renderer)
