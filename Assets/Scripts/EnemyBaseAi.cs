@@ -29,6 +29,7 @@ public class EnemyBaseAi : MonoBehaviour {
     private GameObject sprite;
     private Rigidbody r;
     private bool attacked = false;
+    public bool alive = true;
 
     private float attackTimer = 0f;
 
@@ -145,7 +146,10 @@ public class EnemyBaseAi : MonoBehaviour {
     }
 
     void Update () {
-        enemyAI();   
+        if (alive)
+        {
+            enemyAI();
+        }  
 	}
 
     void moveBack()

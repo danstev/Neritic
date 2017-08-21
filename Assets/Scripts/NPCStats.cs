@@ -49,7 +49,13 @@ public class NPCStats : NetworkBehaviour{
 
                 dead = true;
                 alive = false;
-                
+
+                //turn off ai
+                EnemyBaseAi ai = GetComponent<EnemyBaseAi>();
+                ai.alive = false;
+
+                //turn of anim
+
 
             }
         }
