@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\RandomShader.cs" />
     <Compile Include="Assets\Scripts\ShaderSwitch.cs" />
     <Compile Include="Assets\Scripts\Spell.cs" />
+    <Compile Include="Assets\Scripts\SpriteFade.cs" />
     <Compile Include="Assets\Scripts\Statistics.cs" />
     <Compile Include="Assets\Scripts\TestLevel.cs" />
     <Compile Include="Assets\Scripts\Weapon.cs" />
