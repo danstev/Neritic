@@ -6,12 +6,7 @@ public class EnemySpawner : MonoBehaviour {
     private GameObject enemy;
     public GameObject enemyToSpawn;
     public float timer;
-    private float timerTemp;
-
-
-	void Start () {
-	
-	}
+    public float timerTemp;
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,12 +15,13 @@ public class EnemySpawner : MonoBehaviour {
         {
             if (timerTemp <= 0)
             {
-                enemy = Instantiate(enemyToSpawn, transform) as GameObject;      
+                enemy = Instantiate(enemyToSpawn, transform.position, transform.localRotation) as GameObject;
+                timerTemp = timer;      
             }
-        }
-        else
-        {
-            timerTemp -= Time.deltaTime;
+            else
+            {
+                timerTemp -= Time.deltaTime;
+            }
         }
     }
 }
