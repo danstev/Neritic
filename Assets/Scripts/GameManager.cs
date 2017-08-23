@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour {
         foreach(string s in weatherEffects)
         {
             try {
-                GameObject g = player.transform.FindChild(s).gameObject;
+                GameObject g = player.transform.Find(s).gameObject;
                 if (g != null)
                     Destroy(g);
             }
@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour {
 
     void changeLightSize(GameObject p, float size, float intensity)
     {
-        GameObject pointLight = p.transform.FindChild("Light").gameObject;
+        GameObject pointLight = p.transform.Find("Light").gameObject;
         Light l = pointLight.GetComponent<Light>();
         l.range = size;
         l.intensity = intensity;
