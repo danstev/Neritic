@@ -1,0 +1,55 @@
+todo
+
+fox stevenson
+billy talent
+owl city
+more rezz
+gesaffelstein
+	
+Sounds different for every monster
+	Record more sounds
+	
+Make weapons more fun
+	Add weapon component with script, speed, attack, make weapon damage work, add modifiers?
+	
+Change spells
+	spell menu, learn more as you level? more secret ones you can use?
+	
+Multiplayer check???? death ressurection options
+
+Fix fog, draw fog rain   transform = parent.transform
+	
+seabed level needs to be darker
+	Or just remove it altogether
+	
+Randomly generate from seed, transfer seed from server to clients
+	Normalise map gen
+	
+sounds randomly ambience
+	Sound engine make
+	
+options menu
+	Options hook in????
+	
+use collectors to keep everything neat
+	Easy to do
+
+do all sounds
+
+popup only work when close + bacxkground to make readable
+
+/////Weapon class - swing speed/damage fixes etc, no wild swinging yet
+
+
+V0.1
+
+Dream, forest, dungeon, seabed levels, complete with foley for each level.
+Two weapons, one spell, twelve pieces of equipment, four usable items.
+Slime, treant, ghost, smiley, beholder, marshmellow enemies.
+Stats system, agility, strength, intellect, health, mana, leveling system.
+
+V0.2
+Beholder now attacks properly.
+Fireball spell now lights up and has a particle trail attatched.
+Seabed level is now closer to other levels in look, I will delete this level soon though because I hate it.
+Added crosshair
